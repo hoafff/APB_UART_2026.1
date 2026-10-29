@@ -42,31 +42,31 @@ Nguồn dẫn: hướng dẫn thầy định nghĩa mục tiêu hệ thống; h�
 
 | ID | REQ | Stimulus (directed) | Expected & checker | Priority | Suite |
 |---|---|---|---|---|---|
-| TC_APB_PROTOCOL | APB_001 | Read/Write LCR qua SETUP→ACCESS | Driver/monitor stable controls, one completion | P0 | normal |
-| TC_APB_WRITE_GATING | APB_002 | Idle/setup/read vs write-ACCESS | không update ở sai pha | P1 | normal |
-| TC_APB_READ_GATING | APB_003 | PSEL=0, SETUP, READ ACCESS | PRDATA 0 ngoài valid read | P1 | normal |
-| TC_APB_READY_ERR | APB_004 | APB reads/writes | PREADY 1, PSLVERR 0 | P0 | normal |
-| TC_APB_ALIAS | APB_005 | write/read LCR at 0x03/0x0B | same register; 0x0C không phải LCR | P1 | normal |
-| TC_REG_ADDR_ACCESS | REG_001 | access offsets 0/1/2/3/5 | read/write theo map + DLAB | P0 | normal |
-| TC_REG_DLAB | REG_002 | LCR=0x83, DLL/DLM, restore DLAB0 | DLL/DLM readback, IER tách biệt | P0 | normal |
-| TC_REG_DATA_WIDTH | REG_003 | high bits PWDATA varied | only low byte impacts 8-bit regs | P1 | normal |
-| TC_RESET_REG | REG_004 | assert reset during/after config | LCR/IER/divisor reset; APB IIR=0xC1 khi no IRQ | P0 | normal |
-| TC_REG_UNIMPLEMENTED | REG_005 | offsets 4/6/7 read/write | PRDATA=0; PSLVERR=0 | P1 | normal |
-| TC_TX_THR | TX_001 | write THR data 0x41 | one enqueued TX frame, no duplicates | P0 | normal |
-| TC_TX_FRAME | TX_002 | 8N1 byte 0x41 | idle, start0, LSB, stop1 | P0 | normal |
-| TC_TX_DATABITS | TX_003 | 5/6/7/8 configs | exact bit count/data mask | P1 | normal |
-| TC_TX_PARITY_STOP | TX_004 | no/even parity; 1/2 stop | even parity XOR, correct stops; odd is gap | P1 | normal+gap |
-| TC_TX_BAUD_MEASURE | TX_005 | sweep divisor; 50MHz | observed bit time, baud error%; no hardcode 27 | P0 | investigation |
-| TC_RX_VALID_FRAME | RX_001 | serial 0x42, 8N1 | received byte in RBR | P0 | normal |
-| TC_RX_RBR_POP | RX_002 | RX two bytes then read twice | FIFO oldest first; each read pops once | P1 | normal |
-| TC_RX_LSR_DR | RX_003 | RX input then read RBR | LSR[0] 0→1→0 | P0 | normal |
-| TC_RX_PARITY_FAULT | RX_004 | bad parity frame | guide expects PE; RTL original cannot latch err_o; capture XFAIL | P0 | xfail |
-| TC_RX_FRAMING_OVERRUN_GAP | RX_005 | invalid stop / RX overflow | demonstrate missing FE/OE flags, not baseline PASS | P2 | xfail |
-| TC_FIFO_RESET_CLEAR | FIFO_001 | populate queues; FCR clear bits | counts empty, no stale data | P1 | normal |
-| TC_FIFO_ORDER_FULL | FIFO_002 | 16 entries, then 17th; read order | full behavior, loss/backpressure as RTL | P1 | investigation |
-| TC_FIFO_THRESH | FIFO_003 | thresholds 1/4/8/14 | assess T-1/T/T+1; isolate bogus RDA source | P1 | investigation |
-| TC_INT_SOURCES_CLEAR | INT_001 | IER masks, read IIR/LSR | model IIR/event; reassert if source remains | P1 | investigation |
-| TC_INT_RX_RDA_BUG | INT_002 | IER[0]=1, RX empty and TX empty | guide: no RX IRQ; RTL may assert due to TX empty; capture XFAIL | P0 | xfail |
+| TC_APB_PROTOCOL | REQ_APB_001 | Read/Write LCR qua SETUP→ACCESS | Driver/monitor stable controls, one completion | P0 | normal |
+| TC_APB_WRITE_GATING | REQ_APB_002 | Idle/setup/read vs write-ACCESS | không update ở sai pha | P1 | normal |
+| TC_APB_READ_GATING | REQ_APB_003 | PSEL=0, SETUP, READ ACCESS | PRDATA 0 ngoài valid read | P1 | normal |
+| TC_APB_READY_ERR | REQ_APB_004 | APB reads/writes | PREADY 1, PSLVERR 0 | P0 | normal |
+| TC_APB_ALIAS | REQ_APB_005 | write/read LCR at 0x03/0x0B | same register; 0x0C không phải LCR | P1 | normal |
+| TC_REG_ADDR_ACCESS | REQ_REG_001 | access offsets 0/1/2/3/5 | read/write theo map + DLAB | P0 | normal |
+| TC_REG_DLAB | REQ_REG_002 | LCR=0x83, DLL/DLM, restore DLAB0 | DLL/DLM readback, IER tách biệt | P0 | normal |
+| TC_REG_DATA_WIDTH | REQ_REG_003 | high bits PWDATA varied | only low byte impacts 8-bit regs | P1 | normal |
+| TC_RESET_REG | REQ_REG_004 | assert reset during/after config | LCR/IER/divisor reset; APB IIR=0xC1 khi no IRQ | P0 | normal |
+| TC_REG_UNIMPLEMENTED | REQ_REG_005 | offsets 4/6/7 read/write | PRDATA=0; PSLVERR=0 | P1 | normal |
+| TC_TX_THR | REQ_TX_001 | write THR data 0x41 | one enqueued TX frame, no duplicates | P0 | normal |
+| TC_TX_FRAME | REQ_TX_002 | 8N1 byte 0x41 | idle, start0, LSB, stop1 | P0 | normal |
+| TC_TX_DATABITS | REQ_TX_003 | 5/6/7/8 configs | exact bit count/data mask | P1 | normal |
+| TC_TX_PARITY_STOP | REQ_TX_004 | no/even parity; 1/2 stop | even parity XOR, correct stops; odd is gap | P1 | normal+gap |
+| TC_TX_BAUD_MEASURE | REQ_TX_005 | sweep divisor; 50MHz | observed bit time, baud error%; no hardcode 27 | P0 | investigation |
+| TC_RX_VALID_FRAME | REQ_RX_001 | serial 0x42, 8N1 | received byte in RBR | P0 | normal |
+| TC_RX_RBR_POP | REQ_RX_002 | RX two bytes then read twice | FIFO oldest first; each read pops once | P1 | normal |
+| TC_RX_LSR_DR | REQ_RX_003 | RX input then read RBR | LSR[0] 0→1→0 | P0 | normal |
+| TC_RX_PARITY_FAULT | REQ_RX_004 | bad parity frame | guide expects PE; RTL original cannot latch err_o; capture XFAIL | P0 | xfail |
+| TC_RX_FRAMING_OVERRUN_GAP | REQ_RX_005 | invalid stop / RX overflow | demonstrate missing FE/OE flags, not baseline PASS | P2 | xfail |
+| TC_FIFO_RESET_CLEAR | REQ_FIFO_001 | populate queues; FCR clear bits | counts empty, no stale data | P1 | normal |
+| TC_FIFO_ORDER_FULL | REQ_FIFO_002 | 16 entries, then 17th; read order | full behavior, loss/backpressure as RTL | P1 | investigation |
+| TC_FIFO_THRESH | REQ_FIFO_003 | thresholds 1/4/8/14 | assess T-1/T/T+1; isolate bogus RDA source | P1 | investigation |
+| TC_INT_SOURCES_CLEAR | REQ_INT_001 | IER masks, read IIR/LSR | model IIR/event; reassert if source remains | P1 | investigation |
+| TC_INT_RX_RDA_BUG | REQ_INT_002 | IER[0]=1, RX empty and TX empty | guide: no RX IRQ; RTL may assert due to TX empty; capture XFAIL | P0 | xfail |
 
 **Initial implementation in repo** includes P0 APB register smoke, TX frame, RX byte, random APB-register test and known-gap scenarios (see README under dv/). Other rows remain **PLANNED**, not automatically completed by having a matrix.
 
