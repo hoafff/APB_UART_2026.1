@@ -1,6 +1,6 @@
 # ĐỐI CHIẾU `Huongdan_UART.md` VỚI RTL PULP — ISSUE & DISCREPANCY REGISTER
 
-> **Trạng thái:** v0.2, 29/10/2026 — rà soát tĩnh phục vụ DV Plan/UVM, **chưa chạy mô phỏng/FPGA**.  
+> **Trạng thái:** v0.3, 29/10/2026 — second audit phục vụ DV Plan/UVM, **chưa chạy mô phỏng/FPGA**.  
 > **Nguồn hướng dẫn:** `Huongdan_UART.md` do giảng viên cung cấp.  
 > **Nguồn RTL chuẩn:** [`pulp-platform/apb_uart_sv` tại commit `dfad6e04d19cc9481d3cd2750b45b970dc61271b`](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b).  
 > **Quy tắc:** Dùng RTL khi xác định **hành vi thực tế của DUT**; vẫn giữ phần hướng dẫn như **mục tiêu thiết kế/kiểm thử**. Các mục nghi vấn không tự động được kết luận là lỗi cho đến khi mô phỏng xác nhận.
@@ -17,14 +17,15 @@
 | **DIF-04** | HIGH | RX framing error/stop-bit validation không được triển khai theo mô tả | Không gán testcase FE là expected pass |
 | **DIF-05** | HIGH | LSR overrun cờ `[1]` không được cập nhật khi FIFO đầy | Test FIFO full/drop, không mặc định có OE |
 | **DIF-06** | MEDIUM | `FCR[0]` không điều khiển enable FIFO | Ghi 0x07 chỉ có clear RX/TX và trigger selection |
-| **DIF-07** | HIGH | Interrupt `RDA_i` nhận **LSR[5]** thay vì tín hiệu RX data ready | Đo `event_o`, IIR trước khi dùng ngắt để polling |
-| **DIF-08** | HIGH/OPEN | Thứ tự RX SAVE_DATA và PARITY + clear error liên tục | Mô phỏng kiểm tra parity error từng byte |
+| **DIF-07** | HIGH / STATIC CONFIRMED | Interrupt `RDA_i` nối **LSR[5]** (TX empty), không phải RX data ready | Chứng minh case TX/RX và reassert bằng waveform |
+| **DIF-08** | HIGH / STATIC CONFIRMED | `err_clr_i=1'b1` khiến `uart_rx.err_o` luôn được clear; SAVE_DATA trước PARITY | Ghi nhận guide-gap chắc chắn, mô phỏng để lấy bằng chứng |
 | **DIF-09** | MEDIUM | Một số thanh ghi kiểu 16550 chỉ được **khai báo tên**, chưa có read/write | Đặc tả đúng subset hỗ trợ |
 | **DIF-10** | INFO | Source Top-Level `de2_115_apb_uart_bringup.sv` **không có** trong repo PULP | Tự viết hoặc nhận code từ thầy |
 | **DIF-11** | MEDIUM | Ngưỡng FIFO interrupt dùng so sánh `==`, không phải `>=` | Test ngưỡng và vượt ngưỡng |
 | **DIF-12** | INFO | DUT đã có đồng bộ RX 3-bit; hướng dẫn yêu cầu thêm 2-FF ở wrapper | Giữ kiến trúc hướng dẫn, đo thêm độ trễ |
 | **DIF-13** | INFO/OPEN | Chân pin/voltage từ hướng dẫn không thể kiểm chứng bằng RTL DUT | Kiểm tra DE2-115 manual + Pin Planner |
 | **DIF-14** | HIGH / DV | Đọc RBR/IIR/LSR có side effect trong RTL nhưng hướng dẫn chưa mô tả chi tiết | APB monitor sample đúng pha; scoreboard xử lý pop/clear sau read |
+| **DIF-15** | MEDIUM / DV | Giá trị IIR nội bộ reset 0x01, nhưng **APB read IIR = 0xC1** khi chưa có interrupt | Scoreboard phải model byte ghép bit cố định; test readback sau reset |
 
 ---
 
@@ -96,7 +97,7 @@
 
 **RTL:** [`apb_uart_sv.sv`, instance `uart_interrupt`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L167-L185) nối `.RDA_i(regs_n[LSR][5])`; nhưng trong cùng file [`LSR[5]` được gán trạng thái **TX FIFO empty**](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L205-L212). Phần RX-data-ready là `LSR[0]`.
 
-**Quyết định:** Ghi là **nghi vấn nối sai** có bằng chứng. Viết test tách trường hợp `TX empty, RX empty`, `TX busy, RX has data`, `TX empty, RX has data` để đo `event_o` và IIR. Không khẳng định ngay mọi ngắt RX đều sai nếu chưa mô phỏng.
+**Quyết định:** Xác nhận **sai nguồn RDA theo RTL**: `RDA_i` nối trạng thái TX FIFO empty thay vì RX-data ready. Khi bật IER[0], TX FIFO empty và RX empty, nhánh RDA có thể đặt IIR=4'b1000 và `event_o=1` sau cạnh clock. Viết test tách `TX empty/RX empty`, `TX busy/RX has data`, `TX empty/RX has data`, test mức trigger, và kiểm tra IIR/LSR read-clear có bị nguồn tồn tại ghi đè ngay không. **Chưa chạy mô phỏng để chứng minh dạng sóng và thời gian chính xác.**
 
 ### DIF-08 — Parity error RX có rủi ro bị gắn sai/mất (HIGH/OPEN)
 
@@ -104,7 +105,7 @@
 
 **RTL:** [`uart_rx.sv`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_rx.sv#L119-L152) đi qua `SAVE_DATA` (phát `rx_valid_o`) **trước** `PARITY` (mới set error). [`apb_uart_sv.sv`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L74-L98) nối `.err_clr_i(1'b1)`, đồng thời [FIFO lưu `{parity_error,rx_data}`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L115-L139). Trong [`uart_rx.sv`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_rx.sv#L242-L260), `err_clr_i` có ưu tiên trên `set_error`.
 
-**Quyết định:** Đây là rủi ro đặc biệt quan trọng; cần directed test gửi byte có parity lỗi xen kẽ byte hợp lệ, đọc RBR + LSR theo từng byte, xem cả waveform nội bộ trước khi kết luận. Không dựa vào `LSR[2]` làm oracle tuyệt đối.
+**Kết luận phân tích tĩnh:** Vì `err_clr_i` bị nối cố định `1'b1`, nhánh xóa trong `uart_rx.sv` được chọn tại **mọi cạnh clock**, nên `err_o` không thể lên 1 sau reset trong DUT nguyên bản. RX FIFO sẽ không ghi nhận được parity-error qua bit thứ 9, do đó `LSR[2]` cũng không thể phản ánh lỗi parity thật. Việc SAVE_DATA xảy ra trước PARITY là rủi ro thứ hai nếu sau này sửa lỗi clear. Directed test good/bad parity vẫn cần chạy để cung cấp bằng chứng waveform, nhưng **không ghi chức năng parity error là PASS theo hướng dẫn**.
 
 ### DIF-09 — Chuẩn 16550 được triển khai dạng subset (MEDIUM)
 
@@ -158,6 +159,14 @@
 
 **Quyết định:** Bổ sung checker cho REQ_RX_002, REQ_INT_001 và test APB sampling. Đây là điểm **bổ sung từ RTL**, không nhất thiết là mâu thuẫn nội dung trực tiếp với tài liệu của thầy.
 
+### DIF-15 — IIR internal reset value khác APB readback (MEDIUM / DV)
+
+**Nguồn RTL:** [apb_uart_sv.sv](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L294-L327) reset `regs_q[IIR]` thành `8'h01` nhưng APB IIR **không đọc bank này**: `PRDATA = {24'b0, 1'b1, 1'b1, 2'b0, IIR_o}`. [uart_interrupt.sv](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_interrupt.sv#L88-L107) reset `iir_q=4'b0001`.
+
+**Hệ quả:** Với IER chưa bật, giá trị IIR quan sát qua APB tại offset `0x2` là `8'hC1`, không phải `8'h01`. Sau cấu hình IER có thể xuất hiện ngắt; không giả định IIR luôn C1.
+
+**Quyết định:** `TC_RESET_REG` / `TC_REG_IIR_READBACK` phải kiểm byte ghép bit cố định và điều kiện ngắt; tránh nhầm state nội bộ của module thành giá trị readback.
+
 ## 3. Kiểm tra ưu tiên khi làm DV Plan và FPGA
 
 1. **Trước UVM:** Bắt đầu bằng APB register read/write, kiểm tra địa chỉ đúng `0x0/0x1/0x2/0x3/0x5` và DLAB (DIF-01); test TX baud và RX loopback (DIF-02).
@@ -182,10 +191,10 @@
 ## 4. Chính sách cập nhật
 
 - **Không đổi DUT gốc** chỉ để làm cho các test theo hướng dẫn pass.
-- Khi có bằng chứng mô phỏng, cập nhật trạng thái mục tương ứng: `OPEN → CONFIRMED` hoặc `OPEN → CLOSED / NOT A BUG`.
+- Các lỗi kết nối chứng minh được bằng phân tích tĩnh (`DIF-07`, `DIF-08`) mang trạng thái STATIC CONFIRMED; waveform dùng để xác nhận tác động thực tế và thời gian, không hạ xuống 'chỉ nghi vấn'. Những mục còn OPEN được cập nhật sau test (`OPEN → CONFIRMED` hoặc `OPEN → CLOSED / NOT A BUG`).
 - Mọi sửa lỗi (nếu giảng viên đồng ý) phải thực hiện riêng nhánh và nêu rõ khác biệt với commit gốc; test cả **original DUT** lẫn **patched DUT** nếu cần.
 - Tài liệu này là nhật ký sai khác, không tự thay thế Verification Plan.
 
 **Tài liệu SPEC chính:** [`01_System_Specification.md`](01_System_Specification.md).
 
-**Bàn giao UVM:** [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md) — bảng REQ→TC/coverage và các cảnh báo testbench.
+**Bàn giao UVM:** [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md) — bảng REQ→TC/coverage và các cảnh báo testbench; DIF-07/08 được phân loại lỗi kết nối logic xác nhận tĩnh, DIF-15 làm rõ IIR.
