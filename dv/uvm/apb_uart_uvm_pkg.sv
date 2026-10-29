@@ -33,12 +33,14 @@ package apb_uart_uvm_pkg;
     class uart_frame extends uvm_sequence_item;
         bit [7:0] data;
         int unsigned data_bits = 8;
+        int unsigned stop_bits = 1;
         bit parity_en;
         bit parity_good = 1;
         bit stop_good = 1;
         `uvm_object_utils_begin(uart_frame)
             `uvm_field_int(data, UVM_ALL_ON)
             `uvm_field_int(data_bits, UVM_ALL_ON)
+            `uvm_field_int(stop_bits, UVM_ALL_ON)
             `uvm_field_int(parity_en, UVM_ALL_ON)
             `uvm_field_int(parity_good, UVM_ALL_ON)
             `uvm_field_int(stop_good, UVM_ALL_ON)
@@ -163,6 +165,7 @@ package apb_uart_uvm_pkg;
             frame = uart_frame::type_id::create("driven_rx");
             frame.data = data;
             frame.data_bits = cfg.data_bits;
+            frame.stop_bits = cfg.stop_bits;
             frame.parity_en = cfg.parity_en;
             frame.parity_good = !bad_parity;
             even_parity = 0;
@@ -214,6 +217,7 @@ package apb_uart_uvm_pkg;
                 frame = uart_frame::type_id::create("decoded_tx");
                 frame.data = 0;
                 frame.data_bits = cfg.data_bits;
+                frame.stop_bits = cfg.stop_bits;
                 frame.parity_en = cfg.parity_en;
                 even_parity = 0;
                 for (int i=0; i<cfg.data_bits; i++) begin
@@ -265,8 +269,20 @@ package apb_uart_uvm_pkg;
         bit [7:0] lcr, ier, dll, dlm;
         int unsigned tx_checked = 0;
         int unsigned rx_checked = 0;
+        covergroup uart_cg with function sample(bit is_tx, int unsigned bits, bit parity_mode, int unsigned stops, bit frame_ok);
+            option.per_instance=1;
+            cp_direction: coverpoint is_tx { bins rx={0}; bins tx={1}; }
+            cp_data_bits: coverpoint bits { bins supported[]={[5:8]}; }
+            cp_parity: coverpoint parity_mode { bins off={0}; bins on={1}; }
+            cp_stop: coverpoint stops { bins one={1}; bins two={2}; }
+            cp_frame: coverpoint frame_ok { bins good={1}; bins bad={0}; }
+            cross cp_direction, cp_data_bits, cp_parity;
+        endgroup
 
-        function new(string name, uvm_component parent); super.new(name,parent); endfunction
+        function new(string name, uvm_component parent);
+            super.new(name,parent);
+            uart_cg=new();
+        endfunction
         function void build_phase(uvm_phase phase);
             super.build_phase(phase);
             apb_imp=new("apb_imp",this);
@@ -325,6 +341,7 @@ package apb_uart_uvm_pkg;
             bit [7:0] mask;
             mask=(8'hff >> (8 - f.data_bits));
             tx_checked++;
+            uart_cg.sample(1'b1,f.data_bits,f.parity_en,f.stop_bits,f.parity_good && f.stop_good);
             if (expected_tx.size()==0) begin
                 `uvm_error("TX_UNEXPECTED","TX frame without matching THR write")
                 return;
@@ -340,6 +357,7 @@ package apb_uart_uvm_pkg;
             bit [7:0] mask;
             mask=8'hff >> (8 - f.data_bits);
             expected_rx.push_back(f.data & mask);
+            uart_cg.sample(1'b0,f.data_bits,f.parity_en,f.stop_bits,f.parity_good && f.stop_good);
         endfunction
         function void check_phase(uvm_phase phase);
             super.check_phase(phase);
