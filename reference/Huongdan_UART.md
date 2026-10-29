@@ -257,3 +257,4 @@ Sinh viên mở `Assignments -> Pin Planner` trong Quartus và gán chính xác 
 | **`HEX5[6:0]`** | `PIN_AH18, AF18, AG19, AH19, AB18, AC18, AD18` | 3.3-V LVTTL | Hiển thị Nibble cao của byte nhận (`RBR[7:4]`) |
 
 ---
+
