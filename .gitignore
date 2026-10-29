@@ -1,0 +1,10 @@
+# Generated simulation directories and outputs
+dv/sim/build/
+*.wlf
+*.vcd
+*.fst
+*.log
+transcript
+modelsim.ini
+__pycache__/
+*.pyc
