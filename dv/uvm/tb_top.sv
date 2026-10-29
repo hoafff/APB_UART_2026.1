@@ -38,7 +38,7 @@ module tb_top;
 
     initial begin
         uvm_config_db#(virtual uart_apb_if)::set(null, "uvm_test_top*", "vif", bus);
-        run_test("apb_reg_smoke_test");
+        run_test(); // +UVM_TESTNAME selects the test from the run script
     end
 
     // Emergency hang guard; real regression timing/latency handled by each test.
