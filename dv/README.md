@@ -27,10 +27,14 @@
 | uart_tx_8n1_test | TC_TX_THR/FRAME | Ghi THR=0x41, monitor serial UART 8N1, scoreboard |
 | uart_rx_8n1_test | TC_RX_VALID_FRAME/RBR_POP/LSR_DR | Phát RX byte 0x42, đọc LSR, RBR |
 | apb_random_regs_test | TC_REG_ADDR_ACCESS/APB_ALIAS (partial) | 80 constrained-random valid transactions, LCR/IER/alias/unmapped |
+| apb_reg_alias_test | TC_APB_ALIAS | Kiểm tra PADDR 0x003/0x00B alias, 0x00C không phải LCR |
+| uart_rx_fifo_order_test | TC_FIFO_ORDER_FULL (partial) | Thứ tự 3 byte trong RX FIFO và 3 lần đọc pop |
+| uart_rx_fifo_clear_test | TC_FIFO_RESET_CLEAR (partial) | RX FIFO nonempty, clear qua FCR[1], LSR[0] xuống 0 |
+| uart_tx_mode_matrix_test | TC_TX_DATABITS/PARITY_STOP (partial) | Chạy 16 tổ hợp data bits 5–8 × parity off/even × stop1/2 |
 | uart_rx_parity_gap_test | TC_RX_PARITY_FAULT, DIF-08 | **EXPECTED FAIL**: parity flag bị clear liên tục, theo RTL |
 | uart_irq_rda_gap_test | TC_INT_RX_RDA_BUG, DIF-07 | **EXPECTED FAIL**: ngắt RDA có thể xuất hiện dù RX empty |
 
-**Chưa implement:** TX mode matrix 5/6/7/8, baud divisor sweep, full FIFO order/clear/threshold, interrupt comprehensive cases, mid-stream reset, full functional coverage closure. DV Plan đánh dấu các test này là PLANNED.
+**Chưa implement:** baud divisor sweep/accurate measurement, FIFO 16/17 full boundary + TX FIFO clear/concurrency/threshold, interrupt comprehensive cases, mid-stream reset, full functional coverage closure. TX mode matrix và RX order/clear mới có source, vẫn **NOT RUN**. DV Plan đánh dấu các test này là PLANNED.
 
 ## Chạy trên máy có UVM-capable Questa/ModelSim
 
@@ -42,7 +46,13 @@ bash dv/sim/run_questa.sh apb_reg_smoke_test
 bash dv/sim/run_questa.sh uart_tx_8n1_test
 bash dv/sim/run_questa.sh uart_rx_8n1_test
 bash dv/sim/run_questa.sh apb_random_regs_test 17
+bash dv/sim/run_questa.sh apb_reg_alias_test
+bash dv/sim/run_questa.sh uart_rx_fifo_order_test
+bash dv/sim/run_questa.sh uart_rx_fifo_clear_test
+bash dv/sim/run_questa.sh uart_tx_mode_matrix_test
 ~~~
+
+Chạy cả normal suite với `bash dv/sim/run_smoke.sh 17`. Script gọi từng test và kiểm tra số `UVM_ERROR`/`UVM_FATAL` trong log để thoát lỗi nếu test không xanh. **Chưa có bằng chứng chạy script**.
 
 Known-gap suite (chạy riêng, có chủ đích phát UVM_ERROR để tránh báo thành PASS):
 
@@ -63,10 +73,10 @@ bash dv/sim/run_questa.sh uart_irq_rda_gap_test
 
 | Test / nhóm | Status |
 |---|---|
-| APB register smoke / TX 8N1 / RX 8N1 | SOURCE WRITTEN — NOT RUN |
+| APB register/alias smoke / TX 8N1/mode matrix / RX 8N1/FIFO order/clear | SOURCE WRITTEN — NOT RUN |
 | Constrained-random APB | SOURCE WRITTEN — NOT RUN |
 | Parity/RDA known gaps | SOURCE WRITTEN — EXPECTED FAIL WHEN RUN |
-| FIFO edge, baud sweep, comprehensive coverage | PLANNED — NOT CODED |
+| FIFO full/threshold/concurrency, baud sweep, IRQ matrix, complete coverage | PLANNED — NOT CODED |
 | Simulator compile success, log, waveform, coverage measured | **NOT AVAILABLE** |
 
 **Kế tiếp:** Lấy log compiler từ simulator thật, sửa lỗi build nếu có; chạy P0, đo baud chuẩn, mở rộng testcase coverage, lập bug report. Từng kết quả mới có bằng chứng để nâng SPEC v1.0.
