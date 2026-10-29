@@ -2,7 +2,7 @@
 
 > **Đề tài:** Kiểm thử giao thức truyền thông UART sử dụng giao tiếp APB  
 > **DUT:** `pulp-platform/apb_uart_sv` trên FPGA Altera/Terasic DE2-115 (Cyclone IV E)  
-> **Phiên bản:** 0.1 — *Draft, phân tích tĩnh RTL; chưa có kết quả mô phỏng/FPGA*  
+> **Phiên bản:** 0.2 — *Đã rà soát để bàn giao DV Plan/UVM, chưa sign-off; chưa có kết quả mô phỏng/FPGA*  
 > **Ngày lập:** 29/10/2026  
 > **Repo bài tập:** https://github.com/hoafff/APB_UART_2026.1
 
@@ -16,7 +16,7 @@
 2. [PULP APB UART SV](https://github.com/pulp-platform/apb_uart_sv), nhánh `pulpinov1`, **commit cố định** [`dfad6e04d19cc9481d3cd2750b45b970dc61271b`](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b) — nguồn chuẩn về hành vi RTL của DUT.
 3. Đề bài cuối kỳ do giảng viên công bố — nguồn chuẩn về **phạm vi nộp bài**.
 
-**Quy tắc:** Khi `Huongdan_UART.md` và RTL mâu thuẫn về hoạt động của DUT, **lấy RTL ở commit cố định** để mô tả và làm oracle kiểm thử. Khi RTL chưa thực hiện chức năng mà hướng dẫn yêu cầu, giữ yêu cầu ở phần *mong muốn/đề xuất* và ghi *giới hạn hoặc nghi vấn*; **không tự nhận là DUT đã hỗ trợ**. Các khác biệt được lưu tại [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md).
+**Quy tắc:** Khi `Huongdan_UART.md` và RTL mâu thuẫn về hoạt động của DUT, **lấy RTL ở commit cố định** để mô tả và làm oracle kiểm thử. Khi RTL chưa thực hiện chức năng mà hướng dẫn yêu cầu, giữ yêu cầu ở phần *mong muốn/đề xuất* và ghi *giới hạn hoặc nghi vấn*; **không tự nhận là DUT đã hỗ trợ**. Các khác biệt được lưu tại [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md). Kế hoạch chuẩn bị cho Yêu cầu 2 và truy vết REQ→TC xem tại [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md).
 
 | Ký hiệu | Ý nghĩa |
 |---|---|
@@ -72,7 +72,7 @@ Danh sách đúng theo [`src_files.yml`](https://github.com/pulp-platform/apb_ua
 | `io_generic_fifo.sv` | FIFO generic được instantiate **hai lần**: TX và RX |
 | `uart_interrupt.sv` | Tạo `event_o`, mã IIR |
 
-Ngoài 5 file trên, cần source `de2_115_apb_uart_bringup.sv` do người thực hiện cung cấp. Repo còn chứa `apb_uart.sv` cùng định nghĩa module `apb_uart_sv`: **không đưa đồng thời** `apb_uart.sv` và `apb_uart_sv.sv` vào danh sách biên dịch để tránh trùng module.
+Bộ 5 file RTL đã được lưu **nguyên bản**, cùng `src_files.yml` và giấy phép, tại [`rtl/vendor/pulp_apb_uart_sv/`](../rtl/vendor/pulp_apb_uart_sv/). Ngoài 5 file trên, cần source `de2_115_apb_uart_bringup.sv` do người thực hiện cung cấp. Repo còn chứa `apb_uart.sv` cùng định nghĩa module `apb_uart_sv`: **không đưa đồng thời** `apb_uart.sv` và `apb_uart_sv.sv` vào danh sách biên dịch để tránh trùng module.
 
 ### 2.2. Tham số [RTL]
 
@@ -126,13 +126,14 @@ Ngoài 5 file trên, cần source `de2_115_apb_uart_bringup.sv` do người th�
 - `PREADY = 1'b1` và `PSLVERR = 1'b0` không đổi: Slave không phát wait-state và không báo lỗi truy cập.
 - Đọc `PRDATA` được tạo từ logic tổ hợp, mặc định `0` nếu không đọc hoặc truy cập thanh ghi không hỗ trợ.
 - APB Master không được giữ một giao dịch WRITE ở ACCESS qua nhiều cạnh lên clock vì có thể tạo tác dụng phụ nhiều lần (như đẩy nhiều byte vào FIFO).
+- **READ ACCESS cũng có side effect:** đọc RBR đặt `fifo_rx_ready=1` để pop RX FIFO; đọc IIR đặt `clr_int=4'b0100`; đọc LSR đặt `clr_int=4'b1100`. Vì `PRDATA` là tổ hợp, UVM monitor lấy mẫu read data ở cạnh hoàn tất **trước khi** cập nhật model pop/clear. Khi scoreboard thấy hai read RBR liên tiếp, đó là hai lần pop chứ không phải cùng một giá trị giữ nguyên.
 - **Decoder dùng `register_adr = PADDR[2:0]`, KHÔNG dùng địa chỉ word-aligned `0x00,0x04,0x08,...` như hướng dẫn.** Đây là khác biệt **DIF-01**.
 
 ### 4.3. Các yêu cầu APB
 
 | ID | Yêu cầu |
 |---|---|
-| `REQ_APB_001` | Master phải phát SETUP trước ACCESS với tín hiệu địa chỉ/chiều/giá trị ghi ổn định. |
+| `REQ_APB_001` | **Yêu cầu APB Master/testbench** (không phải tính năng DUT): phát SETUP trước ACCESS, giữ địa chỉ/chiều/giá trị ghi ổn định. |
 | `REQ_APB_002` | DUT chỉ tác động ghi thanh ghi/FIFO khi `PSEL&PENABLE&PWRITE=1`. |
 | `REQ_APB_003` | DUT chỉ xuất thông tin thanh ghi đọc khi `PSEL&PENABLE&!PWRITE=1`. |
 | `REQ_APB_004` | `PREADY=1` và `PSLVERR=0` theo RTL gốc. |
@@ -230,7 +231,7 @@ Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhậ
 
 ## 7. Đặc tả nhận UART (RX) [RTL]
 
-- `uart_rx` có đồng bộ tín hiệu đầu vào nội bộ bằng `reg_rx_sync` 3 bit; phát hiện cạnh xuống của start bit.
+- `uart_rx` có đồng bộ tín hiệu đầu vào nội bộ bằng `reg_rx_sync` 3 bit; phát hiện cạnh xuống của start bit. DUT-level UVM lái trực tiếp `rx_i`, không cần tạo thêm khối 2-FF ở ngoài như bài FPGA.
 - RX thu 5–8 bit theo `cfg_bits_i` vào byte dữ liệu, phát `rx_valid_o` để đưa vào **RX FIFO 16 phần tử**, phần tử RX FIFO gồm `{parity_error,rx_data}` (9 bit).
 - Đọc RBR tại `PADDR=0x0`, `DLAB=0` đưa dữ liệu RX FIFO lên `PRDATA[7:0]` và tạo tín hiệu pop FIFO.
 - `LSR[0]` chỉ thị có dữ liệu RX; parity-error đọc từ phần tử FIFO vào `LSR[2]` theo logic RTL.
@@ -354,7 +355,7 @@ Phân nhóm cần bao phủ: APB handshake; reset; register DLAB; truyền TX 5�
 | `OPEN-06` | RTL Top-Level `de2_115_apb_uart_bringup.sv` | Viết/review source; chưa được cung cấp trong PULP repo |
 | `OPEN-07` | Bộ đồng bộ RX ngoài và trong DUT ảnh hưởng latency | Waveform/STA khi tích hợp FPGA |
 
-**Bản SPEC v0.1 được xem là bản phân tích ban đầu, chưa phải dấu xác nhận hoàn tất.** Trước khi chốt v1.0 cần xem lại register map, tính baud bằng mô phỏng, xem kết quả những lỗi nghi vấn và xác minh pinout. Không sửa DUT để hợp thức hóa SPEC; mọi patch (nếu có) phải dùng commit/branch riêng và đánh dấu khác với DUT gốc.
+**Bản SPEC v0.2 đã được rà soát tĩnh và có thể dùng để khởi tạo DV Plan/UVM, nhưng CHƯA sign-off.** Register map đã đối chiếu RTL, còn baud và các rủi ro RX/interrupt/FIFO phải được xác minh bằng mô phỏng; pinout cần đối chiếu manual trước FPGA. Không sửa DUT để hợp thức hóa SPEC; mọi patch (nếu có) phải dùng commit/branch riêng và đánh dấu khác với DUT gốc.
 
 ---
 
@@ -368,3 +369,5 @@ Phân nhóm cần bao phủ: APB handshake; reset; register DLAB; truyền TX 5�
 - [RTL: FIFO](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/io_generic_fifo.sv)
 - [RTL file list](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/src_files.yml)
 - **Bảng sai khác chi tiết:** [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md).
+- **Handoff sang Yêu cầu 2:** [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md) — bảng REQ→TC, phân loại pass/gap/investigation, thứ tự P0, coverage và kiến trúc UVM dự kiến.
+- **RTL baseline trong repo:** [`rtl/vendor/pulp_apb_uart_sv/`](../rtl/vendor/pulp_apb_uart_sv/) — 5 RTL files + license + nguồn file list.
