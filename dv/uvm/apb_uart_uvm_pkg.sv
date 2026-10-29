@@ -301,6 +301,11 @@ package apb_uart_uvm_pkg;
                        else expected_tx.push_back(t.data[7:0]);
                     1: if (lcr[7]) dlm=t.data[7:0];
                        else ier=t.data[7:0];
+                    2: begin // FCR write: RX clear (and TX clear if idle).
+                        if (t.data[1]) expected_rx.delete();
+                        // TX may already be in the shift register: do not
+                        // blindly delete all pending TX frames here.
+                    end
                     3: lcr=t.data[7:0];
                     default: ;
                 endcase
@@ -581,4 +586,100 @@ package apb_uart_uvm_pkg;
             phase.drop_objection(this);
         endtask
     endclass
+
+    class apb_reg_alias_test extends apb_uart_base_test;
+        `uvm_component_utils(apb_reg_alias_test)
+        function new(string name, uvm_component parent); super.new(name,parent); endfunction
+        task run_phase(uvm_phase phase);
+            bit [31:0] value;
+            phase.raise_objection(this);
+            wait(e.vif.RSTN);
+            write_reg(12'h003,32'h03);
+            write_reg(12'h00B,32'h83); // same low 3 bits: aliases LCR
+            read_reg(12'h003,value);
+            if (value !== 32'h83) `uvm_error("APB_ALIAS","0x00B must alias 0x003")
+            read_reg(12'h00B,value);
+            if (value !== 32'h83) `uvm_error("APB_ALIAS","Read from high-bit alias failed")
+            write_reg(12'h003,32'h03);
+            read_reg(12'h00C,value); // low 3 bits = 4, unmapped
+            if (value !== 32'h0) `uvm_error("APB_ALIAS","0x00C is not LCR")
+            phase.drop_objection(this);
+        endtask
+    endclass
+
+    class uart_rx_fifo_order_test extends apb_uart_base_test;
+        `uvm_component_utils(uart_rx_fifo_order_test)
+        function new(string name, uvm_component parent); super.new(name,parent); endfunction
+        task run_phase(uvm_phase phase);
+            bit [31:0] value;
+            phase.raise_objection(this);
+            wait(e.vif.RSTN);
+            init_uart_8n1();
+            e.rx_bfm.send_byte(8'h11);
+            e.rx_bfm.send_byte(8'h22);
+            e.rx_bfm.send_byte(8'h33);
+            read_reg(12'h005,value);
+            if (!value[0]) `uvm_error("FIFO_ORDER","LSR says empty after 3 RX bytes")
+            read_reg(12'h000,value);
+            if (value[7:0] !== 8'h11) `uvm_error("FIFO_ORDER","First byte incorrect")
+            read_reg(12'h000,value);
+            if (value[7:0] !== 8'h22) `uvm_error("FIFO_ORDER","Second byte incorrect")
+            read_reg(12'h000,value);
+            if (value[7:0] !== 8'h33) `uvm_error("FIFO_ORDER","Third byte incorrect")
+            read_reg(12'h005,value);
+            if (value[0]) `uvm_error("FIFO_ORDER","RX FIFO still nonempty")
+            phase.drop_objection(this);
+        endtask
+    endclass
+
+    class uart_rx_fifo_clear_test extends apb_uart_base_test;
+        `uvm_component_utils(uart_rx_fifo_clear_test)
+        function new(string name, uvm_component parent); super.new(name,parent); endfunction
+        task run_phase(uvm_phase phase);
+            bit [31:0] value;
+            phase.raise_objection(this);
+            wait(e.vif.RSTN);
+            init_uart_8n1();
+            e.rx_bfm.send_byte(8'h55);
+            e.rx_bfm.send_byte(8'hAA);
+            read_reg(12'h005,value);
+            if (!value[0]) `uvm_error("FIFO_CLEAR","RX FIFO did not fill")
+            write_reg(12'h002,32'h02); // FCR[1] clear RX, no FIFO-enable effect
+            repeat (4) @(posedge e.vif.CLK);
+            read_reg(12'h005,value);
+            if (value[0]) `uvm_error("FIFO_CLEAR","LSR[0] not cleared after FCR[1]")
+            phase.drop_objection(this);
+        endtask
+    endclass
+
+    class uart_tx_mode_matrix_test extends apb_uart_base_test;
+        `uvm_component_utils(uart_tx_mode_matrix_test)
+        function new(string name, uvm_component parent); super.new(name,parent); endfunction
+        task run_phase(uvm_phase phase);
+            bit [7:0] lcr;
+            int expected_count;
+            phase.raise_objection(this);
+            wait(e.vif.RSTN);
+            init_uart_8n1();
+            expected_count=0;
+            for (int bits=5; bits<=8; bits++) begin
+                for (int parity=0; parity<=1; parity++) begin
+                    for (int stops=1; stops<=2; stops++) begin
+                        lcr=(bits-5) | ((stops-1)<<2) | (parity<<3);
+                        write_reg(12'h003,{24'b0,lcr});
+                        e.cfg.data_bits=bits;
+                        e.cfg.parity_en=parity;
+                        e.cfg.stop_bits=stops;
+                        write_reg(12'h000,32'hA5);
+                        expected_count++;
+                        repeat ((bits+parity+stops+4)*e.cfg.bit_cycles) @(posedge e.vif.CLK);
+                        if (e.sb.tx_checked != expected_count)
+                            `uvm_error("TX_MODE",`sformatf("mode bits=%0d parity=%0d stop=%0d: frames=%0d expected=%0d",bits,parity,stops,e.sb.tx_checked,expected_count))
+                    end
+                end
+            end
+            phase.drop_objection(this);
+        endtask
+    endclass
+
 endpackage
