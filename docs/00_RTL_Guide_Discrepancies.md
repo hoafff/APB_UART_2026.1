@@ -1,6 +1,6 @@
 # ĐỐI CHIẾU `Huongdan_UART.md` VỚI RTL PULP — ISSUE & DISCREPANCY REGISTER
 
-> **Trạng thái:** v0.1, 29/10/2026 — phân tích tĩnh mã nguồn, **chưa chạy mô phỏng/FPGA**.  
+> **Trạng thái:** v0.2, 29/10/2026 — rà soát tĩnh phục vụ DV Plan/UVM, **chưa chạy mô phỏng/FPGA**.  
 > **Nguồn hướng dẫn:** `Huongdan_UART.md` do giảng viên cung cấp.  
 > **Nguồn RTL chuẩn:** [`pulp-platform/apb_uart_sv` tại commit `dfad6e04d19cc9481d3cd2750b45b970dc61271b`](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b).  
 > **Quy tắc:** Dùng RTL khi xác định **hành vi thực tế của DUT**; vẫn giữ phần hướng dẫn như **mục tiêu thiết kế/kiểm thử**. Các mục nghi vấn không tự động được kết luận là lỗi cho đến khi mô phỏng xác nhận.
@@ -24,6 +24,7 @@
 | **DIF-11** | MEDIUM | Ngưỡng FIFO interrupt dùng so sánh `==`, không phải `>=` | Test ngưỡng và vượt ngưỡng |
 | **DIF-12** | INFO | DUT đã có đồng bộ RX 3-bit; hướng dẫn yêu cầu thêm 2-FF ở wrapper | Giữ kiến trúc hướng dẫn, đo thêm độ trễ |
 | **DIF-13** | INFO/OPEN | Chân pin/voltage từ hướng dẫn không thể kiểm chứng bằng RTL DUT | Kiểm tra DE2-115 manual + Pin Planner |
+| **DIF-14** | HIGH / DV | Đọc RBR/IIR/LSR có side effect trong RTL nhưng hướng dẫn chưa mô tả chi tiết | APB monitor sample đúng pha; scoreboard xử lý pop/clear sau read |
 
 ---
 
@@ -147,6 +148,16 @@
 
 ---
 
+### DIF-14 — APB read side effects cần đưa vào UVM oracle (HIGH / DV)
+
+**Hướng dẫn:** Đề cập đọc LSR/RBR, nhưng không nêu đầy đủ tác dụng phụ của các thao tác read trong mô hình kiểm thử.
+
+**RTL:** [apb_uart_sv.sv phần read logic](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L253-L305) cho thấy khi PSEL && PENABLE && !PWRITE: READ RBR kích `fifo_rx_ready=1` để pop FIFO; READ IIR tạo `clr_int=4'b0100`; READ LSR tạo `clr_int=4'b1100`. PRDATA hình thành qua logic tổ hợp, không có thanh ghi giữ dữ liệu sau read.
+
+**Hệ quả:** Nếu scoreboard coi READ RBR là thao tác chỉ quan sát, hoặc driver/monitor giữ ACCESS READ qua nhiều cạnh, sequence có thể pop nhiều byte và khiến expected sai. Điều này khác với lỗi DUT: có thể là lỗi testbench.
+
+**Quyết định:** Bổ sung checker cho REQ_RX_002, REQ_INT_001 và test APB sampling. Đây là điểm **bổ sung từ RTL**, không nhất thiết là mâu thuẫn nội dung trực tiếp với tài liệu của thầy.
+
 ## 3. Kiểm tra ưu tiên khi làm DV Plan và FPGA
 
 1. **Trước UVM:** Bắt đầu bằng APB register read/write, kiểm tra địa chỉ đúng `0x0/0x1/0x2/0x3/0x5` và DLAB (DIF-01); test TX baud và RX loopback (DIF-02).
@@ -176,3 +187,5 @@
 - Tài liệu này là nhật ký sai khác, không tự thay thế Verification Plan.
 
 **Tài liệu SPEC chính:** [`01_System_Specification.md`](01_System_Specification.md).
+
+**Bàn giao UVM:** [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md) — bảng REQ→TC/coverage và các cảnh báo testbench.
