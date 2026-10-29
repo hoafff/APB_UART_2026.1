@@ -2,7 +2,7 @@
 
 > **Đề tài:** Kiểm thử giao thức truyền thông UART sử dụng giao tiếp APB  
 > **DUT:** `pulp-platform/apb_uart_sv` trên FPGA Altera/Terasic DE2-115 (Cyclone IV E)  
-> **Phiên bản:** 0.2 — *Đã rà soát để bàn giao DV Plan/UVM, chưa sign-off; chưa có kết quả mô phỏng/FPGA*  
+> **Phiên bản:** 0.3 — *Second audit: xác minh thêm đường báo lỗi parity, IIR readback và reassert interrupt; chưa sign-off; chưa chạy mô phỏng/FPGA*  
 > **Ngày lập:** 29/10/2026  
 > **Repo bài tập:** https://github.com/hoafff/APB_UART_2026.1
 
@@ -189,7 +189,7 @@ Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhậ
 | `trigger_level_q` | `00` |
 | TX/RX FIFO | reset số phần tử về 0 |
 
-**Ghi chú:** `IIR` đọc trên bus được lấy từ `uart_interrupt.IIR_o`, không phải trực tiếp từ bản ghi `regs_q[IIR]`. `LSR` có các bit cập nhật động nên giá trị sau vài clock có thể khác giá trị chốt tại thời điểm reset.
+**Ghi chú kiểm chứng:** `regs_q[IIR]` reset `8'h01` là **bank nội bộ** nhưng không được dùng làm nguồn `PRDATA` khi READ IIR. APB READ IIR (`PADDR=2`, `DLAB` bất kỳ) trả `{24'b0, 4'b1100, IIR_o}`. `uart_interrupt.iir_q` reset `4'b0001`, vậy **khi còn reset/chưa enable ngắt, APB IIR = 8'hC1**, không phải `8'h01`. Sau khi enable IER, IIR có thể đổi do interrupt. `LSR` có các bit cập nhật động nên giá trị sau vài clock có thể khác giá trị chốt tại thời điểm reset.
 
 ### 5.3. Yêu cầu kiểm chứng thanh ghi
 
@@ -198,7 +198,7 @@ Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhậ
 | `REQ_REG_001` | Xác minh các thanh ghi hữu hiệu ở offsets `0x0`, `0x1`, `0x2`, `0x3`, `0x5`. |
 | `REQ_REG_002` | `LCR[7]` điều khiển phân trang DLL/DLM với RBR/THR/IER. |
 | `REQ_REG_003` | APB 32-bit, dữ liệu thanh ghi chủ yếu nằm ở byte thấp. |
-| `REQ_REG_004` | Kiểm thử reset `IER`, `LCR`, `DLL`, `DLM` và các bit trạng thái khả quan sát. |
+| `REQ_REG_004` | Kiểm thử reset `IER`, `LCR`, `DLL`, `DLM` và các bit trạng thái; đọc IIR ở điều kiện không có ngắt kỳ vọng `0xC1` trên bus (khác internal `regs_q[IIR]=0x01`). |
 | `REQ_REG_005` | Truy cập không được triển khai trả `PRDATA=0` và không có `PSLVERR`. |
 
 ---
@@ -235,7 +235,7 @@ Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhậ
 - RX thu 5–8 bit theo `cfg_bits_i` vào byte dữ liệu, phát `rx_valid_o` để đưa vào **RX FIFO 16 phần tử**, phần tử RX FIFO gồm `{parity_error,rx_data}` (9 bit).
 - Đọc RBR tại `PADDR=0x0`, `DLAB=0` đưa dữ liệu RX FIFO lên `PRDATA[7:0]` và tạo tín hiệu pop FIFO.
 - `LSR[0]` chỉ thị có dữ liệu RX; parity-error đọc từ phần tử FIFO vào `LSR[2]` theo logic RTL.
-- [OPEN] Luồng xử lý parity có rủi ro: `SAVE_DATA` (đưa byte vào FIFO) diễn ra **trước** trạng thái `PARITY`, trong khi `err_clr_i` bị nối mức 1; chưa được chứng minh tính đúng đắn của bit lỗi đi kèm byte.
+- **[RTL — lỗi kết nối xác nhận bằng phân tích tĩnh]** `apb_uart_sv` nối `.err_clr_i(1'b1)` vào `uart_rx`. Trong `uart_rx`, nhánh `if (err_clr_i) err_o <= 0` luôn thắng `if (set_error) err_o <= 1`, do đó sau reset `parity_error` **luôn bằng 0** ở DUT nguyên bản, và RX FIFO nhận `{1'b0,rx_data}`. Đây là giới hạn/bug rõ ràng, không phải một tính năng parity-error được hỗ trợ. Ngoài ra `SAVE_DATA` (push FIFO) diễn ra **trước** `PARITY`; nếu sửa chân err_clr trong tương lai vẫn cần kiểm thứ tự gắn lỗi với byte. Cần directed test để có waveform chứng minh.
 - **Không được khẳng định RX phát hiện framing error/overrun** khi RTL chưa triển khai các cờ liên quan.
 
 | ID | Yêu cầu |
@@ -243,7 +243,7 @@ Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhậ
 | `REQ_RX_001` | RX nhận khung UART hợp lệ và đưa byte thu vào RX FIFO. |
 | `REQ_RX_002` | Đọc RBR trả về byte nhận và pop FIFO. |
 | `REQ_RX_003` | `LSR[0]` phản ánh trạng thái FIFO có/không có byte. |
-| `REQ_RX_004` | Kiểm tra riêng tính đúng đắn của parity-error; đánh dấu test failing nếu RTL sai. |
+| `REQ_RX_004` | Kiểm thử frame sai parity; với DUT nguyên bản, kỳ vọng kiểm chứng **đường err_o bị clear liên tục**, so với guide yêu cầu flag parity phải báo (GUIDE-GAP, không báo PASS theo guide). |
 | `REQ_RX_005` | Thử nghiệm framing/overrun như các bài kiểm tra giới hạn, **không kỳ vọng thành công nếu thiếu logic**. |
 
 ---
@@ -261,7 +261,7 @@ Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhậ
 
 - `uart_interrupt` xét yêu cầu lỗi (`IER[2]`), nhận dữ liệu (`IER[0]`), TX-empty (`IER[1]`), cập nhật mã `IIR_o` và `event_o=~IIR_o[0]`.
 - Mức trigger dựa trên số phần tử RX FIFO bằng phép so sánh `==` các mốc 1/4/8/14 (không phải `>=`), cần test ở biên.
-- **Điểm bất thường trong RTL:** cổng `RDA_i` của `uart_interrupt` được nối tới `regs_n[LSR][5]` (TX FIFO empty), chứ không phải `LSR[0]` (RX data ready). Kết quả interrupt RX **phải xác minh bằng mô phỏng**, không lấy mô tả hướng dẫn làm oracle.
+- **[RTL — kết nối sai mục tiêu đã xác nhận]** cổng `RDA_i` của `uart_interrupt` được nối tới `regs_n[LSR][5]` (TX FIFO empty), không phải `LSR[0]` (RX data ready). Vì vậy với `IER[0]=1`, TX FIFO trống và RX FIFO cũng trống, logic này vẫn có thể tạo IIR=4'b1000/event_o=1 sau clock cập nhật; **đường ngắt RX bị điều khiển nhầm bởi trạng thái TX**, không đáp ứng chính xác mục tiêu hướng dẫn. Cần mô phỏng kiểm tra các tổ hợp TX/RX và mức trigger (đồng thời tránh coi event_o là chỉ báo độc lập của trigger). Khi đọc IIR/LSR, các bit clear có thể bị nguồn ngắt đang tồn tại lập tức ghi đè; không được giả định chỉ đọc thanh ghi là ngắt sẽ giữ mức 0.
 - `CTI_i` nối cố định `0` (không có timeout interrupt thực tế).
 
 | ID | Yêu cầu |
@@ -348,14 +348,14 @@ Phân nhóm cần bao phủ: APB handshake; reset; register DLAB; truyền TX 5�
 | Mã | Nội dung | Cách xác minh |
 |---|---|---|
 | `OPEN-01` | Khóa divisor thực nghiệm cho 115200 tại 50MHz | Testbench đo chu kỳ bit của TX, loopback RX, đối chiếu sai số |
-| `OPEN-02` | Khả năng báo parity error | Directed test với parity cố ý sai, quan sát `LSR[2]`, FIFO 9-bit |
-| `OPEN-03` | `event_o` báo RX theo dữ liệu hay báo sai do `RDA_i` | APB/UART interrupt directed test |
+| `OPEN-02` | Thu thập waveform chứng minh parity flag luôn bị clear (static RTL xác nhận) | Directed test sai parity, theo dõi `err_o`, FIFO[8], `LSR[2]`; đánh giá GUIDE-GAP |
+| `OPEN-03` | Thu thập waveform/ảnh hưởng thực tế của đường `RDA_i ← LSR[5]` (static wiring xác nhận) | Case RX empty+TX empty+IER0=1 và các tổ hợp TX/RX; kiểm tra reassert sau IIR/LSR read |
 | `OPEN-04` | Độ đầy/clear FIFO, mất dữ liệu khi ghi đầy | Directed stress test |
 | `OPEN-05` | Board pinout và I/O standard | Đối chiếu manual DE2-115 + Quartus Pin Planner |
 | `OPEN-06` | RTL Top-Level `de2_115_apb_uart_bringup.sv` | Viết/review source; chưa được cung cấp trong PULP repo |
 | `OPEN-07` | Bộ đồng bộ RX ngoài và trong DUT ảnh hưởng latency | Waveform/STA khi tích hợp FPGA |
 
-**Bản SPEC v0.2 đã được rà soát tĩnh và có thể dùng để khởi tạo DV Plan/UVM, nhưng CHƯA sign-off.** Register map đã đối chiếu RTL, còn baud và các rủi ro RX/interrupt/FIFO phải được xác minh bằng mô phỏng; pinout cần đối chiếu manual trước FPGA. Không sửa DUT để hợp thức hóa SPEC; mọi patch (nếu có) phải dùng commit/branch riêng và đánh dấu khác với DUT gốc.
+**Bản SPEC v0.3 đã được rà soát tĩnh hai lần và có thể dùng để khởi tạo DV Plan/UVM, nhưng CHƯA sign-off.** Register map đã đối chiếu RTL, còn baud và các rủi ro RX/interrupt/FIFO phải được xác minh bằng mô phỏng; pinout cần đối chiếu manual trước FPGA. Không sửa DUT để hợp thức hóa SPEC; mọi patch (nếu có) phải dùng commit/branch riêng và đánh dấu khác với DUT gốc.
 
 ---
 
