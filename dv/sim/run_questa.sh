@@ -35,10 +35,21 @@ vlog -sv -mfcu -work work \
     "${ROOT}/dv/uvm/tb_top.sv"
 
 echo "Running ${TEST_NAME} seed=${SEED}"
+LOGFILE="${BUILD}/${TEST_NAME}_seed${SEED}.log"
 vsim -c -L work work.tb_top \
     "+UVM_TESTNAME=${TEST_NAME}" \
     "-sv_seed" "${SEED}" \
+    -l "${LOGFILE}" \
     -do "run -all; quit -f"
 
-# NOTE: A zero simulator process exit code does not guarantee zero UVM_ERRORs.
-# Review the UVM Report Summary, and parse it in a future regression runner.
+# Treat test output as failing unless the standard UVM summary explicitly
+# reports zero UVM_ERRORs and UVM_FATALs. XFAIL cases intentionally exit nonzero.
+if ! grep -Eq 'UVM_ERROR[[:space:]]*:[[:space:]]*0([[:space:]]|$)' "${LOGFILE}"; then
+  echo "ERROR: no zero-error UVM summary found; inspect ${LOGFILE}" >&2
+  exit 1
+fi
+if ! grep -Eq 'UVM_FATAL[[:space:]]*:[[:space:]]*0([[:space:]]|$)' "${LOGFILE}"; then
+  echo "ERROR: no zero-fatal UVM summary found; inspect ${LOGFILE}" >&2
+  exit 1
+fi
+echo "UVM summary reports zero errors/fatals: ${TEST_NAME}"
