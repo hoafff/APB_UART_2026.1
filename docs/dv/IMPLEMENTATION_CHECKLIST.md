@@ -7,7 +7,7 @@
 | UVM | agent/driver/monitor/scoreboard/sequences/coverage | compile + positive/negative control | DONE — 13 test classes; 2/2 negative controls DETECTED |
 | DV Plan | 80 requirement → stimulus/checker/coverage/evidence | traceability checker | DONE — 80 requirements, 19 testcase definitions, 65 top ports |
 | Regression | directed, automatic, random ≥3 seeds | machine-readable verdict + hashes/logs | DONE — 15/15 UVM và 3/3 supplementary PASS; seeds 17/29/101; 810/810 bins |
-| Bàn giao | README/results/commands thống nhất | Kiểm gói Git độc lập và đối chiếu remote SHA; không coi là chạy lại toàn bộ simulation | IN_PROGRESS — đang kiểm gói evidence và push |
+| Bàn giao | README/results/commands thống nhất | Kiểm gói Git độc lập và đối chiếu remote SHA; không coi là chạy lại toàn bộ simulation | DONE — gói evidence c423388 đã push; origin/main khớp SHA và working tree sạch tại lần đối chiếu |
 
 FPGA/Quartus/board sign-off thuộc Yêu cầu 3, không dùng simulation thay thế.
 
@@ -15,3 +15,8 @@ Kết quả chi tiết: [RESULTS.md](RESULTS.md), [summary.json](../../dv/result
 73 requirement có các test mô phỏng liên kết PASS, 2 requirement có document checks PASS;
 5 requirement FPGA vẫn HW_PENDING. 810/810 chỉ là functional coverage theo model đã định nghĩa;
 1.157 native RTL instrumentation points chưa hit, chưa đóng toàn bộ code/toggle coverage.
+
+Kiểm gói Git ngày 12/11/2026: 20 log có đủ verdict/checker marker, 810 bin được tính lại
+từ log của các run PASS, SHA-256 của hai waveform và toàn bộ nguồn khớp manifest.
+Document checks chạy đạt từ bản xuất Git độc lập. Kiểm tính toàn vẹn gói bàn giao
+không được tính thành một lượt mô phỏng mới.
