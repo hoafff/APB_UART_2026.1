@@ -413,7 +413,9 @@
       "config.rx_snapshot",
       "config.rx_same_edge",
       "config.divisor_zero_pause",
-      "config.rx_disable_active_rearm"
+      "config.rx_disable_active_rearm",
+      "config.rx_divisor_start.0",
+      "config.rx_divisor_start.1"
     ],
     "baud": [
       "baud.divisor.0",
@@ -839,7 +841,11 @@
       "echo_burst32",
       "mode_0_rx_echo_hold_errors",
       "mode_1_rx_echo_hold_errors",
-      "mode_2_rx_echo_hold_errors"
+      "mode_2_rx_echo_hold_errors",
+      "debounce_release_n_minus_1_n",
+      "debounce_release_bounce",
+      "hex_all_16_patterns",
+      "default_poll_5000_cycles"
     ],
     "controller": [
       "fault_init_stub",
@@ -847,7 +853,28 @@
       "manual_overflow_preserves_byte",
       "manual_consume_and_new",
       "echo_backpressure_fairness",
-      "fault_runtime_preserves_pending"
+      "fault_runtime_preserves_pending",
+      "live_hold_echo_setup_boundary",
+      "reset_pending_slots",
+      "irq_manual_wake_bound"
+    ],
+    "rx_visibility": [
+      "rx.visibility.1.0.-1",
+      "rx.visibility.1.0.0",
+      "rx.visibility.1.0.1",
+      "rx.visibility.1.1.-1",
+      "rx.visibility.1.1.0",
+      "rx.visibility.1.1.1",
+      "rx.visibility.27.0.-1",
+      "rx.visibility.27.0.0",
+      "rx.visibility.27.0.1",
+      "rx.visibility.27.1.-1",
+      "rx.visibility.27.1.0",
+      "rx.visibility.27.1.1"
+    ],
+    "rx_rearm": [
+      "rx.rearm_high_clocks.31",
+      "rx.rearm_high_clocks.32"
     ]
   },
   "required_random_seeds": [

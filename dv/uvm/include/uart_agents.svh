@@ -2,15 +2,14 @@ class uart_rx_bfm extends uvm_component;
     `uvm_component_utils(uart_rx_bfm)
     virtual uart_apb_if vif;
     uart_cfg cfg;
-    uvm_analysis_port #(uart_frame) start_ap,ap;
-    function new(string name,uvm_component parent); super.new(name,parent); ap=new("ap",this); start_ap=new("start_ap",this); endfunction
+    function new(string name,uvm_component parent); super.new(name,parent); endfunction
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         if(!uvm_config_db#(virtual uart_apb_if)::get(this,"","vif",vif)) `uvm_fatal("VIF","RX vif missing")
         if(!uvm_config_db#(uart_cfg)::get(this,"","cfg",cfg)) `uvm_fatal("CFG","RX config missing")
     endfunction
     // Independent serial transmitter: real-time delays, no DUT counter/state access.
-    task send(uart_byte_t data,bit bad_parity=0,bit[1:0] bad_stops=0,real rate=1.0,int idle_bits=1,bit is_break=0,bit discard_at_flush=0,int glitch_bit=-1);
+    task send(uart_byte_t data,bit bad_parity=0,bit[1:0] bad_stops=0,real rate=1.0,int idle_bits=1,bit is_break=0,int glitch_bit=-1);
         uart_frame f;
         real bit_ns;
         bit parity;
@@ -20,14 +19,11 @@ class uart_rx_bfm extends uvm_component;
         bit_ns=real'(cfg.cycles())*20.0/rate;
         parity=^f.data;
         if(f.parity_mode==1) parity=~parity;
-        start_ap.write(f);
         if(is_break) begin
-            f.data=0; f.errors={1'b1,1'b1,(f.parity_mode==1)};
             vif.rx_i=0;
             #(bit_ns*(1+f.data_bits+(f.parity_mode!=0)+f.stop_bits+2));
             vif.rx_i=1;
         end else begin
-            f.errors={1'b0,(|(bad_stops & (f.stop_bits==2 ? 2'b11:2'b01))),bad_parity && f.parity_mode!=0};
             vif.rx_i=0; #(bit_ns);
             for(int k=0;k<f.data_bits;k++) begin
                 vif.rx_i=f.data[k];
@@ -39,9 +35,8 @@ class uart_rx_bfm extends uvm_component;
             for(int k=0;k<f.stop_bits;k++) begin vif.rx_i=!bad_stops[k]; #(bit_ns); end
             vif.rx_i=1;
         end
-        // FE/break completion follows end-of-frame plus CDC; do not pop early.
-        if(f.errors[1]) #200ns;
-        if(!discard_at_flush) ap.write(f);
+        // Peer completion is not a DUT FIFO event; the passive observer handles it.
+        if(is_break || bad_stops!=0) #200ns;
         #(bit_ns*idle_bits);
     endtask
 endclass

@@ -1,0 +1,46 @@
+{
+  "merge_command": [
+    "/home/hoaff/.local/bin/ic-eda",
+    "verilator_coverage",
+    "--write",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/coverage_merged.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_apb_test_seed17_185745_759855/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_tx_modes_test_seed17_185749_415042/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_rx_modes_test_seed17_185754_224115/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_tolerance_test_seed17_185758_208324/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_errors_test_seed17_185828_310483/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_fifo_test_seed17_185830_738033/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_irq_test_seed17_185834_043022/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_reset_test_seed17_185837_758451/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_snapshot_test_seed17_185839_770202/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_baud_test_seed17_185842_034885/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_false_start_test_seed17_190852_878374/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_concurrency_test_seed17_190854_665120/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_random_test_seed17_190906_308981/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_random_test_seed29_190934_273254/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/target/runs/target_random_test_seed101_190956_373215/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/system/runs/20261112_185041_783604/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/controller/runs/20261112_185041_779214/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/onehot/runs/20261112_185042_010678/coverage.dat"
+  ],
+  "rtl_points_by_kind": {
+    "toggle": {
+      "hit": 1975,
+      "total": 3030
+    },
+    "line": {
+      "hit": 130,
+      "total": 135
+    },
+    "branch": {
+      "hit": 149,
+      "total": 156
+    },
+    "expr": {
+      "hit": 279,
+      "total": 309
+    }
+  },
+  "note": "Instrumentation points, normalized across hierarchy/paths; not a claim of full line/toggle or functional sign-off",
+  "unhit_count": 1097
+}

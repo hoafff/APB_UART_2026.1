@@ -1,0 +1,15 @@
+EVIDENCE_RUN|build/controller/runs/20261112_185041_779214|b9722cddd460110ebfb1fd82625292e71df33addd2fb1ffa3997ceca67a93c12
+SYS_COV|fault_init_stub|1
+SYS_COV|hold_irq_poll_spacing|1
+SYS_COV|manual_overflow_preserves_byte|1
+SYS_COV|manual_consume_and_new|1
+SYS_COV|echo_backpressure_fairness|1
+SYS_COV|fault_runtime_preserves_pending|1
+SYS_COV|live_hold_echo_setup_boundary|1
+SYS_COV|reset_pending_slots|1
+SYS_COV|irq_manual_wake_bound|1
+SYS_TEST_COMPLETED|checks=46
+- /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_controller.sv:110: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 24us; walltime 0.005 s; speed 5.044 ms/s
+- Verilator: cpu 0.005 s on 1 threads; allocated 5 MB

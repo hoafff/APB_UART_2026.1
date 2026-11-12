@@ -11,7 +11,7 @@ Phân định nghiệm thu:
 - **DUT simulation:** directed, automatic regression, constrained-random, scoreboard, assertions và functional coverage của IP.
 - **SYSTEM simulation:** reset/debounce/APB master/KEY/SW/HEX/LED/echo/hold và backpressure của wrapper. Kết quả phải gắn nhãn SIM; wrapper đã có trong rtl/fpga và được kiểm bằng tb_system/tb_controller.
 - **DOC:** source provenance, filelist, register/requirement/pin consistency.
-- **FPGA:** Quartus compile/fitter/STA, JP6/điện áp, đấu dây và dữ liệu trên DE2-115 thật; thuộc Yêu cầu 3. Kết quả simulation không đóng các mục này.
+- **FPGA:** Quartus compile/fitter/STA, JP6/JP7/điện áp, đấu dây và dữ liệu trên DE2-115 thật; thuộc Yêu cầu 3. Kết quả simulation không đóng các mục này.
 
 80 yêu cầu trong SPEC đều có dòng truy vết, kể cả mục phần cứng chưa chạy. Một requirement chỉ CLOSED khi **toàn bộ** nghĩa nghiệm thu, cấu hình và coverage bắt buộc của nó có bằng chứng. Một test PASS một seed không tự động đóng mọi requirement được liên kết với test đó.
 
@@ -56,7 +56,7 @@ Decode full address 0/4/8/C/14, kiểm DLAB, mask LCR=9F/IER=07, reset LSR=60/II
 
 TX model nhận đúng THR write thành công. TX start chuyển head vào frame active; clear queue không xóa frame active. RX expected nhận từ serial stimulus; capacity off/on=1/16, full drop-new và OE. Data và PE/FE/BI đi cùng entry; đọc LSR ack head và OE, đọc RBR pop một entry. Queue rỗng đọc 0, không bypass byte vừa tới cùng cạnh.
 
-Reference queue của RX là mô hình giao dịch: thông báo frame theo BFM, không tự nhận là mô hình từng clock của synchronizer. Các test đọc sớm/collision có explicit expected theo pre-edge và probe alignment, sau đó kiểm dữ liệu/cờ thực tế. Timing majority/baud được kiểm riêng bằng stimulus serial. Không lấy internal count làm expected count.
+Reference queue RX nhận frame từ `uart_rx_observer.svh`, observer thụ động đọc rx_i/CLK/RSTN và APB accepted writes. Observer tính các thời điểm majority theo công thức tuyệt đối của SPEC §7.3, mô hình hóa độ trễ 3FF và enqueue ở cạnh kế tiếp; không đọc state/counter/data/done của DUT. APB observer kiểm pre-edge trước khi RX arrival cập nhật queue sau cạnh; flush cùng cạnh thắng arrival, ack chỉ sửa head cũ. BFM chỉ phát stimulus. TC13 kiểm LSR/RBR trước/đúng/sau enqueue tại D1/D27 bằng timeline độc lập, cùng các collision FIFO/OE/flush.
 
 ### 3.3. Lỗi và ngắt
 
@@ -102,13 +102,13 @@ Danh mục máy đọc được nằm trong [testcases.json](dv/testcases.json);
 | TC16 `tb_tx_onehot` | AT02 | 192 N×parity×stop×one-hot cases including bits above WLS | Known single-bit expected wire/parity, no DUT parity algorithm in oracle |
 | TC17 `check_spec` | DOC | 80 IDs/36 legacy mappings/65 CSV pins/timing/contract arithmetic/vendor hashes | Python document checker, not simulation |
 | TC18 `check_dv` | DOC | Traceability/classes/artifacts/native coverage/requirement and source references | Python static/evidence checker, not hardware |
-| TC19 `board_acceptance` | AT08 | Quartus/fitter/STA, bank/JP6/CP2102, board TX/RX/echo/parity/error capture | Manual physical evidence; NOT_RUN under Requirement 3 |
+| TC19 `board_acceptance` | AT08 | Quartus/fitter/STA, bank/JP6/JP7/CP2102, board TX/RX/echo/parity/error capture | Manual physical evidence; NOT_RUN under Requirement 3 |
 
 ## 6. Coverage model và tiêu chí closure
 
 | Nhóm | Bin/cross bắt buộc | Cách quan sát | Điều kiện |
 |---|---|---|---|
-| UART format | 24 TX + 24 RX (N×parity×stop) | Frame monitor/BFM + scoreboard; native covergroup và JSON ledger | Tất cả 48 bin, data/format checks không lỗi |
+| UART format | 24 TX + 24 RX (N×parity×stop) | Passive TX/RX observers + scoreboard; native covergroup và JSON ledger | Tất cả 48 bin, data/format checks không lỗi |
 | APB | direction×mapped offset×DLAB hợp lệ, invalid/error, setup-only, back-to-back | APB monitor + register oracle/SVA | Không alias, side effect đúng; invalid bins không gộp với valid |
 | FIFO | count 0/1/C−1/C; capacity1/16; wrap; full/empty push-pop; flush | Observed APB/serial transactions + collision tests + bounds assertion | Đúng data/OE/PSLVERR, không chỉ đạt count coverage |
 | RX errors | parity off/odd/even, stop1/stop2 fault, break, metadata/ack | Serial stimulus + LSR/RBR readback | Error gắn đúng byte; clear không xóa lỗi mới |
@@ -161,7 +161,7 @@ Log fail/timeout/compiler error lưu riêng. Khi fix: ghi symptom, nguyên nhân
 
 Các ca wrapper phải cover init sáu write/≤32 clock, debounce đúng 500000 mẫu, một send mỗi nhấn/không lặp khi giữ, manual data capture, parity chốt tại init, live hold/echo, slot backpressure/fairness, APB fault, HEX/LED polarity và sticky errors. Fault injection tại phản hồi slave phải gắn nhãn simulation stub.
 
-Các ca board yêu cầu log hai đầu, terminal 115200 N/O/E, ảnh/video hoặc capture logic analyzer, tên bitstream và revision, Quartus/fitter/STA, pin/voltage/JP6 checklist thực tế. Chưa có board là `NOT_RUN`, không suy từ simulation rằng mạch đã chạy.
+Các ca board yêu cầu log hai đầu, terminal 115200 N/O/E, ảnh/video hoặc capture logic analyzer, tên bitstream và revision, Quartus/fitter/STA, pin/voltage/JP6/JP7 checklist thực tế. Chưa có board là `NOT_RUN`, không suy từ simulation rằng mạch đã chạy.
 
 ## 12. Điều kiện bàn giao Yêu cầu 2
 
@@ -170,3 +170,11 @@ Các ca board yêu cầu log hai đầu, terminal 115200 N/O/E, ảnh/video ho�
 - Báo cáo coverage nêu bin đạt, bin còn mở và phạm vi; không báo 100% từ số lượng test.
 - README, runner, tool pins, defect log và results thống nhất để người khác tái lập.
 - Kết quả SYSTEM/FPGA còn thiếu phải ghi rõ; chỉ tuyên bố toàn bộ thiết kế đạt SPEC khi các nghĩa vụ này cũng hoàn tất.
+
+## Bổ sung audit closure v2
+
+TC09 thêm DLL/DLM write đúng cạnh RX start để kiểm snapshot; TC12 kiểm break recovery với 31/32 clock high ở D2; TC13 thêm 12 ca visibility theo timeline. TC14 đo nhả debounce N−1/N, bounce nhả, poll board 5000 clock và 16 glyph trên cả TX/RX HEX. TC15 kiểm hold/echo tại SETUP, reset cả manual/echo pending, IRQ/manual wake ≤8 clock. Coverage chỉ hit sau các expected checks; mọi UVM_ERROR làm cả run FAIL.
+
+Schema evidence v2 ràng buộc build ID với source/filelist, toàn bộ UVM src, simulator/version/options và hash/size binary; runner kiểm trước/sau execution. Log và native coverage mang run/build ID, hash/size riêng. Exporter từ chối file ngoài run, alias/trùng, coverage thiếu payload, negative hoặc stale/mixed artifact. Tests exporter có positive control và các mutation kiểm trực tiếp guard. Đây là kiểm tính nhất quán chống nhầm artifact, không phải chữ ký chống người cố ý viết lại mọi manifest.
+
+Native coverage được báo riêng và review các điểm chưa hit; không dùng 100% functional bins để tuyên bố formal, 100% line/toggle hoặc phần cứng đã đạt.

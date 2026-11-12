@@ -1,0 +1,9 @@
+{
+  "passed_checks": 10,
+  "requirements": 80,
+  "pin_bits": 65,
+  "legacy_ids": 36,
+  "rx_ideal_cases": 960,
+  "fifo_rule_cases": 76,
+  "irq_rule_cases": 2432
+}

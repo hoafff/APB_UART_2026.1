@@ -10,6 +10,7 @@ module tb_controller;
     logic [4:0] status;
     int rx_count,rx_index,checks,ticks,last_poll,checked_polls;
     bit check_spacing;
+    int wake_start;
     byte sent[$];
     assign error=sel && en && inject_error;
     assign irq=rx_count>0;
@@ -79,6 +80,33 @@ module tb_controller;
         check(dut.manual_valid && dut.manual_data=='h5a,"fault must not consume pending byte");
         check(sent.size()==0,"errored THR is not successful transmission");
         $display("SYS_COV|fault_runtime_preserves_pending|1");
+        // Echo mode is captured at RBR SETUP; hold cannot cancel an in-flight read.
+        for(int mode=0;mode<2;mode++) begin
+            boot(); sw[17]=1'(mode); rx_count=2;
+            wait(sel && !en && !wr && addr==0);
+            @(negedge clk); sw[17]=!1'(mode); sw[16]=1;
+            cycles(60);
+            check(rx_count==1,"hold at SETUP allows only the in-flight RBR");
+            check(sent.size()==mode,"echo mode captured before SETUP/ACCESS change");
+            if(mode) begin value=sent.pop_front(); check(value=='he0,"captured echo byte"); end
+        end
+        $display("SYS_COV|live_hold_echo_setup_boundary|1");
+        // Pending manual and echo slots must both vanish on reset.
+        boot(); space_available=0; sw[17]=1; rx_count=1; press('h55); cycles(60);
+        check(dut.manual_valid && dut.echo_valid,"both pending before reset");
+        boot(); cycles(60); check(sent.size()==0 && !dut.manual_valid && !dut.echo_valid,"reset discards both pending slots");
+        $display("SYS_COV|reset_pending_slots|1");
+        // Controller input is already synchronized: bound measured to LSR SETUP.
+        boot(); wait(!sel && dut.state==dut.IDLE); @(negedge clk);
+        wake_start=ticks; rx_count=1;
+        wait(sel && !wr && addr==20); check(ticks-wake_start<=8,"IRQ wake <=8 cycles");
+        cycles(30); check(rx_count==0,"IRQ wake services byte");
+        boot(); wait(!sel && dut.state==dut.IDLE); @(negedge clk);
+        wake_start=ticks; send=1; sw[7:0]='h77;
+        @(negedge clk); send=0;
+        wait(sel && !wr && addr==20); check(ticks-wake_start<=8,"manual wake <=8 cycles");
+        cycles(40); check(sent.size()==1,"manual wake sends byte");
+        $display("SYS_COV|irq_manual_wake_bound|1");
         $display("SYS_TEST_COMPLETED|checks=%0d",checks); $finish;
     end
     initial begin #1_000_000; $fatal(1,"CONTROLLER_WATCHDOG"); end

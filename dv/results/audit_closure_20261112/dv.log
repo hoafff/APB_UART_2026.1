@@ -1,0 +1,8 @@
+{
+  "result": "PASS_DOCUMENT_CHECK",
+  "requirements": 80,
+  "testcase_definitions": 19,
+  "mandatory_functional_bins": 833,
+  "actual_top_ports_match_pin_map": 65,
+  "limitations": "Does not execute RTL or close requirements"
+}

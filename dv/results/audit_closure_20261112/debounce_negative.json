@@ -1,0 +1,46 @@
+{
+  "status": "DETECTED",
+  "sources": {
+    "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+    "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+    "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+    "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+    "rtl/fpga/de2_uart_controller.sv": "0ded4cdbaa6f03628649d2e801adc224849b2e51406b6fc24d55ee9d977c42c3",
+    "build/negative_debounce/20261112_185110_169667/de2_release_mutant.sv": "aa14adbc60d380ed55d441bb4c709231fb71feb102ebd179b028ecee1a60d068",
+    "dv/system/tb_system.sv": "bf07a2ba11b4c6327149478a13cc2f0d65eb90475c504c0b3e054e60ad2046e8",
+    "rtl/fpga/de2_115_apb_uart_bringup.sv": "33fc97dd380123e94ba8b6d2ceea3957095c8d3a35e26d3520a856863892aaca",
+    "tools/run_debounce_negative.py": "0662450a37909bfc86a8ae14b242455167829cfa3f845187767095ed0bcc6101"
+  },
+  "source_stable": true,
+  "build_command": [
+    "/home/hoaff/.local/bin/ic-eda",
+    "verilator",
+    "--binary",
+    "--timing",
+    "--assert",
+    "-Wno-fatal",
+    "--top-module",
+    "tb_system",
+    "--Mdir",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/negative_debounce/20261112_185110_169667/obj",
+    "-j",
+    "1",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_uart_controller.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/negative_debounce/20261112_185110_169667/de2_release_mutant.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_system.sv"
+  ],
+  "run_command": [
+    "/home/hoaff/.local/bin/ic-eda",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/negative_debounce/20261112_185110_169667/obj/Vtb_system"
+  ],
+  "returncode": 1,
+  "timed_out": false,
+  "binary_sha256": "9cb5900c6206ce19002837d0b051b974e3a40b7e34d5e8da30277e2c2075e1e6",
+  "log": "build/negative_debounce/20261112_185110_169667/run.log",
+  "log_sha256": "50ddf9f6885bcb490c8fa18a8120f89e8420677c04af9957011ad0fc011d11d9",
+  "coverage_policy": "EXCLUDED: deliberate incorrect wrapper"
+}

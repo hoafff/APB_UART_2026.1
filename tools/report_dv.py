@@ -4,6 +4,7 @@ from pathlib import Path
 from collections import Counter,defaultdict
 import gzip,hashlib,json,re,shutil,subprocess,zipfile
 from run_dv import ROOT,command,inputs,TESTS
+from evidence import validate_run
 
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def write_json(p,d): p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
@@ -12,7 +13,7 @@ def require_evidence(condition, message):
     if not condition:
         raise ValueError('Evidence rejected: '+message)
 
-def validate_evidence(runs, supplemental, current):
+def validate_evidence(runs, supplemental, current, check_binary=True):
     """Recompute verdict inputs from raw logs before publishing any PASS/coverage."""
     expected = [(t,17,None) for t in TESTS]
     expected += [('target_random_test',s,None) for s in [17,29,101]]
@@ -23,7 +24,11 @@ def validate_evidence(runs, supplemental, current):
     cases=json.loads((ROOT/'docs/dv/testcases.json').read_text())
     require_evidence({c['name'] for c in cases if c['kind']=='UVM'}=={t for t,s,n in expected},
                      'UVM testcase catalogue differs from executed suite')
+    seen_artifacts=set()
+    build_ids=set()
     for r in runs:
+        validate_run(ROOT,r,"target",seen_artifacts,check_binary)
+        build_ids.add(r["build_id"])
         label=r['test']+'/'+str(r['seed'])+'/'+str(r['negative_control'])
         require_evidence(r.get('source_stable') is True and r['source_hashes']==current,
                          label+': source mismatch or unstable source')
@@ -65,19 +70,21 @@ def validate_evidence(runs, supplemental, current):
         if r['negative_control']!='NEGATIVE_APB_PROTOCOL':
             require_evidence(active and int(active[1])>0 and int(active[2])>0 and
                              int(active[1])==int(completion[2]),label+': missing/mismatched assertion activation')
+    require_evidence(len(build_ids)==1,'mixed UVM build identities')
     require_evidence(set(supplemental)=={'system','controller','onehot'},'supplemental suite incomplete')
     for name,r in supplemental.items():
+        validate_run(ROOT,r,name,seen_artifacts,check_binary)
         require_evidence(r['status']=='PASS' and r['returncode']==0 and not r.get('timed_out'),
                          name+': supplemental execution failed')
         require_evidence(all(sha(ROOT/p)==h for p,h in r['sources'].items()),name+': source mismatch')
-        log=(ROOT/f'build/{name}/run.log').read_text(errors='replace')
+        log=(ROOT/r['log']).read_text(errors='replace')
         require_evidence(re.search(r'^SYS_TEST_COMPLETED\|checks=[1-9]\d*(?:\||$)',log,re.M) and
                          '%Error' not in log and 'WATCHDOG' not in log,name+': missing completion or failure in log')
     return {'result':'PASS_EVIDENCE_CHECK','uvm_logs_checked':len(runs),
             'supplemental_logs_checked':len(supplemental),
             'checks':['exact testcase/seed inventory','source identity and stability',
                       'raw log verdict/completion/scoreboard','assertion activation',
-                      'functional counts match logs','named negative-control diagnostics'],
+                      'functional counts match logs','named negative-control diagnostics','binary/build/dependency binding','per-run native coverage identity and uniqueness'],
             'scope':'Evidence integrity; not a new simulation or physical sign-off'}
 
 def main():
@@ -99,23 +106,23 @@ def main():
     ledger=Counter()
     for r in normal: ledger.update(r['functional_bins'])
     for name in supplemental:
-        log=(ROOT/f'build/{name}/run.log').read_text()
+        log=(ROOT/supplemental[name]['log']).read_text()
         for pattern in [r'^COV\|([^|]+)\|(\d+)$',r'^SYS_COV\|([^|]+)\|(\d+)$']:
             ledger.update({k:int(v) for k,v in re.findall(pattern,log,re.M)})
     model=json.loads((ROOT/'docs/dv/coverage_model.json').read_text())
     groups={name:{'hit':sum(ledger[b]>0 for b in bins),'total':len(bins),'missing':[b for b in bins if not ledger[b]]} for name,bins in model['groups'].items()}
     missing=[b for g in groups.values() for b in g['missing']]
     if missing: raise SystemExit('Mandatory functional bins still OPEN: '+', '.join(missing))
-    out=ROOT/'dv/results/target_v1'; out.mkdir(parents=True,exist_ok=True)
+    out=ROOT/'dv/results/target_v2'; out.mkdir(parents=True,exist_ok=True)
     logs=out/'logs'; logs.mkdir(exist_ok=True)
     for r in runs:
         source=ROOT/r['log']; dest=logs/(source.parent.name+'.log'); shutil.copy2(source,dest)
         r['exported_log']=str(dest.relative_to(ROOT))
     for name,r in supplemental.items():
-        dest=logs/(name+'.log'); shutil.copy2(ROOT/f'build/{name}/run.log',dest)
+        dest=logs/(name+'.log'); shutil.copy2(ROOT/r['log'],dest)
         r['exported_log']=str(dest.relative_to(ROOT))
     cov_paths=[ROOT/r['coverage_file'] for r in normal if r['coverage_file']]
-    cov_paths += [ROOT/f'build/{name}/coverage.dat' for name in supplemental]
+    cov_paths += [ROOT/r['coverage_file'] for r in supplemental.values()]
     assert len(cov_paths)==18 and all(p.is_file() for p in cov_paths)
     merged=ROOT/'build/target/coverage_merged.dat'
     merge_cmd=command('verilator_coverage')+['--write',str(merged)]+list(map(str,cov_paths))
@@ -145,9 +152,19 @@ def main():
             if wave.exists():
                 name=r['test']+'_seed'+str(r['seed'])+'.fst'; z.write(wave,name); waves.append({'name':name,'sha256':sha(wave)})
     assert len(waves)>=2
+    # Retain every individual native artifact and its envelope for offline replay.
+    with zipfile.ZipFile(out/'run_artifacts.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+        for r in runs+list(supplemental.values()):
+            for field in ['log_artifact','coverage_artifact']:
+                a=r.get(field)
+                if a: z.write(ROOT/a['path'],a['path'])
+        for r in runs+list(supplemental.values()):
+            z.writestr(r['run_id']+'/build.json',json.dumps(r['build'],indent=2))
     write_json(out/'waveform_manifest.json',waves)
     write_json(out/'uvm_runs.json',runs); write_json(out/'supplemental_runs.json',supplemental)
-    write_json(out/'source_manifest.json',{'uvm_build_inputs':current,'supplemental_inputs':{n:r['sources'] for n,r in supplemental.items()},'spec_sha256':sha(ROOT/'docs/01_System_Specification.md'),'tool':normal[0]['tool'],'solver':normal[0]['solver'],'uvm_commit':normal[0]['uvm_commit'],'code_git_head':normal[0]['git_head']})
+    write_json(out/'source_manifest.json',{'uvm_build_inputs':current,'supplemental_inputs':{n:r['sources'] for n,r in supplemental.items()},'spec_sha256':sha(ROOT/'docs/01_System_Specification.md'),'tool':normal[0]['tool'],'solver':normal[0]['solver'],'uvm_commit':normal[0]['uvm_commit'],'code_git_head':normal[0]['git_head'],
+        'run_working_tree_dirty':normal[0]['working_tree_dirty'],
+        'source_identity_rule':'code_git_head records HEAD at execution, not the dirty source tree. The complete input hashes and build IDs identify the tested source; original run provenance is never retagged after commit.'})
     write_json(out/'functional_coverage.json',{'groups':groups,'observed_counts':dict(ledger),'total_required':sum(g['total'] for g in groups.values()),'hit_required':sum(g['hit'] for g in groups.values()),'excluded_negative_runs':len(negatives),'hardware':'NOT_RUN'})
     write_json(out/'native_coverage.json',{'merge_command':merge_cmd,'rtl_points_by_kind':dict(native),'note':'Instrumentation points, normalized across hierarchy/paths; not a claim of full line/toggle or functional sign-off','unhit_count':len(unhit)})
     write_json(out/'document_checks.json',{'spec':json.loads(spec_check),'dv':json.loads(dv_check)})
@@ -156,14 +173,14 @@ def main():
     for c in cases: c['evidence_status']='HW_NOT_RUN' if c['kind']=='HARDWARE' else 'PASS_DOCUMENT_CHECK' if c['kind']=='DOC' else 'PASS_SIMULATION'
     for row in trace:
         row['status']='HW_PENDING' if row['scope']=='HARDWARE_PENDING' else 'PASS_DOCUMENT_CHECK' if row['scope']=='DOC' else 'MAPPED_SIM_TESTS_PASS'
-        row['evidence']='dv/results/target_v1/'
+        row['evidence']='dv/results/target_v2/'
     write_json(ROOT/'docs/dv/testcases.json',cases); write_json(ROOT/'docs/dv/traceability.json',trace)
     summary={'normal_uvm_runs_pass':len(normal),'negative_controls_detected':len(negatives),'supplemental_runs_pass':len(supplemental),'functional_bins_hit':sum(g['hit'] for g in groups.values()),'functional_bins_required':sum(g['total'] for g in groups.values()),'requirements_mapped':len(trace),'physical_requirements_pending':sum(t['scope']=='HARDWARE_PENDING' for t in trace),'quartus_run':False,'hardware_run':False,'questa_run':False,'native_unhit_points':len(unhit)}
     write_json(out/'summary.json',summary)
-    md=['# Kết quả kiểm chứng TARGET-v1.0','',
+    md=['# Kết quả kiểm chứng TARGET-v1.0 / audit closure v2','',
         '**15/15 run UVM chức năng PASS; 3/3 simulation bổ sung PASS; 2/2 negative controls DETECTED.**',
         f"Functional coverage: **{summary['functional_bins_hit']}/{summary['functional_bins_required']} bin đã công khai** trong coverage_model.json. Đây là coverage của tập nghĩa vụ mô phỏng đã định nghĩa, không phải mọi chuỗi đầu vào hoặc bằng chứng formal/hardware.",
-        '',f"Code revision của các run UVM: `{normal[0]['git_head']}`; SHA-256 nguồn và phiên bản simulator/UVM/solver nằm trong [source_manifest](../../dv/results/target_v1/source_manifest.json). SHA-256 executable nằm trong từng run manifest. Nếu Git dirty do tài liệu, từng run vẫn bắt buộc hash RTL/TB/runner đúng executable.",
+        '',f"Git HEAD tại lúc chạy UVM: `{normal[0]['git_head']}`; working_tree_dirty=`{normal[0]['working_tree_dirty']}`. Các sửa đổi nguồn chưa commit khi chạy, nên SHA HEAD này không đại diện riêng cho bản đã kiểm. Danh tính bản đã chạy là toàn bộ SHA-256 đầu vào và build ID trong [source_manifest](../../dv/results/target_v2/source_manifest.json) và từng run manifest. Runner xác minh source/UVM/binary trước và sau execution; metadata gốc được giữ nguyên sau commit.",
         '', '## UVM runs','', '| Test | Seed | Kết quả | SB checks | TX / RX | Thời gian wall-clock |', '|---|---:|---|---:|---|---:|']
     for r in normal: md.append(f"| `{r['test']}` | {r['seed']} | PASS | {r['scoreboard']['checks']} | {r['scoreboard']['tx']} / {r['scoreboard']['rx']} | {r['seconds']:.2f} s |")
     md += ['', '## Bổ sung và negative controls','',
@@ -177,13 +194,14 @@ def main():
     for name,g in sorted(native.items()): md.append(f"| {name} | {g['hit']} / {g['total']} |")
     md += ['',f"Còn **{len(unhit)} điểm instrument chưa hit**; danh sách lưu trong native_unhit_points.json để review. Chưa tuyên bố code/toggle coverage closure. Không tự loại unreachable bins để nâng tỷ lệ.",
         '', '## Bằng chứng và giới hạn','',
-        '- [Evidence index](../../dv/results/target_v1/summary.json), [logs](../../dv/results/target_v1/logs), [functional ledger](../../dv/results/target_v1/functional_coverage.json), [native merge](../../dv/results/target_v1/coverage_merged.dat.gz), [waveforms](../../dv/results/target_v1/waveforms.zip).',
+        '- [Evidence index](../../dv/results/target_v2/summary.json), [logs](../../dv/results/target_v2/logs), [functional ledger](../../dv/results/target_v2/functional_coverage.json), [native merge](../../dv/results/target_v2/coverage_merged.dat.gz), [waveforms](../../dv/results/target_v2/waveforms.zip).',
         '- 80 requirement có testcase/observer mapping; các row MAPPED_SIM_TESTS_PASS xác nhận ca liên kết đã chạy đạt, không thay một review sign-off toàn bộ không gian trạng thái. 5 requirement FPGA vẫn HW_PENDING.',
         '- Chưa chạy Quartus/fitter/STA, chưa có bitstream hay thử DE2-115 + CP2102 thật. Chưa chạy Questa, formal hoặc X-propagation/analog metastability.',
         '- Thư viện/công cụ có sẵn được tái sử dụng; đã tải UVM pin vào .tools/uvm. Các failure ban đầu (syntax/task direction, hết disk, runtime thiếu PATH Z3) được giữ trong build history và issue ledger.',
-        '- Exporter đối chiếu trực tiếp 20 raw logs với JSON: đủ đúng test/seed, completion, scoreboard, assertion activity, diagnostic của negative controls và functional counts. Xem [evidence validation](../../dv/results/target_v1/evidence_validation.json).',
+        '- Exporter đối chiếu trực tiếp 20 raw logs với JSON: đủ đúng test/seed, completion, scoreboard, assertion activity, diagnostic của negative controls và functional counts. Xem [evidence validation](../../dv/results/target_v2/evidence_validation.json).',
         '', '## Chạy lại','', '```bash','bash dv/sim/run_smoke.sh','```','', 'Hoặc chạy từng lệnh trong dv/README.md. Exporter từ chối log/JSON không khớp, thiếu/trùng test, source mismatch, run FAIL/timeout, thiếu assertion activity, negative control sai diagnostic hoặc thiếu mandatory functional bin.']
     (ROOT/'docs/dv/RESULTS.md').write_text('\n'.join(md)+'\n')
     shutil.copy2(ROOT/'build/spec/validation.json',ROOT/'docs/spec/validation.json')
+    write_json(out/'artifact_sha256.json',{str(p.relative_to(out)):sha(p) for p in sorted(out.rglob('*')) if p.is_file() and p.name!='artifact_sha256.json'})
     print(json.dumps(summary,indent=2))
 if __name__=='__main__': main()

@@ -334,7 +334,7 @@ class target_base_test extends uvm_test;
         expect_reg(20,'h60); expect_reg(0,0); e.cov.hit("rx.false_start");
         e.rx_bfm.send('h55); expect_reg(0,'h55); expect_reg(20,'h60);
         e.cov.hit("rx.rearm_after_false_start");
-        e.rx_bfm.send('h55,0,0,1.0,1,0,0,0); expect_reg(20,'h61); expect_reg(0,'h55);
+        e.rx_bfm.send('h55,0,0,1.0,1,0,0); expect_reg(20,'h61); expect_reg(0,'h55);
         e.cov.hit("rx.majority_single_sample_noise");
     endtask
     // Internal pulses align stimulus only; expected APB/data/error values remain independent.
@@ -346,6 +346,61 @@ class target_base_test extends uvm_test;
         @(posedge e.vif.CLK); result=e.vif.PRDATA;
         check(e.vif.PSLVERR==0,"Simultaneous valid transfer unexpectedly rejected");
         @(negedge e.vif.CLK); e.vif.PSEL=0; e.vif.PENABLE=0; e.vif.PWRITE=0;
+    endtask
+    // APB completion is placed by the SPEC timeline, never by rx_done_probe.
+    task rx_rearm_boundary_case();
+        for(int clocks=31;clocks<=32;clocks++) begin
+            reset_dut(); configure(2);
+            @(negedge e.vif.CLK); e.vif.rx_i=0;
+            repeat(12*32) @(negedge e.vif.CLK);
+            expect_reg(20,'hf9); expect_reg(0,0); expect_reg(20,'h60);
+            // Break recovery requires 32 consecutive synchronized high samples.
+            @(negedge e.vif.CLK); e.vif.rx_i=1;
+            repeat(clocks) @(negedge e.vif.CLK);
+            e.rx_bfm.send(0);
+            expect_reg(20,clocks==32 ? 'h61:'h60);
+            expect_reg(0,0); expect_reg(20,'h60);
+            e.rx_bfm.send('h3c); expect_reg(0,'h3c);
+            e.cov.hit($sformatf("rx.rearm_high_clocks.%0d",clocks));
+        end
+    endtask
+    task rx_divisor_snapshot_case();
+        bit[31:0] ignored;
+        for(int high_byte=0;high_byte<2;high_byte++) begin
+            reset_dut(); configure(3); wr(12,'h83);
+            fork
+                e.rx_bfm.send('ha5);
+                aligned_access(1,high_byte ? 4:0,high_byte ? 1:5,ignored,0,1);
+            join
+            wr(12,3); expect_reg(0,'ha5); expect_reg(20,'h60);
+            e.cov.hit($sformatf("config.rx_divisor_start.%0d",high_byte));
+        end
+    endtask
+    task rx_visibility_case();
+        bit[31:0] value;
+        int d;
+        for(int di=0;di<2;di++) begin
+            d=di==0 ? 1:27;
+            for(int regsel=0;regsel<2;regsel++) for(int delta=-1;delta<=1;delta++) begin
+                reset_dut(); configure(d);
+                fork
+                    e.rx_bfm.send('ha5);
+                    begin
+                        repeat(153*d+3+delta) @(negedge e.vif.CLK);
+                        e.vif.PSEL=1; e.vif.PENABLE=0; e.vif.PWRITE=0;
+                        e.vif.PADDR=regsel==0 ? 20:0;
+                        @(negedge e.vif.CLK); e.vif.PENABLE=1;
+                        @(posedge e.vif.CLK); value=e.vif.PRDATA;
+                        check(value==(regsel==0 ? (delta>0 ? 'h61:'h60):(delta>0 ? 'ha5:0)),
+                              "RX visibility before/at/after SPEC enqueue");
+                        @(negedge e.vif.CLK); e.vif.PSEL=0; e.vif.PENABLE=0;
+                    end
+                join
+                if(regsel==0 || delta<=0) expect_reg(0,'ha5);
+                expect_reg(20,'h60);
+                e.cov.hit($sformatf("rx.visibility.%0d.%0d.%0d",d,regsel,delta));
+            end
+        end
     endtask
     task concurrency_case();
         bit[31:0] result;
@@ -368,7 +423,7 @@ class target_base_test extends uvm_test;
         check(result=='h60,"LSR at arrival samples empty pre-state"); expect_reg(20,'he5); expect_reg(0,'ha5);
         e.cov.hit("concurrency.lsr_no_ack_new_head");
         e.rx_bfm.send('h11);
-        fork e.rx_bfm.send('h22,0,0,1.0,1,0,1); aligned_access(1,8,3,result); join
+        fork e.rx_bfm.send('h22,0,0,1.0,1,0); aligned_access(1,8,3,result); join
         expect_reg(20,'h60); expect_reg(0,0); e.cov.hit("concurrency.flush_drops_completion");
         reset_dut(); configure(27);
         for(int k=0;k<17;k++) wr(0,k);
@@ -383,8 +438,8 @@ class target_base_test extends uvm_test;
         wait(e.vif.RSTN); repeat(2) @(negedge e.vif.CLK);
         case(test_id)
             1:reg_case(); 2:tx_case(); 3:rx_case(); 4:tolerance_case(); 5:error_case();
-            6:fifo_case(); 7:irq_case(); 8:reset_case(); 9:snapshot_case();
-            10:baud_case(); 11:random_case(); 12:false_start_case(); 13:concurrency_case();
+            6:fifo_case(); 7:irq_case(); 8:reset_case(); 9:begin snapshot_case(); rx_divisor_snapshot_case(); end
+            10:baud_case(); 11:random_case(); 12:begin false_start_case(); rx_rearm_boundary_case(); end 13:begin concurrency_case(); rx_visibility_case(); end
             default:`uvm_fatal("CASE","No test selected")
         endcase
         repeat(4) @(negedge e.vif.CLK);

@@ -15,3 +15,13 @@
 Final regression report là nguồn trạng thái thực thi; không đóng yêu cầu chỉ từ bảng sửa lỗi.
 
 Chi tiết lần rà soát bổ sung: [REVIEW_2026-11-12.md](REVIEW_2026-11-12.md).
+
+## Audit closure v2 — 12/11/2026 (verified in simulation)
+
+- AUD-01 / P2: BFM published RX after full stop while SPEC enqueues after final majority. Replaced that source with passive serial/APB observer, absolute SPEC sampling deadlines and post-edge enqueue. Pre/at/post LSR/RBR tests D1/D27 and the full UVM regression pass.
+- AUD-02 / P2: coverage path substitution/duplication reached merge. Per-run envelope, path/hash/size and inode uniqueness guards added; normal/negative payloads cannot be interchanged even when their hash is recomputed. Unit mutation controls, full export and archived evidence replay pass.
+- AUD-03 / P2: build/binary/UVM/source chain not bound. Build manifest content ID now binds binary, complete source/filelist, UVM dependency and flags; runners verify before/after. Shared supplemental runner uses same contract. Unit controls and all 15 normal + 2 negative UVM runs and 3 supplemental runs pass their respective verdicts.
+- AUD-04 / P2: immediate-release mutant bypassed original tb_system. New release N−1/N and bounce checks reject it by exact-release diagnostic; unmodified RTL passes.
+- AUD-05 / P3: SPEC §13.1 and Windows handoff now state JP7 short5–6 /2.5V and JP6 short7–8 /3.3V. Document checks pass; board jumper state remains NOT_RUN.
+
+The TARGET RTL and vendor baseline have not been changed by these repairs. Evidence v1 and the earlier audit remain historical snapshots; current verification uses target_v2.

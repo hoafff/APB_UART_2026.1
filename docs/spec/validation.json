@@ -1,6 +1,6 @@
 {
   "artifact": "01_System_Specification.md",
-  "sha256": "b030495b9a1f100f78b605c76b4a94213319d473023d174392f10c73d7d83a34",
+  "sha256": "be7ff91b8349547d8a9d3fdb64dbce48d87e8138bf7ca090e1cd6a3bc7fb0ec2",
   "results": [
     {
       "check": "Requirement index and cross-references",

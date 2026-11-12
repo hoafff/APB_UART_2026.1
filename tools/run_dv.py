@@ -2,6 +2,7 @@
 """Reproducible UVM build/run. Zero exit alone is never a PASS."""
 from pathlib import Path
 import argparse,datetime,hashlib,json,os,re,shutil,subprocess,sys,time,resource
+from evidence import sources,uvm_identity,seal_build,validate_build,bind_run,require
 ROOT=Path(__file__).resolve().parents[1]
 UVM_COMMIT='656f20d087370a7c742e00188d20bbf30fa95339'
 TESTS=['target_apb_test','target_tx_modes_test','target_rx_modes_test','target_tolerance_test',
@@ -28,11 +29,7 @@ def dependency():
     return uvm
 
 def inputs():
-    files=[]
-    for folder in ['rtl/modified','dv/uvm','dv/assertions']:
-        files.extend(p for p in (ROOT/folder).rglob('*') if p.is_file())
-    files.append(ROOT/'tools/run_dv.py')
-    return {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files)}
+    return sources(ROOT,'target')
 def build():
     uvm=dependency(); out=ROOT/'build/target'; out.mkdir(parents=True,exist_ok=True)
     if (out/'build.log').exists():
@@ -45,22 +42,29 @@ def build():
         str(uvm/'src/uvm_pkg.sv'),'-f','rtl/modified/pulp_apb_uart_sv/files.f',
         'dv/uvm/uart_apb_if.sv','dv/assertions/apb_uart_assertions.sv','dv/uvm/apb_uart_uvm_pkg.sv','dv/uvm/tb_top.sv',
         '--Mdir',str(out/'obj'),'--output-groups','64','--output-split','10000','-CFLAGS','-O0','-j','1']
-    before=inputs(); start=time.monotonic()
+    before=inputs(); dep_before=uvm_identity(uvm); start=time.monotonic()
+    (out/'build.json').unlink(missing_ok=True)
     print('Building; log:',out/'build.log',flush=True)
     with (out/'build.log').open('w') as log:
         p=subprocess.run(cmd,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
     meta={'command':cmd,'returncode':p.returncode,'seconds':time.monotonic()-start,'sources':before,
           'source_stable':before==inputs(),'uvm_commit':UVM_COMMIT,
           'tool':subprocess.check_output(command('verilator')+['--version'],text=True).strip()}
+    if p.returncode==0 and meta['source_stable']:
+        require(dep_before==uvm_identity(uvm),'UVM changed during build')
+        meta=seal_build(ROOT,'target',cmd,out/'obj/Vtb_top',before,meta['tool'],dep_before)
     (out/'build.json').write_text(json.dumps(meta,indent=2)+'\n')
     if p.returncode or not meta['source_stable']:
         print((out/'build.log').read_text()[-12000:]); raise SystemExit(1)
     print('Build complete',flush=True)
-def run(test,seed,negative=None,trace=False,timeout=600):
+def run(test,seed,negative=None,trace=False,timeout=900):
     out=ROOT/'build/target'; binary=out/'obj/Vtb_top'
     if not binary.exists(): raise SystemExit('Run build first')
     meta=json.loads((out/'build.json').read_text())
-    if meta['returncode'] or meta['sources']!=inputs(): raise SystemExit('Source changed: rebuild before running')
+    validate_build(ROOT,meta,'target')
+    dep_before=uvm_identity(dependency())
+    require(dep_before==meta['dependency'],'UVM differs from build')
+    require(subprocess.check_output(command('verilator')+['--version'],text=True).strip()==meta['tool'],'simulator tool differs from build')
     suffix=f'{test}_seed{seed}'+(f'_{negative}' if negative else '')
     run_dir=out/'runs'/suffix
     if run_dir.exists():
@@ -77,6 +81,7 @@ def run(test,seed,negative=None,trace=False,timeout=600):
         run_env['PATH']=str(Path(run_env['OSS_CAD_SUITE'])/'bin')+os.pathsep+run_env.get('PATH','')
     start=time.monotonic(); timed_out=False
     with (run_dir/'run.log').open('w') as log:
+        log.write('EVIDENCE_RUN|'+str(run_dir.relative_to(ROOT))+'|'+meta['build_id']+'\n');log.flush()
         try: p=subprocess.run(cmd,cwd=run_dir,stdout=log,stderr=subprocess.STDOUT,timeout=timeout,env=run_env); rc=p.returncode
         except subprocess.TimeoutExpired: rc=124; timed_out=True
     log=(run_dir/'run.log').read_text(errors='replace')
@@ -85,8 +90,12 @@ def run(test,seed,negative=None,trace=False,timeout=600):
     completed=f'TEST_COMPLETED|{test}|' in log
     checks=int(sb[1]) if sb else 0
     stable=meta['sources']==inputs()
+    try:
+        validate_build(ROOT,meta,'target')
+        require(dep_before==uvm_identity(dependency()),'UVM changed during run')
+    except ValueError: stable=False
     good=stable and rc==0 and errors and errors[-1]=='0' and fatals and fatals[-1]=='0' and completed and checks>0
-    rejected=(not good and not timed_out and
+    rejected=(stable and not good and not timed_out and
         (('TX decoded data' in log and 'UVM_ERROR' in log) if negative=='NEGATIVE_TX_DATA' else 'ASSERT_APB_SETUP_STABILITY' in log))
     status=('DETECTED' if rejected else 'NOT_DETECTED') if negative else ('PASS' if good else 'FAIL')
     cov={m[0]:int(m[1]) for m in re.findall(r'^COV\|([^|]+)\|(\d+)$',log,re.M)}
@@ -98,6 +107,10 @@ def run(test,seed,negative=None,trace=False,timeout=600):
             'source_hashes':inputs(),'source_stable':stable,'binary_sha256':hashlib.sha256(binary.read_bytes()).hexdigest(),'git_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
             'working_tree_dirty':bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True)),
             'solver':subprocess.check_output(command('z3')+['--version'],env=run_env,text=True).strip(),'tool':meta['tool'],'uvm_commit':UVM_COMMIT,'assertions_enabled':True,'timed_out':timed_out}
+    result.update(bind_run(ROOT,meta,run_dir,negative))
+    result['binary_stable']=stable
+    if result['coverage_file'] is None and not negative:
+        result['status']='FAIL';status='FAIL'
     (run_dir/'result.json').write_text(json.dumps(result,indent=2)+'\n')
     print(f'{status}: {test} seed={seed} checks={checks} time={result["seconds"]:.2f}s log={result["log"]}',flush=True)
     if status not in ['PASS','DETECTED']: print('\n'.join(line for line in log.splitlines() if 'ERROR' in line or 'FATAL' in line or 'Error' in line)[-5000:])

@@ -10,10 +10,20 @@ module tb_system;
     logic [6:0] h0,h1,h4,h5;
     int parity_mode,init_count,init_cycles,checks,tx_frames,send_pulses;
     bit init_seen;
+    bit measure_default_poll;
+    int clock_index,last_lsr,poll_samples;
     byte expected_wire[$],received_wire[$];
-    time stable_start;
+    time stable_start,release_start;
+    bit release_seen;
     de2_115_apb_uart_bringup dut(.CLOCK_50(clk),.KEY(key),.SW(sw),.GPIO_UART_RX(rx),.GPIO_UART_TX(tx),
         .LEDR(ledr),.LEDG(ledg),.HEX0(h0),.HEX1(h1),.HEX4(h4),.HEX5(h5));
+    function automatic logic [6:0] expected_hex(input int n);
+        string glyphs[16]='{"abcdef","bc","abdeg","abcdg","bcfg","acdfg","acdefg","abc","abcdefg","abcdfg","abcefg","cdefg","adef","bcdeg","adefg","aefg"};
+        logic [6:0] segments;
+        segments='1;
+        for(int k=0;k<glyphs[n].len();k++) segments[int'(glyphs[n].getc(k))-97]=0;
+        return segments;
+    endfunction
     task automatic check(input bit ok,input string why);
         checks++; if(!ok) $fatal(1,"SYSTEM_CHECK %s",why);
     endtask
@@ -37,6 +47,11 @@ module tb_system;
     endtask
     always @(posedge clk) begin
         int expected_addr,expected_data;
+        clock_index++;
+        if(measure_default_poll && dut.rst_n && dut.psel && dut.penable && dut.pready && !dut.pwrite && dut.paddr==20) begin
+            if(poll_samples>0) check(clock_index-last_lsr>=5000 && clock_index-last_lsr<=5003,"default board poll 5000 cycles");
+            last_lsr=clock_index; poll_samples++;
+        end
         if(!dut.rst_n) begin init_count=0; init_cycles=0; init_seen=0; expected_wire.delete(); end
         else begin
             init_cycles++;
@@ -60,6 +75,9 @@ module tb_system;
         end
     end
     always @(posedge dut.key_sync[1]) stable_start=$time;
+    always @(negedge dut.key_sync[1]) if(dut.rst_n) begin release_start=$time; release_seen=1; end
+    always @(negedge dut.stable_q) if(dut.rst_n && release_seen)
+        check($time-release_start==DEBOUNCE*20,"exact 500000 synchronized samples release");
     always @(posedge dut.send_pulse) begin
         send_pulses++;
         check($time-stable_start==DEBOUNCE*20,"exact 500000 synchronized samples press_count_before press pulse");
@@ -93,11 +111,22 @@ module tb_system;
         key[1]=0; wait(dut.send_pulse); #1ns; sw[7:0]='h42;
         cycles(DEBOUNCE+10000); check(send_pulses==press_count_before+1,"held button one pulse");
         check(received_wire.size()==1,"one manual UART frame"); value=received_wire.pop_front(); check(value=='h41,"manual byte captured press_count_before SW change");
-        key[1]=1; cycles(DEBOUNCE+10);
+        // Release bounce and N-1 samples cannot re-arm a held key.
+        repeat(3) begin key[1]=1; cycles(40); key[1]=0; cycles(40); end
+        cycles(DEBOUNCE+10);
+        check(send_pulses==press_count_before+1,"release bounce must not re-arm");
+        key[1]=1;
+        @(negedge dut.key_sync[1]);
+        repeat(DEBOUNCE-1) @(posedge clk);
+        #1ps; check(dut.stable_q==1,"release N-1 remains pressed");
+        @(posedge clk); #1ps; check(dut.stable_q==0,"release N becomes stable");
+        @(negedge clk);
         key[1]=0; wait(dut.send_pulse); cycles(10000);
         check(received_wire.size()==1,"new press after stable release"); value=received_wire.pop_front(); check(value=='h42,"second manual byte");
         key[1]=1; cycles(DEBOUNCE+10);
         $display("SYS_COV|debounce_exact_bounce_hold_release|1");
+        $display("SYS_COV|debounce_release_n_minus_1_n|1");
+        $display("SYS_COV|debounce_release_bounce|1");
         $display("SYS_COV|manual_capture_hex|1");
         $display("SYS_COV|reset_sync_and_reserved_switches|1");
         for(int p=0;p<3;p++) begin
@@ -130,6 +159,18 @@ module tb_system;
         for(int k=0;k<32;k++) begin value=received_wire.pop_front(); check(value==k,"echo burst order"); end
         check(expected_wire.size()==0,"all accepted writes observed on wire");
         $display("SYS_COV|echo_burst32|1");
+        boot(0); sw[16]=1; measure_default_poll=1; poll_samples=0;
+        cycles(16000); measure_default_poll=0; check(poll_samples>=3,"three default board poll observations");
+        $display("SYS_COV|default_poll_5000_cycles|1");
+        // Exercise all segment patterns through the actual SW and serial paths.
+        boot(0);
+        for(int nibble=0;nibble<16;nibble++) begin
+            sw[7:0]=8'(nibble*17); cycles(8);
+            check(h0==expected_hex(nibble) && h1==expected_hex(nibble),"all TX HEX patterns");
+            peer(8'(nibble*17)); cycles(6000);
+            check(h4==expected_hex(nibble) && h5==expected_hex(nibble),"all RX HEX patterns");
+        end
+        $display("SYS_COV|hex_all_16_patterns|1");
         $display("SYS_TEST_COMPLETED|checks=%0d|tx=%0d|press=%0d",checks,tx_frames,send_pulses);
         $finish;
     end

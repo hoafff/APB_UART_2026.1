@@ -1,0 +1,347 @@
+{
+  "system": {
+    "status": "PASS",
+    "returncode": 0,
+    "seconds": 5.380892936002056,
+    "sources": {
+      "dv/system/tb_system.sv": "bf07a2ba11b4c6327149478a13cc2f0d65eb90475c504c0b3e054e60ad2046e8",
+      "rtl/fpga/de2_115_apb_uart_bringup.sv": "33fc97dd380123e94ba8b6d2ceea3957095c8d3a35e26d3520a856863892aaca",
+      "rtl/fpga/de2_uart_controller.sv": "0ded4cdbaa6f03628649d2e801adc224849b2e51406b6fc24d55ee9d977c42c3",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+      "rtl/modified/pulp_apb_uart_sv/files.f": "c2803d70577e6f6d754e8a1db2bbae87520fd29eeac474548a921c9dc0b71eae",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+      "tools/evidence.py": "3c10947092c0f70be762bac3fd3f1309de98d42f3981453e16db293adad12b78",
+      "tools/run_dv.py": "142b71498091f3ebe701a2c416381eaa893c78beb729334603933fb67430d484",
+      "tools/run_supplemental.py": "ed76119a998985b9886f223e16bf13a22e5e8f88c75ba0b75cce5dd141ae782c",
+      "tools/run_system.py": "34ff5553e5bc8b08beaf65af6dcb0a3cc0d879d224a984bfc64132611de067b6"
+    },
+    "source_stable": true,
+    "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+    "build_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "verilator",
+      "--binary",
+      "--timing",
+      "--assert",
+      "--coverage",
+      "-Wno-fatal",
+      "--top-module",
+      "tb_system",
+      "--Mdir",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/system/obj",
+      "-j",
+      "1",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_system.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_uart_controller.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv"
+    ],
+    "run_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/system/obj/Vtb_system",
+      "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/system/runs/20261112_185041_783604/coverage.dat"
+    ],
+    "scope": "Supplemental RTL simulation; not FPGA hardware",
+    "log": "build/system/runs/20261112_185041_783604/run.log",
+    "timed_out": false,
+    "negative_control": null,
+    "schema": 2,
+    "run_id": "build/system/runs/20261112_185041_783604",
+    "build_id": "1d82591a1ae57e3a6a06525edfb266794572c505a0a81ac5b78231dedfc664e9",
+    "build": {
+      "schema": 2,
+      "kind": "system",
+      "command": [
+        "/home/hoaff/.local/bin/ic-eda",
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "--coverage",
+        "-Wno-fatal",
+        "--top-module",
+        "tb_system",
+        "--Mdir",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/system/obj",
+        "-j",
+        "1",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_system.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_115_apb_uart_bringup.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_uart_controller.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv"
+      ],
+      "sources": {
+        "dv/system/tb_system.sv": "bf07a2ba11b4c6327149478a13cc2f0d65eb90475c504c0b3e054e60ad2046e8",
+        "rtl/fpga/de2_115_apb_uart_bringup.sv": "33fc97dd380123e94ba8b6d2ceea3957095c8d3a35e26d3520a856863892aaca",
+        "rtl/fpga/de2_uart_controller.sv": "0ded4cdbaa6f03628649d2e801adc224849b2e51406b6fc24d55ee9d977c42c3",
+        "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+        "rtl/modified/pulp_apb_uart_sv/files.f": "c2803d70577e6f6d754e8a1db2bbae87520fd29eeac474548a921c9dc0b71eae",
+        "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+        "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+        "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+        "tools/evidence.py": "3c10947092c0f70be762bac3fd3f1309de98d42f3981453e16db293adad12b78",
+        "tools/run_dv.py": "142b71498091f3ebe701a2c416381eaa893c78beb729334603933fb67430d484",
+        "tools/run_supplemental.py": "ed76119a998985b9886f223e16bf13a22e5e8f88c75ba0b75cce5dd141ae782c",
+        "tools/run_system.py": "34ff5553e5bc8b08beaf65af6dcb0a3cc0d879d224a984bfc64132611de067b6"
+      },
+      "source_stable": true,
+      "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+      "dependency": null,
+      "flags": {
+        "timing": true,
+        "assert": true,
+        "coverage": true
+      },
+      "binary": {
+        "path": "build/system/obj/Vtb_system",
+        "sha256": "0654dc522375b9a73c5d684a6a02c90db5281f734cb6f08fd1cc73e714b17a5a",
+        "bytes": 856552
+      },
+      "returncode": 0,
+      "build_id": "1d82591a1ae57e3a6a06525edfb266794572c505a0a81ac5b78231dedfc664e9"
+    },
+    "binary_sha256": "0654dc522375b9a73c5d684a6a02c90db5281f734cb6f08fd1cc73e714b17a5a",
+    "binary_stable": true,
+    "log_artifact": {
+      "path": "build/system/runs/20261112_185041_783604/run.log",
+      "sha256": "54be9e6d2902a8264ed2ea1c507ec822b4e3aa073ba384c3a130ba1eb42ce4f0",
+      "bytes": 868
+    },
+    "coverage_artifact": {
+      "path": "build/system/runs/20261112_185041_783604/coverage.dat",
+      "sha256": "d62ca819b4f76e6cbb65880165c442abd06e82e06bf669393c459284101038f8",
+      "bytes": 761767
+    },
+    "coverage_file": "build/system/runs/20261112_185041_783604/coverage.dat",
+    "assertions_enabled": true,
+    "exported_log": "dv/results/target_v2/logs/system.log"
+  },
+  "controller": {
+    "status": "PASS",
+    "returncode": 0,
+    "seconds": 0.1773362919993815,
+    "sources": {
+      "dv/system/tb_controller.sv": "c97bef3477ade5b85b0401adc392b77236e303fb22557028a41000cb788793ab",
+      "rtl/fpga/de2_uart_controller.sv": "0ded4cdbaa6f03628649d2e801adc224849b2e51406b6fc24d55ee9d977c42c3",
+      "tools/evidence.py": "3c10947092c0f70be762bac3fd3f1309de98d42f3981453e16db293adad12b78",
+      "tools/run_controller.py": "5c99bc4770e3ff64e40eab0aeb679838ac3fd3b846c502fd4140dfc4c0011c26",
+      "tools/run_dv.py": "142b71498091f3ebe701a2c416381eaa893c78beb729334603933fb67430d484",
+      "tools/run_supplemental.py": "ed76119a998985b9886f223e16bf13a22e5e8f88c75ba0b75cce5dd141ae782c"
+    },
+    "source_stable": true,
+    "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+    "build_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "verilator",
+      "--binary",
+      "--timing",
+      "--assert",
+      "--coverage",
+      "-Wno-fatal",
+      "--top-module",
+      "tb_controller",
+      "--Mdir",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/controller/obj",
+      "-j",
+      "1",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_controller.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_uart_controller.sv"
+    ],
+    "run_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/controller/obj/Vtb_controller",
+      "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/controller/runs/20261112_185041_779214/coverage.dat"
+    ],
+    "scope": "Supplemental RTL simulation; not FPGA hardware",
+    "log": "build/controller/runs/20261112_185041_779214/run.log",
+    "timed_out": false,
+    "negative_control": null,
+    "schema": 2,
+    "run_id": "build/controller/runs/20261112_185041_779214",
+    "build_id": "b9722cddd460110ebfb1fd82625292e71df33addd2fb1ffa3997ceca67a93c12",
+    "build": {
+      "schema": 2,
+      "kind": "controller",
+      "command": [
+        "/home/hoaff/.local/bin/ic-eda",
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "--coverage",
+        "-Wno-fatal",
+        "--top-module",
+        "tb_controller",
+        "--Mdir",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/controller/obj",
+        "-j",
+        "1",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_controller.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/fpga/de2_uart_controller.sv"
+      ],
+      "sources": {
+        "dv/system/tb_controller.sv": "c97bef3477ade5b85b0401adc392b77236e303fb22557028a41000cb788793ab",
+        "rtl/fpga/de2_uart_controller.sv": "0ded4cdbaa6f03628649d2e801adc224849b2e51406b6fc24d55ee9d977c42c3",
+        "tools/evidence.py": "3c10947092c0f70be762bac3fd3f1309de98d42f3981453e16db293adad12b78",
+        "tools/run_controller.py": "5c99bc4770e3ff64e40eab0aeb679838ac3fd3b846c502fd4140dfc4c0011c26",
+        "tools/run_dv.py": "142b71498091f3ebe701a2c416381eaa893c78beb729334603933fb67430d484",
+        "tools/run_supplemental.py": "ed76119a998985b9886f223e16bf13a22e5e8f88c75ba0b75cce5dd141ae782c"
+      },
+      "source_stable": true,
+      "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+      "dependency": null,
+      "flags": {
+        "timing": true,
+        "assert": true,
+        "coverage": true
+      },
+      "binary": {
+        "path": "build/controller/obj/Vtb_controller",
+        "sha256": "ff3e34224b297fc694efa02f2b5689a8372f5728633d23fa7e98769ac52feb4c",
+        "bytes": 542464
+      },
+      "returncode": 0,
+      "build_id": "b9722cddd460110ebfb1fd82625292e71df33addd2fb1ffa3997ceca67a93c12"
+    },
+    "binary_sha256": "ff3e34224b297fc694efa02f2b5689a8372f5728633d23fa7e98769ac52feb4c",
+    "binary_stable": true,
+    "log_artifact": {
+      "path": "build/controller/runs/20261112_185041_779214/run.log",
+      "sha256": "5b0341ae48a3521728480563f8bdb6e5d476f9c674af158584539e8b86932156",
+      "bytes": 780
+    },
+    "coverage_artifact": {
+      "path": "build/controller/runs/20261112_185041_779214/coverage.dat",
+      "sha256": "3674911b5d6efa26175a6560d0b57100a5114e870643af0aed5636c6b848db71",
+      "bytes": 193471
+    },
+    "coverage_file": "build/controller/runs/20261112_185041_779214/coverage.dat",
+    "assertions_enabled": true,
+    "exported_log": "dv/results/target_v2/logs/controller.log"
+  },
+  "onehot": {
+    "status": "PASS",
+    "returncode": 0,
+    "seconds": 24.37594903700665,
+    "sources": {
+      "dv/system/tb_tx_onehot.sv": "7042687e45299a8e6da2475bb08ef63bcfea70538321f471f2d2a73e4fec9624",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+      "rtl/modified/pulp_apb_uart_sv/files.f": "c2803d70577e6f6d754e8a1db2bbae87520fd29eeac474548a921c9dc0b71eae",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+      "tools/evidence.py": "3c10947092c0f70be762bac3fd3f1309de98d42f3981453e16db293adad12b78",
+      "tools/run_dv.py": "142b71498091f3ebe701a2c416381eaa893c78beb729334603933fb67430d484",
+      "tools/run_onehot.py": "10b1af19a307f56c30aff77da022256d2061dda162f3f3718d64ea8abb4f8912",
+      "tools/run_supplemental.py": "ed76119a998985b9886f223e16bf13a22e5e8f88c75ba0b75cce5dd141ae782c"
+    },
+    "source_stable": true,
+    "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+    "build_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "verilator",
+      "--binary",
+      "--timing",
+      "--assert",
+      "--coverage",
+      "-Wno-fatal",
+      "--top-module",
+      "tb_tx_onehot",
+      "--Mdir",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/onehot/obj",
+      "-j",
+      "1",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_tx_onehot.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv"
+    ],
+    "run_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/onehot/obj/Vtb_tx_onehot",
+      "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/onehot/runs/20261112_185042_010678/coverage.dat"
+    ],
+    "scope": "Supplemental RTL simulation; not FPGA hardware",
+    "log": "build/onehot/runs/20261112_185042_010678/run.log",
+    "timed_out": false,
+    "negative_control": null,
+    "schema": 2,
+    "run_id": "build/onehot/runs/20261112_185042_010678",
+    "build_id": "5f97c0ce2acf390ceff83157705ca85c26c7986547affe25d9fd9bc880fdb453",
+    "build": {
+      "schema": 2,
+      "kind": "onehot",
+      "command": [
+        "/home/hoaff/.local/bin/ic-eda",
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "--coverage",
+        "-Wno-fatal",
+        "--top-module",
+        "tb_tx_onehot",
+        "--Mdir",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/build/onehot/obj",
+        "-j",
+        "1",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/system/tb_tx_onehot.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+        "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv"
+      ],
+      "sources": {
+        "dv/system/tb_tx_onehot.sv": "7042687e45299a8e6da2475bb08ef63bcfea70538321f471f2d2a73e4fec9624",
+        "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+        "rtl/modified/pulp_apb_uart_sv/files.f": "c2803d70577e6f6d754e8a1db2bbae87520fd29eeac474548a921c9dc0b71eae",
+        "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+        "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+        "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+        "tools/evidence.py": "3c10947092c0f70be762bac3fd3f1309de98d42f3981453e16db293adad12b78",
+        "tools/run_dv.py": "142b71498091f3ebe701a2c416381eaa893c78beb729334603933fb67430d484",
+        "tools/run_onehot.py": "10b1af19a307f56c30aff77da022256d2061dda162f3f3718d64ea8abb4f8912",
+        "tools/run_supplemental.py": "ed76119a998985b9886f223e16bf13a22e5e8f88c75ba0b75cce5dd141ae782c"
+      },
+      "source_stable": true,
+      "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+      "dependency": null,
+      "flags": {
+        "timing": true,
+        "assert": true,
+        "coverage": true
+      },
+      "binary": {
+        "path": "build/onehot/obj/Vtb_tx_onehot",
+        "sha256": "2c2862c3ed35dd1ccfe7d555094d0eae8a45a8099e7bdb0b650ecd8c3b358f35",
+        "bytes": 590464
+      },
+      "returncode": 0,
+      "build_id": "5f97c0ce2acf390ceff83157705ca85c26c7986547affe25d9fd9bc880fdb453"
+    },
+    "binary_sha256": "2c2862c3ed35dd1ccfe7d555094d0eae8a45a8099e7bdb0b650ecd8c3b358f35",
+    "binary_stable": true,
+    "log_artifact": {
+      "path": "build/onehot/runs/20261112_185042_010678/run.log",
+      "sha256": "742ffca0a011b936329293c6b62faf116d814c319652fc15cd3446cb8e46195c",
+      "bytes": 5082
+    },
+    "coverage_artifact": {
+      "path": "build/onehot/runs/20261112_185042_010678/coverage.dat",
+      "sha256": "1137b45a423568292db41842d853bfe4c355e790c22c2bc83e99c7a11073a58d",
+      "bytes": 516147
+    },
+    "coverage_file": "build/onehot/runs/20261112_185042_010678/coverage.dat",
+    "assertions_enabled": true,
+    "exported_log": "dv/results/target_v2/logs/onehot.log"
+  }
+}

@@ -10,6 +10,7 @@ package apb_uart_uvm_pkg;
     `include "uart_types.svh"
     `include "apb_agent.svh"
     `include "uart_agents.svh"
+    `include "uart_rx_observer.svh"
     `include "uart_scoreboard.svh"
     `include "uart_tests.svh"
 endpackage

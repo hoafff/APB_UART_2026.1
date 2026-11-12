@@ -183,8 +183,8 @@
       "AT07"
     ],
     "source": "dv/uvm/include/uart_tests.svh",
-    "stimulus": "Config mid-frame/same-edge TX/RX; D0 active/paused queue/rearm",
-    "oracle": "Serial captured-mode oracle; pre-edge config and retained bytes",
+    "stimulus": "Config mid-frame/same-edge TX/RX; D0 active/paused queue/rearm Thêm DLL/DLM write cùng cạnh RX start.",
+    "oracle": "Serial captured-mode oracle; pre-edge config and retained bytes Cấu hình pre-edge chốt cho frame hiện tại; observer serial độc lập.",
     "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
     "evidence_status": "PASS_SIMULATION",
     "kind": "UVM",
@@ -243,8 +243,8 @@
       "AT03"
     ],
     "source": "dv/uvm/include/uart_tests.svh",
-    "stimulus": "False start, rearm, 1-sample noise at center of a data bit",
-    "oracle": "No phantom RBR/error; majority retains data",
+    "stimulus": "False start, rearm, 1-sample noise at center of a data bit Thêm 31/32 clocks high sau break ở D2.",
+    "oracle": "No phantom RBR/error; majority retains data N−1 không arm; N nhận frame zero; frame tiếp theo phục hồi.",
     "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
     "evidence_status": "PASS_SIMULATION",
     "kind": "UVM",
@@ -261,8 +261,8 @@
       "AT06"
     ],
     "source": "dv/uvm/include/uart_tests.svh",
-    "stimulus": "Empty/full arrival+pop, OE+ack, new-head+LSR, flush+arrival, full TX+pop+write",
-    "oracle": "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus",
+    "stimulus": "Empty/full arrival+pop, OE+ack, new-head+LSR, flush+arrival, full TX+pop+write LSR/RBR trước/đúng/sau enqueue theo timeline tại D1/D27.",
+    "oracle": "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus Không dùng DUT done để tính expected; APB pre-edge và enqueue post-edge.",
     "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
     "evidence_status": "PASS_SIMULATION",
     "kind": "UVM",
@@ -279,7 +279,8 @@
       "TGT-FIFO-05",
       "TGT-FIFO-06",
       "TGT-IRQ-04",
-      "TGT-IRQ-07"
+      "TGT-IRQ-07",
+      "TGT-REG-08"
     ]
   },
   {
@@ -289,8 +290,8 @@
       "AT08"
     ],
     "source": "dv/system/tb_system.sv",
-    "stimulus": "Default 500000-cycle debounce; N/O/E send/receive/echo/hold/errors; burst32; reset sync",
-    "oracle": "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+    "stimulus": "Default 500000-cycle debounce; N/O/E send/receive/echo/hold/errors; burst32; reset sync Nhả debounce N−1/N và bounce; 16 glyph HEX; default poll5000.",
+    "oracle": "Top port serial/HEX/LED, init APB monitor and independent application expected values Mutant release tức thì phải FAIL; chỉ hit bin sau so sánh thời gian/glyph.",
     "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
     "evidence_status": "PASS_SIMULATION",
     "kind": "SYSTEM_SIM",
@@ -310,7 +311,8 @@
       "TGT-SYS-10",
       "TGT-SYS-13",
       "TGT-SYS-14",
-      "TGT-SYS-15"
+      "TGT-SYS-15",
+      "TGT-SYS-07"
     ]
   },
   {
@@ -320,8 +322,8 @@
       "AT08"
     ],
     "source": "dv/system/tb_controller.sv",
-    "stimulus": "Stub APB errors, manual overflow/same-edge acceptance, echo reserve/fairness, hold polling",
-    "oracle": "Accepted writes and request ordering; explicit injected-error labels",
+    "stimulus": "Stub APB errors, manual overflow/same-edge acceptance, echo reserve/fairness, hold polling Hold/echo SETUP; reset manual+echo pending; wake IRQ/manual.",
+    "oracle": "Accepted writes and request ordering; explicit injected-error labels Giao dịch đang chạy hoàn tất; capture echo không đổi; reset bỏ slot; wake ≤8 clock.",
     "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
     "evidence_status": "PASS_SIMULATION",
     "kind": "SYSTEM_SIM",
@@ -336,7 +338,8 @@
       "TGT-SYS-10",
       "TGT-SYS-11",
       "TGT-SYS-12",
-      "TGT-SYS-15"
+      "TGT-SYS-15",
+      "TGT-RST-02"
     ]
   },
   {

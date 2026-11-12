@@ -13,7 +13,7 @@
     "scope": "DOC",
     "status": "PASS_DOCUMENT_CHECK",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SRC-02",
@@ -29,7 +29,7 @@
     "scope": "DOC",
     "status": "PASS_DOCUMENT_CHECK",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-01",
@@ -47,7 +47,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-02",
@@ -67,7 +67,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-03",
@@ -85,7 +85,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-04",
@@ -103,7 +103,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-05",
@@ -123,7 +123,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-06",
@@ -141,7 +141,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-07",
@@ -156,12 +156,13 @@
     ],
     "observer": [
       "Data queue, OE sticky, PSLVERR, active frame preserved",
-      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-APB-08",
@@ -183,7 +184,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-01",
@@ -201,7 +202,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-02",
@@ -223,7 +224,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-03",
@@ -243,7 +244,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-04",
@@ -261,7 +262,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-05",
@@ -281,7 +282,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-06",
@@ -301,7 +302,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-07",
@@ -319,7 +320,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-08",
@@ -331,17 +332,19 @@
     "testcase_ids": [
       "TC01",
       "TC05",
-      "TC06"
+      "TC06",
+      "TC13"
     ],
     "observer": [
       "APB monitor + register scoreboard + APB SVA",
       "LSR/RBR expected flags theo từng frame; recovery",
-      "Data queue, OE sticky, PSLVERR, active frame preserved"
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-09",
@@ -356,12 +359,13 @@
     ],
     "observer": [
       "LSR/RBR expected flags theo từng frame; recovery",
-      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-10",
@@ -379,7 +383,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-REG-11",
@@ -397,7 +401,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-BAUD-01",
@@ -419,7 +423,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-BAUD-02",
@@ -441,7 +445,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-BAUD-03",
@@ -463,7 +467,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-BAUD-04",
@@ -483,7 +487,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-BAUD-05",
@@ -505,7 +509,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-BAUD-06",
@@ -525,7 +529,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-TX-01",
@@ -546,7 +550,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-TX-02",
@@ -567,7 +571,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-TX-03",
@@ -588,7 +592,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-TX-04",
@@ -607,7 +611,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-TX-05",
@@ -628,7 +632,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-TX-06",
@@ -647,7 +651,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-01",
@@ -664,12 +668,13 @@
     ],
     "observer": [
       "Post-reset register/data/line levels; no stale queues",
-      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-02",
@@ -684,12 +689,13 @@
       "TC12"
     ],
     "observer": [
-      "No phantom RBR/error; majority retains data"
+      "No phantom RBR/error; majority retains data",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-03",
@@ -706,12 +712,13 @@
     ],
     "observer": [
       "RX peer độc lập + expected receive queue + LSR/RBR",
-      "Scoreboard, serial decoder, explicit counts, pinned solver/seed"
+      "Scoreboard, serial decoder, explicit counts, pinned solver/seed",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-04",
@@ -726,12 +733,13 @@
       "TC05"
     ],
     "observer": [
-      "LSR/RBR expected flags theo từng frame; recovery"
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-05",
@@ -746,12 +754,13 @@
       "TC05"
     ],
     "observer": [
-      "LSR/RBR expected flags theo từng frame; recovery"
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-06",
@@ -768,12 +777,13 @@
     ],
     "observer": [
       "LSR/RBR expected flags theo từng frame; recovery",
-      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-07",
@@ -790,12 +800,13 @@
     ],
     "observer": [
       "LSR/RBR expected flags theo từng frame; recovery",
-      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-08",
@@ -810,12 +821,13 @@
       "TC06"
     ],
     "observer": [
-      "Data queue, OE sticky, PSLVERR, active frame preserved"
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-09",
@@ -834,12 +846,13 @@
     "observer": [
       "LSR/RBR expected flags theo từng frame; recovery",
       "Serial captured-mode oracle; pre-edge config and retained bytes",
-      "No phantom RBR/error; majority retains data"
+      "No phantom RBR/error; majority retains data",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RX-10",
@@ -854,12 +867,13 @@
       "TC04"
     ],
     "observer": [
-      "Peer real-time, data/error count/order oracle"
+      "Peer real-time, data/error count/order oracle",
+      "Passive serial RX observer with SPEC completion timing and APB pre-edge sampling"
     ],
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FIFO-01",
@@ -878,7 +892,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FIFO-02",
@@ -897,7 +911,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FIFO-03",
@@ -916,7 +930,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FIFO-04",
@@ -935,7 +949,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FIFO-05",
@@ -956,7 +970,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FIFO-06",
@@ -977,7 +991,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-01",
@@ -995,7 +1009,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-02",
@@ -1013,7 +1027,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-03",
@@ -1031,7 +1045,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-04",
@@ -1051,7 +1065,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-05",
@@ -1069,7 +1083,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-06",
@@ -1087,7 +1101,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-IRQ-07",
@@ -1107,7 +1121,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RST-01",
@@ -1130,7 +1144,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RST-02",
@@ -1143,7 +1157,8 @@
       "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv"
     ],
     "testcase_ids": [
-      "TC08"
+      "TC08",
+      "TC15"
     ],
     "observer": [
       "Post-reset register/data/line levels; no stale queues"
@@ -1151,7 +1166,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RST-03",
@@ -1170,7 +1185,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-RST-04",
@@ -1191,7 +1206,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-01",
@@ -1214,7 +1229,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-02",
@@ -1233,7 +1248,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-03",
@@ -1252,7 +1267,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-04",
@@ -1273,7 +1288,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-05",
@@ -1294,7 +1309,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-06",
@@ -1315,7 +1330,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-07",
@@ -1326,7 +1341,8 @@
       "rtl/fpga/de2_uart_controller.sv"
     ],
     "testcase_ids": [
-      "TC15"
+      "TC15",
+      "TC14"
     ],
     "observer": [
       "Accepted writes and request ordering; explicit injected-error labels"
@@ -1334,7 +1350,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-08",
@@ -1353,7 +1369,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-09",
@@ -1374,7 +1390,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-10",
@@ -1395,7 +1411,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-11",
@@ -1414,7 +1430,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-12",
@@ -1433,7 +1449,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-13",
@@ -1454,7 +1470,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-14",
@@ -1473,7 +1489,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-SYS-15",
@@ -1496,7 +1512,7 @@
     "scope": "SIM",
     "status": "MAPPED_SIM_TESTS_PASS",
     "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FPGA-01",
@@ -1512,7 +1528,7 @@
     "scope": "HARDWARE_PENDING",
     "status": "HW_PENDING",
     "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FPGA-02",
@@ -1530,7 +1546,7 @@
     "scope": "HARDWARE_PENDING",
     "status": "HW_PENDING",
     "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FPGA-03",
@@ -1546,7 +1562,7 @@
     "scope": "HARDWARE_PENDING",
     "status": "HW_PENDING",
     "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FPGA-04",
@@ -1562,7 +1578,7 @@
     "scope": "HARDWARE_PENDING",
     "status": "HW_PENDING",
     "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   },
   {
     "requirement_id": "TGT-FPGA-05",
@@ -1578,6 +1594,6 @@
     "scope": "HARDWARE_PENDING",
     "status": "HW_PENDING",
     "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement",
-    "evidence": "dv/results/target_v1/"
+    "evidence": "dv/results/target_v2/"
   }
 ]

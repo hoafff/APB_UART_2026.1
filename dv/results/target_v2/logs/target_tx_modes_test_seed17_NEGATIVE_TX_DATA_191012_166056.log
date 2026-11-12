@@ -1,0 +1,176 @@
+EVIDENCE_RUN|build/target/runs/target_tx_modes_test_seed17_NEGATIVE_TX_DATA_191012_166056|c10e7a903969e86ecad53605f707eabd32398619bb928ce0974b45a55db76fbe
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+UVM_INFO @ 0: reporter [RNTST] Running test target_tx_modes_test...
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 6110001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 10590001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000000b expected=0000000a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 15070001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 19550001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000001e expected=0000001f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 46970001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 52090001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000000b expected=0000000a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 57210001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 62330001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000001e expected=0000001f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 87190001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 92310001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000000b expected=0000000a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 97430001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 102550001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000001e expected=0000001f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 128050001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 133810001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000000b expected=0000000a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 139570001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 145330001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000001e expected=0000001f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 167630001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 172750001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000000b expected=0000000a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 177870001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 182990001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000001e expected=0000001f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 208490001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 214250001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000000b expected=0000000a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 220010001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 225770001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000001e expected=0000001f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 248070001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 253190001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 258310001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 263430001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000003e expected=0000003f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 288930001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 294690001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 300450001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 306210001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000003e expected=0000003f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 329150001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 334910001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 340670001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 346430001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000003e expected=0000003f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 370010001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 376410001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 382810001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 389210001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000003e expected=0000003f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 409590001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 415350001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 421110001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 426870001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000003e expected=0000003f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 450450001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000014 expected=00000015
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 456850001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 463250001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 469650001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000003e expected=0000003f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 490030001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 495790001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 501550001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 507310001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000007e expected=0000007f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 530890001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 537290001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 543690001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 550090001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000007e expected=0000007f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 571110001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 577510001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 583910001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 590310001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000007e expected=0000007f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 611970001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 619010001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 626050001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 633090001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000007e expected=0000007f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 651550001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 657950001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 664350001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 670750001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000007e expected=0000007f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 692410001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 699450001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000002b expected=0000002a
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 706490001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 713530001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=0000007e expected=0000007f
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 731990001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 738390001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000ab expected=000000aa
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 744790001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 751190001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000fe expected=000000ff
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 772850001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 779890001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000ab expected=000000aa
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 786930001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 793970001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000fe expected=000000ff
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 813070001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 820110001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000ab expected=000000aa
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 827150001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 834190001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000fe expected=000000ff
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 853930001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 861610001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000ab expected=000000aa
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 869290001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 876970001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000fe expected=000000ff
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 893510001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 900550001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000ab expected=000000aa
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 907590001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 914630001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000fe expected=000000ff
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 934370001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000054 expected=00000055
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 942050001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000ab expected=000000aa
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 949730001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=00000001 expected=00000000
+UVM_ERROR /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/dv/uvm/include/uart_scoreboard.svh(55) @ 957410001: uvm_test_top.e.sb [SCOREBOARD] TX decoded data actual=000000fe expected=000000ff
+TEST_COMPLETED|target_tx_modes_test|checks=25|apb=264
+SB_RESULT|checks=432|tx=96|rx=0|dropped=0
+COV|apb.000.1.0.0|96
+COV|apb.000.1.1.0|24
+COV|apb.004.1.0.0|24
+COV|apb.004.1.1.0|24
+COV|apb.008.1.0.0|24
+COV|apb.00c.1.0.0|24
+COV|apb.00c.1.1.0|24
+COV|apb.014.0.0.0|24
+COV|mode.tx.5.0.1|4
+COV|mode.tx.5.0.2|4
+COV|mode.tx.5.1.1|4
+COV|mode.tx.5.1.2|4
+COV|mode.tx.5.2.1|4
+COV|mode.tx.5.2.2|4
+COV|mode.tx.6.0.1|4
+COV|mode.tx.6.0.2|4
+COV|mode.tx.6.1.1|4
+COV|mode.tx.6.1.2|4
+COV|mode.tx.6.2.1|4
+COV|mode.tx.6.2.2|4
+COV|mode.tx.7.0.1|4
+COV|mode.tx.7.0.2|4
+COV|mode.tx.7.1.1|4
+COV|mode.tx.7.1.2|4
+COV|mode.tx.7.2.1|4
+COV|mode.tx.7.2.2|4
+COV|mode.tx.8.0.1|4
+COV|mode.tx.8.0.2|4
+COV|mode.tx.8.1.1|4
+COV|mode.tx.8.1.2|4
+COV|mode.tx.8.2.1|4
+COV|mode.tx.8.2.2|4
+COV|reset.observed|24
+COV|tx.24_modes_four_patterns|1
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_report_server.svh(1009) @ 965560000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    2
+UVM_ERROR :   96
+UVM_FATAL :    0
+** Report counts by id
+[NO_DPI_TSTNAME]     1
+[NO_DPI_USED]     1
+[NO_VISIT_CHECK]     1
+[RNTST]     1
+[SCOREBOARD]    96
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+- /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh:633: Verilog $finish
+ASSERTIONS_ACTIVE|apb=264|reset=152
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 966us; walltime 3.748 s; speed 257.644 us/s
+- Verilator: cpu 3.733 s on 1 threads; allocated 61 MB

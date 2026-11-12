@@ -3,7 +3,6 @@ class uart_scoreboard extends uvm_component;
     uvm_analysis_imp_apb #(apb_tx,uart_scoreboard) apb_imp;
     uvm_analysis_imp_tx_start #(uart_frame,uart_scoreboard) tx_start_imp;
     uvm_analysis_imp_tx #(uart_frame,uart_scoreboard) tx_imp;
-    uvm_analysis_imp_rx_start #(uart_frame,uart_scoreboard) rx_start_imp;
     uvm_analysis_imp_rx #(uart_frame,uart_scoreboard) rx_imp;
     virtual uart_apb_if vif;
     coverage_ledger cov;
@@ -13,12 +12,12 @@ class uart_scoreboard extends uvm_component;
     bit fifo_on,oe,tx_pending;
     int trigger_code;
     int checks,tx_checked,rx_checked,rx_dropped,reset_epoch;
-    time last_thr_accept;
+    time last_thr_accept,last_rx_clear;
     function new(string name,uvm_component parent); super.new(name,parent); endfunction
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         apb_imp=new("apb_imp",this); tx_start_imp=new("tx_start_imp",this);
-        tx_imp=new("tx_imp",this); rx_imp=new("rx_imp",this); rx_start_imp=new("rx_start_imp",this);
+        tx_imp=new("tx_imp",this); rx_imp=new("rx_imp",this);
         if(!uvm_config_db#(virtual uart_apb_if)::get(this,"","vif",vif)) `uvm_fatal("VIF","SB vif missing")
         if(!uvm_config_db#(coverage_ledger)::get(this,"","cov",cov)) `uvm_fatal("COV","ledger missing")
     endfunction
@@ -79,7 +78,7 @@ class uart_scoreboard extends uvm_component;
                     ier=t.data[7:0]&7;
                 end
                 8: begin
-                    if(t.data[1] || t.data[0]!=fifo_on) begin rx_queue.delete(); oe=0; end
+                    if(t.data[1] || t.data[0]!=fifo_on) begin rx_queue.delete(); oe=0; last_rx_clear=$time; end
                     if(t.data[2] || t.data[0]!=fifo_on) begin
                         if(tx_queue.size()!=0) tx_pending=1;
                         tx_queue.delete();
@@ -125,12 +124,8 @@ class uart_scoreboard extends uvm_component;
         if(tx_queue.size() > (last_thr_accept==$time ? 1:0) && {dlm,dll}!=0)
             compare("back-to-back next start",vif.tx_o,0);
     endfunction
-    function void write_rx_start(uart_frame f);
-        f.target_enabled=({dlm,dll}!=0); f.reset_epoch=reset_epoch;
-    endfunction
     function void write_rx(uart_frame f);
-        if(f.reset_epoch!=reset_epoch) begin cov.hit("rx.reset_aborted"); return; end
-        if(!f.target_enabled) begin cov.hit("rx.disabled"); return; end
+        if(last_rx_clear==$time) begin cov.hit("rx.flush_drops_completion"); return; end
         if(rx_queue.size()>=(fifo_on ? 16:1)) begin oe=1; rx_dropped++; cov.hit("rx.drop_new"); end
         else rx_queue.push_back(f);
         cov.frame(0,f);
@@ -156,6 +151,7 @@ class apb_uart_env extends uvm_env;
     apb_driver drv;
     apb_monitor mon;
     uart_rx_bfm rx_bfm;
+    uart_rx_observer rx_mon;
     uart_tx_monitor tx_mon;
     uart_scoreboard sb;
     function new(string name,uvm_component parent); super.new(name,parent); endfunction
@@ -168,11 +164,12 @@ class apb_uart_env extends uvm_env;
         seqr=apb_sequencer::type_id::create("seqr",this);
         drv=apb_driver::type_id::create("drv",this); mon=apb_monitor::type_id::create("mon",this);
         rx_bfm=uart_rx_bfm::type_id::create("rx_bfm",this); tx_mon=uart_tx_monitor::type_id::create("tx_mon",this);
+        rx_mon=uart_rx_observer::type_id::create("rx_mon",this);
         sb=uart_scoreboard::type_id::create("sb",this);
     endfunction
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         drv.seq_item_port.connect(seqr.seq_item_export); mon.ap.connect(sb.apb_imp);
-        rx_bfm.start_ap.connect(sb.rx_start_imp); rx_bfm.ap.connect(sb.rx_imp); tx_mon.start_ap.connect(sb.tx_start_imp); tx_mon.ap.connect(sb.tx_imp);
+        rx_mon.ap.connect(sb.rx_imp); tx_mon.start_ap.connect(sb.tx_start_imp); tx_mon.ap.connect(sb.tx_imp);
     endfunction
 endclass

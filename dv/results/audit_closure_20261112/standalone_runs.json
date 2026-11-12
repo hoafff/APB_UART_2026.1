@@ -1,0 +1,76 @@
+{
+  "rx": {
+    "seed": "deterministic",
+    "source_sha256": {
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/tb_audit_rx.sv": "073345076e99819fabd2ce907f6946c0da5d9aa8414d28541cc1547f04e91888"
+    },
+    "build_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "verilator",
+      "--binary",
+      "--timing",
+      "--assert",
+      "-Wno-fatal",
+      "--top-module",
+      "tb_audit_rx",
+      "--Mdir",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/standalone_rx/obj",
+      "-j",
+      "1",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/tb_audit_rx.sv"
+    ],
+    "build_rc": 0,
+    "run_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/standalone_rx/obj/Vtb_audit_rx"
+    ],
+    "run_rc": 0,
+    "raw_output": "AUDIT_STAGE|min_divisor_matrix|scenarios=1440|frames=2880\nAUDIT_STAGE|early_rbr_after_completion|PASS\nAUDIT_STAGE|4091_invalid_writes|PASS\nAUDIT_RX_COMPLETED|checks=22916|scenarios=1447|frames=2893\n- /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/tb_audit_rx.sv:85: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel\n- Verilator: $finish at 2s; walltime 38.374 s; speed 41.500 ms/s\n- Verilator: cpu 38.219 s on 1 threads; allocated 4 MB\n",
+    "seconds": 38.47348659200361
+  },
+  "fifo": {
+    "seed": "0x20261112",
+    "source_sha256": {
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/tb_audit_fifo.sv": "730140db99a04ce8c929bd42b46d76e8cb945d536745d3f987f3484a1798fbe2"
+    },
+    "build_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "verilator",
+      "--binary",
+      "--timing",
+      "--assert",
+      "-Wno-fatal",
+      "--top-module",
+      "tb_audit_fifo",
+      "--Mdir",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/standalone_fifo/obj",
+      "-j",
+      "1",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/tb_audit_fifo.sv"
+    ],
+    "build_rc": 0,
+    "run_command": [
+      "/home/hoaff/.local/bin/ic-eda",
+      "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/standalone_fifo/obj/Vtb_audit_fifo"
+    ],
+    "run_rc": 0,
+    "raw_output": "AUDIT_FIFO_COMPLETED|seed=0x20261112|steps=32802|checks=131208\n- /home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/audit/tb_audit_fifo.sv:52: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel\n- Verilator: $finish at 656us; walltime 0.028 s; speed 23.708 ms/s\n- Verilator: cpu 0.028 s on 1 threads; allocated 4 MB\n",
+    "seconds": 0.12090255799557781
+  }
+}

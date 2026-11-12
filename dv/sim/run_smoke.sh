@@ -9,4 +9,7 @@ python tools/run_controller.py
 python tools/run_onehot.py
 python tools/check_spec.py
 python tools/check_dv.py
+python -m unittest discover -s tools/tests -v
+python tools/run_debounce_negative.py
 python tools/report_dv.py
+python tools/check_published_evidence.py

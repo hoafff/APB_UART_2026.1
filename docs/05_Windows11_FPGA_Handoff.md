@@ -86,3 +86,7 @@ Trước đấu UART, kiểm JP6/mức logic GPIO và CP2102 thực tế theo m�
 TX/RX và GND chung, không nối chân nguồn CP2102 sang bo. Profile mặc định: terminal
 **115200, 8N1**, flow control tắt; chọn parity bằng SW14/15 trước reset khi thử 8O1/8E1.
 Mọi kết quả phần cứng phải ghi mới từ phép thử thực tế, không lấy simulation PASS để đóng mục FPGA.
+
+## Điều kiện điện áp trước thử bo
+
+Đối chiếu profile pin: **JP7 short 5–6 (2,5 V, Bank 5/6)** cho KEY/SW và nhóm HEX phụ thuộc JP7; **JP6 short 7–8 (3,3 V, Bank 4)** cho GPIO UART và HEX4/HEX5. Ghi nhận vị trí jumper thực tế trước nạp; hiện trạng trên bo người dùng là NOT_RUN. Xem SPEC §13.1 và bảng 4-8/4-11 của Terasic.

@@ -7,3 +7,5 @@ reference/DE2_115_pin_assignments.csv -text whitespace=cr-at-eol
 # Preserve raw simulator output, including whitespace emitted by UVM.
 dv/results/target_v1/logs/*.log -text -whitespace
 dv/results/review_20261112/logs/*.log -text -whitespace
+dv/results/target_v2/logs/*.log -text -whitespace
+dv/results/audit_closure_20261112/*.log -text -whitespace

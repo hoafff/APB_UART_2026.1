@@ -591,6 +591,12 @@ Nguồn S05, giữ đúng index từng bit và I/O standard. GPIO[0]/GPIO[2] tro
 | `GPIO_UART_TX` | output | `GPIO[0]` | `PIN_AB22` | 3.3-V LVTTL |
 | `GPIO_UART_RX` | input | `GPIO[2]` | `PIN_AB21` | 3.3-V LVTTL |
 
+### 13.1. Điều kiện jumper của profile I/O
+
+Profile CSV giả định **JP7 short pins 5–6 = 2,5 V** (VCCIO5/6) và **JP6 short pins 7–8 = 3,3 V** (VCCIO4). JP7 chi phối KEY[1:0], SW[17:0], HEX0[6:3], HEX1[6:0]; JP6 chi phối GPIO UART và HEX4/HEX5. Các bit còn lại theo đúng I/O standard trong CSV. Đây là điều kiện cấu hình cần kiểm trên bo trước nạp; chưa có kết quả đo điện áp hoặc xác nhận jumper bo thật.
+
+Nguồn: [Terasic DE2-115 User Manual, bảng 4-1/4-2/4-5/4-8/4-11](https://www.terasic.com.tw/attachment/archive/502/DE2_115_User_manual.pdf). Không thay I/O standard để hợp thức hóa jumper chưa kiểm.
+
 ## 14. Danh mục yêu cầu và tiêu chí nghiệm thu
 
 ### 14.1. Requirement index

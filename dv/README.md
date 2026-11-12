@@ -28,15 +28,15 @@ Hoặc `bash dv/sim/run_smoke.sh` chạy toàn bộ flow. Các source/testbench 
 
 Core regression có 12 directed classes và constrained-random class chạy ba seed (17,29,101): 15 run chức năng. Hai negative controls riêng kiểm scoreboard và APB assertion, phải DETECTED. Supplementary simulation: wrapper trên profile board, controller với slave stub để inject fault/fairness, và 192 mode/one-hot cases.
 
-`target_baud_test` thực sự phát/giải mã frame với divisor 65535; trên build C++ -O0 ca này có thể mất vài phút. Watchdog mô phỏng 2 giây và timeout wall-clock 600 giây phân biệt rõ; không dùng giới hạn 5 ms cũ để bỏ extreme divisor.
+`target_baud_test` thực sự phát/giải mã frame với divisor 65535; trên build C++ -O0 ca này có thể mất vài phút. Watchdog mô phỏng 2 giây và timeout wall-clock 900 giây phân biệt rõ; không dùng giới hạn 5 ms cũ để bỏ extreme divisor.
 
 ## Kết quả và coverage
 
 `build/target/runs/<test>_seed<seed>/` chứa log, result.json, coverage.dat, waveform nếu yêu cầu. Các lần chạy lại dùng thư mục mới. Exporter chỉ nhận run PASS đúng input hashes hiện tại, có source ổn định; không merge negative/baseline/failure vào closure.
 
-810 bin bắt buộc được định nghĩa trong `docs/dv/coverage_model.json`: format, APB, FIFO, error/IRQ, reset/config, baud/phase, concurrency, random và wrapper. Con số này chỉ là model coverage đã công khai, không phải “100% mọi tình huống UART”. Native Verilator coverage cũng được merge và lưu; code line/toggle coverage khác functional bin ledger. Kết quả native theo RTL được báo riêng, không gộp UVM library thành coverage DUT.
+833 bin bắt buộc được định nghĩa trong `docs/dv/coverage_model.json`: format, APB, FIFO, error/IRQ, reset/config, baud/phase, concurrency, random và wrapper. Con số này chỉ là model coverage đã công khai, không phải “100% mọi tình huống UART”. Native Verilator coverage cũng được merge và lưu; code line/toggle coverage khác functional bin ledger. Kết quả native theo RTL được báo riêng, không gộp UVM library thành coverage DUT.
 
-`dv/results/target_v1/` là bản evidence gọn đã xuất lên Git: logs/results, source manifest, coverage merge nén và chỉ mục waveform. Build binaries, thư viện UVM và PCH không commit. Exporter xác minh source hiện tại trùng nguồn đã chạy.
+`dv/results/target_v2/` là bản evidence gọn đã xuất lên Git: logs/results, source manifest, coverage merge nén và chỉ mục waveform. Build binaries, thư viện UVM và PCH không commit. Exporter xác minh source hiện tại trùng nguồn đã chạy.
 
 Exporter cũng đối chiếu trực tiếp log với JSON: đúng danh sách testcase/seed/control, mã thoát,
 completion, scoreboard, UVM errors/fatals, assertion activity và functional bin counts.
@@ -51,9 +51,11 @@ chúng là kiểm tra công cụ Python, không được cộng vào số testca
 
 ## Phạm vi FPGA
 
-Wrapper đã có source và testcase simulation. Kết quả SIM của `tb_system`/`tb_controller` không thay Quartus synthesis/fitter/STA, nạp bitstream, kiểm JP6/điện áp/pin planner hoặc thử CP2102 trên board thật. Những phần này vẫn thuộc Yêu cầu 3.
+Wrapper đã có source và testcase simulation. Kết quả SIM của `tb_system`/`tb_controller` không thay Quartus synthesis/fitter/STA, nạp bitstream, kiểm JP6/JP7/điện áp/pin planner hoặc thử CP2102 trên board thật. Những phần này vẫn thuộc Yêu cầu 3.
 
 Chủ dự án chọn thực hiện Yêu cầu 3 trên **Windows 11 ở cùng máy dual boot với Arch Linux**.
 Xem [ghi chú bàn giao Windows](../docs/05_Windows11_FPGA_Handoff.md). Runner UVM ở đây
 được kiểm trên Linux; `run_smoke.sh`/`run_questa.sh` là script Bash, `run_dv.py` dùng
 module Unix `resource`. Chưa nghiệm thu chạy các runner này trực tiếp bằng PowerShell.
+
+Audit closure v2 adds the passive RX timing observer and 23 temporal coverage bins. Run `python -m unittest discover -s tools/tests -v` for evidence mutation controls and `python tools/run_debounce_negative.py` to prove the release checker rejects an intentionally faulty scratch wrapper. The latter is excluded from native/functional coverage. After checkout, `python tools/check_published_evidence.py` verifies stored artifacts without requiring simulator binaries; this is not a new simulation.

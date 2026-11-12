@@ -20,3 +20,6 @@ core.*
 # Reviewed regression evidence is intentionally versioned.
 !/dv/results/target_v1/logs/*.log
 !/dv/results/review_20261112/logs/*.log
+
+!/dv/results/target_v2/logs/*.log
+!/dv/results/audit_closure_20261112/*.log

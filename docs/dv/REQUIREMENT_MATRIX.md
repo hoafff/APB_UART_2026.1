@@ -21,7 +21,7 @@ Trạng thái chạy nằm trong RESULTS.md và evidence JSON; bảng này khôn
 | `TGT-REG-05` | 6.3,9.3 | TC06, TC13 | SIM | FCR RX clear xóa queue/OE/metadata; không abort frame RX chưa hoàn tất. |
 | `TGT-REG-06` | 6.3,9.3 | TC06, TC13 | SIM | FCR TX clear xóa queued bytes; không cắt frame active hoặc lấy byte cũ ở cạnh clear. |
 | `TGT-REG-07` | 6.3 | TC07 | SIM | Threshold effective là 1/4/8/14 khi FIFO on, bằng 1 khi FIFO off. |
-| `TGT-REG-08` | 6.4 | TC01, TC05, TC06 | SIM | LSR DR/THRE/TEMT/OE/head-error/RX_ERR phản ánh đúng state được định nghĩa. |
+| `TGT-REG-08` | 6.4 | TC01, TC05, TC06, TC13 | SIM | LSR DR/THRE/TEMT/OE/head-error/RX_ERR phản ánh đúng state được định nghĩa. |
 | `TGT-REG-09` | 6.4,9.3 | TC05, TC13 | SIM | Read LSR clear OE cũ/ack head cũ, không ack byte mới hoặc xóa overflow mới. |
 | `TGT-REG-10` | 6.5 | TC07 | SIM | IIR mã 01/06/04/02 với bits FIFO đúng; read không nhầm side effect. |
 | `TGT-REG-11` | 6.2 | TC09 | SIM | Frame snapshot config trước cạnh start; config write cùng cạnh áp dụng cho frame sau. |
@@ -61,7 +61,7 @@ Trạng thái chạy nằm trong RESULTS.md và evidence JSON; bảng này khôn
 | `TGT-IRQ-06` | 6.5 | TC07 | SIM | Khi không còn nguồn được enable, event=0, IIR bit0=1; không kẹt C0/00. |
 | `TGT-IRQ-07` | 6.5,9.3 | TC07, TC13 | SIM | Sự kiện mới cùng cạnh acknowledge không mất; set mới thắng clear cũ. |
 | `TGT-RST-01` | 8.1 | TC01, TC08 | SIM | Reset register/count/pending đúng bảng; post-release LSR=60/IIR=01. |
-| `TGT-RST-02` | 8 | TC08 | SIM | Reset abort frame/transaction, không stale byte hoặc replay sau reset. |
+| `TGT-RST-02` | 8 | TC08, TC15 | SIM | Reset abort frame/transaction, không stale byte hoặc replay sau reset. |
 | `TGT-RST-03` | 8.2 | TC14 | SIM | KEY0 async assert/sync deassert hai cạnh; DUT/wrapper dùng cùng reset nội bộ. |
 | `TGT-RST-04` | 8 | TC08, TC14 | SIM | TX reset-high, RX synchronizer high, display/pending/LED lỗi reset đúng. |
 | `TGT-SYS-01` | 4.2,13 | TC17, TC18, TC14 | SIM | Top khai báo 65 bit port và map đủ, không trùng pin. |
@@ -70,7 +70,7 @@ Trạng thái chạy nằm trong RESULTS.md và evidence JSON; bảng này khôn
 | `TGT-SYS-04` | 10.1,10.5 | TC14, TC15 | SIM | Manual byte chốt tại pulse, giữ đến THR success, SW đổi không thay byte pending. |
 | `TGT-SYS-05` | 10.2 | TC14, TC15 | SIM | SW14/15 chốt trong init, no runtime parity change; SW16/17 có thời điểm hiệu lực rõ. |
 | `TGT-SYS-06` | 10.3 | TC14, TC15 | SIM | Đúng 6 init write, địa chỉ/data đúng, init_done chỉ sau success; ≤32 clock. |
-| `TGT-SYS-07` | 10.4 | TC15 | SIM | Poll 5000 clock và wake sớm; SW16 hold không gây IRQ busy-loop chặn TX. |
+| `TGT-SYS-07` | 10.4 | TC15, TC14 | SIM | Poll 5000 clock và wake sớm; SW16 hold không gây IRQ busy-loop chặn TX. |
 | `TGT-SYS-08` | 10.5 | TC15 | SIM | Không overwrite manual/echo slot; reject manual overflow có fault indication. |
 | `TGT-SYS-09` | 10.2,10.5 | TC14, TC15 | SIM | SW16 chỉ dừng RBR mới; UART RX/TX vẫn chạy, overflow báo OE. |
 | `TGT-SYS-10` | 10.5 | TC14, TC15 | SIM | Echo dùng PRDATA byte nhận; reserve slot trước pop, không mất byte do pending overwrite. |
