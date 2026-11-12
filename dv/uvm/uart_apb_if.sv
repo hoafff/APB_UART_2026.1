@@ -12,4 +12,5 @@ interface uart_apb_if(input logic CLK);
     logic        rx_i;
     logic        tx_o;
     logic        event_o;
+    logic rx_done_probe,tx_ready_probe,rx_start_probe; // stimulus alignment only, never expected data
 endinterface

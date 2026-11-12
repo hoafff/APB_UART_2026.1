@@ -29,7 +29,7 @@ for row in requirements:
         assert section in sections, (row['id'], section)
     assert set(row['acceptance']) <= {'DOC', *('AT%02d' % i for i in range(1, 9))}
     assert row['target_execution_status'] == 'NOT_RUN'
-passed('Requirement index and cross-references', '80 unique target IDs; section/group references resolve; all target execution statuses NOT_RUN')
+passed('Requirement index and cross-references', '80 unique target IDs; section/group references resolve; initial catalogue statuses remain NOT_RUN; current run results are separate')
 
 old_spec = workspace / 'docs/history/01_System_Specification_v0.3.md'
 old_ids = set(re.findall(r'\| `(REQ_[A-Z]+_\d{3})` \|', old_spec.read_text()))

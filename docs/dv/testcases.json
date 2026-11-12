@@ -1,0 +1,415 @@
+[
+  {
+    "id": "TC01",
+    "name": "target_apb_test",
+    "groups": [
+      "AT01"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "Reset values, DLAB/readback/mask; quét toàn bộ 4096 địa chỉ; setup-only/back-to-back/PSLVERR",
+    "oracle": "APB monitor + register scoreboard + APB SVA",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-APB-01",
+      "TGT-APB-02",
+      "TGT-APB-03",
+      "TGT-APB-04",
+      "TGT-APB-05",
+      "TGT-APB-06",
+      "TGT-REG-01",
+      "TGT-REG-02",
+      "TGT-REG-03",
+      "TGT-REG-08",
+      "TGT-RST-01"
+    ]
+  },
+  {
+    "id": "TC02",
+    "name": "target_tx_modes_test",
+    "groups": [
+      "AT02"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "24 mode × 00/FF/55/AA, các frame queued nối tiếp",
+    "oracle": "Independent TX decoder kiểm từng clock và expected THR queue",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-REG-02",
+      "TGT-BAUD-01",
+      "TGT-BAUD-05",
+      "TGT-TX-01",
+      "TGT-TX-02",
+      "TGT-TX-03",
+      "TGT-TX-04",
+      "TGT-TX-05"
+    ]
+  },
+  {
+    "id": "TC03",
+    "name": "target_rx_modes_test",
+    "groups": [
+      "AT03"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "24 mode × bốn payload, RBR order/zero-extension/LSR",
+    "oracle": "RX peer độc lập + expected receive queue + LSR/RBR",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-REG-02",
+      "TGT-RX-03"
+    ]
+  },
+  {
+    "id": "TC04",
+    "name": "target_tolerance_test",
+    "groups": [
+      "AT03"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "24 mode × 3 rate × 5 phase; additional D=1/27; back-to-back",
+    "oracle": "Peer real-time, data/error count/order oracle",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-BAUD-06",
+      "TGT-RX-10"
+    ]
+  },
+  {
+    "id": "TC05",
+    "name": "target_errors_test",
+    "groups": [
+      "AT04"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "Odd/even error; stop1/stop2; break; clean/bad/clean metadata và ack",
+    "oracle": "LSR/RBR expected flags theo từng frame; recovery",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-REG-08",
+      "TGT-REG-09",
+      "TGT-RX-04",
+      "TGT-RX-05",
+      "TGT-RX-06",
+      "TGT-RX-07",
+      "TGT-RX-09",
+      "TGT-FIFO-06"
+    ]
+  },
+  {
+    "id": "TC06",
+    "name": "target_fifo_test",
+    "groups": [
+      "AT05"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "Capacity1/16, drop-new, wrap, FCR clear/toggle, clear active, THR full",
+    "oracle": "Data queue, OE sticky, PSLVERR, active frame preserved",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-APB-07",
+      "TGT-APB-08",
+      "TGT-REG-04",
+      "TGT-REG-05",
+      "TGT-REG-06",
+      "TGT-REG-08",
+      "TGT-RX-08",
+      "TGT-FIFO-01",
+      "TGT-FIFO-02",
+      "TGT-SYS-15"
+    ]
+  },
+  {
+    "id": "TC07",
+    "name": "target_irq_test",
+    "groups": [
+      "AT06"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "4 thresholds; 64 source×mask cases; RLS>RDA>THRE, ack/mask/no-stuck",
+    "oracle": "Independent pending model, IIR/event and source-clear reads",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-REG-03",
+      "TGT-REG-07",
+      "TGT-REG-10",
+      "TGT-IRQ-01",
+      "TGT-IRQ-02",
+      "TGT-IRQ-03",
+      "TGT-IRQ-04",
+      "TGT-IRQ-05",
+      "TGT-IRQ-06",
+      "TGT-IRQ-07"
+    ]
+  },
+  {
+    "id": "TC08",
+    "name": "target_reset_test",
+    "groups": [
+      "AT07"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "Reset start/data/parity/stop, APB phases, full/IRQ; recovery",
+    "oracle": "Post-reset register/data/line levels; no stale queues",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-TX-01",
+      "TGT-RX-01",
+      "TGT-FIFO-05",
+      "TGT-RST-01",
+      "TGT-RST-02",
+      "TGT-RST-04"
+    ]
+  },
+  {
+    "id": "TC09",
+    "name": "target_snapshot_test",
+    "groups": [
+      "AT07"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "Config mid-frame/same-edge TX/RX; D0 active/paused queue/rearm",
+    "oracle": "Serial captured-mode oracle; pre-edge config and retained bytes",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-APB-08",
+      "TGT-REG-11",
+      "TGT-BAUD-02",
+      "TGT-RX-09"
+    ]
+  },
+  {
+    "id": "TC10",
+    "name": "target_baud_test",
+    "groups": [
+      "AT02"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "D=0/1/27/326/65535, full measured frame",
+    "oracle": "Per-clock serial waveform and completion counts; no skipped extreme",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-APB-08",
+      "TGT-BAUD-01",
+      "TGT-BAUD-02",
+      "TGT-BAUD-03",
+      "TGT-BAUD-04",
+      "TGT-BAUD-05"
+    ]
+  },
+  {
+    "id": "TC11",
+    "name": "target_random_test",
+    "groups": [
+      "AT01",
+      "AT02",
+      "AT03",
+      "AT04"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "300 constrained APB + 64 full-duplex frame pairs mỗi seed 17/29/101",
+    "oracle": "Scoreboard, serial decoder, explicit counts, pinned solver/seed",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-TX-06",
+      "TGT-RX-03"
+    ]
+  },
+  {
+    "id": "TC12",
+    "name": "target_false_start_test",
+    "groups": [
+      "AT03"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "False start, rearm, 1-sample noise at center of a data bit",
+    "oracle": "No phantom RBR/error; majority retains data",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-RX-02",
+      "TGT-RX-09"
+    ]
+  },
+  {
+    "id": "TC13",
+    "name": "target_concurrency_test",
+    "groups": [
+      "AT05",
+      "AT06"
+    ],
+    "source": "dv/uvm/include/uart_tests.svh",
+    "stimulus": "Empty/full arrival+pop, OE+ack, new-head+LSR, flush+arrival, full TX+pop+write",
+    "oracle": "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "UVM",
+    "requirement_ids": [
+      "TGT-APB-02",
+      "TGT-APB-07",
+      "TGT-REG-05",
+      "TGT-REG-06",
+      "TGT-REG-09",
+      "TGT-TX-05",
+      "TGT-RX-07",
+      "TGT-FIFO-03",
+      "TGT-FIFO-04",
+      "TGT-FIFO-05",
+      "TGT-FIFO-06",
+      "TGT-IRQ-04",
+      "TGT-IRQ-07"
+    ]
+  },
+  {
+    "id": "TC14",
+    "name": "tb_system",
+    "groups": [
+      "AT08"
+    ],
+    "source": "dv/system/tb_system.sv",
+    "stimulus": "Default 500000-cycle debounce; N/O/E send/receive/echo/hold/errors; burst32; reset sync",
+    "oracle": "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "SYSTEM_SIM",
+    "requirement_ids": [
+      "TGT-BAUD-03",
+      "TGT-RX-01",
+      "TGT-RX-06",
+      "TGT-RST-03",
+      "TGT-RST-04",
+      "TGT-SYS-01",
+      "TGT-SYS-02",
+      "TGT-SYS-03",
+      "TGT-SYS-04",
+      "TGT-SYS-05",
+      "TGT-SYS-06",
+      "TGT-SYS-09",
+      "TGT-SYS-10",
+      "TGT-SYS-13",
+      "TGT-SYS-14",
+      "TGT-SYS-15"
+    ]
+  },
+  {
+    "id": "TC15",
+    "name": "tb_controller",
+    "groups": [
+      "AT08"
+    ],
+    "source": "dv/system/tb_controller.sv",
+    "stimulus": "Stub APB errors, manual overflow/same-edge acceptance, echo reserve/fairness, hold polling",
+    "oracle": "Accepted writes and request ordering; explicit injected-error labels",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "SYSTEM_SIM",
+    "requirement_ids": [
+      "TGT-APB-05",
+      "TGT-SYS-04",
+      "TGT-SYS-05",
+      "TGT-SYS-06",
+      "TGT-SYS-07",
+      "TGT-SYS-08",
+      "TGT-SYS-09",
+      "TGT-SYS-10",
+      "TGT-SYS-11",
+      "TGT-SYS-12",
+      "TGT-SYS-15"
+    ]
+  },
+  {
+    "id": "TC16",
+    "name": "tb_tx_onehot",
+    "groups": [
+      "AT02"
+    ],
+    "source": "dv/system/tb_tx_onehot.sv",
+    "stimulus": "192 N×parity×stop×one-hot cases including bits above WLS",
+    "oracle": "Known single-bit expected wire/parity, no DUT parity algorithm in oracle",
+    "pass_fail": "Không mismatch/assertion/error; hoàn thành đúng traffic và checker có hoạt động",
+    "evidence_status": "NOT_RUN",
+    "kind": "SUPPLEMENTAL_RTL",
+    "requirement_ids": [
+      "TGT-TX-02",
+      "TGT-TX-03"
+    ]
+  },
+  {
+    "id": "TC17",
+    "name": "check_spec",
+    "groups": [
+      "DOC"
+    ],
+    "source": "tools/check_spec.py",
+    "stimulus": "80 IDs/36 legacy mappings/65 CSV pins/timing/contract arithmetic/vendor hashes",
+    "oracle": "Python document checker, not simulation",
+    "pass_fail": "Theo tiêu chí riêng trong DV Plan",
+    "evidence_status": "NOT_RUN",
+    "kind": "DOC",
+    "requirement_ids": [
+      "TGT-SRC-01",
+      "TGT-SYS-01",
+      "TGT-SYS-13",
+      "TGT-FPGA-02"
+    ]
+  },
+  {
+    "id": "TC18",
+    "name": "check_dv",
+    "groups": [
+      "DOC"
+    ],
+    "source": "tools/check_dv.py",
+    "stimulus": "Traceability/classes/artifacts/native coverage/requirement and source references",
+    "oracle": "Python static/evidence checker, not hardware",
+    "pass_fail": "Theo tiêu chí riêng trong DV Plan",
+    "evidence_status": "NOT_RUN",
+    "kind": "DOC",
+    "requirement_ids": [
+      "TGT-SRC-02",
+      "TGT-SYS-01"
+    ]
+  },
+  {
+    "id": "TC19",
+    "name": "board_acceptance",
+    "groups": [
+      "AT08"
+    ],
+    "source": "docs/03_DV_Plan.md",
+    "stimulus": "Quartus/fitter/STA, bank/JP6/CP2102, board TX/RX/echo/parity/error capture",
+    "oracle": "Manual physical evidence; NOT_RUN under Requirement 3",
+    "pass_fail": "Theo tiêu chí riêng trong DV Plan",
+    "evidence_status": "NOT_RUN",
+    "kind": "HARDWARE",
+    "requirement_ids": [
+      "TGT-FPGA-01",
+      "TGT-FPGA-02",
+      "TGT-FPGA-03",
+      "TGT-FPGA-04",
+      "TGT-FPGA-05"
+    ]
+  }
+]

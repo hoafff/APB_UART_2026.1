@@ -4,7 +4,7 @@
 **Phiên bản tài liệu:** 1.0 — đặc tả thiết kế mục tiêu cho IP sửa từ PULP.
 **Ngày:** 12/11/2026.
 **Phạm vi bàn giao:** Yêu cầu 1 — Specifications; làm đầu vào cho DV Plan/UVM và FPGA.
-**Trạng thái thiết kế mục tiêu:** chưa triển khai RTL, chưa chạy regression/Quartus/board.
+**Trạng thái tại lần phát hành SPEC:** chưa triển khai RTL/regression/Quartus/board; tiến độ thực thi sau đó xem [DV results](dv/RESULTS.md).
 **Quyết định của chủ dự án:** sửa RTL để đáp ứng các chức năng trong hướng dẫn; không dừng ở việc ghi nhận giới hạn của IP nguyên bản.
 
 ## 1. Mục đích, nguồn chuẩn và cách sử dụng
@@ -595,7 +595,7 @@ Nguồn S05, giữ đúng index từng bit và I/O standard. GPIO[0]/GPIO[2] tro
 
 ### 14.1. Requirement index
 
-Các ID `TGT-*` chỉ dùng cho TARGET-v1.0. ID `REQ_*` của SPEC v0.3 được giữ trong bảng chuyển đổi mục 16; không tái sử dụng một ID cũ cho contract đã đổi. Cột DOC là kiểm tài liệu/cấu hình; AT01..AT08 là nhóm nghiệm thu phải triển khai ở Yêu cầu 2/3. **Tất cả kết quả thực thi TARGET hiện là NOT_RUN.**
+Các ID `TGT-*` chỉ dùng cho TARGET-v1.0. ID `REQ_*` của SPEC v0.3 được giữ trong bảng chuyển đổi mục 16; không tái sử dụng một ID cũ cho contract đã đổi. Cột DOC là kiểm tài liệu/cấu hình; AT01..AT08 là nhóm nghiệm thu phải triển khai ở Yêu cầu 2/3. **Tại thời điểm phát hành SPEC, tất cả kết quả thực thi TARGET là NOT_RUN.** Kết quả mới được quản lý riêng trong [DV results](dv/RESULTS.md); danh mục requirement giữ snapshot ban đầu.
 
 | ID | Mục quy định | Yêu cầu bắt buộc | Nhóm nghiệm thu |
 |---|---|---|---|
@@ -729,7 +729,7 @@ Tên normal tests đã chạy: `apb_reg_smoke_test`, `apb_reg_alias_test`, `uart
 
 UVM library của lần review: `verilator/uvm` commit `656f20d087370a7c742e00188d20bbf30fa95339`, `UVM_NO_DPI`; simulator `Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)`. Không có kết quả Questa từ lần review. Các phép kiểm độc lập của S08 có VCD/log riêng; không chuyển tên chúng thành kết quả TARGET-v1.0.
 
-### 15.2. Trạng thái phiên bản mục tiêu
+### 15.2. Snapshot trạng thái khi phát hành SPEC, trước bước triển khai
 
 | Deliverable | Trạng thái khi phát hành SPEC |
 |---|---|
@@ -741,7 +741,7 @@ UVM library của lần review: `verilator/uvm` commit `656f20d087370a7c742e0018
 | Quartus synthesis/fitter/STA | NOT_RUN |
 | Thử DE2-115 + CP2102 | NOT_RUN |
 
-Một SPEC có thể hoàn chỉnh về hợp đồng trước khi RTL được viết. Hoàn thành nội dung Yêu cầu 1 không đồng nghĩa Yêu cầu 2/3 đã đạt. Việc tài liệu phù hợp rubric cuối cùng cần đối chiếu với đề bài chính thức; không có dữ kiện về rubric ngoài ảnh và Markdown đã cung cấp.
+Trạng thái ở bảng trên là snapshot lịch sử; [DV results](dv/RESULTS.md) ghi trạng thái thực thi mới nhất. Một SPEC có thể hoàn chỉnh về hợp đồng trước khi RTL được viết. Hoàn thành nội dung Yêu cầu 1 không đồng nghĩa Yêu cầu 2/3 đã đạt. Việc tài liệu phù hợp rubric cuối cùng cần đối chiếu với đề bài chính thức; không có dữ kiện về rubric ngoài ảnh và Markdown đã cung cấp.
 
 ## 16. Chuyển từ SPEC v0.3/baseline sang TARGET-v1.0
 

@@ -1,82 +1,49 @@
-# Yêu cầu 2 — APB UART UVM (implementation v0.1)
+# UVM và regression TARGET-v1.0
 
-**Ngày 29/10/2026 — STATUS: SOURCE CREATED / NOT COMPILED / NOT RUN.** Môi trường thực thi hiện tại không có Questa/ModelSim, VCS, Xcelium, Verilator hoặc Icarus Verilog. Không có testcase nào được báo PASS khi chưa có log/waveform.
+DUT chính: `rtl/modified/pulp_apb_uart_sv/files.f`. [DV Plan](../docs/03_DV_Plan.md), [kết quả](../docs/dv/RESULTS.md), [traceability](../docs/dv/REQUIREMENT_MATRIX.md).
 
-## Điểm xuất phát
+## Công cụ và cài đặt
 
-- [SPEC v0.3](../docs/01_System_Specification.md) — DUT behavior và yêu cầu.
-- [DV Plan v0.1](../docs/03_DV_Plan.md) — 25 yêu cầu DUT, testcase, expected, coverage targets và sign-off.
-- [DV readiness review](../docs/02_DV_Readiness_Review.md) — handoff và thứ tự test.
-- [RTL/Guide discrepancies](../docs/00_RTL_Guide_Discrepancies.md) — 15 vấn đề, bao gồm DIF-07/DIF-08.
-- [DUT baseline](../rtl/vendor/pulp_apb_uart_sv/) — 5 file RTL tại PULP commit dfad6e04, nguyên bản.
+Máy thực hiện có OSS CAD Suite 2026-11-08, Verilator 5.055 devel và Z3 4.15.5. `~/.local/bin/ic-eda` nạp môi trường suite. Có thể dùng tool trên PATH hoặc đặt `OSS_CAD_SUITE=/path/to/oss-cad-suite`. Runner tự tải `verilator/uvm` commit `656f20d087370a7c742e00188d20bbf30fa95339` vào `.tools/uvm`; có thể đặt UVM_HOME vào checkout đúng commit để dùng offline. Không cần cài UVM vào thư mục hệ thống.
 
-## File source
+Z3 phải có trong môi trường **chạy executable**, không chỉ lúc build. Runner sử dụng wrapper suite hoặc thêm suite/bin vào PATH và ghi version solver. Lỗi randomization/solver là FAIL, không chuyển sang random khác hoặc bỏ constrained-random.
 
-| File | Mục đích |
-|---|---|
-| uvm/uart_apb_if.sv | Tín hiệu APB + UART chung |
-| uvm/apb_uart_uvm_pkg.sv | APB sequencer, driver, monitor; UART RX BFM, TX monitor; scoreboard, coverage; test classes |
-| uvm/tb_top.sv | DUT instance + clock 50MHz, reset, UVM config_db |
-| sim/run_questa.sh | Script compile và chạy với Questa/ModelSim + UVM_HOME |
+Cần khoảng 2 GB dung lượng build và đủ RAM; mặc định `-j1`, C++ output split/group và `-O0` phù hợp máy 8 GB. Qua lần kiểm tra đã giải phóng generated object/PCH của audit cũ khi /home đầy. Không xóa source/log để làm regression xanh.
 
-## Các test đã viết mã nguồn, chưa chạy
+## Chạy
 
-| UVM_TESTNAME | Liên quan | Ý nghĩa |
-|---|---|---|
-| apb_reg_smoke_test | TC_REG_DLAB/RESET, TC_APB_READY_ERR | IIR readback 0xC1, LCR, DLL/DLM, unmapped register |
-| uart_tx_8n1_test | TC_TX_THR/FRAME | Ghi THR=0x41, monitor serial UART 8N1, scoreboard |
-| uart_rx_8n1_test | TC_RX_VALID_FRAME/RBR_POP/LSR_DR | Phát RX byte 0x42, đọc LSR, RBR |
-| apb_random_regs_test | TC_REG_ADDR_ACCESS/APB_ALIAS (partial) | 80 constrained-random valid transactions, LCR/IER/alias/unmapped |
-| apb_reg_alias_test | TC_APB_ALIAS | Kiểm tra PADDR 0x003/0x00B alias, 0x00C không phải LCR |
-| uart_rx_fifo_order_test | TC_FIFO_ORDER_FULL (partial) | Thứ tự 3 byte trong RX FIFO và 3 lần đọc pop |
-| uart_rx_fifo_clear_test | TC_FIFO_RESET_CLEAR (partial) | RX FIFO nonempty, clear qua FCR[1], LSR[0] xuống 0 |
-| uart_tx_mode_matrix_test | TC_TX_DATABITS/PARITY_STOP (partial) | Chạy 16 tổ hợp data bits 5–8 × parity off/even × stop1/2 |
-| uart_rx_parity_gap_test | TC_RX_PARITY_FAULT, DIF-08 | **EXPECTED FAIL**: parity flag bị clear liên tục, theo RTL |
-| uart_irq_rda_gap_test | TC_INT_RX_RDA_BUG, DIF-07 | **EXPECTED FAIL**: ngắt RDA có thể xuất hiện dù RX empty |
+```bash
+python tools/check_spec.py
+python tools/check_dv.py
+python tools/run_dv.py build
+python tools/run_dv.py run --test target_apb_test --seed 17
+python tools/run_dv.py regress
+python tools/run_system.py
+python tools/run_controller.py
+python tools/run_onehot.py
+python tools/report_dv.py
+```
 
-**Chưa implement:** baud divisor sweep/accurate measurement, FIFO 16/17 full boundary + TX FIFO clear/concurrency/threshold, interrupt comprehensive cases, mid-stream reset, full functional coverage closure. TX mode matrix và RX order/clear mới có source, vẫn **NOT RUN**. DV Plan đánh dấu các test này là PLANNED.
+Hoặc `bash dv/sim/run_smoke.sh` chạy toàn bộ flow. Các source/testbench đã build bị đổi thì runner từ chối executable cũ. Test riêng có thể thêm `--trace` để tạo `wave.fst`; full regression tự trace nhóm errors/snapshot.
 
-## Chạy trên máy có UVM-capable Questa/ModelSim
+Core regression có 12 directed classes và constrained-random class chạy ba seed (17,29,101): 15 run chức năng. Hai negative controls riêng kiểm scoreboard và APB assertion, phải DETECTED. Supplementary simulation: wrapper trên profile board, controller với slave stub để inject fault/fairness, và 192 mode/one-hot cases.
 
-Cần simulator với hỗ trợ SystemVerilog/UVM, biến UVM_HOME chỉ tới thư mục chứa src/uvm_pkg.sv. Tùy bản Questa/UVM có thể cần thêm DPI shared library hoặc điều chỉnh compile/link flags.
+`target_baud_test` thực sự phát/giải mã frame với divisor 65535; trên build C++ -O0 ca này có thể mất vài phút. Watchdog mô phỏng 2 giây và timeout wall-clock 600 giây phân biệt rõ; không dùng giới hạn 5 ms cũ để bỏ extreme divisor.
 
-~~~bash
-export UVM_HOME=/opt/uvm-1.2
-bash dv/sim/run_questa.sh apb_reg_smoke_test
-bash dv/sim/run_questa.sh uart_tx_8n1_test
-bash dv/sim/run_questa.sh uart_rx_8n1_test
-bash dv/sim/run_questa.sh apb_random_regs_test 17
-bash dv/sim/run_questa.sh apb_reg_alias_test
-bash dv/sim/run_questa.sh uart_rx_fifo_order_test
-bash dv/sim/run_questa.sh uart_rx_fifo_clear_test
-bash dv/sim/run_questa.sh uart_tx_mode_matrix_test
-~~~
+## Kết quả và coverage
 
-Chạy cả normal suite với `bash dv/sim/run_smoke.sh 17`. Script gọi từng test và kiểm tra số `UVM_ERROR`/`UVM_FATAL` trong log để thoát lỗi nếu test không xanh. **Chưa có bằng chứng chạy script**.
+`build/target/runs/<test>_seed<seed>/` chứa log, result.json, coverage.dat, waveform nếu yêu cầu. Các lần chạy lại dùng thư mục mới. Exporter chỉ nhận run PASS đúng input hashes hiện tại, có source ổn định; không merge negative/baseline/failure vào closure.
 
-Known-gap suite (chạy riêng, có chủ đích phát UVM_ERROR để tránh báo thành PASS):
+810 bin bắt buộc được định nghĩa trong `docs/dv/coverage_model.json`: format, APB, FIFO, error/IRQ, reset/config, baud/phase, concurrency, random và wrapper. Con số này chỉ là model coverage đã công khai, không phải “100% mọi tình huống UART”. Native Verilator coverage cũng được merge và lưu; code line/toggle coverage khác functional bin ledger. Kết quả native theo RTL được báo riêng, không gộp UVM library thành coverage DUT.
 
-~~~bash
-bash dv/sim/run_questa.sh uart_rx_parity_gap_test
-bash dv/sim/run_questa.sh uart_irq_rda_gap_test
-~~~
+`dv/results/target_v1/` là bản evidence gọn đã xuất lên Git: logs/results, source manifest, coverage merge nén và chỉ mục waveform. Build binaries, thư viện UVM và PCH không commit. Exporter xác minh source hiện tại trùng nguồn đã chạy.
 
-## Cần lưu ý trước khi kết luận PASS
+## Baseline và simulator khác
 
-- Bit timing của môi trường thử dùng **candidate** DLL/DLM = 0x01B1 (433), time config 434 clocks/bit. Chưa đo waveform: không xem đây là baud chính thức 115200. Không dùng DLL=27 theo guide.
-- Driver APB drive trên cạnh xuống; monitor sample PRDATA cạnh lên hoàn tất. Scoreboard cập nhật RBR pop sau read.
-- Current scoreboard là baseline model để làm smoke: chưa hỗ trợ đầy đủ interrupt/FIFO cycle-accurate/timing. Coverage hiện có APB direction×addr×DLAB và UART direction×mode×parity, không được báo 100% functional coverage.
-- Hai known-gap test phải nằm ngoài “green regression” và gắn issue IDs. Nếu một kết quả phù hợp bug RTL, đó là **bằng chứng sai khác so với hướng dẫn**, không phải tính năng đã pass.
-- Chỉ compile năm file trong src_files.yml; tuyệt đối không add thêm apb_uart.sv vì trùng định nghĩa module.
+`dv/baseline/uvm/` giữ các testcase cũ đã sửa 15 `$sformatf` và một `$fatal`; contract vẫn là byte map/direct divider. Chúng không được chạy với TARGET. RTL vendor giữ nguyên SHA-256. Bằng chứng baseline nằm trong [review lịch sử](../docs/history/APB_UART_2026.1_REVIEW.md).
 
-## Trạng thái minh bạch
+`dv/sim/run_questa.sh` đã chuyển filelist/địa chỉ môi trường sang TARGET và kiểm UVM summary, nhưng **chưa thực thi trên Questa** vì máy chưa có simulator/license đó. Không tính khả năng parse script là bằng chứng Questa. Verilator là simulator chủ yếu hai trạng thái: chưa kiểm X-propagation/metastability analog hay timing vật lý.
 
-| Test / nhóm | Status |
-|---|---|
-| APB register/alias smoke / TX 8N1/mode matrix / RX 8N1/FIFO order/clear | SOURCE WRITTEN — NOT RUN |
-| Constrained-random APB | SOURCE WRITTEN — NOT RUN |
-| Parity/RDA known gaps | SOURCE WRITTEN — EXPECTED FAIL WHEN RUN |
-| FIFO full/threshold/concurrency, baud sweep, IRQ matrix, complete coverage | PLANNED — NOT CODED |
-| Simulator compile success, log, waveform, coverage measured | **NOT AVAILABLE** |
+## Phạm vi FPGA
 
-**Kế tiếp:** Lấy log compiler từ simulator thật, sửa lỗi build nếu có; chạy P0, đo baud chuẩn, mở rộng testcase coverage, lập bug report. Từng kết quả mới có bằng chứng để nâng SPEC v1.0.
+Wrapper đã có source và testcase simulation. Kết quả SIM của `tb_system`/`tb_controller` không thay Quartus synthesis/fitter/STA, nạp bitstream, kiểm JP6/điện áp/pin planner hoặc thử CP2102 trên board thật. Những phần này vẫn thuộc Yêu cầu 3.

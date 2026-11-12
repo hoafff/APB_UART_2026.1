@@ -1,11 +1,11 @@
 {
   "artifact": "01_System_Specification.md",
-  "sha256": "2c5bdc72887ce96186d07647b941277d7d411c3b742d056476ae1a3329d93ac1",
+  "sha256": "b030495b9a1f100f78b605c76b4a94213319d473023d174392f10c73d7d83a34",
   "results": [
     {
       "check": "Requirement index and cross-references",
       "result": "PASS_DOCUMENT_CHECK",
-      "evidence": "80 unique target IDs; section/group references resolve; all target execution statuses NOT_RUN"
+      "evidence": "80 unique target IDs; section/group references resolve; initial catalogue statuses remain NOT_RUN; current run results are separate"
     },
     {
       "check": "Legacy traceability",

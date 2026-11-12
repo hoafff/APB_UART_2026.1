@@ -1,0 +1,1503 @@
+[
+  {
+    "requirement_id": "TGT-SRC-01",
+    "spec_sections": "1,3",
+    "acceptance_meaning": "Giữ nguyên baseline S03; filelist bản sửa không compile trùng module.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC17"
+    ],
+    "observer": [
+      "Python document checker, not simulation"
+    ],
+    "scope": "DOC",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SRC-02",
+    "spec_sections": "1,15",
+    "acceptance_meaning": "Ghi đúng version DUT/TB/tool và không dùng baseline PASS để đóng yêu cầu target.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC18"
+    ],
+    "observer": [
+      "Python static/evidence checker, not hardware"
+    ],
+    "scope": "DOC",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-01",
+    "spec_sections": "5.1",
+    "acceptance_meaning": "Mọi transfer có SETUP trước ACCESS; control/data giữ ổn định đến completion.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-02",
+    "spec_sections": "5.1",
+    "acceptance_meaning": "Chỉ side effect một lần tại completion; không side effect ở idle/setup.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01",
+      "TC13"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-03",
+    "spec_sections": "4.1,5",
+    "acceptance_meaning": "PRDATA zero-extend byte; ngoài valid read hoặc khi reset phải bằng 0.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-04",
+    "spec_sections": "5.2,6.1",
+    "acceptance_meaning": "Decode đúng word-aligned/full-address; không alias address cao hoặc misaligned.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-05",
+    "spec_sections": "5",
+    "acceptance_meaning": "PREADY=1 cố định; master kiểm PSLVERR tại completion.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01",
+      "TC15"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-06",
+    "spec_sections": "5.2",
+    "acceptance_meaning": "Invalid address/quyền truy cập trả PSLVERR=1, PRDATA=0, không thay state.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-07",
+    "spec_sections": "5.2,9.1",
+    "acceptance_meaning": "RBR empty trả 0/no-error; không pop phantom hoặc lấy byte vừa push cùng cạnh.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06",
+      "TC13"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-APB-08",
+    "spec_sections": "5.2,9.1",
+    "acceptance_meaning": "THR full không pop hoặc D=0 bị từ chối, không enqueue hay đặt RX OE.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06",
+      "TC09",
+      "TC10"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Serial captured-mode oracle; pre-edge config and retained bytes",
+      "Per-clock serial waveform and completion counts; no skipped extreme"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-01",
+    "spec_sections": "6.1,6.2",
+    "acceptance_meaning": "DLAB chọn đúng DLL/DLM hoặc RBR/THR/IER; không ảnh hưởng IIR/FCR/LSR.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-02",
+    "spec_sections": "6.2",
+    "acceptance_meaning": "LCR WLS/STB/PEN/EPS/DLAB hoạt động; bits 6:5 read-zero/write-ignore.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01",
+      "TC02",
+      "TC03"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA",
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "RX peer độc lập + expected receive queue + LSR/RBR"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-03",
+    "spec_sections": "6.3",
+    "acceptance_meaning": "IER chỉ giữ bits 2:0; write khi DLAB=1 không đổi IER.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01",
+      "TC07"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA",
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-04",
+    "spec_sections": "6.3,9",
+    "acceptance_meaning": "FCR enable chọn capacity 1/16; đổi enable flush hai queue đúng ưu tiên.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-05",
+    "spec_sections": "6.3,9.3",
+    "acceptance_meaning": "FCR RX clear xóa queue/OE/metadata; không abort frame RX chưa hoàn tất.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06",
+      "TC13"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-06",
+    "spec_sections": "6.3,9.3",
+    "acceptance_meaning": "FCR TX clear xóa queued bytes; không cắt frame active hoặc lấy byte cũ ở cạnh clear.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06",
+      "TC13"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-07",
+    "spec_sections": "6.3",
+    "acceptance_meaning": "Threshold effective là 1/4/8/14 khi FIFO on, bằng 1 khi FIFO off.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-08",
+    "spec_sections": "6.4",
+    "acceptance_meaning": "LSR DR/THRE/TEMT/OE/head-error/RX_ERR phản ánh đúng state được định nghĩa.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC01",
+      "TC05",
+      "TC06"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA",
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Data queue, OE sticky, PSLVERR, active frame preserved"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-09",
+    "spec_sections": "6.4,9.3",
+    "acceptance_meaning": "Read LSR clear OE cũ/ack head cũ, không ack byte mới hoặc xóa overflow mới.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05",
+      "TC13"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-10",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "IIR mã 01/06/04/02 với bits FIFO đúng; read không nhầm side effect.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-REG-11",
+    "spec_sections": "6.2",
+    "acceptance_meaning": "Frame snapshot config trước cạnh start; config write cùng cạnh áp dụng cho frame sau.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC09"
+    ],
+    "observer": [
+      "Serial captured-mode oracle; pre-edge config and retained bytes"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-BAUD-01",
+    "spec_sections": "7.1",
+    "acceptance_meaning": "Một oversample tick mỗi D clock; một bit đúng 16D clock; không tạo clock domain mới.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02",
+      "TC10"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "Per-clock serial waveform and completion counts; no skipped extreme"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-BAUD-02",
+    "spec_sections": "7.1",
+    "acceptance_meaning": "D=0 không start frame mới; không divide-by-zero; frame active hoàn tất theo D đã chốt.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC09",
+      "TC10"
+    ],
+    "observer": [
+      "Serial captured-mode oracle; pre-edge config and retained bytes",
+      "Per-clock serial waveform and completion counts; no skipped extreme"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-BAUD-03",
+    "spec_sections": "7.1,10.3",
+    "acceptance_meaning": "Board profile D=27, DLL=1B/DLM=00, bit=432 clock tại 50 MHz.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC10",
+      "TC14"
+    ],
+    "observer": [
+      "Per-clock serial waveform and completion counts; no skipped extreme",
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-BAUD-04",
+    "spec_sections": "3,7.1",
+    "acceptance_meaning": "D hợp lệ 1..65535; counter đủ rộng, không overflow ở cực trị.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC10"
+    ],
+    "observer": [
+      "Per-clock serial waveform and completion counts; no skipped extreme"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-BAUD-05",
+    "spec_sections": "7.1,7.2",
+    "acceptance_meaning": "Start/data/parity/stop cùng Tbit, không thừa một clock ở start.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02",
+      "TC10"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "Per-clock serial waveform and completion counts; no skipped extreme"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-BAUD-06",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "RX nhận đúng frame sạch ở tổng mismatch ±2% và phase bắt đầu khác nhau.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC04"
+    ],
+    "observer": [
+      "Peer real-time, data/error count/order oracle"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-TX-01",
+    "spec_sections": "7.2",
+    "acceptance_meaning": "TX idle/reset=1, start=0, dữ liệu LSB-first, phát đúng byte được enqueue.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02",
+      "TC08"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "Post-reset register/data/line levels; no stale queues"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-TX-02",
+    "spec_sections": "7.2",
+    "acceptance_meaning": "Chỉ phát 5/6/7/8 data bits theo WLS, không phát bit cao ngoài N.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02",
+      "TC16"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "Known single-bit expected wire/parity, no DUT parity algorithm in oracle"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-TX-03",
+    "spec_sections": "7.2",
+    "acceptance_meaning": "None/odd/even parity đúng XOR của đúng N data bits.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02",
+      "TC16"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "Known single-bit expected wire/parity, no DUT parity algorithm in oracle"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-TX-04",
+    "spec_sections": "7.2",
+    "acceptance_meaning": "Giữ đủ 1/2 stop bits; kiểm bằng frame liên tiếp, không chỉ sample idle.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-TX-05",
+    "spec_sections": "7.2",
+    "acceptance_meaning": "Có queued byte thì cho phép next start ngay sau stop cuối, không mất/nhân đôi byte.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC02",
+      "TC13"
+    ],
+    "observer": [
+      "Independent TX decoder kiểm từng clock và expected THR queue",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-TX-06",
+    "spec_sections": "2,7",
+    "acceptance_meaning": "TX và RX hoạt động đồng thời, không dùng chung phase gây dịch timing.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC11"
+    ],
+    "observer": [
+      "Scoreboard, serial decoder, explicit counts, pinned solver/seed"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-01",
+    "spec_sections": "4.1,7.3",
+    "acceptance_meaning": "Synchronizer RX reset-high; sampling chỉ dùng tín hiệu sau đồng bộ.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC08",
+      "TC14"
+    ],
+    "observer": [
+      "Post-reset register/data/line levels; no stale queues",
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-02",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "Majority 7/8/9; false start không tạo byte/error.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC12"
+    ],
+    "observer": [
+      "No phantom RBR/error; majority retains data"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-03",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "Nhận đúng N bit, zero-extend data, đúng thứ tự và số lượng frame.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC03",
+      "TC11"
+    ],
+    "observer": [
+      "RX peer độc lập + expected receive queue + LSR/RBR",
+      "Scoreboard, serial decoder, explicit counts, pinned solver/seed"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-04",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "Sai parity odd/even đặt PE trên đúng byte; parity off không đặt PE.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-05",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "Stop nào sai cũng đặt FE; frame lỗi vẫn được lưu nếu có slot.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-06",
+    "spec_sections": "7.4",
+    "acceptance_meaning": "Break tạo một entry zero với BI/FE, không lặp byte khi còn thấp; phục hồi sau idle.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05",
+      "TC14"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-07",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "Completion chỉ sau khi kiểm parity/stop và đủ quyết định BI; metadata nguyên tử với data.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05",
+      "TC13"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-08",
+    "spec_sections": "9.2",
+    "acceptance_meaning": "Full không slot: drop frame mới, set OE, tiếp tục nhận; không hidden slot thứ 17.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-09",
+    "spec_sections": "7.3,7.4",
+    "acceptance_meaning": "Arm sau reset/disable/error đúng điều kiện idle; không nhận frame giả từ mức thấp kéo dài.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05",
+      "TC09",
+      "TC12"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Serial captured-mode oracle; pre-edge config and retained bytes",
+      "No phantom RBR/error; majority retains data"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RX-10",
+    "spec_sections": "7.3",
+    "acceptance_meaning": "Nhận frame liên tiếp kể cả peer nhanh hơn; completion cũ không chặn start mới.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC04"
+    ],
+    "observer": [
+      "Peer real-time, data/error count/order oracle"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FIFO-01",
+    "spec_sections": "3,9.1",
+    "acceptance_meaning": "Capacity/count đúng 1 hoặc 16; không underflow/overflow counter.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FIFO-02",
+    "spec_sections": "9.1",
+    "acceptance_meaning": "Thứ tự byte/metadata FIFO không đổi khi pointer wrap.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC06"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FIFO-03",
+    "spec_sections": "9.1",
+    "acceptance_meaning": "Full + valid pop + push cùng cạnh nhận cả hai, không báo OE giả.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC13"
+    ],
+    "observer": [
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FIFO-04",
+    "spec_sections": "9.1",
+    "acceptance_meaning": "Empty + pop + push không bypass: pop không hợp lệ, byte mới còn trong queue.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC13"
+    ],
+    "observer": [
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FIFO-05",
+    "spec_sections": "9.3",
+    "acceptance_meaning": "Reset/clear thắng giao dịch queue; completion tại RX flush bị bỏ không sinh OE.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC08",
+      "TC13"
+    ],
+    "observer": [
+      "Post-reset register/data/line levels; no stale queues",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FIFO-06",
+    "spec_sections": "6.4,9",
+    "acceptance_meaning": "Error-ack gắn đúng entry; head thay đổi không dùng lỗi/ack của head cũ.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC05",
+      "TC13"
+    ],
+    "observer": [
+      "LSR/RBR expected flags theo từng frame; recovery",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-01",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "IER mask quyết định event/IIR ngay sau write; IRQ active-high dạng mức.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-02",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "Ưu tiên RLS > RDA > THRE; nguồn thấp không mất khi bị nguồn cao che.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-03",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "RDA theo RX count ≥ threshold, không phụ thuộc TX empty.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-04",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "THRE pending set/ack đúng edge; read IIR nguồn khác không ack nhầm.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07",
+      "TC13"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-05",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "Read LSR/RBR/IIR chỉ giải quyết đúng nguồn; event có thể còn cao nếu còn nguồn khác.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-06",
+    "spec_sections": "6.5",
+    "acceptance_meaning": "Khi không còn nguồn được enable, event=0, IIR bit0=1; không kẹt C0/00.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-IRQ-07",
+    "spec_sections": "6.5,9.3",
+    "acceptance_meaning": "Sự kiện mới cùng cạnh acknowledge không mất; set mới thắng clear cũ.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv"
+    ],
+    "testcase_ids": [
+      "TC07",
+      "TC13"
+    ],
+    "observer": [
+      "Independent pending model, IIR/event and source-clear reads",
+      "Pre-edge APB read data + later queue/error checks; probe only aligns stimulus"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RST-01",
+    "spec_sections": "8.1",
+    "acceptance_meaning": "Reset register/count/pending đúng bảng; post-release LSR=60/IIR=01.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv"
+    ],
+    "testcase_ids": [
+      "TC01",
+      "TC08"
+    ],
+    "observer": [
+      "APB monitor + register scoreboard + APB SVA",
+      "Post-reset register/data/line levels; no stale queues"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RST-02",
+    "spec_sections": "8",
+    "acceptance_meaning": "Reset abort frame/transaction, không stale byte hoặc replay sau reset.",
+    "rtl_owners": [
+      "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+      "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv"
+    ],
+    "testcase_ids": [
+      "TC08"
+    ],
+    "observer": [
+      "Post-reset register/data/line levels; no stale queues"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RST-03",
+    "spec_sections": "8.2",
+    "acceptance_meaning": "KEY0 async assert/sync deassert hai cạnh; DUT/wrapper dùng cùng reset nội bộ.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-RST-04",
+    "spec_sections": "8",
+    "acceptance_meaning": "TX reset-high, RX synchronizer high, display/pending/LED lỗi reset đúng.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC08",
+      "TC14"
+    ],
+    "observer": [
+      "Post-reset register/data/line levels; no stale queues",
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-01",
+    "spec_sections": "4.2,13",
+    "acceptance_meaning": "Top khai báo 65 bit port và map đủ, không trùng pin.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC17",
+      "TC18",
+      "TC14"
+    ],
+    "observer": [
+      "Python document checker, not simulation",
+      "Python static/evidence checker, not hardware",
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-02",
+    "spec_sections": "10.1",
+    "acceptance_meaning": "KEY/SW/RX đồng bộ theo contract, không dùng tín hiệu async trực tiếp điều khiển FSM.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-03",
+    "spec_sections": "10.1",
+    "acceptance_meaning": "Debounce cả nhấn/nhả đủ 500000 mẫu; một pulse/nhấn, held-key không lặp.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-04",
+    "spec_sections": "10.1,10.5",
+    "acceptance_meaning": "Manual byte chốt tại pulse, giữ đến THR success, SW đổi không thay byte pending.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14",
+      "TC15"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-05",
+    "spec_sections": "10.2",
+    "acceptance_meaning": "SW14/15 chốt trong init, no runtime parity change; SW16/17 có thời điểm hiệu lực rõ.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14",
+      "TC15"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-06",
+    "spec_sections": "10.3",
+    "acceptance_meaning": "Đúng 6 init write, địa chỉ/data đúng, init_done chỉ sau success; ≤32 clock.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14",
+      "TC15"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-07",
+    "spec_sections": "10.4",
+    "acceptance_meaning": "Poll 5000 clock và wake sớm; SW16 hold không gây IRQ busy-loop chặn TX.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC15"
+    ],
+    "observer": [
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-08",
+    "spec_sections": "10.5",
+    "acceptance_meaning": "Không overwrite manual/echo slot; reject manual overflow có fault indication.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC15"
+    ],
+    "observer": [
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-09",
+    "spec_sections": "10.2,10.5",
+    "acceptance_meaning": "SW16 chỉ dừng RBR mới; UART RX/TX vẫn chạy, overflow báo OE.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14",
+      "TC15"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-10",
+    "spec_sections": "10.5",
+    "acceptance_meaning": "Echo dùng PRDATA byte nhận; reserve slot trước pop, không mất byte do pending overwrite.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14",
+      "TC15"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-11",
+    "spec_sections": "10.4,10.5",
+    "acceptance_meaning": "Manual/echo công bằng khi cùng pending; RX liên tục không loại cơ hội TX.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC15"
+    ],
+    "observer": [
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-12",
+    "spec_sections": "10.6",
+    "acceptance_meaning": "APB error dừng master vào FAULT; không xóa slot như thể write thành công.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC15"
+    ],
+    "observer": [
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-13",
+    "spec_sections": "10.6",
+    "acceptance_meaning": "HEX/LED đúng nibble/polarity; error LED sticky độc lập với LSR clear.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14",
+      "TC17"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Python document checker, not simulation"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-14",
+    "spec_sections": "4.2,10.6",
+    "acceptance_meaning": "SW dự phòng không tác dụng; LEDG chưa dùng xuất 0.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC14"
+    ],
+    "observer": [
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-SYS-15",
+    "spec_sections": "10.5",
+    "acceptance_meaning": "Lossless chỉ trong traffic budget; overload có expected drop/OE được báo.",
+    "rtl_owners": [
+      "rtl/fpga/de2_115_apb_uart_bringup.sv",
+      "rtl/fpga/de2_uart_controller.sv"
+    ],
+    "testcase_ids": [
+      "TC06",
+      "TC14",
+      "TC15"
+    ],
+    "observer": [
+      "Data queue, OE sticky, PSLVERR, active frame preserved",
+      "Top port serial/HEX/LED, init APB monitor and independent application expected values",
+      "Accepted writes and request ordering; explicit injected-error labels"
+    ],
+    "scope": "SIM",
+    "status": "NOT_RUN",
+    "closure_note": "Close only after matching-source PASS and all mapped obligations/mandatory bins are reviewed"
+  },
+  {
+    "requirement_id": "TGT-FPGA-01",
+    "spec_sections": "11",
+    "acceptance_meaning": "Đúng chip/top/SystemVerilog/filelist; clock constraint 20 ns; không trộn baseline.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC19"
+    ],
+    "observer": [
+      "Manual physical evidence; NOT_RUN under Requirement 3"
+    ],
+    "scope": "HARDWARE_PENDING",
+    "status": "NOT_RUN",
+    "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement"
+  },
+  {
+    "requirement_id": "TGT-FPGA-02",
+    "spec_sections": "11,13",
+    "acceptance_meaning": "Gán đủ pin/I/O standard và kiểm bank/JP6 thực tế.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC17",
+      "TC19"
+    ],
+    "observer": [
+      "Python document checker, not simulation",
+      "Manual physical evidence; NOT_RUN under Requirement 3"
+    ],
+    "scope": "HARDWARE_PENDING",
+    "status": "NOT_RUN",
+    "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement"
+  },
+  {
+    "requirement_id": "TGT-FPGA-03",
+    "spec_sections": "12",
+    "acceptance_meaning": "Đấu chéo TX/RX, GND chung, mức logic phù hợp, terminal đúng cấu hình.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC19"
+    ],
+    "observer": [
+      "Manual physical evidence; NOT_RUN under Requirement 3"
+    ],
+    "scope": "HARDWARE_PENDING",
+    "status": "NOT_RUN",
+    "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement"
+  },
+  {
+    "requirement_id": "TGT-FPGA-04",
+    "spec_sections": "11",
+    "acceptance_meaning": "Compile/fitter/STA đạt tiêu chí, review latch/CDC/unconstrained paths.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC19"
+    ],
+    "observer": [
+      "Manual physical evidence; NOT_RUN under Requirement 3"
+    ],
+    "scope": "HARDWARE_PENDING",
+    "status": "NOT_RUN",
+    "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement"
+  },
+  {
+    "requirement_id": "TGT-FPGA-05",
+    "spec_sections": "12,14.2",
+    "acceptance_meaning": "Lưu bằng chứng board TX/RX/echo/mode/error; không dùng simulation thay hardware result.",
+    "rtl_owners": [],
+    "testcase_ids": [
+      "TC19"
+    ],
+    "observer": [
+      "Manual physical evidence; NOT_RUN under Requirement 3"
+    ],
+    "scope": "HARDWARE_PENDING",
+    "status": "NOT_RUN",
+    "closure_note": "FPGA physical/Quartus evidence required; simulation cannot close this requirement"
+  }
+]

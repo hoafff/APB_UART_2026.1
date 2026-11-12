@@ -1,55 +1,34 @@
 #!/usr/bin/env bash
-# Usage: export UVM_HOME=/path/to/uvm-1.2
-#        bash dv/sim/run_questa.sh apb_reg_smoke_test 1
+# TARGET-v1.0 portability script; not executed on this workstation.
 set -euo pipefail
-
-TEST_NAME="${1:-apb_reg_smoke_test}"
-SEED="${2:-1}"
+TEST_NAME="${1:-target_apb_test}"
+SEED="${2:-17}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-BUILD="${ROOT}/dv/sim/build"
-RTL="${ROOT}/rtl/vendor/pulp_apb_uart_sv"
-
-if ! command -v vlog >/dev/null || ! command -v vsim >/dev/null || ! command -v vlib >/dev/null; then
-  echo "ERROR: Questa/ModelSim simulator commands vlog, vsim, vlib not found." >&2
-  exit 2
-fi
-if [[ -z "${UVM_HOME:-}" || ! -f "${UVM_HOME}/src/uvm_pkg.sv" ]]; then
-  echo "ERROR: set UVM_HOME to an installed UVM library with src/uvm_pkg.sv." >&2
-  exit 2
-fi
-
-mkdir -p "${BUILD}"
-cd "${BUILD}"
-if [[ ! -d work ]]; then vlib work; fi
-
-vlog -sv -mfcu -work work \
-    "+incdir+${UVM_HOME}/src" \
-    "${UVM_HOME}/src/uvm_pkg.sv" \
-    "${RTL}/io_generic_fifo.sv" \
-    "${RTL}/uart_tx.sv" \
-    "${RTL}/uart_rx.sv" \
-    "${RTL}/uart_interrupt.sv" \
-    "${RTL}/apb_uart_sv.sv" \
-    "${ROOT}/dv/uvm/uart_apb_if.sv" \
-    "${ROOT}/dv/uvm/apb_uart_uvm_pkg.sv" \
-    "${ROOT}/dv/uvm/tb_top.sv"
-
-echo "Running ${TEST_NAME} seed=${SEED}"
-LOGFILE="${BUILD}/${TEST_NAME}_seed${SEED}.log"
-vsim -c -L work work.tb_top \
-    "+UVM_TESTNAME=${TEST_NAME}" \
-    "-sv_seed" "${SEED}" \
-    -l "${LOGFILE}" \
-    -do "run -all; quit -f"
-
-# Treat test output as failing unless the standard UVM summary explicitly
-# reports zero UVM_ERRORs and UVM_FATALs. XFAIL cases intentionally exit nonzero.
-if ! grep -Eq 'UVM_ERROR[[:space:]]*:[[:space:]]*0([[:space:]]|$)' "${LOGFILE}"; then
-  echo "ERROR: no zero-error UVM summary found; inspect ${LOGFILE}" >&2
-  exit 1
-fi
-if ! grep -Eq 'UVM_FATAL[[:space:]]*:[[:space:]]*0([[:space:]]|$)' "${LOGFILE}"; then
-  echo "ERROR: no zero-fatal UVM summary found; inspect ${LOGFILE}" >&2
-  exit 1
-fi
-echo "UVM summary reports zero errors/fatals: ${TEST_NAME}"
+for TOOL in vlog vsim vlib; do
+    command -v "$TOOL" >/dev/null || { echo "Missing Questa command: $TOOL" >&2; exit 2; }
+done
+[[ -n "${UVM_HOME:-}" && -f "$UVM_HOME/src/uvm_pkg.sv" ]] || { echo 'Set UVM_HOME to a compatible UVM source checkout' >&2; exit 2; }
+BUILD="$ROOT/build/questa/${TEST_NAME}_seed${SEED}_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$BUILD"
+cd "$BUILD"
+vlib work
+RTL=()
+while IFS= read -r FILE; do [[ -z "$FILE" ]] || RTL+=("$ROOT/$FILE"); done < "$ROOT/rtl/modified/pulp_apb_uart_sv/files.f"
+vlog -sv -mfcu +define+UVM_NO_DPI \
+    "+incdir+$UVM_HOME/src" "+incdir+$ROOT/dv/uvm/include" \
+    "$UVM_HOME/src/uvm_pkg.sv" "${RTL[@]}" \
+    "$ROOT/dv/uvm/uart_apb_if.sv" "$ROOT/dv/assertions/apb_uart_assertions.sv" \
+    "$ROOT/dv/uvm/apb_uart_uvm_pkg.sv" "$ROOT/dv/uvm/tb_top.sv"
+vsim -c -coverage work.tb_top "+UVM_TESTNAME=$TEST_NAME" -sv_seed "$SEED" \
+    -l run.log -do 'onerror {quit -code 1}; run -all; coverage save coverage.ucdb; quit -code 0'
+python - "$TEST_NAME" <<'PY'
+import re,sys
+from pathlib import Path
+text=Path('run.log').read_text()
+for severity in ['ERROR','FATAL']:
+    values=re.findall(r'UVM_'+severity+r'\s*:\s*(\d+)',text)
+    if not values or values[-1]!='0': raise SystemExit('UVM failure/missing summary')
+if 'TEST_COMPLETED|'+sys.argv[1]+'|' not in text: raise SystemExit('Test did not complete')
+if not re.search(r'SB_RESULT\|checks=[1-9]\d*',text): raise SystemExit('No scoreboard comparisons')
+print('Questa run completed with active checker and zero UVM errors/fatals')
+PY
