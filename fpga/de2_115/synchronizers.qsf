@@ -1,0 +1,83 @@
+# Quartus-native attributes; preserve RTL and prior DV source hashes.
+# Do not mark the entire design as synchronizers. Preserve only the used chains.
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {reset_sync[0]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {rx_sync[0]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {key_sync[0]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[0]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[1]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[2]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[3]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[4]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[5]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[6]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[7]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[14]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[15]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[16]}
+set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to {sw_meta[17]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {reset_sync[0]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {reset_sync[0]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {reset_sync[1]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {reset_sync[1]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {rx_sync[0]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {rx_sync[0]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {rx_sync[1]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {rx_sync[1]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {key_sync[0]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {key_sync[0]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {key_sync[1]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {key_sync[1]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[0]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[0]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[1]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[1]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[2]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[2]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[3]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[3]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[4]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[4]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[5]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[5]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[6]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[6]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[7]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[7]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[14]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[14]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[15]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[15]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[16]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[16]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_meta[17]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_meta[17]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[0]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[0]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[1]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[1]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[2]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[2]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[3]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[3]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[4]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[4]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[5]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[5]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[6]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[6]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[7]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[7]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[14]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[14]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[15]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[15]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[16]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[16]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {sw_sync[17]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {sw_sync[17]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {apb_uart_sv:uart|uart_rx:rx|sync_q[0]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {apb_uart_sv:uart|uart_rx:rx|sync_q[0]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {apb_uart_sv:uart|uart_rx:rx|sync_q[1]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {apb_uart_sv:uart|uart_rx:rx|sync_q[1]}
+set_instance_assignment -name PRESERVE_REGISTER ON -to {apb_uart_sv:uart|uart_rx:rx|sync_q[2]}
+set_instance_assignment -name DONT_MERGE_REGISTER ON -to {apb_uart_sv:uart|uart_rx:rx|sync_q[2]}

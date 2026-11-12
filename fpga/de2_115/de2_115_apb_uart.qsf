@@ -1,0 +1,28 @@
+# DE2-115 TARGET-v1.0. See docs/06_FPGA_Implementation.md before programming.
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY de2_115_apb_uart_bringup
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "25.1std.0"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY ../../build/fpga/output_files
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+set_global_assignment -name SEED 1
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+# Leave unclaimed board signals as inputs; never drive unused peripherals low.
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name OPTIMIZE_FOR_METASTABILITY ON
+set_global_assignment -name SYNCHRONIZATION_REGISTER_CHAIN_LENGTH 5
+
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/modified/pulp_apb_uart_sv/uart_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/modified/pulp_apb_uart_sv/uart_tx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/modified/pulp_apb_uart_sv/uart_rx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/fpga/de2_uart_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/fpga/de2_115_apb_uart_bringup.sv
+set_global_assignment -name SDC_FILE de2_115_apb_uart.sdc
+
+source pins.qsf
+source synchronizers.qsf
+
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"

@@ -17,6 +17,15 @@ __pycache__/
 core
 core.*
 
+# Quartus generated databases; reviewed release evidence is exported separately.
+fpga/de2_115/db/
+fpga/de2_115/incremental_db/
+fpga/de2_115/output_files/
+fpga/de2_115/*.qws
+fpga/de2_115/*.qdf
+fpga/de2_115/*.bak
+fpga/de2_115/*.qsf.bak
+
 # Reviewed regression evidence is intentionally versioned.
 !/dv/results/target_v1/logs/*.log
 !/dv/results/review_20261112/logs/*.log

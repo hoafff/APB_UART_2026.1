@@ -1,0 +1,227 @@
+CLOCK	CLOCK_50	20.000
+CHAIN_EDGE	reset_sync[0]	reset_sync[1]
+CHAIN_EDGE	key_sync[0]	key_sync[1]
+CHAIN_EDGE	rx_sync[0]	rx_sync[1]
+CHAIN_EDGE	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]
+CHAIN_EDGE	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]
+CHAIN_EDGE	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]
+CHAIN_EDGE	sw_meta[0]	sw_sync[0]
+CHAIN_EDGE	sw_meta[1]	sw_sync[1]
+CHAIN_EDGE	sw_meta[2]	sw_sync[2]
+CHAIN_EDGE	sw_meta[3]	sw_sync[3]
+CHAIN_EDGE	sw_meta[4]	sw_sync[4]
+CHAIN_EDGE	sw_meta[5]	sw_sync[5]
+CHAIN_EDGE	sw_meta[6]	sw_sync[6]
+CHAIN_EDGE	sw_meta[7]	sw_sync[7]
+CHAIN_EDGE	sw_meta[14]	sw_sync[14]
+CHAIN_EDGE	sw_meta[15]	sw_sync[15]
+CHAIN_EDGE	sw_meta[16]	sw_sync[16]
+CHAIN_EDGE	sw_meta[17]	sw_sync[17]
+COUNT	chain_registers	33
+COUNT	chain_edges	18
+COUNT	corners	3
+METRIC	7_slow_1200mv_85c	setup	20	5.016
+METRIC	7_slow_1200mv_85c	hold	20	0.401
+METRIC	7_slow_1200mv_85c	recovery	20	13.217
+METRIC	7_slow_1200mv_85c	removal	20	5.997
+METRIC	7_slow_1200mv_85c	min_pulse_width	20	9.676
+METRIC	7_slow_1200mv_85c	reset_recovery	20	13.217
+METRIC	7_slow_1200mv_85c	reset_removal	20	5.997
+CHAIN_TIMING	7_slow_1200mv_85c	setup	reset_sync[0]	reset_sync[1]	17.855
+CHAIN_TIMING	7_slow_1200mv_85c	hold	reset_sync[0]	reset_sync[1]	1.719
+CHAIN_TIMING	7_slow_1200mv_85c	setup	key_sync[0]	key_sync[1]	18.948
+CHAIN_TIMING	7_slow_1200mv_85c	hold	key_sync[0]	key_sync[1]	0.598
+CHAIN_TIMING	7_slow_1200mv_85c	setup	rx_sync[0]	rx_sync[1]	19.126
+CHAIN_TIMING	7_slow_1200mv_85c	hold	rx_sync[0]	rx_sync[1]	0.429
+CHAIN_TIMING	7_slow_1200mv_85c	setup	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	18.690
+CHAIN_TIMING	7_slow_1200mv_85c	hold	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	0.834
+CHAIN_TIMING	7_slow_1200mv_85c	setup	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	19.125
+CHAIN_TIMING	7_slow_1200mv_85c	hold	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	0.429
+CHAIN_TIMING	7_slow_1200mv_85c	setup	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]	18.946
+CHAIN_TIMING	7_slow_1200mv_85c	hold	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]	0.600
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[0]	sw_sync[0]	19.127
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[0]	sw_sync[0]	0.430
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[1]	sw_sync[1]	18.950
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[1]	sw_sync[1]	0.599
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[2]	sw_sync[2]	19.129
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[2]	sw_sync[2]	0.428
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[3]	sw_sync[3]	18.948
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[3]	sw_sync[3]	0.600
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[4]	sw_sync[4]	19.127
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[4]	sw_sync[4]	0.430
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[5]	sw_sync[5]	18.948
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[5]	sw_sync[5]	0.600
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[6]	sw_sync[6]	18.949
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[6]	sw_sync[6]	0.600
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[7]	sw_sync[7]	18.946
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[7]	sw_sync[7]	0.602
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[14]	sw_sync[14]	19.131
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[14]	sw_sync[14]	0.429
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[15]	sw_sync[15]	19.130
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[15]	sw_sync[15]	0.429
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[16]	sw_sync[16]	18.947
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[16]	sw_sync[16]	0.602
+CHAIN_TIMING	7_slow_1200mv_85c	setup	sw_meta[17]	sw_sync[17]	18.947
+CHAIN_TIMING	7_slow_1200mv_85c	hold	sw_meta[17]	sw_sync[17]	0.602
+METRIC	7_slow_1200mv_0c	setup	20	6.335
+METRIC	7_slow_1200mv_0c	hold	20	0.353
+METRIC	7_slow_1200mv_0c	recovery	20	13.867
+METRIC	7_slow_1200mv_0c	removal	20	5.428
+METRIC	7_slow_1200mv_0c	min_pulse_width	20	9.688
+METRIC	7_slow_1200mv_0c	reset_recovery	20	13.867
+METRIC	7_slow_1200mv_0c	reset_removal	20	5.428
+CHAIN_TIMING	7_slow_1200mv_0c	setup	reset_sync[0]	reset_sync[1]	17.988
+CHAIN_TIMING	7_slow_1200mv_0c	hold	reset_sync[0]	reset_sync[1]	1.538
+CHAIN_TIMING	7_slow_1200mv_0c	setup	key_sync[0]	key_sync[1]	19.043
+CHAIN_TIMING	7_slow_1200mv_0c	hold	key_sync[0]	key_sync[1]	0.548
+CHAIN_TIMING	7_slow_1200mv_0c	setup	rx_sync[0]	rx_sync[1]	19.215
+CHAIN_TIMING	7_slow_1200mv_0c	hold	rx_sync[0]	rx_sync[1]	0.396
+CHAIN_TIMING	7_slow_1200mv_0c	setup	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	18.808
+CHAIN_TIMING	7_slow_1200mv_0c	hold	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	0.750
+CHAIN_TIMING	7_slow_1200mv_0c	setup	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	19.214
+CHAIN_TIMING	7_slow_1200mv_0c	hold	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	0.397
+CHAIN_TIMING	7_slow_1200mv_0c	setup	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]	19.040
+CHAIN_TIMING	7_slow_1200mv_0c	hold	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]	0.549
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[0]	sw_sync[0]	19.215
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[0]	sw_sync[0]	0.396
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[1]	sw_sync[1]	19.043
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[1]	sw_sync[1]	0.546
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[2]	sw_sync[2]	19.217
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[2]	sw_sync[2]	0.394
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[3]	sw_sync[3]	19.041
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[3]	sw_sync[3]	0.548
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[4]	sw_sync[4]	19.216
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[4]	sw_sync[4]	0.397
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[5]	sw_sync[5]	19.042
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[5]	sw_sync[5]	0.549
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[6]	sw_sync[6]	19.043
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[6]	sw_sync[6]	0.548
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[7]	sw_sync[7]	19.040
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[7]	sw_sync[7]	0.551
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[14]	sw_sync[14]	19.219
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[14]	sw_sync[14]	0.396
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[15]	sw_sync[15]	19.219
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[15]	sw_sync[15]	0.396
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[16]	sw_sync[16]	19.041
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[16]	sw_sync[16]	0.550
+CHAIN_TIMING	7_slow_1200mv_0c	setup	sw_meta[17]	sw_sync[17]	19.041
+CHAIN_TIMING	7_slow_1200mv_0c	hold	sw_meta[17]	sw_sync[17]	0.550
+METRIC	MIN_fast_1200mv_0c	setup	20	12.177
+METRIC	MIN_fast_1200mv_0c	hold	20	0.181
+METRIC	MIN_fast_1200mv_0c	recovery	20	16.262
+METRIC	MIN_fast_1200mv_0c	removal	20	3.077
+METRIC	MIN_fast_1200mv_0c	min_pulse_width	20	9.264
+METRIC	MIN_fast_1200mv_0c	reset_recovery	20	16.262
+METRIC	MIN_fast_1200mv_0c	reset_removal	20	3.077
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	reset_sync[0]	reset_sync[1]	18.915
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	reset_sync[0]	reset_sync[1]	0.770
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	key_sync[0]	key_sync[1]	19.506
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	key_sync[0]	key_sync[1]	0.262
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	rx_sync[0]	rx_sync[1]	19.571
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	rx_sync[0]	rx_sync[1]	0.189
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	19.329
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	rx_sync[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	0.370
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	19.570
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	apb_uart_sv:uart|uart_rx:rx|sync_q[0]	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	0.190
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]	19.505
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	apb_uart_sv:uart|uart_rx:rx|sync_q[1]	apb_uart_sv:uart|uart_rx:rx|sync_q[2]	0.263
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[0]	sw_sync[0]	19.571
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[0]	sw_sync[0]	0.189
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[1]	sw_sync[1]	19.508
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[1]	sw_sync[1]	0.262
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[2]	sw_sync[2]	19.573
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[2]	sw_sync[2]	0.187
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[3]	sw_sync[3]	19.507
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[3]	sw_sync[3]	0.263
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[4]	sw_sync[4]	19.572
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[4]	sw_sync[4]	0.190
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[5]	sw_sync[5]	19.507
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[5]	sw_sync[5]	0.263
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[6]	sw_sync[6]	19.509
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[6]	sw_sync[6]	0.262
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[7]	sw_sync[7]	19.505
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[7]	sw_sync[7]	0.265
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[14]	sw_sync[14]	19.574
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[14]	sw_sync[14]	0.188
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[15]	sw_sync[15]	19.574
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[15]	sw_sync[15]	0.188
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[16]	sw_sync[16]	19.506
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[16]	sw_sync[16]	0.264
+CHAIN_TIMING	MIN_fast_1200mv_0c	setup	sw_meta[17]	sw_sync[17]	19.505
+CHAIN_TIMING	MIN_fast_1200mv_0c	hold	sw_meta[17]	sw_sync[17]	0.263
+CHECK	no_clock	0
+CHECK	multiple_clock	0
+CHECK	generated_clock	0
+CHECK	loops	0
+CHECK	latches	0
+CHECK	no_input_delay	15
+CHECK	no_output_delay	43
+CHECK	partial_input_delay	0
+CHECK	partial_output_delay	0
+CHECK	io_min_max_delay_consistency	0
+INPUT_WAIVER	SW[16]
+INPUT_WAIVER	KEY[0]
+INPUT_WAIVER	KEY[1]
+INPUT_WAIVER	SW[7]
+INPUT_WAIVER	SW[17]
+INPUT_WAIVER	SW[0]
+INPUT_WAIVER	SW[1]
+INPUT_WAIVER	SW[4]
+INPUT_WAIVER	GPIO_UART_RX
+INPUT_WAIVER	SW[14]
+INPUT_WAIVER	SW[3]
+INPUT_WAIVER	SW[2]
+INPUT_WAIVER	SW[6]
+INPUT_WAIVER	SW[5]
+INPUT_WAIVER	SW[15]
+OUTPUT_WAIVER	GPIO_UART_TX
+OUTPUT_WAIVER	LEDR[0]
+OUTPUT_WAIVER	LEDR[1]
+OUTPUT_WAIVER	LEDR[2]
+OUTPUT_WAIVER	LEDR[3]
+OUTPUT_WAIVER	LEDR[4]
+OUTPUT_WAIVER	LEDG[0]
+OUTPUT_WAIVER	LEDG[1]
+OUTPUT_WAIVER	LEDG[2]
+OUTPUT_WAIVER	LEDG[3]
+OUTPUT_WAIVER	LEDG[4]
+OUTPUT_WAIVER	LEDG[5]
+OUTPUT_WAIVER	LEDG[6]
+OUTPUT_WAIVER	LEDG[7]
+OUTPUT_WAIVER	LEDG[8]
+OUTPUT_WAIVER	HEX0[0]
+OUTPUT_WAIVER	HEX0[1]
+OUTPUT_WAIVER	HEX0[2]
+OUTPUT_WAIVER	HEX0[3]
+OUTPUT_WAIVER	HEX0[4]
+OUTPUT_WAIVER	HEX0[5]
+OUTPUT_WAIVER	HEX0[6]
+OUTPUT_WAIVER	HEX1[0]
+OUTPUT_WAIVER	HEX1[1]
+OUTPUT_WAIVER	HEX1[2]
+OUTPUT_WAIVER	HEX1[3]
+OUTPUT_WAIVER	HEX1[4]
+OUTPUT_WAIVER	HEX1[5]
+OUTPUT_WAIVER	HEX1[6]
+OUTPUT_WAIVER	HEX4[0]
+OUTPUT_WAIVER	HEX4[1]
+OUTPUT_WAIVER	HEX4[2]
+OUTPUT_WAIVER	HEX4[3]
+OUTPUT_WAIVER	HEX4[4]
+OUTPUT_WAIVER	HEX4[5]
+OUTPUT_WAIVER	HEX4[6]
+OUTPUT_WAIVER	HEX5[0]
+OUTPUT_WAIVER	HEX5[1]
+OUTPUT_WAIVER	HEX5[2]
+OUTPUT_WAIVER	HEX5[3]
+OUTPUT_WAIVER	HEX5[4]
+OUTPUT_WAIVER	HEX5[5]
+OUTPUT_WAIVER	HEX5[6]
+UCP	Illegal Clocks	0	0
+UCP	Unconstrained Clocks	0	0
+UCP	Unconstrained Input Ports	0	0
+UCP	Unconstrained Input Port Paths	0	0
+UCP	Unconstrained Output Ports	0	0
+UCP	Unconstrained Output Port Paths	0	0
+COUNT	ignored_sdc	0
+STATUS	POST_FIT_AUDIT_PASS
