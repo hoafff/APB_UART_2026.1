@@ -18,6 +18,12 @@ phần cứng chưa có. Không push, publish, nạp bo hay ghi flash.
 Log và manifest trong `build/fpga/` của gói bàn giao là bằng chứng cho chính
 bản build đó. Ngày/commit/hash không được suy ra chỉ từ văn bản này.
 
+Kiểm chứng bàn giao cuối ngày **13/11/2026**: full build trên commit nguồn sạch
+`cbce1e55915306b07a8ebae0ee4592a6bdd75424`; 76 hash PASS, 15 unit test FPGA PASS,
+ba bench Questa PASS. ZIP 243 file được giải nén và kiểm lại bằng Quartus thực;
+probe thay đổi nguồn/SOF/testbench và bằng chứng mô phỏng đều cho kết quả đúng.
+Commit đóng checklist tài liệu sau đó không đổi input đã niêm phong.
+
 ## Review độc lập
 
 Reviewer đã đọc cấu hình, code, báo cáo nguyên bản và chạy `verify` cùng các

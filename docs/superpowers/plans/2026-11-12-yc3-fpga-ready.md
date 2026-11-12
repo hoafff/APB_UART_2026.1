@@ -53,8 +53,8 @@
 
 - [x] Update README/handoff status and provide exact build, GUI/programmer, CP2102 and physical-preflight instructions.
 - [x] Have independent reviewer examine final diff and actual reports; fix substantive findings with verification.
-- [ ] Reconcile checklist, commit locally, bind final artifacts to commit and unchanged inputs.
-- [ ] Deliver source/reports/bitstream package under chat `outputs/`, plus final status and limitations.
+- [x] Reconcile checklist, commit locally, bind final artifacts to commit and unchanged inputs.
+- [x] Deliver source/reports/bitstream package under chat `outputs/`, plus final status and limitations.
 
 ## Baseline and rulings
 
@@ -109,3 +109,22 @@
 - Reviewer-declined physical voltage, overshoot, oscillator, jumper orientation,
   JTAG/UART and empirical MTBF judgments remain explicitly NOT_RUN. Windows UVM
   runner stays unsupported as already recorded; no hardware acceptance inferred.
+
+## Final handoff verification (13/11/2026)
+
+- Source implementation committed locally as
+  `cbce1e55915306b07a8ebae0ee4592a6bdd75424`; final full build ran against that
+  clean checkout. Manifest records that commit, Quartus version, 76 hashes and
+  actual PASS for the 15 release tests and three Questa benches.
+- ZIP exported under the current chat `outputs/`, 243 files with SHA-256/CRC
+  checked. A fresh extraction into a path with spaces passed both the release
+  validator and real Quartus project preflight.
+- Real delivered-package tamper tests passed: RTL and SOF rejected after edits;
+  changed testbench, missing simulation seal and inconsistent result rejected;
+  valid NOT_RUN accepted, stale PASS counts in NOT_RUN rejected.
+- Current read-only hardware detection still reports no JTAG hardware (exit 4)
+  and no serial ports. All hardware acceptance fields remain NOT_RUN.
+- This checklist-closing documentation update follows the implementation build;
+  it does not change a sealed build input. Final packaging rechecks every hash.
+- All software preparation tasks are complete. Physical acceptance is the only
+  remaining Yêu cầu 3 work; it requires the actual board/module and measurements.
