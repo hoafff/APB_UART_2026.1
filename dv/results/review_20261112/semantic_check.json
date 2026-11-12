@@ -1,0 +1,7 @@
+{
+  "result": "PASS_DOCUMENT_SEMANTIC_CHECK",
+  "requirements_checked": 80,
+  "spec_index_traceability_meanings_match": true,
+  "rtl_changed": false,
+  "limitations": "Text/contract review, not an exhaustive hardware proof"
+}

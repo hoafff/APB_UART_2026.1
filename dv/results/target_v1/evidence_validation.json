@@ -1,0 +1,14 @@
+{
+  "result": "PASS_EVIDENCE_CHECK",
+  "uvm_logs_checked": 17,
+  "supplemental_logs_checked": 3,
+  "checks": [
+    "exact testcase/seed inventory",
+    "source identity and stability",
+    "raw log verdict/completion/scoreboard",
+    "assertion activation",
+    "functional counts match logs",
+    "named negative-control diagnostics"
+  ],
+  "scope": "Evidence integrity; not a new simulation or physical sign-off"
+}

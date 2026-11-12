@@ -1,0 +1,23 @@
+{
+  "result": "PASS_REVIEW_WITH_LIMITATIONS",
+  "extra_uart_runs_pass": 5,
+  "new_random_seeds": [
+    7,
+    137
+  ],
+  "tool_guard_tests_pass": 10,
+  "pre_fix_invalid_evidence_cases_reached_merge": 9,
+  "spec_requirements_semantically_matched": 80,
+  "pin_bits_checked": 65,
+  "rtl_modified": false,
+  "lint_errors": 0,
+  "lint_unused_signal_warnings": 8,
+  "lint_sync_async_warnings": 2,
+  "windows_autocrlf_checkout_after_fix": "PASS_ON_LINUX",
+  "windows_native_run": false,
+  "quartus_run": false,
+  "hardware_run": false,
+  "functional_core_bins": "810/810",
+  "native_core_points_unhit": 1157,
+  "coverage_scope": "Extra-run merge saved separately; core coverage verdict unchanged"
+}

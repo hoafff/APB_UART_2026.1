@@ -1,0 +1,15 @@
+test_duplicate_test_replacing_required_test_rejected (test_report_dv.ExportEvidenceTest.test_duplicate_test_replacing_required_test_rejected) ... ok
+test_error_log_with_stale_pass_json_rejected (test_report_dv.ExportEvidenceTest.test_error_log_with_stale_pass_json_rejected) ... ok
+test_json_coverage_disagrees_with_log_rejected (test_report_dv.ExportEvidenceTest.test_json_coverage_disagrees_with_log_rejected) ... ok
+test_missing_assertion_activation_rejected (test_report_dv.ExportEvidenceTest.test_missing_assertion_activation_rejected) ... ok
+test_missing_uvm_completion_rejected (test_report_dv.ExportEvidenceTest.test_missing_uvm_completion_rejected) ... ok
+test_negative_control_timeout_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_timeout_rejected) ... ok
+test_negative_control_with_unstable_source_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_with_unstable_source_rejected) ... ok
+test_supplemental_missing_completion_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_missing_completion_rejected) ... ok
+test_supplemental_stale_pass_nonzero_exit_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_stale_pass_nonzero_exit_rejected) ... ok
+test_valid_recorded_evidence_reaches_merge (test_report_dv.ExportEvidenceTest.test_valid_recorded_evidence_reaches_merge) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.199s
+
+OK

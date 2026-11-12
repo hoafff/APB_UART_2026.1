@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "scope": "Git core.autocrlf=true checkout emulated on Linux; not a Windows runtime test",
+  "snapshot": "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/windows_checkout_after_4xnls0uh",
+  "vendor_has_crlf": false,
+  "checks": [
+    {
+      "command": [
+        "python",
+        "tools/check_spec.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"passed_checks\": 10,\n  \"requirements\": 80,\n  \"pin_bits\": 65,\n  \"legacy_ids\": 36,\n  \"rx_ideal_cases\": 960,\n  \"fifo_rule_cases\": 76,\n  \"irq_rule_cases\": 2432\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_dv.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"result\": \"PASS_DOCUMENT_CHECK\",\n  \"requirements\": 80,\n  \"testcase_definitions\": 19,\n  \"mandatory_functional_bins\": 810,\n  \"actual_top_ports_match_pin_map\": 65,\n  \"limitations\": \"Does not execute RTL or close requirements\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/verify_dv_delivery.py",
+        "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/windows_checkout_after_4xnls0uh"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"result\": \"PASS_EXPORTED_EVIDENCE_CHECK\",\n  \"uvm_logs\": 17,\n  \"supplemental_logs\": 3,\n  \"functional_bins_from_passing_logs\": 810,\n  \"waveform_checksums_verified\": 2,\n  \"source_hashes_match\": true,\n  \"scope\": \"Validate packaged evidence; does not rerun simulation\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

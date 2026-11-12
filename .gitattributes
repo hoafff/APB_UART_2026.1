@@ -1,6 +1,9 @@
+# Keep source/evidence hashes reproducible when cloning on Windows with autocrlf.
+* text=auto eol=lf
 
 # Preserve the original Quartus CSV bytes and CRLF for source hashing.
 reference/DE2_115_pin_assignments.csv -text whitespace=cr-at-eol
 
 # Preserve raw simulator output, including whitespace emitted by UVM.
 dv/results/target_v1/logs/*.log -text -whitespace
+dv/results/review_20261112/logs/*.log -text -whitespace

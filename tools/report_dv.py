@@ -3,21 +3,94 @@
 from pathlib import Path
 from collections import Counter,defaultdict
 import gzip,hashlib,json,re,shutil,subprocess,zipfile
-from run_dv import ROOT,command,inputs
+from run_dv import ROOT,command,inputs,TESTS
 
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def write_json(p,d): p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+
+def require_evidence(condition, message):
+    if not condition:
+        raise ValueError('Evidence rejected: '+message)
+
+def validate_evidence(runs, supplemental, current):
+    """Recompute verdict inputs from raw logs before publishing any PASS/coverage."""
+    expected = [(t,17,None) for t in TESTS]
+    expected += [('target_random_test',s,None) for s in [17,29,101]]
+    expected += [('target_tx_modes_test',17,'NEGATIVE_TX_DATA'),
+                 ('target_apb_test',17,'NEGATIVE_APB_PROTOCOL')]
+    require_evidence(Counter((r['test'],r['seed'],r['negative_control']) for r in runs)==Counter(expected),
+                     'missing, duplicate or unexpected test/seed/control')
+    cases=json.loads((ROOT/'docs/dv/testcases.json').read_text())
+    require_evidence({c['name'] for c in cases if c['kind']=='UVM'}=={t for t,s,n in expected},
+                     'UVM testcase catalogue differs from executed suite')
+    for r in runs:
+        label=r['test']+'/'+str(r['seed'])+'/'+str(r['negative_control'])
+        require_evidence(r.get('source_stable') is True and r['source_hashes']==current,
+                         label+': source mismatch or unstable source')
+        require_evidence(r.get('assertions_enabled') is True and not r.get('timed_out'),
+                         label+': assertions disabled or timeout')
+        path=ROOT/r['log']
+        require_evidence(path.is_file(),label+': missing log')
+        log=path.read_text(errors='replace')
+        completion=re.search(r'^TEST_COMPLETED\|'+re.escape(r['test'])+r'\|checks=(\d+)\|apb=(\d+)$',log,re.M)
+        active=re.search(r'^ASSERTIONS_ACTIVE\|apb=(\d+)\|reset=(\d+)$',log,re.M)
+        sb=re.search(r'^SB_RESULT\|checks=(\d+)\|tx=(\d+)\|rx=(\d+)\|dropped=(\d+)$',log,re.M)
+        observed_sb=dict(zip(['checks','tx','rx','dropped'],map(int,sb.groups()))) if sb else {}
+        counts={}
+        for severity in ['ERROR','FATAL']:
+            found=re.findall(r'UVM_'+severity+r'\s*:\s*(\d+)',log)
+            counts[severity]=int(found[-1]) if found else None
+            require_evidence(r['uvm_'+severity.lower()+'s']==counts[severity],label+': UVM summary disagrees with JSON')
+        require_evidence(r['completed']==bool(completion) and r['scoreboard']==observed_sb,
+                         label+': completion/scoreboard disagrees with JSON')
+        bins={k:int(v) for k,v in re.findall(r'^COV\|([^|]+)\|(\d+)$',log,re.M)}
+        require_evidence(bins==r['functional_bins'],label+': coverage disagrees with raw log')
+        require_evidence('TB_WATCHDOG' not in log,label+': watchdog failure')
+        if r['negative_control'] is None:
+            require_evidence(r['status']=='PASS' and r['returncode']==0 and counts=={'ERROR':0,'FATAL':0},
+                             label+': failed execution')
+            require_evidence(completion and int(completion[1])>0 and int(completion[2])>0 and
+                             sb and int(sb[1])>0,label+': incomplete or vacuous test')
+        else:
+            require_evidence(r['status']=='DETECTED',label+': negative control not detected')
+            if r['negative_control']=='NEGATIVE_TX_DATA':
+                require_evidence(r['returncode']==0 and completion and sb and int(sb[1])>0 and
+                                 counts['ERROR'] is not None and counts['ERROR']>0 and counts['FATAL']==0 and
+                                 'TX decoded data' in log,label+': wrong TX corruption diagnostic')
+            else:
+                require_evidence(r['returncode']!=0 and 'ASSERT_APB_SETUP_STABILITY' in log,
+                                 label+': wrong APB protocol diagnostic')
+        # The fatal APB control can stop before final blocks run; its named SVA failure
+        # is direct evidence of assertion activation. All completed runs need counters.
+        if r['negative_control']!='NEGATIVE_APB_PROTOCOL':
+            require_evidence(active and int(active[1])>0 and int(active[2])>0 and
+                             int(active[1])==int(completion[2]),label+': missing/mismatched assertion activation')
+    require_evidence(set(supplemental)=={'system','controller','onehot'},'supplemental suite incomplete')
+    for name,r in supplemental.items():
+        require_evidence(r['status']=='PASS' and r['returncode']==0 and not r.get('timed_out'),
+                         name+': supplemental execution failed')
+        require_evidence(all(sha(ROOT/p)==h for p,h in r['sources'].items()),name+': source mismatch')
+        log=(ROOT/f'build/{name}/run.log').read_text(errors='replace')
+        require_evidence(re.search(r'^SYS_TEST_COMPLETED\|checks=[1-9]\d*(?:\||$)',log,re.M) and
+                         '%Error' not in log and 'WATCHDOG' not in log,name+': missing completion or failure in log')
+    return {'result':'PASS_EVIDENCE_CHECK','uvm_logs_checked':len(runs),
+            'supplemental_logs_checked':len(supplemental),
+            'checks':['exact testcase/seed inventory','source identity and stability',
+                      'raw log verdict/completion/scoreboard','assertion activation',
+                      'functional counts match logs','named negative-control diagnostics'],
+            'scope':'Evidence integrity; not a new simulation or physical sign-off'}
 
 def main():
     current=inputs()
     runs=json.loads((ROOT/'build/target/regression.json').read_text())
     normal=[r for r in runs if not r['negative_control']]
     negatives=[r for r in runs if r['negative_control']]
+    supplemental={name:json.loads((ROOT/f'build/{name}/result.json').read_text()) for name in ['system','controller','onehot']}
+    validation=validate_evidence(runs,supplemental,current)
     assert len(normal)==15 and len(negatives)==2
     assert all(r['status']=='PASS' and r.get('source_stable') and r['source_hashes']==current for r in normal)
     assert all(r['status']=='DETECTED' and r['source_hashes']==current for r in negatives)
     assert {r['seed'] for r in normal if r['test']=='target_random_test'}=={17,29,101}
-    supplemental={name:json.loads((ROOT/f'build/{name}/result.json').read_text()) for name in ['system','controller','onehot']}
     for name,r in supplemental.items():
         assert r['status']=='PASS',name
         assert all(sha(ROOT/p)==h for p,h in r['sources'].items()),name
@@ -78,6 +151,7 @@ def main():
     write_json(out/'functional_coverage.json',{'groups':groups,'observed_counts':dict(ledger),'total_required':sum(g['total'] for g in groups.values()),'hit_required':sum(g['hit'] for g in groups.values()),'excluded_negative_runs':len(negatives),'hardware':'NOT_RUN'})
     write_json(out/'native_coverage.json',{'merge_command':merge_cmd,'rtl_points_by_kind':dict(native),'note':'Instrumentation points, normalized across hierarchy/paths; not a claim of full line/toggle or functional sign-off','unhit_count':len(unhit)})
     write_json(out/'document_checks.json',{'spec':json.loads(spec_check),'dv':json.loads(dv_check)})
+    write_json(out/'evidence_validation.json',validation)
     trace=json.loads((ROOT/'docs/dv/traceability.json').read_text()); cases=json.loads((ROOT/'docs/dv/testcases.json').read_text())
     for c in cases: c['evidence_status']='HW_NOT_RUN' if c['kind']=='HARDWARE' else 'PASS_DOCUMENT_CHECK' if c['kind']=='DOC' else 'PASS_SIMULATION'
     for row in trace:
@@ -107,7 +181,8 @@ def main():
         '- 80 requirement có testcase/observer mapping; các row MAPPED_SIM_TESTS_PASS xác nhận ca liên kết đã chạy đạt, không thay một review sign-off toàn bộ không gian trạng thái. 5 requirement FPGA vẫn HW_PENDING.',
         '- Chưa chạy Quartus/fitter/STA, chưa có bitstream hay thử DE2-115 + CP2102 thật. Chưa chạy Questa, formal hoặc X-propagation/analog metastability.',
         '- Thư viện/công cụ có sẵn được tái sử dụng; đã tải UVM pin vào .tools/uvm. Các failure ban đầu (syntax/task direction, hết disk, runtime thiếu PATH Z3) được giữ trong build history và issue ledger.',
-        '', '## Chạy lại','', '```bash','bash dv/sim/run_smoke.sh','```','', 'Hoặc chạy từng lệnh trong dv/README.md. Exporter sẽ từ chối source mismatch, run FAIL, thiếu ba random seeds, negative control không phát hiện hoặc thiếu mandatory functional bin.']
+        '- Exporter đối chiếu trực tiếp 20 raw logs với JSON: đủ đúng test/seed, completion, scoreboard, assertion activity, diagnostic của negative controls và functional counts. Xem [evidence validation](../../dv/results/target_v1/evidence_validation.json).',
+        '', '## Chạy lại','', '```bash','bash dv/sim/run_smoke.sh','```','', 'Hoặc chạy từng lệnh trong dv/README.md. Exporter từ chối log/JSON không khớp, thiếu/trùng test, source mismatch, run FAIL/timeout, thiếu assertion activity, negative control sai diagnostic hoặc thiếu mandatory functional bin.']
     (ROOT/'docs/dv/RESULTS.md').write_text('\n'.join(md)+'\n')
     shutil.copy2(ROOT/'build/spec/validation.json',ROOT/'docs/spec/validation.json')
     print(json.dumps(summary,indent=2))

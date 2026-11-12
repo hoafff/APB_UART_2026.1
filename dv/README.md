@@ -38,6 +38,11 @@ Core regression có 12 directed classes và constrained-random class chạy ba s
 
 `dv/results/target_v1/` là bản evidence gọn đã xuất lên Git: logs/results, source manifest, coverage merge nén và chỉ mục waveform. Build binaries, thư viện UVM và PCH không commit. Exporter xác minh source hiện tại trùng nguồn đã chạy.
 
+Exporter cũng đối chiếu trực tiếp log với JSON: đúng danh sách testcase/seed/control, mã thoát,
+completion, scoreboard, UVM errors/fatals, assertion activity và functional bin counts.
+Các ca kiểm tra lỗi của exporter chạy bằng `python -m unittest discover -s tools/tests -v`;
+chúng là kiểm tra công cụ Python, không được cộng vào số testcase UART hoặc coverage DUT.
+
 ## Baseline và simulator khác
 
 `dv/baseline/uvm/` giữ các testcase cũ đã sửa 15 `$sformatf` và một `$fatal`; contract vẫn là byte map/direct divider. Chúng không được chạy với TARGET. RTL vendor giữ nguyên SHA-256. Bằng chứng baseline nằm trong [review lịch sử](../docs/history/APB_UART_2026.1_REVIEW.md).
@@ -47,3 +52,8 @@ Core regression có 12 directed classes và constrained-random class chạy ba s
 ## Phạm vi FPGA
 
 Wrapper đã có source và testcase simulation. Kết quả SIM của `tb_system`/`tb_controller` không thay Quartus synthesis/fitter/STA, nạp bitstream, kiểm JP6/điện áp/pin planner hoặc thử CP2102 trên board thật. Những phần này vẫn thuộc Yêu cầu 3.
+
+Chủ dự án chọn thực hiện Yêu cầu 3 trên **Windows 11 ở cùng máy dual boot với Arch Linux**.
+Xem [ghi chú bàn giao Windows](../docs/05_Windows11_FPGA_Handoff.md). Runner UVM ở đây
+được kiểm trên Linux; `run_smoke.sh`/`run_questa.sh` là script Bash, `run_dv.py` dùng
+module Unix `resource`. Chưa nghiệm thu chạy các runner này trực tiếp bằng PowerShell.

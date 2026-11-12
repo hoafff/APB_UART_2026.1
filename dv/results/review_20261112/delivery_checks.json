@@ -1,0 +1,54 @@
+{
+  "result": "PASS",
+  "git_index_tree": "acb4647aa2a6f1975d8283d87fb136eaf76bc465",
+  "scope": "Git checkout with core.autocrlf=true on Linux; not native Windows execution",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/check_spec.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"passed_checks\": 10,\n  \"requirements\": 80,\n  \"pin_bits\": 65,\n  \"legacy_ids\": 36,\n  \"rx_ideal_cases\": 960,\n  \"fifo_rule_cases\": 76,\n  \"irq_rule_cases\": 2432\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/check_dv.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"result\": \"PASS_DOCUMENT_CHECK\",\n  \"requirements\": 80,\n  \"testcase_definitions\": 19,\n  \"mandatory_functional_bins\": 810,\n  \"actual_top_ports_match_pin_map\": 65,\n  \"limitations\": \"Does not execute RTL or close requirements\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_duplicate_test_replacing_required_test_rejected (test_report_dv.ExportEvidenceTest.test_duplicate_test_replacing_required_test_rejected) ... ok\ntest_error_log_with_stale_pass_json_rejected (test_report_dv.ExportEvidenceTest.test_error_log_with_stale_pass_json_rejected) ... ok\ntest_json_coverage_disagrees_with_log_rejected (test_report_dv.ExportEvidenceTest.test_json_coverage_disagrees_with_log_rejected) ... ok\ntest_missing_assertion_activation_rejected (test_report_dv.ExportEvidenceTest.test_missing_assertion_activation_rejected) ... ok\ntest_missing_uvm_completion_rejected (test_report_dv.ExportEvidenceTest.test_missing_uvm_completion_rejected) ... ok\ntest_negative_control_timeout_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_timeout_rejected) ... ok\ntest_negative_control_with_unstable_source_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_with_unstable_source_rejected) ... ok\ntest_supplemental_missing_completion_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_missing_completion_rejected) ... ok\ntest_supplemental_stale_pass_nonzero_exit_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_stale_pass_nonzero_exit_rejected) ... ok\ntest_valid_recorded_evidence_reaches_merge (test_report_dv.ExportEvidenceTest.test_valid_recorded_evidence_reaches_merge) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.199s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python",
+        "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/verify_dv_delivery.py",
+        "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/final_review_checkout_su77kf67"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"result\": \"PASS_EXPORTED_EVIDENCE_CHECK\",\n  \"uvm_logs\": 17,\n  \"supplemental_logs\": 3,\n  \"functional_bins_from_passing_logs\": 810,\n  \"waveform_checksums_verified\": 2,\n  \"source_hashes_match\": true,\n  \"scope\": \"Validate packaged evidence; does not rerun simulation\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "local_document_links": "PASS"
+}

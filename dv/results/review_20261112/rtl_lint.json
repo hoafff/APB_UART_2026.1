@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/hoaff/.local/bin/ic-eda",
+    "verilator",
+    "--lint-only",
+    "--timing",
+    "-Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "de2_115_apb_uart_bringup",
+    "-f",
+    "rtl/modified/pulp_apb_uart_sv/files.f",
+    "rtl/fpga/de2_uart_controller.sv",
+    "rtl/fpga/de2_115_apb_uart_bringup.sv"
+  ],
+  "returncode": 0,
+  "warning_headers": [
+    "%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:16:24: Bits of signal are not used: 'PWDATA'[31:8]",
+    "%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:26:67: Signal is not used: 'rx_next'",
+    "%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:29:38: Signal is not used: 'tx_push'",
+    "%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:29:47: Signal is not used: 'tx_pop_ok'",
+    "%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:29:70: Signal is not used: 'rx_pop_ok'",
+    "%Warning-UNUSEDSIGNAL: rtl/fpga/de2_uart_controller.sv:3:24: Bits of signal are not used: 'sw_i'[13:8]",
+    "%Warning-UNUSEDSIGNAL: rtl/fpga/de2_uart_controller.sv:7:24: Bits of signal are not used: 'prdata'[31:8]",
+    "%Warning-UNUSEDSIGNAL: rtl/fpga/de2_uart_controller.sv:17:26: Bits of signal are not used: 'lsr_q'[7:6,4:1]",
+    "%Warning-SYNCASYNCNET: rtl/fpga/de2_115_apb_uart_bringup.sv:14:40: Signal flopped as both synchronous and async: 'de2_115_apb_uart_bringup.reset_sync'",
+    "%Warning-SYNCASYNCNET: rtl/fpga/de2_115_apb_uart_bringup.sv:6:23: Signal flopped as both synchronous and async: 'KEY'"
+  ],
+  "scope": "Verilator frontend lint only, not Quartus synthesis/fitter/STA"
+}

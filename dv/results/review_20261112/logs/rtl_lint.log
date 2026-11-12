@@ -1,0 +1,53 @@
+- V e r i l a t i o n   R e p o r t: Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)
+- Verilator: Built from 0.179 MB sources in 8 modules, into 0.228 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.042 s (elab=0.009, cvt=0.022, bld=0.000); cpu 0.027 s on 1 threads; allocated 22.449 MB
+%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:16:24: Bits of signal are not used: 'PWDATA'[31:8]
+                                                                         : ... note: In instance 'de2_115_apb_uart_bringup.uart'
+   16 |     input logic [31:0] PWDATA,
+      |                        ^~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.055
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:26:67: Signal is not used: 'rx_next'
+                                                                         : ... note: In instance 'de2_115_apb_uart_bringup.uart'
+   26 |     logic [4:0] capacity, threshold, tx_count, rx_count, tx_next, rx_next;
+      |                                                                   ^~~~~~~
+%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:29:38: Signal is not used: 'tx_push'
+                                                                         : ... note: In instance 'de2_115_apb_uart_bringup.uart'
+   29 |     logic tx_ready, tx_busy, tx_pop, tx_push, tx_pop_ok, rx_push_ok, rx_pop_ok;
+      |                                      ^~~~~~~
+%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:29:47: Signal is not used: 'tx_pop_ok'
+                                                                         : ... note: In instance 'de2_115_apb_uart_bringup.uart'
+   29 |     logic tx_ready, tx_busy, tx_pop, tx_push, tx_pop_ok, rx_push_ok, rx_pop_ok;
+      |                                               ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv:29:70: Signal is not used: 'rx_pop_ok'
+                                                                         : ... note: In instance 'de2_115_apb_uart_bringup.uart'
+   29 |     logic tx_ready, tx_busy, tx_pop, tx_push, tx_pop_ok, rx_push_ok, rx_pop_ok;
+      |                                                                      ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: rtl/fpga/de2_uart_controller.sv:3:24: Bits of signal are not used: 'sw_i'[13:8]
+                                                           : ... note: In instance 'de2_115_apb_uart_bringup.master'
+    3 |     input logic [17:0] sw_i,
+      |                        ^~~~
+%Warning-UNUSEDSIGNAL: rtl/fpga/de2_uart_controller.sv:7:24: Bits of signal are not used: 'prdata'[31:8]
+                                                           : ... note: In instance 'de2_115_apb_uart_bringup.master'
+    7 |     input logic [31:0] prdata,
+      |                        ^~~~~~
+%Warning-UNUSEDSIGNAL: rtl/fpga/de2_uart_controller.sv:17:26: Bits of signal are not used: 'lsr_q'[7:6,4:1]
+                                                            : ... note: In instance 'de2_115_apb_uart_bringup.master'
+   17 |     logic [7:0] init_lcr,lsr_q,manual_data,echo_data,thr_data;
+      |                          ^~~~~
+%Warning-SYNCASYNCNET: rtl/fpga/de2_115_apb_uart_bringup.sv:14:40: Signal flopped as both synchronous and async: 'de2_115_apb_uart_bringup.reset_sync'
+                       rtl/fpga/de2_115_apb_uart_bringup.sv:14:40: ... Location of async usage
+   14 |     (* async_reg="true" *) logic [1:0] reset_sync,rx_sync,key_sync;
+      |                                        ^~~~~~~~~~
+                       rtl/fpga/de2_115_apb_uart_bringup.sv:25:27: ... Location of sync usage
+   25 |         else reset_sync<={reset_sync[0],1'b1};
+      |                           ^~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/SYNCASYNCNET?v=5.055
+                       ... Use "/* verilator lint_off SYNCASYNCNET */" and lint_on around source to disable this message.
+%Warning-SYNCASYNCNET: rtl/fpga/de2_115_apb_uart_bringup.sv:6:23: Signal flopped as both synchronous and async: 'KEY'
+                       rtl/fpga/de2_115_apb_uart_bringup.sv:24:13: ... Location of async usage
+   24 |         if(!KEY[0]) reset_sync<=0;
+      |             ^~~
+                       rtl/fpga/de2_115_apb_uart_bringup.sv:32:37: ... Location of sync usage
+   32 |             key_sync<={key_sync[0],~KEY[1]};
+      |                                     ^~~

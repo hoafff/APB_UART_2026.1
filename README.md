@@ -6,6 +6,10 @@ Dự án kiểm thử UART qua APB, hướng đến FPGA Terasic DE2-115 và CP2
 - **Yêu cầu 2:** [DV Plan v1.0](docs/03_DV_Plan.md), RTL mục tiêu, UVM, directed/automatic/constrained-random, SVA và coverage đã có. [Kết quả và giới hạn](docs/dv/RESULTS.md) là nguồn verdict thực thi.
 - **Yêu cầu 3:** wrapper có source và simulation; **chưa chạy Quartus/fitter/STA hoặc thử FPGA thật**.
 
+**Bước tiếp theo đã chọn:** thực hiện Yêu cầu 3 trên Windows 11, cùng máy dual boot với
+Arch Linux. Xem [ghi chú Windows 11](docs/05_Windows11_FPGA_Handoff.md) và
+[rà soát lại Yêu cầu 1–2](docs/dv/REVIEW_2026-11-12.md).
+
 ## Bắt đầu
 
 1. [SPEC](docs/01_System_Specification.md), [thay đổi RTL](docs/04_RTL_Changes.md).

@@ -1,0 +1,7 @@
+{
+  "scope": "Simulated Git core.autocrlf=true checkout on Linux; not a Windows runtime test",
+  "snapshot": "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/windows_checkout_before_nxnw6u52",
+  "spec_check_exit": 1,
+  "vendor_has_crlf": true,
+  "diagnostic": "Traceback (most recent call last):\n  File \"/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/windows_checkout_before_nxnw6u52/tools/check_spec.py\", line 135, in <module>\n    assert hashlib.sha256((workspace/name).read_bytes()).hexdigest() == expected, name\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv\n"
+}

@@ -1,0 +1,249 @@
+test_duplicate_test_replacing_required_test_rejected (test_report_dv.ExportEvidenceTest.test_duplicate_test_replacing_required_test_rejected) ... ERROR
+test_error_log_with_stale_pass_json_rejected (test_report_dv.ExportEvidenceTest.test_error_log_with_stale_pass_json_rejected) ... ERROR
+test_json_coverage_disagrees_with_log_rejected (test_report_dv.ExportEvidenceTest.test_json_coverage_disagrees_with_log_rejected) ... ERROR
+test_missing_assertion_activation_rejected (test_report_dv.ExportEvidenceTest.test_missing_assertion_activation_rejected) ... ERROR
+test_missing_uvm_completion_rejected (test_report_dv.ExportEvidenceTest.test_missing_uvm_completion_rejected) ... ERROR
+test_negative_control_timeout_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_timeout_rejected) ... ERROR
+test_negative_control_with_unstable_source_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_with_unstable_source_rejected) ... ERROR
+test_supplemental_missing_completion_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_missing_completion_rejected) ... ERROR
+test_supplemental_stale_pass_nonzero_exit_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_stale_pass_nonzero_exit_rejected) ... ERROR
+test_valid_recorded_evidence_reaches_merge (test_report_dv.ExportEvidenceTest.test_valid_recorded_evidence_reaches_merge) ... ok
+
+======================================================================
+ERROR: test_duplicate_test_replacing_required_test_rejected (test_report_dv.ExportEvidenceTest.test_duplicate_test_replacing_required_test_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 95, in test_duplicate_test_replacing_required_test_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_error_log_with_stale_pass_json_rejected (test_report_dv.ExportEvidenceTest.test_error_log_with_stale_pass_json_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 81, in test_error_log_with_stale_pass_json_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_json_coverage_disagrees_with_log_rejected (test_report_dv.ExportEvidenceTest.test_json_coverage_disagrees_with_log_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 91, in test_json_coverage_disagrees_with_log_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_missing_assertion_activation_rejected (test_report_dv.ExportEvidenceTest.test_missing_assertion_activation_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 86, in test_missing_assertion_activation_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_missing_uvm_completion_rejected (test_report_dv.ExportEvidenceTest.test_missing_uvm_completion_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 73, in test_missing_uvm_completion_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_negative_control_timeout_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_timeout_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 103, in test_negative_control_timeout_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_negative_control_with_unstable_source_rejected (test_report_dv.ExportEvidenceTest.test_negative_control_with_unstable_source_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 99, in test_negative_control_with_unstable_source_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_supplemental_missing_completion_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_missing_completion_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 112, in test_supplemental_missing_completion_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+======================================================================
+ERROR: test_supplemental_stale_pass_nonzero_exit_rejected (test_report_dv.ExportEvidenceTest.test_supplemental_stale_pass_nonzero_exit_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 107, in test_supplemental_stale_pass_nonzero_exit_rejected
+    self.reject()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 64, in reject
+    self.export()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/tests/test_report_dv.py", line 60, in export
+    report.main()
+    ~~~~~~~~~~~^^
+  File "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/tools/report_dv.py", line 49, in main
+    subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/unittest/mock.py", line 1241, in _execute_mock_call
+    raise effect
+test_report_dv.MergeReached
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.199s
+
+FAILED (errors=9)

@@ -73,6 +73,7 @@ Còn **1157 điểm instrument chưa hit**; danh sách lưu trong native_unhit_p
 - 80 requirement có testcase/observer mapping; các row MAPPED_SIM_TESTS_PASS xác nhận ca liên kết đã chạy đạt, không thay một review sign-off toàn bộ không gian trạng thái. 5 requirement FPGA vẫn HW_PENDING.
 - Chưa chạy Quartus/fitter/STA, chưa có bitstream hay thử DE2-115 + CP2102 thật. Chưa chạy Questa, formal hoặc X-propagation/analog metastability.
 - Thư viện/công cụ có sẵn được tái sử dụng; đã tải UVM pin vào .tools/uvm. Các failure ban đầu (syntax/task direction, hết disk, runtime thiếu PATH Z3) được giữ trong build history và issue ledger.
+- Exporter đối chiếu trực tiếp 20 raw logs với JSON: đủ đúng test/seed, completion, scoreboard, assertion activity, diagnostic của negative controls và functional counts. Xem [evidence validation](../../dv/results/target_v1/evidence_validation.json).
 
 ## Chạy lại
 
@@ -80,4 +81,4 @@ Còn **1157 điểm instrument chưa hit**; danh sách lưu trong native_unhit_p
 bash dv/sim/run_smoke.sh
 ```
 
-Hoặc chạy từng lệnh trong dv/README.md. Exporter sẽ từ chối source mismatch, run FAIL, thiếu ba random seeds, negative control không phát hiện hoặc thiếu mandatory functional bin.
+Hoặc chạy từng lệnh trong dv/README.md. Exporter từ chối log/JSON không khớp, thiếu/trùng test, source mismatch, run FAIL/timeout, thiếu assertion activity, negative control sai diagnostic hoặc thiếu mandatory functional bin.

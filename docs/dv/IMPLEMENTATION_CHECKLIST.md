@@ -8,6 +8,8 @@
 | DV Plan | 80 requirement → stimulus/checker/coverage/evidence | traceability checker | DONE — 80 requirements, 19 testcase definitions, 65 top ports |
 | Regression | directed, automatic, random ≥3 seeds | machine-readable verdict + hashes/logs | DONE — 15/15 UVM và 3/3 supplementary PASS; seeds 17/29/101; 810/810 bins |
 | Bàn giao | README/results/commands thống nhất | Kiểm gói Git độc lập và đối chiếu remote SHA; không coi là chạy lại toàn bộ simulation | DONE — gói evidence c423388 đã push; origin/main khớp SHA và working tree sạch tại lần đối chiếu |
+| Rà soát bổ sung Yêu cầu 1–2 | Kiểm contract, RTL, integrity guard và khả năng chuyển checkout | 80 nghĩa yêu cầu khớp; 5 UART runs và 10 ca công cụ PASS; checkout autocrlf được kiểm | DONE — xem REVIEW_2026-11-12.md |
+| Chuyển Yêu cầu 3 sang Windows 11 | Ghi kế hoạch cùng máy dual boot, source và việc còn lại | Đối chiếu ghi chú với SPEC/filelist, giữ HW_PENDING | NOTE_DONE — thực thi Windows/FPGA NOT_RUN |
 
 FPGA/Quartus/board sign-off thuộc Yêu cầu 3, không dùng simulation thay thế.
 

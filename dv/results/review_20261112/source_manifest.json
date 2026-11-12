@@ -1,0 +1,41 @@
+{
+  "review_base_git_head": "b530596874688d9134b9141a9e4e4276b2256bc5",
+  "rtl_source_commit": "66e9d4081363e24364b8e469d1fd8a8881ca0415",
+  "uvm_build_inputs": {
+    "dv/assertions/apb_uart_assertions.sv": "6a00ef6bf2946dec1b099b4b987076e8936c2d3b07f1c246d4d4b85cf1498b14",
+    "dv/uvm/apb_uart_uvm_pkg.sv": "01d55342c8450150a933690f1440ffd269ca356bfdab89bb0ac6b30410a733f2",
+    "dv/uvm/include/apb_agent.svh": "75971701e453ab875c542742478f9adaec1ff6e700472d4a4629088dfb39d707",
+    "dv/uvm/include/uart_agents.svh": "d06070daf7b45fa4eff17852263b0301a3069ff6d3aae28ae7c3022de240bea4",
+    "dv/uvm/include/uart_scoreboard.svh": "42d06368c288fb2ffe701119ce6f9baccbc66c0d179f9a73519af891d0088afc",
+    "dv/uvm/include/uart_tests.svh": "36f486f87a4746397e9f0a3db5521c25707470306f951da736ecd4dcd8ce8c8d",
+    "dv/uvm/include/uart_types.svh": "0004ff86b5d270dd0bd2debac8108dd34c2e0c8807f9499dfde5a3419916e4ad",
+    "dv/uvm/tb_top.sv": "457ab2d9c7c90d7c45990840388300c11995def13c3abd7e54de9f8665fd15ad",
+    "dv/uvm/uart_apb_if.sv": "582ddc7272d0997e115baee736a2f56c4649376d382d6e5fdd8313d749c4bea0",
+    "rtl/modified/pulp_apb_uart_sv/LICENSE": "b41106a9d0de1cf6ab4ea56bedf677503085c0570248f37fe2cdf657a5e72601",
+    "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+    "rtl/modified/pulp_apb_uart_sv/files.f": "c2803d70577e6f6d754e8a1db2bbae87520fd29eeac474548a921c9dc0b71eae",
+    "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+    "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+    "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12",
+    "tools/run_dv.py": "cf5d8fd4ce1073ecf7933ef34934f47cc9adbf6cba6caf5b945353a57dbf158f"
+  },
+  "coverage_merge_command": [
+    "/home/hoaff/.local/bin/ic-eda",
+    "verilator_coverage",
+    "--write",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/review_20261112/coverage_merged.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_errors_test_seed17_174214_065045/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_concurrency_test_seed17_174215_966532/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_reset_test_seed17_174222_703612/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_random_test_seed7/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_random_test_seed137/coverage.dat"
+  ],
+  "review_tool_sources": {
+    "tools/report_dv.py": "71f6bc61bc8f3582b0790cb18b60c961baff93301e377888b14b5cfa5385d5f3",
+    "tools/tests/test_report_dv.py": "f5565db330d439a697ab1c187f72f4ea966c41741bb8108cb17f405063268538",
+    ".gitattributes": "977b798e23a55af31abe16fb220dcd67c0d8bc2c64f6413c8b6a57e24c5f20cd"
+  },
+  "tool": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+  "solver": "Z3 version 4.15.5 - 64 bit",
+  "uvm_commit": "656f20d087370a7c742e00188d20bbf30fa95339"
+}
