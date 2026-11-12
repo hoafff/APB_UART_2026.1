@@ -1,0 +1,12 @@
+SYS_COV|debounce_exact_bounce_hold_release|1
+SYS_COV|manual_capture_hex|1
+SYS_COV|reset_sync_and_reserved_switches|1
+SYS_COV|mode_0_rx_echo_hold_errors|1
+SYS_COV|mode_1_rx_echo_hold_errors|1
+SYS_COV|mode_2_rx_echo_hold_errors|1
+SYS_COV|echo_burst32|1
+SYS_TEST_COMPLETED|checks=3336567|tx=43|press=2
+- /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/dv/system/tb_system.sv:134: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 67ms; walltime 3.039 s; speed 21.955 ms/s
+- Verilator: cpu 3.034 s on 1 threads; allocated 8 MB

@@ -1,0 +1,46 @@
+{
+  "merge_command": [
+    "/home/hoaff/.local/bin/ic-eda",
+    "verilator_coverage",
+    "--write",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/coverage_merged.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_apb_test_seed17_164940_552993/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_tx_modes_test_seed17_164943_522607/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_rx_modes_test_seed17_164946_842337/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_tolerance_test_seed17_164949_559724/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_errors_test_seed17_165009_348698/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_fifo_test_seed17_165011_167274/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_irq_test_seed17_165013_737085/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_reset_test_seed17_165016_453621/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_snapshot_test_seed17_165018_116596/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_baud_test_seed17_165019_885207/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_false_start_test_seed17_165709_746204/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_concurrency_test_seed17_165711_113960/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_random_test_seed17_165717_941043/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_random_test_seed29_165737_284901/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/target/runs/target_random_test_seed101_165752_485712/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/system/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/controller/coverage.dat",
+    "/home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/build/onehot/coverage.dat"
+  ],
+  "rtl_points_by_kind": {
+    "toggle": {
+      "hit": 1915,
+      "total": 3030
+    },
+    "line": {
+      "hit": 130,
+      "total": 135
+    },
+    "branch": {
+      "hit": 149,
+      "total": 156
+    },
+    "expr": {
+      "hit": 279,
+      "total": 309
+    }
+  },
+  "note": "Instrumentation points, normalized across hierarchy/paths; not a claim of full line/toggle or functional sign-off",
+  "unhit_count": 1157
+}

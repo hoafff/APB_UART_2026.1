@@ -1,0 +1,11 @@
+SYS_COV|fault_init_stub|1
+SYS_COV|hold_irq_poll_spacing|1
+SYS_COV|manual_overflow_preserves_byte|1
+SYS_COV|manual_consume_and_new|1
+SYS_COV|echo_backpressure_fairness|1
+SYS_COV|fault_runtime_preserves_pending|1
+SYS_TEST_COMPLETED|checks=29
+- /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/dv/system/tb_controller.sv:82: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 14us; walltime 0.003 s; speed 4.317 ms/s
+- Verilator: cpu 0.003 s on 1 threads; allocated 5 MB

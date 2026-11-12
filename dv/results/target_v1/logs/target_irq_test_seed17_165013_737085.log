@@ -1,0 +1,156 @@
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+UVM_INFO @ 0: reporter [RNTST] Running test target_irq_test...
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+TEST_COMPLETED|target_irq_test|checks=233|apb=817
+SB_RESULT|checks=818|tx=1|rx=25|dropped=16
+COV|apb.000.0.0.0|25
+COV|apb.000.1.0.0|1
+COV|apb.000.1.1.0|69
+COV|apb.004.1.0.0|254
+COV|apb.004.1.1.0|69
+COV|apb.008.0.0.0|123
+COV|apb.008.1.0.0|137
+COV|apb.00c.1.0.0|69
+COV|apb.00c.1.1.0|69
+COV|apb.014.0.0.0|1
+COV|irq.mask.0|1
+COV|irq.mask.1|1
+COV|irq.mask.2|1
+COV|irq.mask.3|1
+COV|irq.mask.4|1
+COV|irq.mask.5|1
+COV|irq.mask.6|1
+COV|irq.mask.7|1
+COV|irq.no_stuck_c0|1
+COV|irq.priority_rls_rda_thre|1
+COV|irq.source_mask.0.0|1
+COV|irq.source_mask.0.1|1
+COV|irq.source_mask.0.2|1
+COV|irq.source_mask.0.3|1
+COV|irq.source_mask.0.4|1
+COV|irq.source_mask.0.5|1
+COV|irq.source_mask.0.6|1
+COV|irq.source_mask.0.7|1
+COV|irq.source_mask.1.0|1
+COV|irq.source_mask.1.1|1
+COV|irq.source_mask.1.2|1
+COV|irq.source_mask.1.3|1
+COV|irq.source_mask.1.4|1
+COV|irq.source_mask.1.5|1
+COV|irq.source_mask.1.6|1
+COV|irq.source_mask.1.7|1
+COV|irq.source_mask.2.0|1
+COV|irq.source_mask.2.1|1
+COV|irq.source_mask.2.2|1
+COV|irq.source_mask.2.3|1
+COV|irq.source_mask.2.4|1
+COV|irq.source_mask.2.5|1
+COV|irq.source_mask.2.6|1
+COV|irq.source_mask.2.7|1
+COV|irq.source_mask.3.0|1
+COV|irq.source_mask.3.1|1
+COV|irq.source_mask.3.2|1
+COV|irq.source_mask.3.3|1
+COV|irq.source_mask.3.4|1
+COV|irq.source_mask.3.5|1
+COV|irq.source_mask.3.6|1
+COV|irq.source_mask.3.7|1
+COV|irq.source_mask.4.0|1
+COV|irq.source_mask.4.1|1
+COV|irq.source_mask.4.2|1
+COV|irq.source_mask.4.3|1
+COV|irq.source_mask.4.4|1
+COV|irq.source_mask.4.5|1
+COV|irq.source_mask.4.6|1
+COV|irq.source_mask.4.7|1
+COV|irq.source_mask.5.0|1
+COV|irq.source_mask.5.1|1
+COV|irq.source_mask.5.2|1
+COV|irq.source_mask.5.3|1
+COV|irq.source_mask.5.4|1
+COV|irq.source_mask.5.5|1
+COV|irq.source_mask.5.6|1
+COV|irq.source_mask.5.7|1
+COV|irq.source_mask.6.0|1
+COV|irq.source_mask.6.1|1
+COV|irq.source_mask.6.2|1
+COV|irq.source_mask.6.3|1
+COV|irq.source_mask.6.4|1
+COV|irq.source_mask.6.5|1
+COV|irq.source_mask.6.6|1
+COV|irq.source_mask.6.7|1
+COV|irq.source_mask.7.0|1
+COV|irq.source_mask.7.1|1
+COV|irq.source_mask.7.2|1
+COV|irq.source_mask.7.3|1
+COV|irq.source_mask.7.4|1
+COV|irq.source_mask.7.5|1
+COV|irq.source_mask.7.6|1
+COV|irq.source_mask.7.7|1
+COV|irq.thre_ack|1
+COV|irq.threshold.1|1
+COV|irq.threshold.14|1
+COV|irq.threshold.4|1
+COV|irq.threshold.8|1
+COV|mode.rx.8.0.1|31
+COV|mode.rx.8.2.1|65
+COV|mode.tx.8.2.1|1
+COV|reset.observed|69
+COV|rx.drop_new|16
+COV|rx.error.0|79
+COV|rx.error.1|17
+COV|rx.occupancy.0|18
+COV|rx.occupancy.1|70
+COV|rx.occupancy.10|1
+COV|rx.occupancy.11|1
+COV|rx.occupancy.12|1
+COV|rx.occupancy.13|2
+COV|rx.occupancy.14|2
+COV|rx.occupancy.15|1
+COV|rx.occupancy.2|4
+COV|rx.occupancy.3|4
+COV|rx.occupancy.4|4
+COV|rx.occupancy.5|3
+COV|rx.occupancy.6|2
+COV|rx.occupancy.7|3
+COV|rx.occupancy.8|3
+COV|rx.occupancy.9|2
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_report_server.svh(1009) @ 597020000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    2
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[NO_DPI_TSTNAME]     1
+[NO_DPI_USED]     1
+[NO_VISIT_CHECK]     1
+[RNTST]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+- /home/hoaff/Documents/Codex/2026-11-12/https-github-com-hoafff-apb-uart/work/APB_UART_2026.1/.tools/uvm/src/base/uvm_root.svh:633: Verilog $finish
+ASSERTIONS_ACTIVE|apb=817|reset=422
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 597us; walltime 2.109 s; speed 283.082 us/s
+- Verilator: cpu 2.104 s on 1 threads; allocated 77 MB

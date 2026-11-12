@@ -89,7 +89,7 @@ def main():
     md=['# Kết quả kiểm chứng TARGET-v1.0','',
         '**15/15 run UVM chức năng PASS; 3/3 simulation bổ sung PASS; 2/2 negative controls DETECTED.**',
         f"Functional coverage: **{summary['functional_bins_hit']}/{summary['functional_bins_required']} bin đã công khai** trong coverage_model.json. Đây là coverage của tập nghĩa vụ mô phỏng đã định nghĩa, không phải mọi chuỗi đầu vào hoặc bằng chứng formal/hardware.",
-        '',f"Code revision của các run UVM: `{normal[0]['git_head']}`; SHA-256 nguồn/công cụ/solver nằm trong [source_manifest](../../dv/results/target_v1/source_manifest.json). Nếu Git dirty do tài liệu, từng run vẫn bắt buộc hash RTL/TB/runner đúng executable.",
+        '',f"Code revision của các run UVM: `{normal[0]['git_head']}`; SHA-256 nguồn và phiên bản simulator/UVM/solver nằm trong [source_manifest](../../dv/results/target_v1/source_manifest.json). SHA-256 executable nằm trong từng run manifest. Nếu Git dirty do tài liệu, từng run vẫn bắt buộc hash RTL/TB/runner đúng executable.",
         '', '## UVM runs','', '| Test | Seed | Kết quả | SB checks | TX / RX | Thời gian wall-clock |', '|---|---:|---|---:|---|---:|']
     for r in normal: md.append(f"| `{r['test']}` | {r['seed']} | PASS | {r['scoreboard']['checks']} | {r['scoreboard']['tx']} / {r['scoreboard']['rx']} | {r['seconds']:.2f} s |")
     md += ['', '## Bổ sung và negative controls','',

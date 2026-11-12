@@ -1,0 +1,6944 @@
+[
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "LEDG[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX0[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX0[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX1[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX1[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX1[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX1[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX1[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX1[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX5[0]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX5[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "12",
+    "kind": "toggle",
+    "point": "HEX5[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_meta[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "15",
+    "kind": "toggle",
+    "point": "sw_sync[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "debounce_q[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[0]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[0]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "paddr[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "pwdata[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "prdata[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "pready:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "pslverr:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "pslverr:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "fault:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "fault:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_115_apb_uart_bringup.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "SW[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "10",
+    "kind": "toggle",
+    "point": "rx_byte_o[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "10",
+    "kind": "toggle",
+    "point": "rx_byte_o[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "10",
+    "kind": "toggle",
+    "point": "rx_byte_o[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "10",
+    "kind": "toggle",
+    "point": "rx_byte_o[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "10",
+    "kind": "toggle",
+    "point": "rx_byte_o[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "10",
+    "kind": "toggle",
+    "point": "rx_byte_o[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "100",
+    "kind": "branch",
+    "point": "else"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "100",
+    "kind": "expr",
+    "point": "(consume_manual==1) => 1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "100",
+    "kind": "expr",
+    "point": "(manual_valid==1 && consume_manual==0) => 0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "11",
+    "kind": "toggle",
+    "point": "status_o[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "init_wait[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "init_wait[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "init_wait[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "init_wait[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[0]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[0]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "init_lcr[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "lsr_q[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "manual_data[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "echo_data[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "echo_data[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "echo_data[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "echo_data[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "echo_data[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "echo_data[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "thr_data[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "poll_q[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "apb_fault:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "apb_fault:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "21",
+    "kind": "expr",
+    "point": "(pready==0) => 0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "22",
+    "kind": "expr",
+    "point": "(access==1 && pslverr==1) => 1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "23",
+    "kind": "expr",
+    "point": "(pslverr==1) => 0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "3",
+    "kind": "toggle",
+    "point": "sw_i[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[0]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[0]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[0]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[0]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[1]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[1]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[5]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[5]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[6]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[6]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[7]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[7]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "4",
+    "kind": "toggle",
+    "point": "paddr[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "5",
+    "kind": "toggle",
+    "point": "pwdata[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "51",
+    "kind": "branch",
+    "point": "if"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[10]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[10]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[11]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[11]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[12]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[12]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[13]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[13]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[14]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[14]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[15]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[15]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[16]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[16]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[17]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[17]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[18]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[18]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[19]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[19]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[20]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[20]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[21]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[21]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[22]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[22]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[23]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[23]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[24]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[24]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[25]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[25]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[26]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[26]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[27]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[27]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[28]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[28]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[29]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[29]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[2]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[2]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[30]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[30]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[31]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[31]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[3]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[3]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[4]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[4]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[8]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[8]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[9]:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "7",
+    "kind": "toggle",
+    "point": "prdata[9]:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "73",
+    "kind": "line",
+    "point": "case"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "73",
+    "kind": "line",
+    "point": "case"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "8",
+    "kind": "toggle",
+    "point": "pready:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "8",
+    "kind": "toggle",
+    "point": "pslverr:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "8",
+    "kind": "toggle",
+    "point": "pslverr:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "84",
+    "kind": "expr",
+    "point": "(sw_i[17]==1 && echo_valid==1) => 0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "9",
+    "kind": "toggle",
+    "point": "fault_o:0->1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "9",
+    "kind": "toggle",
+    "point": "fault_o:1->0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "90",
+    "kind": "expr",
+    "point": "(lsr_q[5]==0) => 0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "91",
+    "kind": "expr",
+    "point": "(echo_valid==1 && last_echo==0) => 1"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "96",
+    "kind": "line",
+    "point": "case"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "99",
+    "kind": "expr",
+    "point": "((state != FAULT)==0) => 0"
+  },
+  {
+    "file": "rtl/fpga/de2_uart_controller.sv",
+    "line": "99",
+    "kind": "expr",
+    "point": "(apb_fault==1) => 0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "113",
+    "kind": "line",
+    "point": "case"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "119",
+    "kind": "expr",
+    "point": "((tx_count != 32'sh0)==0 && (tx_count == 32'sh0)==0) => 0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[11]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[11]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[12]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[12]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[13]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[13]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[14]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[14]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[15]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[15]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[16]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[16]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[17]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[17]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[18]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[18]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[19]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[19]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[20]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[20]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[21]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[21]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[22]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[22]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[23]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[23]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[24]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[24]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[25]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[25]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[26]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[26]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[27]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[27]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[28]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[28]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[29]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[29]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[30]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[30]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[31]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[31]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "18",
+    "kind": "toggle",
+    "point": "PRDATA[9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "19",
+    "kind": "toggle",
+    "point": "PREADY:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "lcr_q[5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "lcr_q[5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "lcr_q[6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "lcr_q[6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[4]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "ier_q[7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "capacity[1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "capacity[1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "capacity[2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "capacity[2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "capacity[3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "capacity[3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "threshold[4]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "26",
+    "kind": "toggle",
+    "point": "threshold[4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "30",
+    "kind": "toggle",
+    "point": "tx_unused_error:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "30",
+    "kind": "toggle",
+    "point": "tx_unused_error:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "31",
+    "kind": "toggle",
+    "point": "iir[3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "31",
+    "kind": "toggle",
+    "point": "iir[3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "31",
+    "kind": "toggle",
+    "point": "iir[4]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "31",
+    "kind": "toggle",
+    "point": "iir[4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "31",
+    "kind": "toggle",
+    "point": "iir[5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv",
+    "line": "31",
+    "kind": "toggle",
+    "point": "iir[5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "16",
+    "kind": "toggle",
+    "point": "capacity_i[3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "ack_error_i:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "17",
+    "kind": "toggle",
+    "point": "ack_error_i:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "any_error_o:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "any_error_o:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[1][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[1][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[10][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[11][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[12][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[13][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[14][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[15][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[1][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[1][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[1][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[1][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[2][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[3][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[4][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[5][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[6][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[7][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][3]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[8][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][4]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "23",
+    "kind": "toggle",
+    "point": "mem[9][9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "37",
+    "kind": "branch",
+    "point": "else"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "37",
+    "kind": "branch",
+    "point": "if"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "38",
+    "kind": "line",
+    "point": "block"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "branch",
+    "point": "if"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "branch",
+    "point": "else"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h1)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h2)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h3)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h4)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h5)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h6)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h7)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'(((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "(any_error_o==0 && $unsigned(1'(((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h1)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h2)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h3)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h4)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h5)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h6)))==0 && $unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h7)))==0) => 0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "(any_error_o==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h3)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h4)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h5)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h6)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h7)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h8)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'h9)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "39",
+    "kind": "expr",
+    "point": "($unsigned(1'((((mem[$unsigned(4'((rd_q + k)))]) >> 32'sh8)) >> (32'ha)))==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "49",
+    "kind": "branch",
+    "point": "if"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv",
+    "line": "49",
+    "kind": "expr",
+    "point": "(ack_error_i==1 && (count_o != 32'sh0)==1) => 1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[11]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[11]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[12]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[12]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[13]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[13]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[14]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[14]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[15]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[15]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "divisor_q[9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[10]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[11]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[11]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[12]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[12]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[13]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[13]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[14]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[14]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[15]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[15]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[5]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[5]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[6]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[6]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[7]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[7]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[8]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[8]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[9]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_rx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "timer_q[9]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "frame_q[10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "frame_q[11]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "frame_d[0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "frame_d[0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "frame_d[10]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "20",
+    "kind": "toggle",
+    "point": "frame_d[11]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[0]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[0]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[1]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[1]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[2]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[2]:1->0"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[3]:0->1"
+  },
+  {
+    "file": "rtl/modified/pulp_apb_uart_sv/uart_tx.sv",
+    "line": "22",
+    "kind": "toggle",
+    "point": "period_q[3]:1->0"
+  }
+]

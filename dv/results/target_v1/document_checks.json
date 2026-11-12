@@ -1,0 +1,19 @@
+{
+  "spec": {
+    "passed_checks": 10,
+    "requirements": 80,
+    "pin_bits": 65,
+    "legacy_ids": 36,
+    "rx_ideal_cases": 960,
+    "fifo_rule_cases": 76,
+    "irq_rule_cases": 2432
+  },
+  "dv": {
+    "result": "PASS_DOCUMENT_CHECK",
+    "requirements": 80,
+    "testcase_definitions": 19,
+    "mandatory_functional_bins": 810,
+    "actual_top_ports_match_pin_map": 65,
+    "limitations": "Does not execute RTL or close requirements"
+  }
+}

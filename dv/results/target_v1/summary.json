@@ -1,0 +1,13 @@
+{
+  "normal_uvm_runs_pass": 15,
+  "negative_controls_detected": 2,
+  "supplemental_runs_pass": 3,
+  "functional_bins_hit": 810,
+  "functional_bins_required": 810,
+  "requirements_mapped": 80,
+  "physical_requirements_pending": 5,
+  "quartus_run": false,
+  "hardware_run": false,
+  "questa_run": false,
+  "native_unhit_points": 1157
+}

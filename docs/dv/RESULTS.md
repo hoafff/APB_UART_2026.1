@@ -1,3 +1,83 @@
-# Kết quả TARGET-v1.0
+# Kết quả kiểm chứng TARGET-v1.0
 
-Đang biên dịch/chạy regression. Chưa phát hành verdict cuối cùng. Xem build/target trên máy thực hiện để theo dõi raw logs.
+**15/15 run UVM chức năng PASS; 3/3 simulation bổ sung PASS; 2/2 negative controls DETECTED.**
+Functional coverage: **810/810 bin đã công khai** trong coverage_model.json. Đây là coverage của tập nghĩa vụ mô phỏng đã định nghĩa, không phải mọi chuỗi đầu vào hoặc bằng chứng formal/hardware.
+
+Code revision của các run UVM: `66e9d4081363e24364b8e469d1fd8a8881ca0415`; SHA-256 nguồn và phiên bản simulator/UVM/solver nằm trong [source_manifest](../../dv/results/target_v1/source_manifest.json). SHA-256 executable nằm trong từng run manifest. Nếu Git dirty do tài liệu, từng run vẫn bắt buộc hash RTL/TB/runner đúng executable.
+
+## UVM runs
+
+| Test | Seed | Kết quả | SB checks | TX / RX | Thời gian wall-clock |
+|---|---:|---|---:|---|---:|
+| `target_apb_test` | 17 | PASS | 8219 | 0 / 0 | 2.92 s |
+| `target_tx_modes_test` | 17 | PASS | 432 | 96 / 0 | 3.27 s |
+| `target_rx_modes_test` | 17 | PASS | 432 | 0 / 96 | 2.67 s |
+| `target_tolerance_test` | 17 | PASS | 3870 | 0 / 780 | 19.74 s |
+| `target_errors_test` | 17 | PASS | 105 | 0 / 20 | 1.77 s |
+| `target_fifo_test` | 17 | PASS | 109 | 1 / 50 | 2.52 s |
+| `target_irq_test` | 17 | PASS | 818 | 1 / 25 | 2.67 s |
+| `target_reset_test` | 17 | PASS | 93 | 0 / 1 | 1.62 s |
+| `target_snapshot_test` | 17 | PASS | 88 | 7 / 4 | 1.72 s |
+| `target_baud_test` | 17 | PASS | 38 | 4 / 0 | 409.80 s |
+| `target_false_start_test` | 17 | PASS | 12 | 0 / 2 | 1.32 s |
+| `target_concurrency_test` | 17 | PASS | 128 | 20 / 35 | 6.77 s |
+| `target_random_test` | 17 | PASS | 1187 | 64 / 64 | 19.29 s |
+| `target_random_test` | 29 | PASS | 1193 | 64 / 64 | 15.14 s |
+| `target_random_test` | 101 | PASS | 1191 | 64 / 64 | 11.98 s |
+
+## Bổ sung và negative controls
+
+- `tb_system`: profile 50 MHz/D27, default debounce 500000 cycles, reset sync, N/O/E, send/RX/echo/hold/errors, finite burst 32; chỉ simulation.
+- `tb_controller`: injected slave faults (init/runtime), manual overflow, same-edge consume/new, echo reservation/fairness và poll interval khi hold IRQ.
+- `tb_tx_onehot`: 192 N/parity/stop/one-hot cases; kiểm cả bit dữ liệu nằm ngoài WLS.
+- Negative TX-data và ACCESS thiếu SETUP đều bị checker đúng phát hiện. Các run này không được cộng vào PASS/coverage target.
+
+## Functional coverage theo nhóm
+
+| Nhóm | Hit / bắt buộc |
+|---|---|
+| uart_modes | 48 / 48 |
+| tx_onehot | 192 / 192 |
+| apb_valid | 18 / 18 |
+| apb_sequences | 3 / 3 |
+| rx_occupancy | 17 / 17 |
+| fifo | 8 / 8 |
+| errors | 10 / 10 |
+| irq_sources_masks | 64 / 64 |
+| irq_thresholds | 4 / 4 |
+| irq_misc | 11 / 11 |
+| reset | 9 / 9 |
+| config | 6 / 6 |
+| baud | 5 / 5 |
+| tolerance | 390 / 390 |
+| rx_start_noise | 3 / 3 |
+| concurrency | 7 / 7 |
+| random | 2 / 2 |
+| system | 7 / 7 |
+| controller | 6 / 6 |
+
+## Native RTL coverage
+
+| Loại điểm instrument | Hit / tổng |
+|---|---|
+| branch | 149 / 156 |
+| expr | 279 / 309 |
+| line | 130 / 135 |
+| toggle | 1915 / 3030 |
+
+Còn **1157 điểm instrument chưa hit**; danh sách lưu trong native_unhit_points.json để review. Chưa tuyên bố code/toggle coverage closure. Không tự loại unreachable bins để nâng tỷ lệ.
+
+## Bằng chứng và giới hạn
+
+- [Evidence index](../../dv/results/target_v1/summary.json), [logs](../../dv/results/target_v1/logs), [functional ledger](../../dv/results/target_v1/functional_coverage.json), [native merge](../../dv/results/target_v1/coverage_merged.dat.gz), [waveforms](../../dv/results/target_v1/waveforms.zip).
+- 80 requirement có testcase/observer mapping; các row MAPPED_SIM_TESTS_PASS xác nhận ca liên kết đã chạy đạt, không thay một review sign-off toàn bộ không gian trạng thái. 5 requirement FPGA vẫn HW_PENDING.
+- Chưa chạy Quartus/fitter/STA, chưa có bitstream hay thử DE2-115 + CP2102 thật. Chưa chạy Questa, formal hoặc X-propagation/analog metastability.
+- Thư viện/công cụ có sẵn được tái sử dụng; đã tải UVM pin vào .tools/uvm. Các failure ban đầu (syntax/task direction, hết disk, runtime thiếu PATH Z3) được giữ trong build history và issue ledger.
+
+## Chạy lại
+
+```bash
+bash dv/sim/run_smoke.sh
+```
+
+Hoặc chạy từng lệnh trong dv/README.md. Exporter sẽ từ chối source mismatch, run FAIL, thiếu ba random seeds, negative control không phát hiện hoặc thiếu mandatory functional bin.
