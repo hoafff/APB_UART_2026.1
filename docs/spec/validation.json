@@ -1,0 +1,99 @@
+{
+  "artifact": "01_System_Specification.md",
+  "sha256": "2c5bdc72887ce96186d07647b941277d7d411c3b742d056476ae1a3329d93ac1",
+  "results": [
+    {
+      "check": "Requirement index and cross-references",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "80 unique target IDs; section/group references resolve; all target execution statuses NOT_RUN"
+    },
+    {
+      "check": "Legacy traceability",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "All 36 legacy requirement IDs have explicit target mappings without overwriting the old SPEC"
+    },
+    {
+      "check": "Board pin map",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "65/65 names, locations and I/O standards match CSV; 22 inputs, 43 outputs; no duplicate pin; physical voltage not checked"
+    },
+    {
+      "check": "Timing arithmetic",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": {
+        "baud_rows": [
+          {
+            "target": 9600,
+            "divisor": 326,
+            "actual_calculated": 9585.889570552148,
+            "error_percent": -0.1469836400817881
+          },
+          {
+            "target": 19200,
+            "divisor": 163,
+            "actual_calculated": 19171.779141104296,
+            "error_percent": -0.1469836400817881
+          },
+          {
+            "target": 38400,
+            "divisor": 81,
+            "actual_calculated": 38580.246913580246,
+            "error_percent": 0.469393004115215
+          },
+          {
+            "target": 57600,
+            "divisor": 54,
+            "actual_calculated": 57870.37037037037,
+            "error_percent": 0.4693930041152372
+          },
+          {
+            "target": 115200,
+            "divisor": 27,
+            "actual_calculated": 115740.74074074074,
+            "error_percent": 0.4693930041152372
+          }
+        ],
+        "default_bit_ns": 8640,
+        "default_8n1_frame_ns": 86400,
+        "debounce_ns": 10000000,
+        "poll_ns": 100000,
+        "maximum_12bit_frame_ns": 251654400
+      }
+    },
+    {
+      "check": "RX sample-window arithmetic",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "960 ideal cases: majority lies inside its intended peer bit; clean-stop decision plus one clock precedes next peer start at ±2%; not an RTL/tolerance pass"
+    },
+    {
+      "check": "FIFO transition rules",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "76 occupancy/push/pop combinations respect bounds and specified full/empty behavior; formula check only"
+    },
+    {
+      "check": "IIR truth-table consistency",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "2432 modeled combinations; no-source returns bit0=1; RDA independent of TX-empty; not implementation verification"
+    },
+    {
+      "check": "HEX decoder table",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "All 16 patterns agree with {g,f,e,d,c,b,a} active-low convention"
+    },
+    {
+      "check": "Markdown structure",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "All 17 sections, 8 acceptance groups, balanced code fences and consistent table column counts present"
+    },
+    {
+      "check": "Vendor baseline preservation",
+      "result": "PASS_DOCUMENT_CHECK",
+      "evidence": "All pinned vendor source hashes unchanged"
+    }
+  ],
+  "limitations": [
+    "Document and ideal contract arithmetic checks only",
+    "This checker does not simulate RTL",
+    "No Quartus/STA/physical FPGA checks"
+  ]
+}

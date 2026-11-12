@@ -1,36 +1,23 @@
-# APB_UART_2026.1 — Specifications and Verification
+# APB_UART_2026.1 — APB UART trên DE2-115
 
-**DUT:** PULP APB UART SV (TI 16550-style subset), hệ thống FPGA DE2-115 + CP2102 theo hướng dẫn giảng viên.  
-**Yêu cầu 1:** SPEC **v0.3 đã rà soát hai lượt và sẵn sàng làm cơ sở lập DV Plan**, nhưng **chưa sign-off / chưa mô phỏng**.  
-**Yêu cầu 2:** Đã thêm **DV Plan v0.1** và mã nguồn UVM ban đầu (APB agent, UART BFMs, scoreboard, coverage, smoke/random/known-gap tests). **Chưa compile/chạy simulator; không có testcase PASS.**  
-**Yêu cầu 3:** FPGA bring-up chưa triển khai.
+Dự án kiểm thử UART qua APB, hướng đến FPGA Terasic DE2-115 và CP2102.
 
-## Bắt đầu ở đây
+- **Yêu cầu 1:** [SPEC TARGET-v1.0](docs/01_System_Specification.md) đã hoàn thiện: 80 yêu cầu, 8 nhóm nghiệm thu và 65 chân đã đối chiếu CSV.
+- **Yêu cầu 2:** DV Plan và UVM đang được chuyển từ baseline sang TARGET-v1.0; chưa có regression của RTL mục tiêu.
+- **Yêu cầu 3:** chưa triển khai Quartus/fitter/STA hoặc thử board.
 
-1. [docs/01_System_Specification.md](docs/01_System_Specification.md) — đặc tả hệ thống và DUT, REQ IDs, RTL behavior và [OPEN] items.
-2. [docs/00_RTL_Guide_Discrepancies.md](docs/00_RTL_Guide_Discrepancies.md) — 15 điểm sai khác/rủi ro/bổ sung quan trọng giữa hướng dẫn và RTL.
-3. [docs/02_DV_Readiness_Review.md](docs/02_DV_Readiness_Review.md) — **review SPEC, bảng REQ→TC, UVM architecture, P0/P1/P2, coverage và công việc OPEN**.
-4. [docs/03_DV_Plan.md](docs/03_DV_Plan.md) — **Yêu cầu 2: DV Plan, testcase matrix, expected result, coverage goals, test priority và sign-off**.
-5. [dv/README.md](dv/README.md) — **môi trường UVM đã viết mã nguồn**, hướng dẫn chạy với Questa/ModelSim, trạng thái NOT RUN.
-6. [reference/Huongdan_UART.md](reference/Huongdan_UART.md) — tài liệu giảng viên, giữ nguyên để đối chiếu.
+## Tài liệu và nguồn
 
-## RTL baseline (không chỉnh sửa)
+1. [SPEC chính thức](docs/01_System_Specification.md).
+2. [Requirement index](docs/spec/requirements.json), [pin map](docs/spec/pins.json), [truy vết ID cũ](docs/spec/legacy_mapping.json).
+3. [DV Plan hiện tại](docs/03_DV_Plan.md) và [UVM](dv/README.md): bản baseline, đang cập nhật.
+4. [Hướng dẫn giảng viên](reference/Huongdan_UART.md), [CSV DE2-115](reference/DE2_115_pin_assignments.csv).
+5. [SPEC v0.3 lịch sử](docs/history/01_System_Specification_v0.3.md), [báo cáo kiểm tra baseline](docs/history/APB_UART_2026.1_REVIEW.md).
 
-Nguồn: [pulp-platform/apb_uart_sv](https://github.com/pulp-platform/apb_uart_sv), branch pulpinov1, commit:
+## Quyết định thiết kế
 
-    dfad6e04d19cc9481d3cd2750b45b970dc61271b
+Dùng PULP APB UART làm nền và sửa RTL để đáp ứng SPEC mục tiêu: địa chỉ word-aligned, baud 16×, none/odd/even parity, FIFO và PE/FE/OE/BI, ngắt có ưu tiên và clear đúng. Profile board: 50 MHz, divisor 27, terminal 115200.
 
-Đã lưu nguyên 5 file RTL, [src_files.yml](rtl/vendor/pulp_apb_uart_sv/src_files.yml) và [LICENSE](rtl/vendor/pulp_apb_uart_sv/LICENSE) tại [rtl/vendor/pulp_apb_uart_sv/](rtl/vendor/pulp_apb_uart_sv/).
+Giữ nguyên baseline trong `rtl/vendor/pulp_apb_uart_sv/`, upstream commit `dfad6e04d19cc9481d3cd2750b45b970dc61271b`. Bản sửa dùng thư mục/filelist riêng. Không compile hai bản có cùng tên module.
 
-**Chỉ đưa 5 RTL được liệt kê trong src_files.yml vào compilation list.** Không compile đồng thời apb_uart.sv và apb_uart_sv.sv (trùng định nghĩa). Top-Level de2_115_apb_uart_bringup.sv không nằm trong upstream, phải viết riêng cho Yêu cầu 3.
-
-## Quy tắc của dự án
-
-- Bám phạm vi và kiến trúc do giảng viên hướng dẫn.
-- Mọi địa chỉ, timing, hành vi DUT phải đối chiếu RTL ở commit đã khóa; khác biệt được ghi cụ thể trong issue register.
-- UVM test phải phân biệt **RTL-CONTRACT**, **GUIDE-GAP** và **INVESTIGATION**; không báo PASS cho tính năng chưa được DUT hỗ trợ.
-- Không thay đổi RTL gốc chỉ để test PASS. Nếu sửa bug thì dùng branch/revision riêng, không ghi đè baseline.
-
-## Bước tiếp theo — chạy và hoàn thiện Yêu cầu 2
-
-Các thành phần testbench UVM đầu tiên đã được đưa vào [dv/uvm](dv/uvm). Bước tiếp theo: chọn simulator UVM, biên dịch với [run_questa.sh](dv/sim/run_questa.sh), chạy P0 (APB/IIR, TX/RX 8N1, random register, known gaps), **đo baud bằng waveform**, sửa lỗi compilation nếu có, bổ sung FIFO/interrupt/reset tests, thu coverage. Chưa có log mô phỏng nên không khẳng định PASS. Lưu waveforms, coverage và bug log; lúc đó mới có cơ sở chốt SPEC v1.0.
+Kết quả baseline không đóng yêu cầu TARGET-v1.0. Mọi kết quả phải kèm revision, tool, seed, log và phạm vi; kiểm tra tài liệu không tương đương simulation hay FPGA sign-off.

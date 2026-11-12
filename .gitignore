@@ -8,3 +8,11 @@ transcript
 modelsim.ini
 __pycache__/
 *.pyc
+
+# TARGET verification artifacts
+build/
+.tools/
+__pycache__/
+*.pyc
+core
+core.*

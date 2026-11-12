@@ -1,0 +1,748 @@
+[
+  {
+    "id": "TGT-SRC-01",
+    "sections": "1,3",
+    "requirement": "Giữ nguyên baseline S03; filelist bản sửa không compile trùng module.",
+    "acceptance": [
+      "DOC"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SRC-02",
+    "sections": "1,15",
+    "requirement": "Ghi đúng version DUT/TB/tool và không dùng baseline PASS để đóng yêu cầu target.",
+    "acceptance": [
+      "DOC"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-01",
+    "sections": "5.1",
+    "requirement": "Mọi transfer có SETUP trước ACCESS; control/data giữ ổn định đến completion.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-02",
+    "sections": "5.1",
+    "requirement": "Chỉ side effect một lần tại completion; không side effect ở idle/setup.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-03",
+    "sections": "4.1,5",
+    "requirement": "PRDATA zero-extend byte; ngoài valid read hoặc khi reset phải bằng 0.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-04",
+    "sections": "5.2,6.1",
+    "requirement": "Decode đúng word-aligned/full-address; không alias address cao hoặc misaligned.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-05",
+    "sections": "5",
+    "requirement": "PREADY=1 cố định; master kiểm PSLVERR tại completion.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-06",
+    "sections": "5.2",
+    "requirement": "Invalid address/quyền truy cập trả PSLVERR=1, PRDATA=0, không thay state.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-07",
+    "sections": "5.2,9.1",
+    "requirement": "RBR empty trả 0/no-error; không pop phantom hoặc lấy byte vừa push cùng cạnh.",
+    "acceptance": [
+      "AT01",
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-APB-08",
+    "sections": "5.2,9.1",
+    "requirement": "THR full không pop hoặc D=0 bị từ chối, không enqueue hay đặt RX OE.",
+    "acceptance": [
+      "AT01",
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-01",
+    "sections": "6.1,6.2",
+    "requirement": "DLAB chọn đúng DLL/DLM hoặc RBR/THR/IER; không ảnh hưởng IIR/FCR/LSR.",
+    "acceptance": [
+      "AT01"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-02",
+    "sections": "6.2",
+    "requirement": "LCR WLS/STB/PEN/EPS/DLAB hoạt động; bits 6:5 read-zero/write-ignore.",
+    "acceptance": [
+      "AT01",
+      "AT02",
+      "AT03"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-03",
+    "sections": "6.3",
+    "requirement": "IER chỉ giữ bits 2:0; write khi DLAB=1 không đổi IER.",
+    "acceptance": [
+      "AT01",
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-04",
+    "sections": "6.3,9",
+    "requirement": "FCR enable chọn capacity 1/16; đổi enable flush hai queue đúng ưu tiên.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-05",
+    "sections": "6.3,9.3",
+    "requirement": "FCR RX clear xóa queue/OE/metadata; không abort frame RX chưa hoàn tất.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-06",
+    "sections": "6.3,9.3",
+    "requirement": "FCR TX clear xóa queued bytes; không cắt frame active hoặc lấy byte cũ ở cạnh clear.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-07",
+    "sections": "6.3",
+    "requirement": "Threshold effective là 1/4/8/14 khi FIFO on, bằng 1 khi FIFO off.",
+    "acceptance": [
+      "AT05",
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-08",
+    "sections": "6.4",
+    "requirement": "LSR DR/THRE/TEMT/OE/head-error/RX_ERR phản ánh đúng state được định nghĩa.",
+    "acceptance": [
+      "AT01",
+      "AT04",
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-09",
+    "sections": "6.4,9.3",
+    "requirement": "Read LSR clear OE cũ/ack head cũ, không ack byte mới hoặc xóa overflow mới.",
+    "acceptance": [
+      "AT04",
+      "AT05",
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-10",
+    "sections": "6.5",
+    "requirement": "IIR mã 01/06/04/02 với bits FIFO đúng; read không nhầm side effect.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-REG-11",
+    "sections": "6.2",
+    "requirement": "Frame snapshot config trước cạnh start; config write cùng cạnh áp dụng cho frame sau.",
+    "acceptance": [
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-BAUD-01",
+    "sections": "7.1",
+    "requirement": "Một oversample tick mỗi D clock; một bit đúng 16D clock; không tạo clock domain mới.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-BAUD-02",
+    "sections": "7.1",
+    "requirement": "D=0 không start frame mới; không divide-by-zero; frame active hoàn tất theo D đã chốt.",
+    "acceptance": [
+      "AT02",
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-BAUD-03",
+    "sections": "7.1,10.3",
+    "requirement": "Board profile D=27, DLL=1B/DLM=00, bit=432 clock tại 50 MHz.",
+    "acceptance": [
+      "AT02",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-BAUD-04",
+    "sections": "3,7.1",
+    "requirement": "D hợp lệ 1..65535; counter đủ rộng, không overflow ở cực trị.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-BAUD-05",
+    "sections": "7.1,7.2",
+    "requirement": "Start/data/parity/stop cùng Tbit, không thừa một clock ở start.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-BAUD-06",
+    "sections": "7.3",
+    "requirement": "RX nhận đúng frame sạch ở tổng mismatch ±2% và phase bắt đầu khác nhau.",
+    "acceptance": [
+      "AT03"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-TX-01",
+    "sections": "7.2",
+    "requirement": "TX idle/reset=1, start=0, dữ liệu LSB-first, phát đúng byte được enqueue.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-TX-02",
+    "sections": "7.2",
+    "requirement": "Chỉ phát 5/6/7/8 data bits theo WLS, không phát bit cao ngoài N.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-TX-03",
+    "sections": "7.2",
+    "requirement": "None/odd/even parity đúng XOR của đúng N data bits.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-TX-04",
+    "sections": "7.2",
+    "requirement": "Giữ đủ 1/2 stop bits; kiểm bằng frame liên tiếp, không chỉ sample idle.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-TX-05",
+    "sections": "7.2",
+    "requirement": "Có queued byte thì cho phép next start ngay sau stop cuối, không mất/nhân đôi byte.",
+    "acceptance": [
+      "AT02"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-TX-06",
+    "sections": "2,7",
+    "requirement": "TX và RX hoạt động đồng thời, không dùng chung phase gây dịch timing.",
+    "acceptance": [
+      "AT02",
+      "AT03"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-01",
+    "sections": "4.1,7.3",
+    "requirement": "Synchronizer RX reset-high; sampling chỉ dùng tín hiệu sau đồng bộ.",
+    "acceptance": [
+      "AT03",
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-02",
+    "sections": "7.3",
+    "requirement": "Majority 7/8/9; false start không tạo byte/error.",
+    "acceptance": [
+      "AT03"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-03",
+    "sections": "7.3",
+    "requirement": "Nhận đúng N bit, zero-extend data, đúng thứ tự và số lượng frame.",
+    "acceptance": [
+      "AT03"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-04",
+    "sections": "7.3",
+    "requirement": "Sai parity odd/even đặt PE trên đúng byte; parity off không đặt PE.",
+    "acceptance": [
+      "AT04"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-05",
+    "sections": "7.3",
+    "requirement": "Stop nào sai cũng đặt FE; frame lỗi vẫn được lưu nếu có slot.",
+    "acceptance": [
+      "AT04"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-06",
+    "sections": "7.4",
+    "requirement": "Break tạo một entry zero với BI/FE, không lặp byte khi còn thấp; phục hồi sau idle.",
+    "acceptance": [
+      "AT04"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-07",
+    "sections": "7.3",
+    "requirement": "Completion chỉ sau khi kiểm parity/stop và đủ quyết định BI; metadata nguyên tử với data.",
+    "acceptance": [
+      "AT03",
+      "AT04"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-08",
+    "sections": "9.2",
+    "requirement": "Full không slot: drop frame mới, set OE, tiếp tục nhận; không hidden slot thứ 17.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-09",
+    "sections": "7.3,7.4",
+    "requirement": "Arm sau reset/disable/error đúng điều kiện idle; không nhận frame giả từ mức thấp kéo dài.",
+    "acceptance": [
+      "AT03",
+      "AT04",
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RX-10",
+    "sections": "7.3",
+    "requirement": "Nhận frame liên tiếp kể cả peer nhanh hơn; completion cũ không chặn start mới.",
+    "acceptance": [
+      "AT03"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FIFO-01",
+    "sections": "3,9.1",
+    "requirement": "Capacity/count đúng 1 hoặc 16; không underflow/overflow counter.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FIFO-02",
+    "sections": "9.1",
+    "requirement": "Thứ tự byte/metadata FIFO không đổi khi pointer wrap.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FIFO-03",
+    "sections": "9.1",
+    "requirement": "Full + valid pop + push cùng cạnh nhận cả hai, không báo OE giả.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FIFO-04",
+    "sections": "9.1",
+    "requirement": "Empty + pop + push không bypass: pop không hợp lệ, byte mới còn trong queue.",
+    "acceptance": [
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FIFO-05",
+    "sections": "9.3",
+    "requirement": "Reset/clear thắng giao dịch queue; completion tại RX flush bị bỏ không sinh OE.",
+    "acceptance": [
+      "AT05",
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FIFO-06",
+    "sections": "6.4,9",
+    "requirement": "Error-ack gắn đúng entry; head thay đổi không dùng lỗi/ack của head cũ.",
+    "acceptance": [
+      "AT04",
+      "AT05"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-01",
+    "sections": "6.5",
+    "requirement": "IER mask quyết định event/IIR ngay sau write; IRQ active-high dạng mức.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-02",
+    "sections": "6.5",
+    "requirement": "Ưu tiên RLS > RDA > THRE; nguồn thấp không mất khi bị nguồn cao che.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-03",
+    "sections": "6.5",
+    "requirement": "RDA theo RX count ≥ threshold, không phụ thuộc TX empty.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-04",
+    "sections": "6.5",
+    "requirement": "THRE pending set/ack đúng edge; read IIR nguồn khác không ack nhầm.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-05",
+    "sections": "6.5",
+    "requirement": "Read LSR/RBR/IIR chỉ giải quyết đúng nguồn; event có thể còn cao nếu còn nguồn khác.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-06",
+    "sections": "6.5",
+    "requirement": "Khi không còn nguồn được enable, event=0, IIR bit0=1; không kẹt C0/00.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-IRQ-07",
+    "sections": "6.5,9.3",
+    "requirement": "Sự kiện mới cùng cạnh acknowledge không mất; set mới thắng clear cũ.",
+    "acceptance": [
+      "AT06"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RST-01",
+    "sections": "8.1",
+    "requirement": "Reset register/count/pending đúng bảng; post-release LSR=60/IIR=01.",
+    "acceptance": [
+      "AT01",
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RST-02",
+    "sections": "8",
+    "requirement": "Reset abort frame/transaction, không stale byte hoặc replay sau reset.",
+    "acceptance": [
+      "AT07"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RST-03",
+    "sections": "8.2",
+    "requirement": "KEY0 async assert/sync deassert hai cạnh; DUT/wrapper dùng cùng reset nội bộ.",
+    "acceptance": [
+      "AT07",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-RST-04",
+    "sections": "8",
+    "requirement": "TX reset-high, RX synchronizer high, display/pending/LED lỗi reset đúng.",
+    "acceptance": [
+      "AT07",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-01",
+    "sections": "4.2,13",
+    "requirement": "Top khai báo 65 bit port và map đủ, không trùng pin.",
+    "acceptance": [
+      "DOC",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-02",
+    "sections": "10.1",
+    "requirement": "KEY/SW/RX đồng bộ theo contract, không dùng tín hiệu async trực tiếp điều khiển FSM.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-03",
+    "sections": "10.1",
+    "requirement": "Debounce cả nhấn/nhả đủ 500000 mẫu; một pulse/nhấn, held-key không lặp.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-04",
+    "sections": "10.1,10.5",
+    "requirement": "Manual byte chốt tại pulse, giữ đến THR success, SW đổi không thay byte pending.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-05",
+    "sections": "10.2",
+    "requirement": "SW14/15 chốt trong init, no runtime parity change; SW16/17 có thời điểm hiệu lực rõ.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-06",
+    "sections": "10.3",
+    "requirement": "Đúng 6 init write, địa chỉ/data đúng, init_done chỉ sau success; ≤32 clock.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-07",
+    "sections": "10.4",
+    "requirement": "Poll 5000 clock và wake sớm; SW16 hold không gây IRQ busy-loop chặn TX.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-08",
+    "sections": "10.5",
+    "requirement": "Không overwrite manual/echo slot; reject manual overflow có fault indication.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-09",
+    "sections": "10.2,10.5",
+    "requirement": "SW16 chỉ dừng RBR mới; UART RX/TX vẫn chạy, overflow báo OE.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-10",
+    "sections": "10.5",
+    "requirement": "Echo dùng PRDATA byte nhận; reserve slot trước pop, không mất byte do pending overwrite.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-11",
+    "sections": "10.4,10.5",
+    "requirement": "Manual/echo công bằng khi cùng pending; RX liên tục không loại cơ hội TX.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-12",
+    "sections": "10.6",
+    "requirement": "APB error dừng master vào FAULT; không xóa slot như thể write thành công.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-13",
+    "sections": "10.6",
+    "requirement": "HEX/LED đúng nibble/polarity; error LED sticky độc lập với LSR clear.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-14",
+    "sections": "4.2,10.6",
+    "requirement": "SW dự phòng không tác dụng; LEDG chưa dùng xuất 0.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-SYS-15",
+    "sections": "10.5",
+    "requirement": "Lossless chỉ trong traffic budget; overload có expected drop/OE được báo.",
+    "acceptance": [
+      "AT05",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FPGA-01",
+    "sections": "11",
+    "requirement": "Đúng chip/top/SystemVerilog/filelist; clock constraint 20 ns; không trộn baseline.",
+    "acceptance": [
+      "DOC",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FPGA-02",
+    "sections": "11,13",
+    "requirement": "Gán đủ pin/I/O standard và kiểm bank/JP6 thực tế.",
+    "acceptance": [
+      "DOC",
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FPGA-03",
+    "sections": "12",
+    "requirement": "Đấu chéo TX/RX, GND chung, mức logic phù hợp, terminal đúng cấu hình.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FPGA-04",
+    "sections": "11",
+    "requirement": "Compile/fitter/STA đạt tiêu chí, review latch/CDC/unconstrained paths.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  },
+  {
+    "id": "TGT-FPGA-05",
+    "sections": "12,14.2",
+    "requirement": "Lưu bằng chứng board TX/RX/echo/mode/error; không dùng simulation thay hardware result.",
+    "acceptance": [
+      "AT08"
+    ],
+    "target_execution_status": "NOT_RUN"
+  }
+]

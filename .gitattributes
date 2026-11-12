@@ -1,0 +1,3 @@
+
+# Preserve the original Quartus CSV bytes and CRLF for source hashing.
+reference/DE2_115_pin_assignments.csv -text whitespace=cr-at-eol

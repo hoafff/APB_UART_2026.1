@@ -1,0 +1,182 @@
+[
+  [
+    "REQ_APB_001",
+    "TGT-APB-01",
+    "Giữ nguyên ý nghĩa giao thức"
+  ],
+  [
+    "REQ_APB_002",
+    "TGT-APB-02",
+    "Giữ gating, làm rõ completion"
+  ],
+  [
+    "REQ_APB_003",
+    "TGT-APB-03",
+    "Giữ đọc hợp lệ/zero"
+  ],
+  [
+    "REQ_APB_004",
+    "TGT-APB-05,TGT-APB-06",
+    "Thay đổi: có PSLVERR cho lỗi"
+  ],
+  [
+    "REQ_APB_005",
+    "TGT-APB-04",
+    "Thay đổi: không alias, word-aligned"
+  ],
+  [
+    "REQ_REG_001",
+    "TGT-APB-04,TGT-REG-01",
+    "Thay register offsets"
+  ],
+  [
+    "REQ_REG_002",
+    "TGT-REG-01",
+    "Giữ phân bank DLAB"
+  ],
+  [
+    "REQ_REG_003",
+    "TGT-APB-03,TGT-REG-02",
+    "Giữ byte thấp, thêm mask"
+  ],
+  [
+    "REQ_REG_004",
+    "TGT-RST-01",
+    "Thay IIR reset theo FIFO-off"
+  ],
+  [
+    "REQ_REG_005",
+    "TGT-APB-06",
+    "Thay unsupported từ no-error sang error"
+  ],
+  [
+    "REQ_TX_001",
+    "TGT-TX-01,TGT-APB-08",
+    "Thêm handling THR full/D0"
+  ],
+  [
+    "REQ_TX_002",
+    "TGT-TX-01,TGT-TX-05",
+    "Giữ frame, chốt back-to-back"
+  ],
+  [
+    "REQ_TX_003",
+    "TGT-TX-02",
+    "Giữ 5..8 bit"
+  ],
+  [
+    "REQ_TX_004",
+    "TGT-TX-03,TGT-TX-04",
+    "Thêm odd parity"
+  ],
+  [
+    "REQ_TX_005",
+    "TGT-BAUD-01,TGT-BAUD-03,TGT-BAUD-05",
+    "Thay cơ chế divisor sang 16×"
+  ],
+  [
+    "REQ_RX_001",
+    "TGT-RX-03,TGT-RX-10",
+    "Giữ chức năng, thêm continuous/tolerance"
+  ],
+  [
+    "REQ_RX_002",
+    "TGT-APB-07,TGT-FIFO-02",
+    "Giữ pop đúng một byte"
+  ],
+  [
+    "REQ_RX_003",
+    "TGT-REG-08",
+    "Giữ DR"
+  ],
+  [
+    "REQ_RX_004",
+    "TGT-RX-04,TGT-RX-07",
+    "Guide-gap chuyển thành phải PASS"
+  ],
+  [
+    "REQ_RX_005",
+    "TGT-RX-05,TGT-RX-06,TGT-RX-08",
+    "FE/OE/BI thành yêu cầu bắt buộc"
+  ],
+  [
+    "REQ_FIFO_001",
+    "TGT-FIFO-01,TGT-FIFO-05",
+    "Thêm enable cap1/16 và clear"
+  ],
+  [
+    "REQ_FIFO_002",
+    "TGT-FIFO-02,TGT-FIFO-03,TGT-FIFO-04",
+    "Chốt order/full/concurrency"
+  ],
+  [
+    "REQ_FIFO_003",
+    "TGT-REG-07,TGT-IRQ-03",
+    "Thay == thành >="
+  ],
+  [
+    "REQ_INT_001",
+    "TGT-IRQ-01,TGT-IRQ-02,TGT-IRQ-04,TGT-IRQ-05",
+    "Chốt source/priority/ack"
+  ],
+  [
+    "REQ_INT_002",
+    "TGT-IRQ-03,TGT-IRQ-06",
+    "Guide-gap chuyển thành phải PASS"
+  ],
+  [
+    "REQ_SYS_001",
+    "TGT-RST-03,TGT-FPGA-01",
+    "Clock/reset/constraints"
+  ],
+  [
+    "REQ_SYS_002",
+    "TGT-SYS-02,TGT-SYS-03",
+    "Debounce và CDC rõ cycle"
+  ],
+  [
+    "REQ_SYS_003",
+    "TGT-SYS-06",
+    "Sáu init write của target"
+  ],
+  [
+    "REQ_SYS_004",
+    "TGT-SYS-07,TGT-SYS-11",
+    "Poll và fairness"
+  ],
+  [
+    "REQ_SYS_005",
+    "TGT-SYS-04,TGT-SYS-08",
+    "Send latch/pending"
+  ],
+  [
+    "REQ_SYS_006",
+    "TGT-SYS-09,TGT-RX-08",
+    "Hold-RX phải có OE thật"
+  ],
+  [
+    "REQ_SYS_007",
+    "TGT-SYS-10",
+    "Echo có backpressure slot"
+  ],
+  [
+    "REQ_SYS_008",
+    "TGT-RX-01,TGT-SYS-02",
+    "CDC RX"
+  ],
+  [
+    "REQ_SYS_009",
+    "TGT-SYS-13,TGT-SYS-14",
+    "Thêm error LED sticky/fault"
+  ],
+  [
+    "REQ_SYS_010",
+    "TGT-APB-04,TGT-SYS-06",
+    "Thay offsets để bám guide trên RTL sửa"
+  ],
+  [
+    "REQ_SYS_011",
+    "TGT-BAUD-03,TGT-SYS-05,TGT-TX-03",
+    "16× baud và odd/even hoạt động"
+  ]
+]
