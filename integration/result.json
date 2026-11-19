@@ -7,7 +7,7 @@
   "verilator": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
   "inputs": {
     "host/uart_linux.py": "550c45da9284f2df310ad372e2d83bf908291dc45039a197fb773a969739e72b",
-    "host/uart_menu.py": "abfebf6b301424cf9fa196afb769d7764981f01b013e9a00ef641ae7b73dc78e",
+    "host/uart_menu.py": "b1c5fbc058d181dc70ade46814b33dc4465f4dd4c42db92ea0d34db1dca1f118",
     "integration/serial_peer.cpp": "f4d598d70ef24f824c433cea1312bae718f00250715fb2dd87ad051297692e79",
     "integration/test_host_rtl.py": "27da2a68c230623e87b5e7f758701068f9147567f3799ab5775d2c96ffaef0cb",
     "rtl/fpga/de2_115_pulp_uart.sv": "79a90c10e1fdd4d748660e143587dfcdfd3938b8e54116eda578b02848ad75c5",

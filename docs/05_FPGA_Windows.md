@@ -40,7 +40,7 @@ Nếu hai chương trình đã có trên `PATH`, bỏ đối số `--quartus-bin
 2. Nối **CP2102 TXD → JP5 chân 3 / GPIO[2] / AB21** (FPGA RX). Nối **CP2102 RXD ← JP5 chân 1 / GPIO[0] / AB22** (FPGA TX). Nối **GND ↔ JP5 GND** (chân 12 hoặc 30). Để hở dây nguồn 3V3/5V của CP2102. Bo dùng nguồn riêng. Dùng ngõ UART mức logic ở JP5.
 3. Đặt công tắc **RUN/PROG (SW19) → RUN**, cấp nguồn và cắm cáp vào cổng **USB-Blaster**. Trong Quartus, mở **Tools → Programmer → Hardware Setup**, chọn cáp, chọn **JTAG** và **Auto Detect**. Đối chiếu thiết bị EP4CE115 trong chain. Có thể chạy `jtagconfig.exe` trong thư mục bin để kiểm tra cáp/driver.
 4. Gán đúng SOF của lần build vừa kiểm cho FPGA ở đúng vị trí trong chain. Chọn **Program/Configure → Start**, lưu kết quả **100% Successful** và SHA-256. SOF nạp SRAM có hiệu lực đến khi mất điện. CP2102 dùng riêng cho dữ liệu COM.
-5. Mở COM ở **115200, 8 data, 1 stop**, chọn parity theo bảng dưới, tắt RTS/CTS, XON/XOFF và local echo. Chỉ một ứng dụng mở COM. Menu của repo dùng profile `pulp`, ví dụ `py -3 host\uart_menu.py --profile pulp --port COM7` sau khi cài pySerial. Chọn cổng COM thực tế. [Chương trình COM](../host/uart_menu.py)
+5. Mở COM ở **115200, 8 data, 1 stop**, chọn parity theo bảng dưới, tắt RTS/CTS, XON/XOFF và local echo. Chỉ một ứng dụng mở COM. Sau khi cài pySerial, chạy `py -3 host/uart_gui.py --profile pulp`, chọn cổng COM của CP2102 rồi nhấn **Kết nối**. [Hướng dẫn giao diện](../host/README.md)
 
 ## 3. Công tắc và đèn
 
@@ -62,6 +62,8 @@ Master phát sáu giao dịch ghi theo **offset byte**. Theo thứ tự, `(PADDR
 Master chốt PRDATA ở cạnh lên hoàn tất ACCESS, đọc `LSR@05` định kỳ khoảng 100 µs lúc rỗi, poll sớm khi có byte chờ và poll lại ngay sau RBR/THR. `LSR[0]` cho phép đọc RBR, `LSR[5]` cho phép ghi THR kể cả khi bộ dịch TX đang bận. Quyết định đọc/ghi độc lập với IRQ.
 
 ## 4. Phiếu nghiệm thu bo
+
+Cửa sổ `host/uart_gui.py --profile pulp` hiển thị tám ca dưới đây. Có thể ghi số đo từng ca và xuất CSV ngay tại bàn. [Chương trình PC](../host/README.md) · [Phiếu 8 ca](07_FPGA_Board_Acceptance.csv)
 
 Tất cả các ca dưới đây đang **`NOT_RUN` trên phần cứng main2**. Mỗi lần thử ghi ngày, người thử, board ID, ảnh jumper/dây, CP2102/COM, chế độ, revision/hash SOF, byte phát/thu theo hex, kết quả và đường dẫn ảnh/log. Đánh dấu `PASS` khi đối chiếu đủ quan sát của ca, `FAIL` khi có sai khác, `NOT_RUN` nếu thiếu thiết bị.
 

@@ -14,24 +14,24 @@ Nhánh `main2` dùng lõi APB UART của ETH Zürich và Đại học Bologna �
 
 Mở project `de2_115_pulp_uart` trong Quartus Prime Lite có hỗ trợ Cyclone IV E. Kiểm tra báo cáo tổng hợp, fitter và timing 50 MHz của lần build. Yosys phát hiện latch trên đường dữ liệu TX của IP khi kiểm trực tiếp mã gốc. [Hướng dẫn build](docs/05_FPGA_Windows.md) · [Kết quả kiểm tra tổng hợp](docs/02_Synthesis_Review.md)
 
-Nạp đúng file `de2_115_pulp_uart.sof` của nhánh này qua USB-Blaster. SOF ở Release RC1 thuộc thiết kế TARGET trên `main`. Sau khi kiểm jumper và đấu dây CP2102, để SW14=0, SW16=0, bật SW17 rồi nhấn và nhả KEY0. Khi LEDG0 sáng, mở menu ở 115200 baud, 8N1.
+Nạp đúng file `de2_115_pulp_uart.sof` của nhánh này qua USB-Blaster. SOF ở Release RC1 thuộc thiết kế TARGET trên `main`. Sau khi kiểm jumper và đấu dây CP2102, để SW14=0, SW16=0, bật SW17 rồi nhấn và nhả KEY0. Khi LEDG0 sáng, mở cổng ở 115200 baud, 8N1.
 
 **Windows** · Mở PowerShell tại thư mục gốc của nhánh.
 
 ```powershell
 py -3 -m pip install pyserial==3.5
-py -3 host/uart_menu.py --profile pulp
+py -3 -X utf8 host/uart_gui.py --profile pulp
 ```
 
-**Linux** · Cài pySerial cho Python của dự án một lần rồi chạy menu.
+**Linux** · Cài pySerial cho Python của dự án một lần rồi mở cửa sổ.
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install pyserial==3.5
-.venv/bin/python host/uart_linux.py --profile pulp
+.venv/bin/python host/uart_gui.py --profile pulp
 ```
 
-Chọn `c` để mở cổng, dùng `e` gửi `55 AA 00 FF` và so với bốn byte FPGA trả về. Dùng `r` để nhận byte SW[7:0] khi nhấn KEY1. SW14=1 trước reset chọn 8E1. [Hướng dẫn menu](host/README.md)
+Trong **Phiếu thử bo**, chọn một trong 8 ca để xem thao tác và giá trị mong đợi. Dùng **Gửi / nhận UART** để gửi byte, đọc TX/RX và thử echo. Khi đã đối chiếu với bo, ghi quan sát và xuất CSV. [Hướng dẫn giao diện](host/README.md) · [Phiếu nghiệm thu](docs/07_FPGA_Board_Acceptance.csv)
 
 ## Đối chiếu kết quả
 

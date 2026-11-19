@@ -37,11 +37,11 @@ def hex_bytes(data):
     return data.hex(" ").upper()
 
 
-def show_packet(stamp, direction, data):
+def show_packet(stamp, direction, data, emit=print):
     view = data[:48]
     ascii_view = "".join(chr(byte) if 32 <= byte <= 126 else "." for byte in view)
     more = " … (xem đủ trong log)" if len(view) < len(data) else ""
-    print(f"{stamp}  {direction}  {len(data)} B  {hex_bytes(view)}  |{ascii_view}|{more}")
+    emit(f"{stamp}  {direction}  {len(data)} B  {hex_bytes(view)}  |{ascii_view}|{more}")
 
 
 class LogError(Exception):
@@ -83,9 +83,10 @@ def classify_echo(expected, received):
 class Link:
     """One owner of serial I/O at a time, including the handoff from idle to echo."""
 
-    def __init__(self, port, journal):
+    def __init__(self, port, journal, *, terminal_output=True):
         self.port = port
         self.log = journal
+        self._emit = print if terminal_output else lambda _line: None
         self.lock = threading.Lock()
         self.stopping = threading.Event()
         self.failure = None
@@ -154,18 +155,18 @@ class Link:
             self.log.record("LISTEN", queued=total, seconds=KEY_WINDOW)
             archived = total - sum(len(data) for _, data in self.pending)
             if archived:
-                print(f"Có {archived} byte cũ hơn trong log.")
+                self._emit(f"Có {archived} byte cũ hơn trong log.")
             while self.pending:
                 stamp, data = self.pending.popleft()
                 self.pending_bytes -= len(data)
-                show_packet(stamp, "RX", data)
+                show_packet(stamp, "RX", data, self._emit)
             self.pending_bytes = 0
-            print(f"Đang nhận {KEY_WINDOW:g} s. Có thể nhấn KEY1 hoặc Ctrl+C để về menu.")
+            self._emit(f"Đang nhận {KEY_WINDOW:g} s. Có thể nhấn KEY1 hoặc Ctrl+C để về menu.")
             for stamp, data in self._window(KEY_WINDOW, "receive"):
                 total += len(data)
-                show_packet(stamp, "RX", data)
+                show_packet(stamp, "RX", data, self._emit)
             self.log.record("RECEIVE", rx_size=total)
-            print(f"Đã nhận {total} byte (gồm byte đang chờ).")
+            self._emit(f"Đã nhận {total} byte (gồm byte đang chờ).")
 
     def _write(self, data, phase):
         try:
@@ -177,7 +178,7 @@ class Link:
             raise
         if size:
             stamp = self.log.packet("TX", data[:size], phase)
-            show_packet(stamp, "TX", data[:size])
+            show_packet(stamp, "TX", data[:size], self._emit)
         if size != len(data):
             raise serial.SerialTimeoutException(f"Driver chỉ nhận {size}/{len(data)} byte TX.")
 
@@ -221,9 +222,9 @@ class Link:
                 status = classify_echo(expected, prefix)
             self.log.record("ECHO", status=status, expected_hex=hex_bytes(expected),
                             rx_size=count, rx_prefix_hex=hex_bytes(prefix), before_tx=stale)
-        print(f"Echo {status} — {VERDICTS[status]}. RX {count} byte, trước TX {stale} byte.")
+        self._emit(f"Echo {status} — {VERDICTS[status]}. RX {count} byte, trước TX {stale} byte.")
         if count:
-            print(f"RX đầu gói  {hex_bytes(prefix[:48])}")
+            self._emit(f"RX đầu gói  {hex_bytes(prefix[:48])}")
         return status
 
 
