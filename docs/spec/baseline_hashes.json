@@ -1,0 +1,9 @@
+{
+  "rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv": "9d05f38b5144cf328207c25de5e603f1a069f0a4a75779135032fb0a1625b554",
+  "rtl/vendor/pulp_apb_uart_sv/uart_tx.sv": "3a41c83239ada87024d8321be1f6097caf6b1c36c4b9761a4e7c56f7a18cc306",
+  "rtl/vendor/pulp_apb_uart_sv/LICENSE": "b41106a9d0de1cf6ab4ea56bedf677503085c0570248f37fe2cdf657a5e72601",
+  "rtl/vendor/pulp_apb_uart_sv/uart_rx.sv": "532a18a12cf4eb8f1cad9c98ca8dc12c0c2a3e360476a134fcaca2092908f193",
+  "rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv": "0ab01830961e5eb5c85a25fbd5e830c15e1570ac08a6d1af592e24e5fdf6c83b",
+  "rtl/vendor/pulp_apb_uart_sv/uart_interrupt.sv": "c8f29a8856fc6f777686ae7bbbbe128078068573d3e5f3a7bacba3d678739d08",
+  "rtl/vendor/pulp_apb_uart_sv/src_files.yml": "79294647da8ef4821e3f97ab65e0c289f0ee7f645f21dfe535564635d2351810"
+}

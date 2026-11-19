@@ -1,0 +1,183 @@
+EVIDENCE|source=da1b21f7de958606c4f0f8df03ffe223633963541a88466bc32ddeabe4fc04fb|build=ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32|run=fifo-17
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_INFO @ 0: reporter [RNTST] Running test pulp_uart_test...
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+WIRE|RX|ns=520|data=37|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=7580|data=b1|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=37|read=37|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=b1|read=b1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=15000|data=37|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=22060|data=b1|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=37|read=37|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=b1|read=b1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=29420|data=81|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=36480|data=82|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+READ|addr=005|value=00000000|mask=00000061|want=00000000
+WIRE|TX|ns=43650|data=71|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=50090|data=72|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=58680|data=21|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=21|read=21|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=65860|data=40|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=72920|data=41|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=79980|data=42|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=87040|data=43|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=94100|data=44|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=101160|data=45|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=108220|data=46|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=115280|data=47|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=122340|data=48|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=129400|data=49|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=136460|data=4a|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=143520|data=4b|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=150580|data=4c|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=157640|data=4d|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=164700|data=4e|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=171760|data=4f|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=178820|data=50|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=185880|data=51|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=40|read=40|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=41|read=41|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=42|read=42|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=43|read=43|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=44|read=44|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=45|read=45|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=46|read=46|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=47|read=47|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=48|read=48|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=49|read=49|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=4a|read=4a|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=4b|read=4b|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=4c|read=4c|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=4d|read=4d|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=4e|read=4e|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=4f|read=4f|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=50|read=50|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+READ|addr=005|value=00000000|mask=00000060|want=00000000
+WIRE|TX|ns=197010|data=80|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=203450|data=81|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=209890|data=82|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=216330|data=83|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=222770|data=84|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=229210|data=85|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=235650|data=86|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=242090|data=87|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=248530|data=88|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=254970|data=89|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=261410|data=8a|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=267850|data=8b|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=274290|data=8c|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=280730|data=8d|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=287170|data=8e|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=293610|data=8f|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=300050|data=90|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=324880|data=7e|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000001|mask=00000060|want=00000000
+READ|addr=005|value=00000021|mask=00000060|want=00000020
+WIRE|TX|ns=331990|data=ac|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000061|mask=ffffffff|want=00000061
+RBR|addr=000|wire=7e|read=7e|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=353660|data=91|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=360720|data=92|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000001|mask=00000061|want=00000001
+READ|addr=005|value=00000020|mask=ffffffff|want=00000020
+WIRE|TX|ns=367830|data=73|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+WIRE|RX|ns=382920|data=91|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=389980|data=92|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000001|mask=00000061|want=00000001
+READ|addr=005|value=00000020|mask=ffffffff|want=00000020
+WIRE|TX|ns=397090|data=73|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+READ|addr=005|value=00000060|mask=ffffffff|want=00000060
+DONE|case=fifo|seed=17|setups=100|accesses=100|gated=20538
+COV|alias|R_0|63
+COV|alias|W_0|37
+COV|apb|R_0_0|23
+COV|apb|R_5_0|40
+COV|apb|W_0_0|27
+COV|apb|W_0_1|1
+COV|apb|W_1_1|1
+COV|apb|W_2_0|6
+COV|apb|W_3_0|1
+COV|apb|W_3_1|1
+COV|fifo|bit0_0|1
+COV|fifo|bit0_1|1
+COV|fifo|both_clear_6|1
+COV|fifo|both_clear_7|1
+COV|fifo|rx_17_of_18|1
+COV|fifo|rx_clear|1
+COV|fifo|tx_17_of_18|1
+COV|fifo|tx_clear_inflight|1
+COV|lsr|dr_0|13
+COV|lsr|dr_1|27
+COV|lsr|tx_00|5
+COV|lsr|tx_01|3
+COV|lsr|tx_11|32
+COV|serial|RX_8_0_1|23
+COV|serial|TX_8_0_1|22
+SB|checks=335|tx=22|rx_wire=30|rbr=23|tx_drop=1|rx_drop=1
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_report_server.svh(1009) @ 412160: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    3
+UVM_WARNING :    2
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[NO_DPI_USED]     1
+[NO_VISIT_CHECK]     1
+[RNTST]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+DV_EXIT|PASS
+- dv/uvm/tb_top.sv:31: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 412us; walltime 0.607 s; speed 679.028 us/s
+- Verilator: cpu 0.605 s on 1 threads; allocated 22 MB

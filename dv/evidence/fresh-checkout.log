@@ -1,0 +1,31 @@
+Fresh git clone --local --no-hardlinks --single-branch --branch main2 --no-tags: /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/main2-clean
+HEAD: 407b29c08f1a724980ac183081eac01e45bcdd5a
+git status before overlay: clean
+Overlaid uncommitted DV inputs only; source key: da1b21f7de958606c4f0f8df03ffe223633963541a88466bc32ddeabe4fc04fb
+UVM_HOME, IC_EDA unset. UVM dependency and Verilator build caches initially absent.
+Invocation: ['/usr/bin/python', 'dv/run.py', 'regress', '--jobs', '2', '--work', '/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work', '--out', '/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-evidence']
+Compiling with 2 build jobs → /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/build.log
+PASS     registers-17           rc=  0  {'checks': 193, 'tx': 17, 'rx_wire': 1, 'rbr': 1, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     baud-17                rc=  0  {'checks': 85, 'tx': 3, 'rx_wire': 3, 'rbr': 3, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     modes-17               rc=  0  {'checks': 295, 'tx': 32, 'rx_wire': 32, 'rbr': 32, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     fifo-17                rc=  0  {'checks': 335, 'tx': 22, 'rx_wire': 30, 'rbr': 23, 'tx_drop': 1, 'rx_drop': 1}  
+PASS     errors-17              rc=  0  {'checks': 60, 'tx': 0, 'rx_wire': 4, 'rbr': 4, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     irq-17                 rc=  0  {'checks': 109, 'tx': 0, 'rx_wire': 2, 'rbr': 2, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     thresholds-17          rc=  0  {'checks': 650, 'tx': 24, 'rx_wire': 81, 'rbr': 81, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     random-17              rc=  0  {'checks': 266, 'tx': 12, 'rx_wire': 20, 'rbr': 20, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     random-29              rc=  0  {'checks': 222, 'tx': 18, 'rx_wire': 14, 'rbr': 14, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     random-101             rc=  0  {'checks': 270, 'tx': 10, 'rx_wire': 22, 'rbr': 22, 'tx_drop': 0, 'rx_drop': 0}  
+PASS     random-17-replay       rc=  0  {'checks': 266, 'tx': 12, 'rx_wire': 20, 'rbr': 20, 'tx_drop': 0, 'rx_drop': 0}  
+DETECTED baud-17-tx             rc=  1  {'checks': 85, 'tx': 3, 'rx_wire': 3, 'rbr': 3, 'tx_drop': 0, 'rx_drop': 0}  
+DETECTED baud-17-rbr            rc=  1  {'checks': 85, 'tx': 3, 'rx_wire': 3, 'rbr': 3, 'tx_drop': 0, 'rx_drop': 0}  
+Evidence: /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-evidence
+Verified 28 SHA-256 entries, source key, compiler log, and 13 decoded run logs.
+apb      32/32 bins; 1315 samples
+alias    4/4 bins; 1315 samples
+lcr      8/8 bins; 8 samples
+serial   32/32 bins; 337 samples
+lsr      5/5 bins; 284 samples
+fifo     8/8 bins; 8 samples
+fault    4/4 bins; 4 samples
+irq      12/12 bins; 18 samples
+trigger  12/12 bins; 12 samples

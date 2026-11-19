@@ -1,0 +1,195 @@
+EVIDENCE|source=da1b21f7de958606c4f0f8df03ffe223633963541a88466bc32ddeabe4fc04fb|build=ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32|run=modes-17
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_INFO @ 0: reporter [RNTST] Running test pulp_uart_test...
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+WIRE|RX|ns=460|data=17|bits=5|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=510|data=01|bits=5|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=5030|data=06|bits=5|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=5600|data=19|bits=5|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=17|read=17|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=19|read=19|bad_pe=0|bad_stop=0
+SPACING|bits=5|parity=0|stops=1|div=31|clocks=226
+WIRE|RX|ns=11100|data=17|bits=5|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=11150|data=01|bits=5|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=16310|data=06|bits=5|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=16880|data=19|bits=5|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=17|read=17|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=19|read=19|bad_pe=0|bad_stop=0
+SPACING|bits=5|parity=0|stops=2|div=31|clocks=258
+WIRE|RX|ns=23020|data=17|bits=5|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=23070|data=01|bits=5|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=28230|data=06|bits=5|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=28800|data=19|bits=5|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=17|read=17|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=19|read=19|bad_pe=0|bad_stop=0
+SPACING|bits=5|parity=1|stops=1|div=31|clocks=258
+WIRE|RX|ns=34940|data=17|bits=5|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=34990|data=01|bits=5|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=40790|data=06|bits=5|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=41360|data=19|bits=5|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=17|read=17|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=19|read=19|bad_pe=0|bad_stop=0
+SPACING|bits=5|parity=1|stops=2|div=31|clocks=290
+WIRE|RX|ns=48140|data=14|bits=6|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=48190|data=01|bits=6|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=53350|data=26|bits=6|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=53920|data=39|bits=6|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=14|read=14|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=39|read=39|bad_pe=0|bad_stop=0
+SPACING|bits=6|parity=0|stops=1|div=31|clocks=258
+WIRE|RX|ns=60060|data=14|bits=6|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=60110|data=01|bits=6|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=65910|data=26|bits=6|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=66480|data=39|bits=6|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=14|read=14|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=39|read=39|bad_pe=0|bad_stop=0
+SPACING|bits=6|parity=0|stops=2|div=31|clocks=290
+WIRE|RX|ns=73260|data=14|bits=6|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=73310|data=01|bits=6|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=79110|data=26|bits=6|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=79680|data=39|bits=6|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=14|read=14|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=39|read=39|bad_pe=0|bad_stop=0
+SPACING|bits=6|parity=1|stops=1|div=31|clocks=290
+WIRE|RX|ns=86460|data=14|bits=6|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=86510|data=01|bits=6|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=92950|data=26|bits=6|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=93520|data=39|bits=6|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=14|read=14|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=39|read=39|bad_pe=0|bad_stop=0
+SPACING|bits=6|parity=1|stops=2|div=31|clocks=322
+WIRE|RX|ns=100940|data=55|bits=7|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=100990|data=41|bits=7|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=106790|data=26|bits=7|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=107360|data=79|bits=7|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=55|read=55|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=7|parity=0|stops=1|div=31|clocks=290
+WIRE|RX|ns=114140|data=55|bits=7|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=114190|data=41|bits=7|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=120630|data=26|bits=7|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=121200|data=79|bits=7|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=55|read=55|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=7|parity=0|stops=2|div=31|clocks=322
+WIRE|RX|ns=128620|data=55|bits=7|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=128670|data=41|bits=7|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=135110|data=26|bits=7|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=135680|data=79|bits=7|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=55|read=55|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=7|parity=1|stops=1|div=31|clocks=322
+WIRE|RX|ns=143100|data=55|bits=7|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=143150|data=41|bits=7|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=150230|data=26|bits=7|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=150800|data=79|bits=7|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=55|read=55|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=7|parity=1|stops=2|div=31|clocks=354
+WIRE|RX|ns=158860|data=da|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=158910|data=41|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=245750|data=a6|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=254360|data=79|bits=8|parity=0|pin=0|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=da|read=da|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=8|parity=0|stops=1|div=433|clocks=4342
+WIRE|RX|ns=350220|data=da|bits=8|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=350270|data=41|bits=8|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=445790|data=a6|bits=8|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=454400|data=79|bits=8|parity=0|pin=0|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=da|read=da|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=8|parity=0|stops=2|div=433|clocks=4776
+WIRE|RX|ns=558940|data=da|bits=8|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=558990|data=41|bits=8|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|TX|ns=566070|data=a6|bits=8|parity=1|pin=0|stops=1|bad_pe=0|bad_stop=0
+WIRE|RX|ns=566640|data=79|bits=8|parity=1|pin=1|stops=1|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=da|read=da|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=8|parity=1|stops=1|div=31|clocks=354
+WIRE|RX|ns=574700|data=da|bits=8|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=574750|data=41|bits=8|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|TX|ns=582470|data=a6|bits=8|parity=1|pin=0|stops=2|bad_pe=0|bad_stop=0
+WIRE|RX|ns=583040|data=79|bits=8|parity=1|pin=1|stops=2|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=da|read=da|bad_pe=0|bad_stop=0
+RBR|addr=000|wire=79|read=79|bad_pe=0|bad_stop=0
+SPACING|bits=8|parity=1|stops=2|div=31|clocks=386
+DONE|case=modes|seed=17|setups=128|accesses=128|gated=29535
+COV|alias|R_0|32
+COV|alias|W_0|96
+COV|apb|R_0_0|32
+COV|apb|W_0_0|32
+COV|apb|W_0_1|16
+COV|apb|W_1_1|16
+COV|apb|W_3_0|16
+COV|apb|W_3_1|16
+COV|serial|RX_5_0_1|2
+COV|serial|RX_5_0_2|2
+COV|serial|RX_5_1_1|2
+COV|serial|RX_5_1_2|2
+COV|serial|RX_6_0_1|2
+COV|serial|RX_6_0_2|2
+COV|serial|RX_6_1_1|2
+COV|serial|RX_6_1_2|2
+COV|serial|RX_7_0_1|2
+COV|serial|RX_7_0_2|2
+COV|serial|RX_7_1_1|2
+COV|serial|RX_7_1_2|2
+COV|serial|RX_8_0_1|2
+COV|serial|RX_8_0_2|2
+COV|serial|RX_8_1_1|2
+COV|serial|RX_8_1_2|2
+COV|serial|TX_5_0_1|2
+COV|serial|TX_5_0_2|2
+COV|serial|TX_5_1_1|2
+COV|serial|TX_5_1_2|2
+COV|serial|TX_6_0_1|2
+COV|serial|TX_6_0_2|2
+COV|serial|TX_6_1_1|2
+COV|serial|TX_6_1_2|2
+COV|serial|TX_7_0_1|2
+COV|serial|TX_7_0_2|2
+COV|serial|TX_7_1_1|2
+COV|serial|TX_7_1_2|2
+COV|serial|TX_8_0_1|2
+COV|serial|TX_8_0_2|2
+COV|serial|TX_8_1_1|2
+COV|serial|TX_8_1_2|2
+SB|checks=295|tx=32|rx_wire=32|rbr=32|tx_drop=0|rx_drop=0
+UVM_INFO /home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/base/uvm_report_server.svh(1009) @ 591480: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    3
+UVM_WARNING :    2
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[NO_DPI_USED]     1
+[NO_VISIT_CHECK]     1
+[RNTST]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+DV_EXIT|PASS
+- dv/uvm/tb_top.sv:31: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 591us; walltime 0.811 s; speed 729.077 us/s
+- Verilator: cpu 0.809 s on 1 threads; allocated 23 MB

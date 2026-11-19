@@ -1,0 +1,23 @@
+# Open this revision from its project directory. Paths move with the checkout.
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY de2_115_pulp_uart
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY ../build/output_files
+set_global_assignment -name SEED 1
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+set_global_assignment -name OPTIMIZE_FOR_METASTABILITY ON
+set_global_assignment -name SYNCHRONIZATION_REGISTER_CHAIN_LENGTH 5
+
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/vendor/pulp_apb_uart_sv/uart_interrupt.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/vendor/pulp_apb_uart_sv/uart_rx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/vendor/pulp_apb_uart_sv/uart_tx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/fpga/de2_pulp_uart_master.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../rtl/fpga/de2_115_pulp_uart.sv
+set_global_assignment -name SDC_FILE de2_115_pulp_uart.sdc
+source pins.qsf
+source synchronizers.qsf

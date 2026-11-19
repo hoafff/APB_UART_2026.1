@@ -1,0 +1,59 @@
+main2 original PULP / local static, source integrity and synthetic policy checks
+UTC 2026-11-19T09:33:53+00:00
+$ git rev-parse HEAD
+407b29c08f1a724980ac183081eac01e45bcdd5a
+exit 0
+
+$ git diff --exit-code HEAD -- rtl/vendor
+
+exit 0
+
+$ python3 --version
+Python 3.14.9
+exit 0
+
+$ /home/hoaff/.local/bin/ic-eda yosys -V
+Yosys 0.70+360 (git sha1 5e740962d, Release, Clang /usr/bin/clang++ 21.1.8)
+exit 0
+
+$ python3 fpga/scripts/build_windows.py --check-only
+PULP_SOURCE_PASS dfad6e04d19cc9481d3cd2750b45b970dc61271b (7 files, manifest)
+PROJECT PASS  EP4CE115F29C7 / de2_115_pulp_uart, 5 original manifest sources + 2 board sources, 20 ns SDC
+PINS PASS  65 unique Terasic locations and standards, 22 input / 43 output bits
+exit 0
+
+$ /home/hoaff/.local/bin/ic-eda yosys -m slang -Q -T -q -p 'read_slang --top de2_115_pulp_uart -F fpga/de2_115/rtl.f; memory_collect; write_json fpga/build/board.json'
+rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv:314: Warning: asynchronous load value missing for variable '\uart.regs_q[7:0]'
+exit 0
+
+$ python3 fpga/scripts/check_project.py --netlist fpga/build/board.json
+PULP_SOURCE_PASS dfad6e04d19cc9481d3cd2750b45b970dc61271b (7 files, manifest)
+PROJECT PASS  EP4CE115F29C7 / de2_115_pulp_uart, 5 original manifest sources + 2 board sources, 20 ns SDC
+PINS PASS  65 unique Terasic locations and standards, 22 input / 43 output bits
+CLOCK PASS  93 clocked RTL cell groups resolve to rising CLOCK_50, SDC period 20 ns
+CDC PASS  14 first stages, 31 distinct preserved registers, 17 connected intra-chain hops
+SDC PASS  15 pad-to-register arcs exempted, 43 output min/max budgets, Tcl replay on RTL names
+exit 0
+
+$ tclsh fpga/sim/test_timing_checks.tcl
+TIMING POLICY PASS cases=20 (Tcl fixtures for corner sets, path counts and finite slack)
+exit 0
+
+$ python3 fpga/sim/test_upstream_guard.py
+PULP_SOURCE_PASS dfad6e04d19cc9481d3cd2750b45b970dc61271b (7 files, manifest)
+RELOCATED CHECK-ONLY PASS  seven pinned inputs checked from an unrelated working directory
+SOURCE NEGATIVE PASS  direct --check-only exit 1, PULP_SOURCE_FAIL: SHA-256 mismatch: rtl/vendor/pulp_apb_uart_sv/uart_tx.sv
+PROJECT PASS  EP4CE115F29C7 / de2_115_pulp_uart, 5 original manifest sources + 2 board sources, 20 ns SDC
+PINS PASS  65 unique Terasic locations and standards, 22 input / 43 output bits
+Fresh run /tmp/pulp source fixture ovd48ygd/relocated project/fpga/build/q-8woiq78u
+/usr/bin/python3 "/tmp/pulp source fixture ovd48ygd/relocated project/fpga/build/q-8woiq78u/fpga/scripts/check_project.py"
+Log /tmp/pulp source fixture ovd48ygd/relocated project/fpga/build/q-8woiq78u/preflight.log
+SOURCE NEGATIVE PASS  fresh snapshot preflight rejected the copied byte before Quartus, PULP_SOURCE_FAIL: SHA-256 mismatch: rtl/vendor/pulp_apb_uart_sv/uart_tx.sv
+exit 0
+
+reference physical comparison input fpga/de2_115/pins.qsf sha256=9dd367ee41c7fbcac4d82ca38dfdd4918da3b743e93f43fe242d2a14dcb89052
+reference physical comparison input build/fpga/output_files/de2_115_apb_uart.pin sha256=302886c82cd9f4bcd62f72c6ea117ffd3b4137b350cf523ab178c2555e744b8a
+REFERENCE QSF MATCH  130 ordered assignment records identical (65 location + 65 I/O standard)
+REFERENCE .pin MATCH  all 65 locations, directions and standards of the supplied TARGET fit; physical comparison only
+MAIN2  Quartus compile / fit / TimeQuest / SOF / JTAG / physical UART = NOT_RUN
+FILELIST RELOCATION PASS  Verilator --lint-only on de2_115_pulp_uart from outside a copied checkout with spaces, -F rtl.f, original fifo_tx_data latch warning visible

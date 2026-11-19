@@ -1,0 +1,19 @@
+# Keep only the CDC stages used on this board. The original receiver calls
+# its third-stage vector reg_rx_sync and its instance uart_rx_i.
+set first_stages {{reset_sync[0]} {key_sync[0]} {rx_sync[0]}}
+set stages [concat $first_stages {{reset_sync[1]} {key_sync[1]} {rx_sync[1]}}]
+foreach bit {0 1 2 3 4 5 6 7 14 16 17} {
+    set meta [format {sw_meta[%d]} $bit]
+    lappend first_stages $meta
+    lappend stages $meta [format {sw_sync[%d]} $bit]
+}
+foreach bit {0 1 2} {
+    lappend stages [format {apb_uart_sv:uart|uart_rx:uart_rx_i|reg_rx_sync[%d]} $bit]
+}
+foreach reg $first_stages {
+    set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION "FORCED IF ASYNCHRONOUS" -to $reg
+}
+foreach reg $stages {
+    set_instance_assignment -name PRESERVE_REGISTER ON -to $reg
+    set_instance_assignment -name DONT_MERGE_REGISTER ON -to $reg
+}

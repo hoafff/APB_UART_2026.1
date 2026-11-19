@@ -1,5 +1,7 @@
 # ĐỐI CHIẾU `Huongdan_UART.md` VỚI RTL PULP — ISSUE & DISCREPANCY REGISTER
 
+> Tài liệu lịch sử ngày 29/10/2026. Các ước lượng và trạng thái bên dưới thuộc lần đọc RTL ban đầu. Nhánh main2 hiện dùng [đặc tả đã cập nhật](01_System_Specification.md), [kết quả mô phỏng](DV_RESULTS.md) và [project FPGA](05_FPGA_Windows.md).
+
 > **Trạng thái:** v0.1, 29/10/2026 — phân tích tĩnh mã nguồn, **chưa chạy mô phỏng/FPGA**.  
 > **Nguồn hướng dẫn:** `Huongdan_UART.md` do giảng viên cung cấp.  
 > **Nguồn RTL chuẩn:** [`pulp-platform/apb_uart_sv` tại commit `dfad6e04d19cc9481d3cd2750b45b970dc61271b`](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b).  

@@ -1,0 +1,457 @@
+[
+  {
+    "port": "CLOCK_50",
+    "board_signal": "CLOCK_50",
+    "direction": "input",
+    "pin": "PIN_Y2",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "KEY[0]",
+    "board_signal": "KEY[0]",
+    "direction": "input",
+    "pin": "PIN_M23",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "KEY[1]",
+    "board_signal": "KEY[1]",
+    "direction": "input",
+    "pin": "PIN_M21",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[0]",
+    "board_signal": "SW[0]",
+    "direction": "input",
+    "pin": "PIN_AB28",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[1]",
+    "board_signal": "SW[1]",
+    "direction": "input",
+    "pin": "PIN_AC28",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[2]",
+    "board_signal": "SW[2]",
+    "direction": "input",
+    "pin": "PIN_AC27",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[3]",
+    "board_signal": "SW[3]",
+    "direction": "input",
+    "pin": "PIN_AD27",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[4]",
+    "board_signal": "SW[4]",
+    "direction": "input",
+    "pin": "PIN_AB27",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[5]",
+    "board_signal": "SW[5]",
+    "direction": "input",
+    "pin": "PIN_AC26",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[6]",
+    "board_signal": "SW[6]",
+    "direction": "input",
+    "pin": "PIN_AD26",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[7]",
+    "board_signal": "SW[7]",
+    "direction": "input",
+    "pin": "PIN_AB26",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[8]",
+    "board_signal": "SW[8]",
+    "direction": "input",
+    "pin": "PIN_AC25",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[9]",
+    "board_signal": "SW[9]",
+    "direction": "input",
+    "pin": "PIN_AB25",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[10]",
+    "board_signal": "SW[10]",
+    "direction": "input",
+    "pin": "PIN_AC24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[11]",
+    "board_signal": "SW[11]",
+    "direction": "input",
+    "pin": "PIN_AB24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[12]",
+    "board_signal": "SW[12]",
+    "direction": "input",
+    "pin": "PIN_AB23",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[13]",
+    "board_signal": "SW[13]",
+    "direction": "input",
+    "pin": "PIN_AA24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[14]",
+    "board_signal": "SW[14]",
+    "direction": "input",
+    "pin": "PIN_AA23",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[15]",
+    "board_signal": "SW[15]",
+    "direction": "input",
+    "pin": "PIN_AA22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[16]",
+    "board_signal": "SW[16]",
+    "direction": "input",
+    "pin": "PIN_Y24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "SW[17]",
+    "board_signal": "SW[17]",
+    "direction": "input",
+    "pin": "PIN_Y23",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDR[0]",
+    "board_signal": "LEDR[0]",
+    "direction": "output",
+    "pin": "PIN_G19",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDR[1]",
+    "board_signal": "LEDR[1]",
+    "direction": "output",
+    "pin": "PIN_F19",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDR[2]",
+    "board_signal": "LEDR[2]",
+    "direction": "output",
+    "pin": "PIN_E19",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDR[3]",
+    "board_signal": "LEDR[3]",
+    "direction": "output",
+    "pin": "PIN_F21",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDR[4]",
+    "board_signal": "LEDR[4]",
+    "direction": "output",
+    "pin": "PIN_F18",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[0]",
+    "board_signal": "LEDG[0]",
+    "direction": "output",
+    "pin": "PIN_E21",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[1]",
+    "board_signal": "LEDG[1]",
+    "direction": "output",
+    "pin": "PIN_E22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[2]",
+    "board_signal": "LEDG[2]",
+    "direction": "output",
+    "pin": "PIN_E25",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[3]",
+    "board_signal": "LEDG[3]",
+    "direction": "output",
+    "pin": "PIN_E24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[4]",
+    "board_signal": "LEDG[4]",
+    "direction": "output",
+    "pin": "PIN_H21",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[5]",
+    "board_signal": "LEDG[5]",
+    "direction": "output",
+    "pin": "PIN_G20",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[6]",
+    "board_signal": "LEDG[6]",
+    "direction": "output",
+    "pin": "PIN_G22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[7]",
+    "board_signal": "LEDG[7]",
+    "direction": "output",
+    "pin": "PIN_G21",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "LEDG[8]",
+    "board_signal": "LEDG[8]",
+    "direction": "output",
+    "pin": "PIN_F17",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[0]",
+    "board_signal": "HEX0[0]",
+    "direction": "output",
+    "pin": "PIN_G18",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[1]",
+    "board_signal": "HEX0[1]",
+    "direction": "output",
+    "pin": "PIN_F22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[2]",
+    "board_signal": "HEX0[2]",
+    "direction": "output",
+    "pin": "PIN_E17",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[3]",
+    "board_signal": "HEX0[3]",
+    "direction": "output",
+    "pin": "PIN_L26",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[4]",
+    "board_signal": "HEX0[4]",
+    "direction": "output",
+    "pin": "PIN_L25",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[5]",
+    "board_signal": "HEX0[5]",
+    "direction": "output",
+    "pin": "PIN_J22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX0[6]",
+    "board_signal": "HEX0[6]",
+    "direction": "output",
+    "pin": "PIN_H22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[0]",
+    "board_signal": "HEX1[0]",
+    "direction": "output",
+    "pin": "PIN_M24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[1]",
+    "board_signal": "HEX1[1]",
+    "direction": "output",
+    "pin": "PIN_Y22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[2]",
+    "board_signal": "HEX1[2]",
+    "direction": "output",
+    "pin": "PIN_W21",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[3]",
+    "board_signal": "HEX1[3]",
+    "direction": "output",
+    "pin": "PIN_W22",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[4]",
+    "board_signal": "HEX1[4]",
+    "direction": "output",
+    "pin": "PIN_W25",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[5]",
+    "board_signal": "HEX1[5]",
+    "direction": "output",
+    "pin": "PIN_U23",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX1[6]",
+    "board_signal": "HEX1[6]",
+    "direction": "output",
+    "pin": "PIN_U24",
+    "io_standard": "2.5 V"
+  },
+  {
+    "port": "HEX4[0]",
+    "board_signal": "HEX4[0]",
+    "direction": "output",
+    "pin": "PIN_AB19",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX4[1]",
+    "board_signal": "HEX4[1]",
+    "direction": "output",
+    "pin": "PIN_AA19",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX4[2]",
+    "board_signal": "HEX4[2]",
+    "direction": "output",
+    "pin": "PIN_AG21",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX4[3]",
+    "board_signal": "HEX4[3]",
+    "direction": "output",
+    "pin": "PIN_AH21",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX4[4]",
+    "board_signal": "HEX4[4]",
+    "direction": "output",
+    "pin": "PIN_AE19",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX4[5]",
+    "board_signal": "HEX4[5]",
+    "direction": "output",
+    "pin": "PIN_AF19",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX4[6]",
+    "board_signal": "HEX4[6]",
+    "direction": "output",
+    "pin": "PIN_AE18",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[0]",
+    "board_signal": "HEX5[0]",
+    "direction": "output",
+    "pin": "PIN_AD18",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[1]",
+    "board_signal": "HEX5[1]",
+    "direction": "output",
+    "pin": "PIN_AC18",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[2]",
+    "board_signal": "HEX5[2]",
+    "direction": "output",
+    "pin": "PIN_AB18",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[3]",
+    "board_signal": "HEX5[3]",
+    "direction": "output",
+    "pin": "PIN_AH19",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[4]",
+    "board_signal": "HEX5[4]",
+    "direction": "output",
+    "pin": "PIN_AG19",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[5]",
+    "board_signal": "HEX5[5]",
+    "direction": "output",
+    "pin": "PIN_AF18",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "HEX5[6]",
+    "board_signal": "HEX5[6]",
+    "direction": "output",
+    "pin": "PIN_AH18",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "GPIO_UART_TX",
+    "board_signal": "GPIO[0]",
+    "direction": "output",
+    "pin": "PIN_AB22",
+    "io_standard": "3.3-V LVTTL"
+  },
+  {
+    "port": "GPIO_UART_RX",
+    "board_signal": "GPIO[2]",
+    "direction": "input",
+    "pin": "PIN_AB21",
+    "io_standard": "3.3-V LVTTL"
+  }
+]

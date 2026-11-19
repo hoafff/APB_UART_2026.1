@@ -1,0 +1,46 @@
+REPLAY python3 dv/probes/run.py
+PULP_SOURCE_PASS dfad6e04d19cc9481d3cd2750b45b970dc61271b (7 files, manifest)
+CHECKOUT main2 407b29c08f1a724980ac183081eac01e45bcdd5a
+TOOLCHAIN /home/hoaff/.local/bin/ic-eda build_jobs=1 verilate_jobs=1 sim_threads=1
+SHA256 0ab01830961e5eb5c85a25fbd5e830c15e1570ac08a6d1af592e24e5fdf6c83b  rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv
+SHA256 532a18a12cf4eb8f1cad9c98ca8dc12c0c2a3e360476a134fcaca2092908f193  rtl/vendor/pulp_apb_uart_sv/uart_rx.sv
+SHA256 3a41c83239ada87024d8321be1f6097caf6b1c36c4b9761a4e7c56f7a18cc306  rtl/vendor/pulp_apb_uart_sv/uart_tx.sv
+SHA256 9d05f38b5144cf328207c25de5e603f1a069f0a4a75779135032fb0a1625b554  rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv
+SHA256 c8f29a8856fc6f777686ae7bbbbe128078068573d3e5f3a7bacba3d678739d08  rtl/vendor/pulp_apb_uart_sv/uart_interrupt.sv
+SHA256 b10e27eff3c3c374254a7a6c8cf5ab0e1e5ef075cb62dfbac05dced3a337072c  dv/probes/uart_probes.cpp
+SHA256 a84806aeeab67b03e90aa763c5853ec80f9ef960a8f6f528b82fed20c38ec3b0  dv/probes/apb_fifo.cpp
+SHA256 10e3df823896a2d130255cea64145193061da1dd2835259891f0c3fe49d86fcd  dv/probes/rx_phase.cpp
+SHA256 1ece5c6ad44148baa66a7c9a6de984363e1058e0f4f10a563fe60d629f1d2548  dv/probes/run.py
+SHA256 3636d4c646f794f804e6409ded2b8b7a64571755a858abca384c60d8685856af  dv/probes/tb_fifo.sv
+SHA256 9a143ab96653a1576169d1930deee7aaba58f71037d375efe618558bb35095da  dv/probes/probe_uart.sv
+SHA256 463ef0eb0d38f59dea4cbad9ab62e3d330dd11569f66786b83b3b80a08e374bf  dv/probes/apb_bench.hpp
+Icarus Verilog version 14.0 (devel) (s20260301-871-g66f0e8a19-dirty)
+Icarus Verilog runtime version 14.0 (devel) (s20260301-871-g66f0e8a19-dirty)
+Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)
+PASS fifo FIFO-01,FIFO-02 widths=8,9 depth=16 pre_counts=0..16 empty_both=1 count8_both=36 full_both=2 offers=78 accepted=75 checked_pops=75 steps=103
+DETECTED fifo-control flipped_input_bit=8 wrap_order_check_step=71 sim_rc=1
+%Warning-LATCH: rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv:195:5: Latch inferred for signal 'probe_uart.uart.fifo_tx_data' (not all control paths of combinational always assign a value)
+CHECK rx-alignment period=32 first_dr_access_offsets=278,279 insertion_offset=276
+CHECK empty-rbr access_minus_arrival=-1 a6_returned_by=subsequent_read
+CHECK empty-rbr access_minus_arrival=0 a6_returned_by=subsequent_read
+CHECK empty-rbr access_minus_arrival=1 a6_returned_by=overlapping_read
+CHECK full-thr access_minus_dequeue=0 ready=1 error=0 tx_order=b5,20..2f frames=17
+CHECK full-thr access_minus_dequeue=1 ready=1 error=0 tx_order=b5,20..2f,d7 frames=18
+PASS apb-collisions FIFO-02 rx_phases=3 tx_phases=2
+CHECK rx-alignment period=32 first_dr_access_offsets=278,279 insertion_offset=276
+CHECK rx-fcr arrival_minus_write=0 lsr_at_k+2=61 retained=empty refill=71
+CHECK rx-fcr arrival_minus_write=1 lsr_at_k+2=61 retained=empty refill=71
+CHECK rx-fcr arrival_minus_write=2 lsr_at_k+2=61 retained=a6 refill=71
+CHECK tx-fcr scheduled_dequeue_minus_write=0 tx_order=55,39 refill=93
+CHECK tx-fcr scheduled_dequeue_minus_write=1 tx_order=55,39 refill=93
+CHECK tx-fcr scheduled_dequeue_minus_write=2 tx_order=55 refill=93
+PASS fcr-clear FIFO-03 rx_phases=3 tx_phases=3
+PASS midframe-reset REG-02 tx_clocks_before_reset=687 pre_lsr=01 async_tx=1 async_irq=0 reset_lsr=60 reset_iir=c1 lcr/ier/dll/dlm=00 tx_recovery=a9 rx_recovery=b6
+PASS baud-min BAUD-01 div=0 start_clocks=2 data_clocks=1 data_intervals=8 stop_plus_idle=2 start_spacing=12 frames=55,a6
+PASS baud-max BAUD-01 div=65535 start_clocks=65537 data_clocks=65536 data_intervals=8 stop_plus_idle=65537 start_spacing=655362 frames=55,a6
+PASS rx-glitch RX-02,RX-03 div=433 low_clocks=4 rbr=ff head_lsr=61 fe_bi=0 lsr_polls=5644 recovery=69
+PASS rx-break RX-02,RX-03 div=433 low_clocks=10422 rbr=00 head_lsr=61 fe_bi=0 lsr_polls=5642 recovery=69
+PASS rx-phase BAUD-03,RX-01,REG-04 div=432,433 data_bits=8 shifts=-1,0,+1 first_pin_sample=650,651 frames=48 pre_parity_rbr=16
+PASS held-access APB-01 protocol_violation read_twice=6d,b2 write_twice=a7,a7
+DETECTED fcr-control omitted_rx_clear_bit actual_lsr=61 expected_lsr=60 sim_rc=1
+PASS suite scenarios=10 checker_controls=2

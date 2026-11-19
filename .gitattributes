@@ -1,0 +1,9 @@
+* text=auto eol=lf
+rtl/vendor/pulp_apb_uart_sv/** -text
+reference/DE2_115_pin_assignments.csv -text whitespace=cr-at-eol
+reference/Huongdan_UART.md -text
+dv/evidence/** -text
+fpga/evidence/** -text
+# Simulator and tool transcripts retain their original whitespace for SHA-256 verification.
+dv/evidence/*.log -text -whitespace
+fpga/evidence/*.log -text -whitespace

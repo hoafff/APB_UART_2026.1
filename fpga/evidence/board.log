@@ -1,0 +1,35 @@
+Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)
+Simulation logs fpga/build/sim-1wg20k5e
+%Warning-LATCH: fpga/de2_115/../../rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv:195:5: Latch inferred for signal 'tb_de2_115_pulp_uart.dut.uart.fifo_tx_data' (not all control paths of combinational always assign a value)
+BOARD CASE 01 PASS  8N1 init, synchronized release, idle TX/event/LEDs, 5000-clock poll
+BOARD BAUD 0x55 start=8700 ns regular_intervals=8 x 8680 ns = 434 CLOCK_50 cycles
+BOARD CASE 02 PASS  real 10 ms debounce, press/release bounce, held KEY1, 0x55 at measured baud
+BOARD CASE 03 PASS  peer 0x41 reaches RX display with echo disabled
+BOARD CASE 04 PASS  all 16 FIFO entries held, KEY1 TX while held, ordered echo after release
+BOARD CASE 05 PASS  held 18 timed input frames, 16 FIFO + one waiting byte recovered, no OE
+BOARD STREAM parity=N contiguous=4 echo=4
+BOARD STREAM parity=N contiguous=16 echo=16
+BOARD STREAM parity=N contiguous=64 echo=64
+BOARD CASE 06 PASS  uninterrupted 4/16/64-byte 8N1 streams with live mode switch change
+BOARD STREAM parity=E contiguous=4 echo=4
+BOARD STREAM parity=E contiguous=16 echo=16
+BOARD STREAM parity=E contiguous=64 echo=64
+BOARD CASE 07 PASS  8E1 KEY1 and 4/16/64 contiguous echoes with both TX parity polarities
+BOARD CASE 08 PASS  inverted incoming parity accepted with LSR[2] clear, valid even echo
+BOARD CASE 09 PASS  reset interrupts TX/RX, clears stale bytes and reinitializes 8N1 echo
+BOARD PASS cases=9 init_sequences=3 setups=44630 accesses=44630 lsr=44200 rbr=205 thr=207 tx_frames=206 reset_aborts=1 even_p0=42 even_p1=44
+- fpga/sim/tb_de2_115_pulp_uart.sv:367: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 110ms; walltime 2.865 s; speed 38.376 ms/s
+- Verilator: cpu 2.859 s on 1 threads; allocated 4 MB
+NEGATIVE CONTROL PASS  TX pin expected 54 got 55 (expected failure, exit 1)
+MASTER CASE 01 PASS  six writes stable across zero to four wait states
+MASTER CASE 02 PASS  committed RBR/echo survives hold/mode change and waits for FIFO empty
+MASTER CASE 03 PASS  manual and echo arbitration, simultaneous manual consume/refill
+MASTER CASE 04 PASS  busy manual slot keeps older byte and sets fault LED
+MASTER CASE 05 PASS  runtime and init APB errors halt until reset
+MASTER PASS cases=5 transfers=21 inserted_wait_edges=24
+- fpga/sim/tb_de2_pulp_uart_master.sv:126: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 2us; walltime 0.000 s; speed 17.328 ms/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 4 MB

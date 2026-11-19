@@ -1,0 +1,9 @@
+/build/
+/de2_115/db/
+/de2_115/incremental_db/
+/de2_115/output_files/
+/de2_115/*.qws
+/de2_115/*.qdf
+/de2_115/*.qsf.bak
+/de2_115/*.qsf.orig
+/de2_115/*.sdc.bak

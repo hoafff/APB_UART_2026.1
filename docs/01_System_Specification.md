@@ -1,370 +1,160 @@
-# SYSTEM SPECIFICATION — APB UART SV
+# Đặc tả hệ thống và IP APB UART — nhánh `main2`
 
-> **Đề tài:** Kiểm thử giao thức truyền thông UART sử dụng giao tiếp APB  
-> **DUT:** `pulp-platform/apb_uart_sv` trên FPGA Altera/Terasic DE2-115 (Cyclone IV E)  
-> **Phiên bản:** 0.1 — *Draft, phân tích tĩnh RTL; chưa có kết quả mô phỏng/FPGA*  
-> **Ngày lập:** 29/10/2026  
-> **Repo bài tập:** https://github.com/hoafff/APB_UART_2026.1
+Hệ thống dùng IP `apb_uart_sv` nguyên bản của PULP, nhánh `pulpinov1` tại commit `dfad6e04d19cc9481d3cd2750b45b970dc61271b`. Master truy cập thanh ghi theo **offset byte**. Trên DE2-115, clock 50 MHz và divisor `0x01B1` cho tốc độ danh định 115200 baud. Wrapper hỗ trợ 8N1 và 8E1, dùng LSR để quyết định khi nào đọc hoặc ghi dữ liệu.
 
-## 0. Nguồn tài liệu, quy tắc ưu tiên và ký hiệu
+Đây là hợp đồng cho driver, DV và tích hợp FPGA của `main2`. Năm tệp SystemVerilog trong filelist xác định IP. Các yêu cầu `SYS` và `BOARD` áp dụng cho phần tích hợp bên ngoài IP. Hướng dẫn gốc và bản `TARGET-v1.0` trong lịch sử chỉ dùng để đối chiếu. [Filelist PULP](../rtl/vendor/pulp_apb_uart_sv/src_files.yml) · [SHA-256 của nguồn](spec/baseline_hashes.json) · [Hướng dẫn gốc](../reference/Huongdan_UART.md) · [Sai khác giữa hướng dẫn và RTL](00_RTL_Guide_Discrepancies.md)
 
-**Ba yêu cầu của giảng viên:** (1) Specifications; (2) DV Plan, Test Case, môi trường UVM và directed/automatic/random/coverage; (3) kiểm thử trên DE2-115.
+Mỗi ID dưới đây có điều kiện kích thích và quan sát mong đợi. Với mục ghi **giới hạn** hoặc **lỗi**, tái hiện được triệu chứng chỉ xác nhận đặc điểm của revision này. Kế hoạch giữ ánh xạ ID → testcase, sổ kết quả giữ log, cấu hình và phạm vi thực sự đã chạy. [Chỉ mục ID](spec/requirements.json) · [Kế hoạch DV](03_DV_Plan.md) · [Kết quả DV](DV_RESULTS.md) · [Build Windows và nghiệm thu FPGA](05_FPGA_Windows.md)
 
-**Nguồn tham chiếu:**
+## 1. Biên IP và giao dịch APB
 
-1. `Huongdan_UART.md` do giảng viên cung cấp — định hướng hệ thống và thử nghiệm FPGA.
-2. [PULP APB UART SV](https://github.com/pulp-platform/apb_uart_sv), nhánh `pulpinov1`, **commit cố định** [`dfad6e04d19cc9481d3cd2750b45b970dc61271b`](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b) — nguồn chuẩn về hành vi RTL của DUT.
-3. Đề bài cuối kỳ do giảng viên công bố — nguồn chuẩn về **phạm vi nộp bài**.
-
-**Quy tắc:** Khi `Huongdan_UART.md` và RTL mâu thuẫn về hoạt động của DUT, **lấy RTL ở commit cố định** để mô tả và làm oracle kiểm thử. Khi RTL chưa thực hiện chức năng mà hướng dẫn yêu cầu, giữ yêu cầu ở phần *mong muốn/đề xuất* và ghi *giới hạn hoặc nghi vấn*; **không tự nhận là DUT đã hỗ trợ**. Các khác biệt được lưu tại [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md).
-
-| Ký hiệu | Ý nghĩa |
-|---|---|
-| **[RTL]** | Quan sát trực tiếp từ mã nguồn PULP tại commit đã khóa |
-| **[GUIDE]** | Chức năng hoặc cấu hình do `Huongdan_UART.md` mô tả |
-| **[PLAN]** | Yêu cầu thiết kế/kiểm chứng được đề xuất cho đồ án |
-| **[OPEN]** | Phải kiểm chứng thêm bằng mô phỏng, đối chiếu datasheet hoặc FPGA |
-
----
-
-## 1. Giới thiệu và phạm vi
-
-### 1.1. Mục tiêu
-
-Xây dựng đặc tả cho một hệ thống tích hợp IP UART có giao diện **APB Slave**; dùng tài liệu này làm cơ sở tạo **DV Plan + UVM testbench**, rồi triển khai một **FPGA bring-up** trên DE2-115 kết nối máy tính qua USB–UART CP2102.
-
-### 1.2. Phân định DUT và hệ thống
-
-- **DUT (Design Under Test):** module `apb_uart_sv` cùng các module con được instantiate trong nó. DUT **không** bao gồm APB Master, nút bấm, LED/HEX, CP2102.
-- **Verification environment:** UVM testbench (APB agent, UART stimulus/monitor, scoreboard, coverage), chạy trong simulator, **không tổng hợp lên FPGA**.
-- **FPGA system/top-level:** `de2_115_apb_uart_bringup` (cần viết hoặc lấy mẫu từ giảng viên) gồm APB Master FSM, bộ chống rung, đồng bộ tín hiệu ngoại vi, giải mã HEX, LED và kết nối DUT.
-
-### 1.3. Sơ đồ tổng quan
-
-```text
-                               DE2-115 FPGA
-  KEY[1] ─> Debouncer ─┐
-  SW[17:0] ─────────────┼─> APB Master FSM ── APB ──> +---------------------+
-  CLOCK_50/KEY[0] ──────┘                         ┌──> | apb_uart_sv (DUT)   |
-                                                │    | Register bank      |
-  CP2102 TXD ─> GPIO_UART_RX ─> [sync] ─> rx_i ─┘    | uart_rx / uart_tx    |
-  CP2102 RXD <─ GPIO_UART_TX <──────────── tx_o <──── | TX/RX FIFO, interrupt|
-                                                     +----------+----------+
-                                                                │ event_o
-                       HEX/LED <── APB read data / status <───────┘
-```
-
-[GUIDE] Hệ thống điều khiển gửi một byte từ `SW[7:0]` khi bấm `KEY[1]`, nhận dữ liệu từ PC và hiển thị HEX, hỗ trợ Echo Mode `SW[17]` và tùy chọn dừng đọc RX `SW[16]`. Đây là **đặc tả của FPGA wrapper**, không phải port sẵn có của DUT.
-
----
-
-## 2. Cấu trúc RTL và cấu hình tham số
-
-### 2.1. File RTL phải đưa vào project
-
-Danh sách đúng theo [`src_files.yml`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/src_files.yml):
-
-| File | Module và chức năng |
-|---|---|
-| `apb_uart_sv.sv` | APB Slave, bank thanh ghi, ghép TX/RX/FIFO/interrupt |
-| `uart_tx.sv` | FSM UART Transmitter, phát `tx_o` |
-| `uart_rx.sv` | FSM UART Receiver, lấy mẫu `rx_i` |
-| `io_generic_fifo.sv` | FIFO generic được instantiate **hai lần**: TX và RX |
-| `uart_interrupt.sv` | Tạo `event_o`, mã IIR |
-
-Ngoài 5 file trên, cần source `de2_115_apb_uart_bringup.sv` do người thực hiện cung cấp. Repo còn chứa `apb_uart.sv` cùng định nghĩa module `apb_uart_sv`: **không đưa đồng thời** `apb_uart.sv` và `apb_uart_sv.sv` vào danh sách biên dịch để tránh trùng module.
-
-### 2.2. Tham số [RTL]
-
-| Tham số | Mặc định | Ý nghĩa |
-|---|---:|---|
-| `APB_ADDR_WIDTH` | 12 | Độ rộng cổng `PADDR` (mặc dù decoder chỉ dùng `PADDR[2:0]`) |
-| `TX_FIFO_DEPTH` | 16 | Độ sâu FIFO truyền tính theo byte |
-| `RX_FIFO_DEPTH` | 16 | Độ sâu FIFO nhận tính theo byte |
-| TX FIFO `DATA_WIDTH` | 8 | Byte truyền |
-| RX FIFO `DATA_WIDTH` | 9 | Byte nhận + 1 bit parity-error kèm theo |
-
----
-
-## 3. Giao diện bên ngoài DUT [RTL]
-
-Đối chiếu khai báo module [tại đây](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L11-L33).
-
-| Port | Chiều | Độ rộng | Ý nghĩa |
-|---|---|---:|---|
-| `CLK` | input | 1 | Clock chung của DUT |
-| `RSTN` | input | 1 | Reset tích cực thấp; dùng trong `always_ff @(posedge CLK, negedge RSTN)` |
-| `PADDR` | input | `APB_ADDR_WIDTH` (12) | Địa chỉ APB; decoder xét `PADDR[2:0]` |
-| `PWDATA` | input | 32 | Dữ liệu ghi APB; logic thanh ghi sử dụng `PWDATA[7:0]` và một số bit cấu hình |
-| `PWRITE` | input | 1 | 1 = write, 0 = read |
-| `PSEL` | input | 1 | Chọn APB Slave |
-| `PENABLE` | input | 1 | Pha ACCESS APB |
-| `PRDATA` | output | 32 | Dữ liệu đọc; các thanh ghi 8-bit zero-extend lên 32-bit |
-| `PREADY` | output | 1 | Luôn 1 trong RTL gốc |
-| `PSLVERR` | output | 1 | Luôn 0 trong RTL gốc |
-| `rx_i` | input | 1 | UART serial receive |
-| `tx_o` | output | 1 | UART serial transmit |
-| `event_o` | output | 1 | Interrupt/event từ `uart_interrupt` |
-
-**Mặc định hệ thống FPGA:** [GUIDE] `CLOCK_50 = 50 MHz`, reset từ `KEY[0]`, UART TX/RX đi tới CP2102 qua GPIO.
-
----
-
-## 4. Giao thức APB và điều kiện truy cập
-
-### 4.1. Pha giao dịch [PLAN]
-
-1. **IDLE:** `PSEL=0`, không có giao dịch.
-2. **SETUP:** Master đặt ổn định `PADDR`, `PWRITE`, `PWDATA` (nếu ghi), `PSEL=1`, `PENABLE=0`.
-3. **ACCESS:** giữ địa chỉ/chiều/dữ liệu, `PSEL=1`, `PENABLE=1`; lấy mẫu giao dịch tại cạnh lên `CLK` khi `PREADY=1`.
-4. **COMPLETE:** Master bỏ `PSEL` hoặc chuyển sang giao dịch tiếp theo đúng quy tắc APB.
-
-### 4.2. Hành vi đặc thù [RTL]
-
-- Điều kiện ghi: `PSEL && PENABLE && PWRITE`.
-- Điều kiện đọc: `PSEL && PENABLE && !PWRITE`.
-- `PREADY = 1'b1` và `PSLVERR = 1'b0` không đổi: Slave không phát wait-state và không báo lỗi truy cập.
-- Đọc `PRDATA` được tạo từ logic tổ hợp, mặc định `0` nếu không đọc hoặc truy cập thanh ghi không hỗ trợ.
-- APB Master không được giữ một giao dịch WRITE ở ACCESS qua nhiều cạnh lên clock vì có thể tạo tác dụng phụ nhiều lần (như đẩy nhiều byte vào FIFO).
-- **Decoder dùng `register_adr = PADDR[2:0]`, KHÔNG dùng địa chỉ word-aligned `0x00,0x04,0x08,...` như hướng dẫn.** Đây là khác biệt **DIF-01**.
-
-### 4.3. Các yêu cầu APB
-
-| ID | Yêu cầu |
-|---|---|
-| `REQ_APB_001` | Master phải phát SETUP trước ACCESS với tín hiệu địa chỉ/chiều/giá trị ghi ổn định. |
-| `REQ_APB_002` | DUT chỉ tác động ghi thanh ghi/FIFO khi `PSEL&PENABLE&PWRITE=1`. |
-| `REQ_APB_003` | DUT chỉ xuất thông tin thanh ghi đọc khi `PSEL&PENABLE&!PWRITE=1`. |
-| `REQ_APB_004` | `PREADY=1` và `PSLVERR=0` theo RTL gốc. |
-| `REQ_APB_005` | Kiểm thử địa chỉ theo `PADDR[2:0]`; kiểm tra cả trường hợp alias do bit địa chỉ cao bị bỏ qua. |
-
----
-
-## 5. Register map của DUT — **theo RTL, không theo bảng địa chỉ hướng dẫn**
-
-Các hằng địa chỉ định nghĩa ở [`apb_uart_sv.sv`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv#L34-L43). Địa chỉ dưới đây là **offset PADDR thực tế**, mỗi địa chỉ liền kề cách nhau 1.
-
-| `PADDR[2:0]` | Read (DLAB=0) | Write (DLAB=0) | Read/Write khi DLAB=1 | Ghi chú |
-|---|---|---|---|---|
-| `0x0` | RBR | THR | DLL | RBR pop RX FIFO; THR push TX FIFO |
-| `0x1` | IER | IER | DLM | Interrupt enable hoặc divisor MSB |
-| `0x2` | IIR | FCR | IIR read / FCR write | Không phụ thuộc DLAB |
-| `0x3` | LCR | LCR | LCR | Chọn data bits, stop TX, parity enable và DLAB |
-| `0x4` | — | — | — | `MCR` được khai báo nhưng không thấy logic read/write |
-| `0x5` | LSR | — | LSR read | Line status |
-| `0x6` | — | — | — | `MSR` được khai báo nhưng không thấy logic read/write |
-| `0x7` | — | — | — | `SCR` được khai báo nhưng không thấy logic read/write |
-
-**Lưu ý:** Các offset có thể alias khi thay đổi `PADDR` bit cao: `PADDR=0x003`, `0x00B`… cùng giải mã thanh ghi `0x3` do decoder chỉ giữ 3 bit thấp. Đây là **hành vi RTL**, không phải khẳng định tương thích một bản đồ memory-mapped APB thông dụng.
-
-### 5.1. Các bit cấu hình và trạng thái
-
-| Thanh ghi | Những bit được RTL sử dụng | Ý nghĩa / hạn chế |
+| Cổng của `apb_uart_sv` | Chiều | Ý nghĩa tại giao diện |
 |---|---|---|
-| `LCR` | `[7]` | `DLAB`: 1 truy cập DLL/DLM thay RBR/THR/IER |
-| `LCR` | `[3]` | Bật parity cho TX/RX; RTL không tiêu thụ bit chọn odd/even `[4]` |
-| `LCR` | `[2]` | TX chọn 1 hoặc 2 stop bits; RX không có input cấu hình stop bits |
-| `LCR` | `[1:0]` | `00/01/10/11` → 5/6/7/8 data bits |
-| `IER` | `[0]`, `[1]`, `[2]` | Cho phép interrupt RX-data, TX-empty, error theo khối interrupt |
-| `FCR` | `[1]`, `[2]` | Lệnh clear RX FIFO / TX FIFO (tự xóa sau xung); bit `[0]` không được dùng như enable |
-| `FCR` | `[7:6]` | RX FIFO interrupt threshold: mã `00/01/10/11` ứng với 1/4/8/14 phần tử |
-| `LSR` | `[0]` | Có phần tử trong RX FIFO (`fifo_rx_valid`) |
-| `LSR` | `[2]` | Bit parity-error lấy từ dữ liệu RX FIFO; xem cảnh báo độ tin cậy ở DIF-08 |
-| `LSR` | `[5]` | TX FIFO trống; **chưa chắc** shift register đã phát xong |
-| `LSR` | `[6]` | Cả TX FIFO trống và TX shift register ready |
+| `CLK`, `RSTN` | Vào | Một miền clock, cập nhật ở cạnh lên. Reset tích cực thấp, tác động bất đồng bộ và ưu tiên trước cập nhật giao dịch. |
+| `PADDR[11:0]`, `PSEL`, `PENABLE`, `PWRITE` | Vào | Độ rộng mặc định `APB_ADDR_WIDTH=12`. Master ngoài IP chọn slave bằng `PSEL`. `PWRITE=1` là ghi. |
+| `PWDATA[31:0]` / `PRDATA[31:0]` | Vào / ra | Dữ liệu ghi / đọc. Chỉ byte thấp hữu hiệu, không có `PSTRB`. |
+| `PREADY`, `PSLVERR` | Ra | Luôn lần lượt bằng 1 và 0. |
+| `rx_i` / `tx_o` | Vào / ra | Hai đường nối tiếp độc lập, mức nghỉ 1. TX và RX đều được bật cố định bên trong IP. |
+| `event_o` | Ra | Mức ngắt từ bit 0 của mã IIR đã chốt. Hành vi sau ngắt xem mục 6. |
 
-Các bit LSR `[1]` (overrun), `[3]` (framing error) không có logic cập nhật tương ứng trong RTL đã đối chiếu; không coi là được hỗ trợ chỉ vì tài liệu hướng dẫn có ghi.
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="apb-01"></a>`APB-01` | Pha và cạnh hoàn tất | Master phát SETUP (`PSEL=1, PENABLE=0`), kế tiếp ACCESS (`PSEL=1, PENABLE=1`), giữ địa chỉ, chiều và dữ liệu ghi. Khi `RSTN=1`, chỉ cạnh lên ở ACCESS mới tạo tác dụng giao dịch. Hai lệnh liên tiếp vẫn có SETUP riêng. Giữ ACCESS trái giao thức qua hai cạnh có thể ghi/pop hai lần. |
+| <a id="apb-02"></a>`APB-02` | Phản hồi và độ rộng dữ liệu | Quan sát `PREADY=1, PSLVERR=0` cả khi truy cập ô bỏ trống hoặc THR đầy. `PRDATA=0` ngoài READ ACCESS. Khi đọc, `PRDATA[31:8]=0`. Đổi `PWDATA[31:8]` và giữ byte thấp phải cho cùng hiệu ứng ghi. |
+| <a id="apb-03"></a>`APB-03` | Địa chỉ byte và alias | Trong mọi giao dịch có `PSEL`, chỉ `PADDR[2:0]` chọn ô. Cứ 8 byte lặp lại toàn bộ bản đồ. Ghi `0x00B` rồi đọc `0x003` phải thấy cùng LCR. `0x00C` và `0x014` cùng chọn ô 4 bỏ trống. `0x008` chọn ô 0 và có đầy đủ tác dụng theo chiều và DLAB. |
 
-### 5.2. Reset values [RTL]
+Nguồn giải mã, chốt trạng thái và phản hồi bus nằm trong [apb_uart_sv.sv](../rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv).
 
-| Thanh ghi | Giá trị reset |
-|---|---|
-| `IER` | `0x00` |
-| `IIR` (bank lưu nội bộ) | `0x01` |
-| `LCR` | `0x00` |
-| `MCR`, `MSR`, `SCR` (bank lưu nội bộ) | `0x00` |
-| `LSR` | `0x60` |
-| `DLL`, `DLM` | `0x00` |
-| `trigger_level_q` | `00` |
-| TX/RX FIFO | reset số phần tử về 0 |
+## 2. Thanh ghi, reset và tác dụng đọc
 
-**Ghi chú:** `IIR` đọc trên bus được lấy từ `uart_interrupt.IIR_o`, không phải trực tiếp từ bản ghi `regs_q[IIR]`. `LSR` có các bit cập nhật động nên giá trị sau vài clock có thể khác giá trị chốt tại thời điểm reset.
+`DLAB = LCR[7]`. Các offset dưới đây tính từ địa chỉ cơ sở có ba bit thấp bằng 0. Bảng dùng tham số mặc định của IP.
 
-### 5.3. Yêu cầu kiểm chứng thanh ghi
-
-| ID | Yêu cầu |
-|---|---|
-| `REQ_REG_001` | Xác minh các thanh ghi hữu hiệu ở offsets `0x0`, `0x1`, `0x2`, `0x3`, `0x5`. |
-| `REQ_REG_002` | `LCR[7]` điều khiển phân trang DLL/DLM với RBR/THR/IER. |
-| `REQ_REG_003` | APB 32-bit, dữ liệu thanh ghi chủ yếu nằm ở byte thấp. |
-| `REQ_REG_004` | Kiểm thử reset `IER`, `LCR`, `DLL`, `DLM` và các bit trạng thái khả quan sát. |
-| `REQ_REG_005` | Truy cập không được triển khai trả `PRDATA=0` và không có `PSLVERR`. |
-
----
-
-## 6. Đặc tả truyền UART (TX) [RTL]
-
-- Dữ liệu APB ghi `THR` (`PADDR=0x0` khi `DLAB=0`) lấy `PWDATA[7:0]`, đưa vào **TX FIFO 16 phần tử**.
-- `uart_tx` nhận byte FIFO theo handshake `tx_valid_i/tx_ready_o`, phát khung: **Start(0) → 5–8 data bits, LSB-first → parity tùy chọn → 1/2 stop bits (1)**.
-- Đường `tx_o` ở trạng thái IDLE là `1`.
-- Bật parity bởi `LCR[3]`; parity TX hiện thực theo XOR tích lũy, phù hợp even parity; **không có logic chọn odd parity theo `LCR[4]`**.
-- `LSR[5]=1` khi TX FIFO không còn phần tử; `LSR[6]=1` khi FIFO trống và bộ phát ở trạng thái ready.
-
-### Baud generator
-
-Ở [`uart_tx.sv`](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_tx.sv#L182-L209), bộ đếm so sánh `baud_cnt == cfg_div_i` rồi sinh `bit_done`. `cfg_div_i={DLM,DLL}`. **Không có khối chia baud `16×` như tài liệu hướng dẫn.**
-
-- Với `f_CLK=50 MHz`, `baud=115200`, số clock mỗi bit mục tiêu gần `50,000,000 / 115,200 ≈ 434.03`.
-- Vì bộ đếm **và** FSM có chu kỳ cập nhật riêng, cần **đo cạnh `tx_o` bằng testbench** để khóa chính xác `DLL/DLM`; giá trị khởi đầu cho khảo sát ở khoảng **432–433**, **không dùng 27**.
-- [OPEN] Chưa khẳng định giá trị divisor chính thức trước khi chạy mô phỏng TX/RX và kiểm thử sai số baud.
-
-| ID | Yêu cầu |
-|---|---|
-| `REQ_TX_001` | Ghi THR tại offset `0x0`, `DLAB=0`, tạo dữ liệu đầu vào TX FIFO. |
-| `REQ_TX_002` | TX ở IDLE giữ mức `1`; mỗi frame có start/data/optional parity/stop. |
-| `REQ_TX_003` | Các bit dữ liệu truyền LSB-first; hỗ trợ 5,6,7,8 bit theo `LCR[1:0]`. |
-| `REQ_TX_004` | `LCR[2]` ảnh hưởng số stop bits TX; `LCR[3]` bật parity. |
-| `REQ_TX_005` | Đo chính xác bit period theo bộ chia RTL bằng waveform, sau đó đối chiếu baud mục tiêu. |
-
----
-
-## 7. Đặc tả nhận UART (RX) [RTL]
-
-- `uart_rx` có đồng bộ tín hiệu đầu vào nội bộ bằng `reg_rx_sync` 3 bit; phát hiện cạnh xuống của start bit.
-- RX thu 5–8 bit theo `cfg_bits_i` vào byte dữ liệu, phát `rx_valid_o` để đưa vào **RX FIFO 16 phần tử**, phần tử RX FIFO gồm `{parity_error,rx_data}` (9 bit).
-- Đọc RBR tại `PADDR=0x0`, `DLAB=0` đưa dữ liệu RX FIFO lên `PRDATA[7:0]` và tạo tín hiệu pop FIFO.
-- `LSR[0]` chỉ thị có dữ liệu RX; parity-error đọc từ phần tử FIFO vào `LSR[2]` theo logic RTL.
-- [OPEN] Luồng xử lý parity có rủi ro: `SAVE_DATA` (đưa byte vào FIFO) diễn ra **trước** trạng thái `PARITY`, trong khi `err_clr_i` bị nối mức 1; chưa được chứng minh tính đúng đắn của bit lỗi đi kèm byte.
-- **Không được khẳng định RX phát hiện framing error/overrun** khi RTL chưa triển khai các cờ liên quan.
-
-| ID | Yêu cầu |
-|---|---|
-| `REQ_RX_001` | RX nhận khung UART hợp lệ và đưa byte thu vào RX FIFO. |
-| `REQ_RX_002` | Đọc RBR trả về byte nhận và pop FIFO. |
-| `REQ_RX_003` | `LSR[0]` phản ánh trạng thái FIFO có/không có byte. |
-| `REQ_RX_004` | Kiểm tra riêng tính đúng đắn của parity-error; đánh dấu test failing nếu RTL sai. |
-| `REQ_RX_005` | Thử nghiệm framing/overrun như các bài kiểm tra giới hạn, **không kỳ vọng thành công nếu thiếu logic**. |
-
----
-
-## 8. FIFO và interrupt [RTL]
-
-### 8.1. FIFO
-
-- TX FIFO 16×8; RX FIFO 16×9.
-- Clear RX qua `FCR[1]`, clear TX qua `FCR[2]`; `FCR[7:6]` chọn mức trigger 1/4/8/14.
-- `io_generic_fifo` xác định `full` khi `elements==BUFFER_DEPTH`; ghi khi `valid_i && !full`. Nếu đầy, dữ liệu mới không được thêm. APB phía trên **không có backpressure qua `PREADY` hay `PSLVERR`**, nên kiểm thử burst/writes liên tiếp phải lưu ý mất dữ liệu.
-- `FCR[0]` không tạo trạng thái enable/disable FIFO trong RTL.
-
-### 8.2. Interrupt
-
-- `uart_interrupt` xét yêu cầu lỗi (`IER[2]`), nhận dữ liệu (`IER[0]`), TX-empty (`IER[1]`), cập nhật mã `IIR_o` và `event_o=~IIR_o[0]`.
-- Mức trigger dựa trên số phần tử RX FIFO bằng phép so sánh `==` các mốc 1/4/8/14 (không phải `>=`), cần test ở biên.
-- **Điểm bất thường trong RTL:** cổng `RDA_i` của `uart_interrupt` được nối tới `regs_n[LSR][5]` (TX FIFO empty), chứ không phải `LSR[0]` (RX data ready). Kết quả interrupt RX **phải xác minh bằng mô phỏng**, không lấy mô tả hướng dẫn làm oracle.
-- `CTI_i` nối cố định `0` (không có timeout interrupt thực tế).
-
-| ID | Yêu cầu |
-|---|---|
-| `REQ_FIFO_001` | Mỗi FIFO có độ sâu 16 phần tử và có thể reset/clear. |
-| `REQ_FIFO_002` | Kiểm chứng thứ tự FIFO (FIFO order) và hành vi khi đầy. |
-| `REQ_FIFO_003` | Kiểm chứng mức trigger RX: 1/4/8/14 phần tử. |
-| `REQ_INT_001` | Đối chiếu các bit IER với `event_o`/IIR qua từng loại kích thích. |
-| `REQ_INT_002` | Ưu tiên kiểm thử rủi ro nối sai `RDA_i` trước khi dùng interrupt trong FPGA wrapper. |
-
----
-
-## 9. System Specification cho FPGA DE2-115 [GUIDE / PLAN]
-
-**Phần này là yêu cầu thiết kế mới cho Top-Level**, không phải hành vi chứng minh từ repo DUT.
-
-### 9.1. Hệ thống cần thực hiện
-
-| ID | Yêu cầu hệ thống |
-|---|---|
-| `REQ_SYS_001` | Cấp `CLOCK_50` cho DUT và logic wrapper; reset bằng `KEY[0]` tích cực thấp. |
-| `REQ_SYS_002` | Tạo `button_debouncer` cho `KEY[1]`, đồng bộ phím và tạo xung `send_pulse` một chu kỳ; thời gian ổn định dự kiến 10 ms = 500.000 clock @50MHz. |
-| `REQ_SYS_003` | Tạo APB Master FSM phát đúng SETUP/ACCESS, tự động init 6 giao dịch APB ghi: LCR(DLAB=1), DLL, DLM, LCR(DLAB=0), FCR, IER. |
-| `REQ_SYS_004` | Sau init, FSM hoạt động `IDLE → POLL_LSR → [READ_RBR] / [WRITE_THR] → IDLE`, thăm dò định kỳ khoảng 100 µs hoặc theo yêu cầu phím/ngắt. |
-| `REQ_SYS_005` | `SW[7:0]` chọn dữ liệu TX; bấm `KEY[1]` gửi một ký tự khi được phép. |
-| `REQ_SYS_006` | `SW[16]` cho phép dừng việc đọc RBR để khảo sát RX FIFO đầy; không mặc định có cờ overrun từ DUT. |
-| `REQ_SYS_007` | `SW[17]` bật Echo Mode: đọc byte từ RBR rồi ghi lại THR. |
-| `REQ_SYS_008` | Chân RX từ CP2102 đi qua đường đồng bộ phù hợp clock FPGA trước khi vào DUT; lưu ý DUT đã có bộ đồng bộ RX nội bộ. |
-| `REQ_SYS_009` | `HEX1:HEX0` hiển thị byte từ SW; `HEX5:HEX4` hiển thị byte RX; `LEDR[4:0]` báo LSR[4:0], `LEDG[8]` báo `event_o`, `LEDG[0]` báo init thành công. |
-| `REQ_SYS_010` | Dùng đúng địa chỉ thanh ghi RTL (`0x3`,`0x0`,`0x1`,`0x2`,`0x5`), không dùng địa chỉ word-aligned trong hướng dẫn. |
-| `REQ_SYS_011` | Baud và cấu hình parity phải tương thích hành vi thực tế RTL; `SW[15]` chọn odd/even **chưa hỗ trợ** như mô tả trong hướng dẫn. |
-
-### 9.2. APB Master FSM dự kiến
-
-Theo `Huongdan_UART.md` chương 4, 11 state ở mức chức năng: `ST_RESET`, `ST_INIT_LCR_DLAB1`, `ST_INIT_DLL`, `ST_INIT_DLM`, `ST_INIT_LCR_DLAB0`, `ST_INIT_FCR`, `ST_INIT_IER`, `ST_IDLE`, `ST_POLL_LSR`, `ST_READ_RBR`, `ST_WRITE_THR`. Mỗi giao dịch có pha SETUP và ACCESS riêng; việc đếm **11 trạng thái chức năng không có nghĩa mỗi giao dịch mất đúng một clock**.
-
-**Bảng init sau khi sửa địa chỉ** (giá trị cấu hình là mục tiêu, còn divisor sẽ chốt sau mô phỏng):
-
-| Thứ tự | Thanh ghi | PADDR đúng | Dữ liệu/công dụng |
+| Offset | Đọc khi DLAB=0 | Ghi khi DLAB=0 | Đọc / ghi khi DLAB=1 |
 |---|---|---|---|
-| 1 | LCR | `0x3` | `0x83`: DLAB=1, 8 data bits |
-| 2 | DLL | `0x0` | Byte thấp của divisor **cần đo lại**, không mặc định `0x1B` |
-| 3 | DLM | `0x1` | Byte cao divisor (thường 0 tại 115200 nếu divisor ~433) |
-| 4 | LCR | `0x3` | `0x03`: 8N1 hoặc `0x0B`: 8 bits + parity enable; odd/even select không có hiệu lực RTL |
-| 5 | FCR | `0x2` | `0x07`: tác dụng thực tế là clear RX/TX, `FCR[0]` không được sử dụng |
-| 6 | IER | `0x1` | `0x05`: bật RX-data/error interrupt, **cần test RDA trước** |
+| `0x0` | RBR, byte đầu RX FIFO | THR, yêu cầu thêm byte vào TX FIFO | DLL, byte thấp divisor, R/W |
+| `0x1` | IER | IER, lưu đủ 8 bit | DLM, byte cao divisor, R/W |
+| `0x2` | IIR, mã ngắt hiện hành | FCR, lệnh clear và chọn ngưỡng | Cũng đọc IIR / ghi FCR |
+| `0x3` | LCR | LCR, lưu đủ 8 bit | Cũng đọc / ghi LCR |
+| `0x4` | `0` | Bỏ qua | Như DLAB=0 |
+| `0x5` | LSR, trạng thái đã chốt | Bỏ qua | Như DLAB=0 |
+| `0x6`, `0x7` | `0` | Bỏ qua | Như DLAB=0 |
 
-### 9.3. DE2-115 và CP2102
+Tên MCR, MSR và SCR có trong khai báo ở các ô 4, 6 và 7. Decoder không thực thi các thanh ghi này. IP không cung cấp modem control/status, scratch register hay điều khiển luồng RTS/CTS.
 
-[GUIDE] Chọn FPGA `EP4CE115F29C7`. Dây CP2102: `RXD` → FPGA UART TX (`GPIO[0]`, `PIN_AB22`), `TXD` → FPGA UART RX (`GPIO[2]`, `PIN_AB21`), nối **GND chung** (guide đề xuất chân header 12 hoặc 30). **Không nối nguồn 3V3/5V CP2102 vào board FPGA**; xác minh điện áp I/O thực tế của module CP2102 trước khi cắm.
-
-**Gán chân theo hướng dẫn, CHƯA kiểm chứng bằng board manual / Pin Planner:**
-
-| Port | Pin/nhóm pin hướng dẫn |
-|---|---|
-| `CLOCK_50` | `PIN_Y2` |
-| `KEY[0]`, `KEY[1]` | `PIN_M23`, `PIN_M21` |
-| `GPIO_UART_TX`, `GPIO_UART_RX` | `PIN_AB22`, `PIN_AB21` |
-| `SW[7:0]` | `PIN_AB26, AD26, AC26, AB27, AD27, AC27, AC28, AB28` |
-| `SW[14:17]` | `PIN_AA23, PIN_AA22, PIN_Y24, PIN_Y23` |
-| `LEDR[4:0]` | `PIN_F18, F21, E19, F19, G19` |
-| `LEDG[0]`, `LEDG[8]` | `PIN_E21`, `PIN_F17` |
-| `HEX0[6:0]` | `PIN_H22, J22, L25, L26, E17, F22, G18` |
-| `HEX1[6:0]` | `PIN_U24, U23, W25, W22, W21, Y22, M24` |
-| `HEX4[6:0]` | `PIN_AE18, AF19, AE19, AH21, AG21, AA19, AB19` |
-| `HEX5[6:0]` | `PIN_AH18, AF18, AG19, AH19, AB18, AC18, AD18` |
-
-**I/O Standards** trong hướng dẫn: một số nhóm 2.5V (`KEY`, `SW`, `LEDR`, `LEDG`, `HEX0/1`) và một số nhóm 3.3-V LVTTL (`GPIO_UART`, `HEX4/5`). Phải kiểm tra với DE2-115 manual/Quartus trước khi nạp; không coi bảng pin này là xác nhận an toàn điện.
-
----
-
-## 10. Kế hoạch kiểm chứng ở mức SPEC (định hướng yêu cầu 2)
-
-Đây **chưa phải DV Plan đầy đủ**. Khi làm DV Plan, mọi testcase phải trỏ về `REQ_...` và phân biệt:
-
-1. **RTL-supported:** đo/so với hành vi được RTL định nghĩa, kỳ vọng pass.
-2. **Known discrepancy:** kiểm thử một yêu cầu của hướng dẫn không được RTL hiện thực đầy đủ; test có thể fail có chủ đích để chứng minh giới hạn.
-3. **Open investigation:** cần waveform, lint hoặc thực nghiệm rồi mới quyết định pass/fail.
-
-Phân nhóm cần bao phủ: APB handshake; reset; register DLAB; truyền TX 5–8 bits; RX; FIFO order/full/clear; parity; interrupt; random register sequences; cross coverage giữa frame mode và đường TX/RX. Trên FPGA, kiểm tra cơ bản: init, PC→FPGA, FPGA→PC, echo, hiển thị HEX/LED, thử FIFO đầy và tín hiệu interrupt.
-
-## 11. Những điểm còn mở và tiêu chí đóng SPEC
-
-| Mã | Nội dung | Cách xác minh |
+| ID | Yêu cầu | Tiêu chí chấp nhận |
 |---|---|---|
-| `OPEN-01` | Khóa divisor thực nghiệm cho 115200 tại 50MHz | Testbench đo chu kỳ bit của TX, loopback RX, đối chiếu sai số |
-| `OPEN-02` | Khả năng báo parity error | Directed test với parity cố ý sai, quan sát `LSR[2]`, FIFO 9-bit |
-| `OPEN-03` | `event_o` báo RX theo dữ liệu hay báo sai do `RDA_i` | APB/UART interrupt directed test |
-| `OPEN-04` | Độ đầy/clear FIFO, mất dữ liệu khi ghi đầy | Directed stress test |
-| `OPEN-05` | Board pinout và I/O standard | Đối chiếu manual DE2-115 + Quartus Pin Planner |
-| `OPEN-06` | RTL Top-Level `de2_115_apb_uart_bringup.sv` | Viết/review source; chưa được cung cấp trong PULP repo |
-| `OPEN-07` | Bộ đồng bộ RX ngoài và trong DUT ảnh hưởng latency | Waveform/STA khi tích hợp FPGA |
+| <a id="reg-01"></a>`REG-01` | Bản đồ và hai bank DLAB | Ghi IER, mở DLAB và ghi/đọc hai byte khác nhau tại 0/1, đóng DLAB và đọc lại IER ban đầu. Một byte RX đang chờ phải còn nguyên qua lần đọc DLL. Ghi DLL không tạo khung TX. Kiểm tra cả hai chiều của các ô 2–7 theo bảng. |
+| <a id="reg-02"></a>`REG-02` | Reset và hủy công việc đang dở | Hạ `RSTN` giữa khung và khi còn dữ liệu chờ. TX trở về 1, hai FIFO rỗng, TX/RX về IDLE, đường đồng bộ RX về `111`, `event_o=0`. Sau nhả reset với bus nghỉ và `rx_i=1`, đọc các bank tương ứng để kiểm `LCR=IER=DLL=DLM=0`, `LSR=0x60` và `IIR=0xC1`. Ngưỡng về 1, hai lệnh clear về 0. Master hủy SETUP/ACCESS cũ, cấu hình lại rồi gửi/nhận byte mới, không phát lại dữ liệu trước reset. |
+| <a id="reg-03"></a>`REG-03` | Bit cấu hình và phạm vi readback | `LCR[1:0]=00/01/10/11` chọn 5/6/7/8 bit, `[2]` chọn stop TX, `[3]` bật parity chẵn, `[7]` chọn bank. `[4]` không chọn odd/even, `[5]` không tạo stick parity, `[6]` không ép TX xuống thấp để phát break. Ghi rồi đọc lại các bit này, so khung thực với cùng dữ liệu. IER lưu cả byte, chỉ `[2:0]` đi tới bộ ngắt. |
+| <a id="reg-04"></a>`REG-04` | DR, THRE và TEMT | Tại mỗi cạnh lên, `LSR[0]` lấy `RX_count≠0`, `[5]` lấy `TX_count=0`, `[6]` lấy `TX_count=0` và TX đang IDLE, đều từ trạng thái **trước cạnh**. So DR quanh cạnh push/pop cuối. Sau khi TX lấy byte cuối, phải thấy `LSR[6:5]=01` (THRE=1, TEMT=0), rồi `11` sau khi phát xong. |
+| <a id="reg-05"></a>`REG-05` | Dữ liệu đọc và acknowledge | Lấy `PRDATA` tại cạnh hoàn tất **trước** cập nhật FIFO/IIR. Đọc RBR với DLAB=0 lấy đầu cũ, chỉ pop khi FIFO có dữ liệu và luôn phát mask `1000` kể cả khi rỗng. Đọc LSR giữ FIFO, phát `1100`. Đọc IIR phát `0100` với mọi mã trả về. Đọc DLL/DLM/LCR/IER không phát các mask này. Thử hai byte khác nhau và các lần đọc xen kẽ để phân biệt. |
 
-**Bản SPEC v0.1 được xem là bản phân tích ban đầu, chưa phải dấu xác nhận hoàn tất.** Trước khi chốt v1.0 cần xem lại register map, tính baud bằng mô phỏng, xem kết quả những lỗi nghi vấn và xác minh pinout. Không sửa DUT để hợp thức hóa SPEC; mọi patch (nếu có) phải dùng commit/branch riêng và đánh dấu khác với DUT gốc.
+LSR là ảnh chụp theo clock. Chẳng hạn, push vào RX rỗng ở cạnh `k` làm DR được chốt ở cạnh `k+1`. Đọc RBR khi rỗng trả byte từ ô nhớ tại con trỏ hiện tại. Byte đó có thể là dữ liệu cũ, không có giá trị nhận mới. Reset phần cứng xóa bộ nhớ FIFO. FCR chỉ đặt lại trạng thái hàng đợi. Đường đọc IIR ghép `0xC0` với mã từ `uart_interrupt`. Ô `regs_q[IIR]` reset bằng `0x01` không cấp dữ liệu cho APB. Nếu master giữ ACCESS qua lúc nhả reset, IP có thể thực hiện nó ngay tại cạnh lên đầu tiên có `RSTN=1`.
 
----
+## 3. Baud và định dạng phát
 
-## Phụ lục A — Dẫn chứng chính
+Đặt `D = 256 × DLM + DLL` (16 bit), `P = D + 1` tính bằng số nguyên đủ rộng. Cả hai máy trạng thái đọc trực tiếp cấu hình hiện hành. Hai lần ghi DLL và DLM có hiệu lực riêng. Nếu giảm D xuống dưới số đếm đang chạy, phép so bằng có thể phải đợi bộ đếm 16 bit quay vòng. Để truyền theo định dạng xác định, chờ TX hoàn tất, giữ đầu gửi ngoài ở idle và chỉ bắt đầu khung mới sau khi cấu hình xong. Không có thao tác chốt toàn bộ cấu hình tại đầu mỗi khung.
 
-- Hướng dẫn gốc: `Huongdan_UART.md`, phần 1–5 (tệp thầy cung cấp).
-- [RTL: top + APB + registers](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/apb_uart_sv.sv)
-- [RTL: UART TX](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_tx.sv)
-- [RTL: UART RX](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_rx.sv)
-- [RTL: Interrupt](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_interrupt.sv)
-- [RTL: FIFO](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/io_generic_fifo.sv)
-- [RTL file list](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/src_files.yml)
-- **Bảng sai khác chi tiết:** [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md).
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="baud-01"></a>`BAUD-01` | Chu kỳ bit TX | Với D cố định, bộ đếm chạy từ 0 đến D kể cả hai đầu. `bit_done` qua một thanh ghi. Từ IDLE, start TX dài `P+1` clock, mỗi bit data, parity và mỗi stop dài `P` clock. Đo trên `tx_o` với mẫu đổi mức. `D=0` vẫn cho TX tiến (start 2 clock, data 1 clock), `D=65535` cho data 65536 clock. Không có hệ số chia 16. |
+| <a id="baud-02"></a>`BAUD-02` | Điểm làm việc 50 MHz / 115200 | Ghi `DLL=0xB1, DLM=0x01`, gửi `0x55` ở 8N1. Từ cạnh xuống start đến cạnh lên bit 0 là 435 clock (8,700 µs). Các cạnh data cách nhau 434 clock (8,680 µs), tương ứng `50 000 000 / 434 ≈ 115 207,37` baud (+0,0064%). Với `D=27`, data chỉ dài 28 clock (0,560 µs). |
+| <a id="baud-03"></a>`BAUD-03` | Pha lấy mẫu RX | RX dịch `rx_i` qua ba FF, nhận cạnh xuống khi `reg_rx_sync[2]=1, reg_rx_sync[1]=0`. Trong cửa sổ start, so bộ đếm với `D >> 1`, tương ứng `floor(D/2)+1` clock đếm từ 0. Các nhịp data so với D, mẫu lấy từ `reg_rx_sync[2]` bằng `bit_done` đã chốt. Đối chiếu ở D chẵn và lẻ, chẳng hạn 432/433, với khung từ nguồn nối tiếp độc lập. Độ trễ đồng bộ và nhịp FSM phải được tính riêng khi quy về chân `rx_i`. Giá trị đếm ở D rất nhỏ không bảo đảm RX bắt được mọi khung ở tốc độ đó. |
+
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="tx-01"></a>`TX-01` | Đường THR → FIFO → TX | Với DLAB=0 và FIFO còn chỗ, mỗi lần ghi THR tạo một byte chờ. Từ IDLE, TX lấy đầu FIFO vào thanh ghi dịch. Ghi liên tiếp `0x41, 0xA6` ở 8N1, đối chiếu đúng hai khung theo thứ tự trên `tx_o`, kể cả khi RX đang nhận. |
+| <a id="tx-02"></a>`TX-02` | Bit dữ liệu và parity | Dây nghỉ 1, một start=0, tiếp theo n bit thấp của byte theo thứ tự bit 0 trước, thêm một bit parity nếu bật, cuối cùng là stop=1. Ở chế độ E, parity là XOR của đúng n bit đã phát. So đủ 16 tổ hợp của n=5/6/7/8, parity N (tắt) hoặc E (chẵn), và một/hai stop. Ví dụ `LCR=0x0B` và `0x1B` đều cho 8E1. |
+| <a id="tx-03"></a>`TX-03` | Số stop trên hai khung kề nhau | `LCR[2]=0/1` cho 1/2 stop **nguyên bit**, cả khi dữ liệu dài 5 bit. Xếp sẵn byte kế, giữ cấu hình và đo khoảng cách giữa hai cạnh xuống start. Với n bit data, p=0/1 parity và s=1/2 stop, khoảng cách bằng `(1+n+p+s)×P+2` clock (thêm 1 ở start và 1 ở IDLE giữa hai khung). Tại D=433, 8N1 cho 4342 clock, 8N2 cho 4776. |
+
+Nguồn bộ đếm, đường dịch và trạng thái stop nằm trong [uart_tx.sv](../rtl/vendor/pulp_apb_uart_sv/uart_tx.sv) và [uart_rx.sv](../rtl/vendor/pulp_apb_uart_sv/uart_rx.sv).
+
+## 4. Nhận dữ liệu và giới hạn báo lỗi
+
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="rx-01"></a>`RX-01` | Khung sạch tới RBR | Lái `rx_i` từ một bộ phát độc lập với clock bit phù hợp, ở 5–8 bit, N/E. Khi còn chỗ, RX đưa dữ liệu vào FIFO tại `SAVE_DATA` ngay sau data cuối, trước xử lý parity/stop. Truyền bit 0 trước. RBR trả đúng giá trị phần dữ liệu, các bit cao ngoài độ dài bằng 0. Dùng mẫu bất đối xứng, burst và TX/RX đồng thời để so số byte lẫn thứ tự. |
+| <a id="rx-02"></a>`RX-02` | Giới hạn xác nhận start, stop và break | Cạnh xuống ở IDLE đủ để RX bắt đầu. FSM không kiểm lại mức thấp ở giữa start, chỉ đợi một nhịp stop và không lấy mẫu để kiểm mức stop. `LCR[2]` không nối tới RX. Ở 8N1, D=433, RX đang rảnh và FIFO còn chỗ, kéo thấp 4 clock rồi giữ mức 1 quá một khung. RBR nhận `0xFF`. Ở ca riêng, kéo thấp từ idle quá một khung tạo byte `0x00`, BI vẫn bằng 0. Không có chức năng phát hiện break hay kiểm stop thứ hai. |
+| <a id="rx-03"></a>`RX-03` | Lỗi PE và các cờ thiếu | RX có so parity chẵn nhưng `err_clr_i=1` cố định và ưu tiên clear, nên sau reset `err_o=0`. FIFO đã nhận `{err_o,data}` trước phép so parity. `LSR[2]` lấy bit 8 của ô đầu FIFO và không báo PE. `LSR[1]/[3]/[4]/[7]` lần lượt không báo overrun, framing error, break hay tổng lỗi FIFO. Chèn parity sai, stop thấp, đường thấp kéo dài và burst khi đầy. Quan sát RBR cùng LSR trên từng ca, kể cả dữ liệu đã nhận sai chuẩn mà không có cờ. |
+
+RX cần một cạnh xuống mới khi đã về IDLE để bắt đầu khung tiếp theo. IP dùng một mẫu cho mỗi bit data. Hợp đồng không ấn định tỷ lệ lệch baud tối đa giữa hai đầu. [Máy thu và đường báo lỗi](../rtl/vendor/pulp_apb_uart_sv/uart_rx.sv) · [Kết nối tại top IP](../rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv)
+
+## 5. FIFO và lệnh FCR
+
+Mặc định TX FIFO có 16 mục × 8 bit, RX FIFO có 16 mục × 9 bit gồm byte dữ liệu và bit parity-error. Hai FIFO luôn hoạt động. Tại cạnh lên khi không reset/clear, `push = valid_i && count < 16`, `pop = ready_i && count > 0`, tính theo **count trước cạnh**. Khi có cả yêu cầu vào và ra, kết quả như sau.
+
+| Count trước cạnh | Tác dụng | Count sau cạnh |
+|---|---|---|
+| 0 | Chỉ nhận phần tử mới. Đầu ra chưa có phần tử hợp lệ tại cạnh đó. | 1 |
+| 1…15 | Trả đầu cũ, ghi phần tử mới xuống cuối. | Như trước |
+| 16 | Chỉ lấy đầu cũ. Phần tử mới chưa được nhận trong cạnh này. | 15 |
+
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="fifo-01"></a>`FIFO-01` | Dung lượng và thứ tự | Lấp đầy, rút bớt, nạp lại qua một vòng con trỏ rồi rút hết. So từng byte với hàng đợi độc lập, đủ 16 vị trí ở mỗi FIFO. Tách byte đang ở thanh ghi dịch TX hoặc đang chờ trong máy thu khỏi số phần tử FIFO. |
+| <a id="fifo-02"></a>`FIFO-02` | Push/pop ở biên | Thử ba hàng của bảng trên. Tại RX rỗng, RBR đọc đồng thời với byte đến không tiêu thụ byte mới. Tại TX đầy, ghi THR bị mất dù TX lấy đầu FIFO cùng cạnh. APB vẫn hoàn tất, không báo lỗi và không tự ghi lại. So chuỗi đầu ra để phát hiện mất byte cũ, nhân đôi hoặc nhận nhầm byte mới. |
+| <a id="fifo-03"></a>`FIFO-03` | Clear và các bit FCR | Mọi lần ghi FCR cập nhật ngưỡng `[7:6]`. `[1]` yêu cầu clear RX, `[2]` clear TX. `[0]` và `[5:3]` bị bỏ qua. Một lần WRITE ACCESS ở cạnh k chốt xung clear tự hạ. FIFO đặt count và hai con trỏ về 0 tại cạnh k+1, ưu tiên trước cập nhật count do push/pop. Bộ nhớ không được xóa bởi FCR. Kiểm hai FIFO độc lập và `0x06/0x07` tương đương. Khung TX đã nạp vẫn phát tiếp, RX đang nhận vẫn có thể đưa byte vào sau clear. |
+| <a id="fifo-04"></a>`FIFO-04` | RX đầy và byte đang chờ | Khi FIFO chứa 16 mục, RX giữ byte kế ở `SAVE_DATA` với valid=1. Một lần đọc RBR ở trạng thái đầy chỉ mở chỗ cho cạnh sau. Trong khi chờ, máy thu bỏ lỡ các start tiếp theo. Phát `0x40…0x51` ở 8N1 với chu kỳ bit khớp divisor, thêm một bit nghỉ sau mỗi khung, không đọc đến hết burst. Khi rút phải thấy `0x40…0x50` theo thứ tự, OE=0. Đây là một tình huống định thời cụ thể, dung lượng FIFO vẫn là 16. |
+
+Clear không che tín hiệu ready/valid tổ hợp. Nếu TX đang IDLE và thấy đầu FIFO hợp lệ ở cạnh clear, nó vẫn có thể nạp đầu cũ. Ở RX, nếu FIFO đầy thì byte đang chờ có thể vào ở cạnh sau clear. Nếu FIFO còn chỗ và RX đang có valid ngay cạnh clear, máy thu thấy ready và rời `SAVE_DATA`. Mạch nhớ vẫn có thể ghi ô đó nhưng count về 0, nên byte ấy không còn là phần tử hợp lệ. [Con trỏ, bộ nhớ và count](../rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv) · [Đường clear FCR](../rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv)
+
+## 6. IER, IIR và ngắt
+
+`IIR[7:4]=1100` cố định với mọi giá trị FCR. `IIR[3:0]=q` là **một mã** đã chốt. Khi đọc IIR, master nhận `0xC0 + q`. `event_o = ~q[0]`. Mỗi cạnh, bộ ngắt lấy `q` cũ, xóa các bit được chỉ định bởi mask đọc ở `REG-05`, sau đó nguồn đang đủ điều kiện có thể ghi đè **toàn bộ mã**, theo thứ tự dưới đây.
+
+| Ưu tiên | Điều kiện thực hiện trong top IP | Mã đọc APB |
+|---|---|---|
+| 1 | `IER[2]` và lỗi từ `regs_n[LSR][2]`. Đường PE luôn bằng 0 sau reset. | `0xCC` theo bộ mã hóa, không tạo được bằng khung lỗi ở chân RX của IP này |
+| 2 | `IER[0]` và (RX_count **bằng** ngưỡng hoặc TX FIFO rỗng do nối RDA sai nguồn) | `0xC8` |
+| 3 | `IER[0]` và timeout ký tự. Đầu vào `CTI_i` nối 0. | Nhánh này cũng mã hóa `0xC8`, không có timeout hoạt động |
+| 4 | `IER[1]` và TX FIFO rỗng, kể cả khi thanh ghi dịch còn phát | `0xC4` |
+
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="irq-01"></a>`IRQ-01` | Mã IIR và ưu tiên | Sau reset đọc `0xC1`, `event_o=0`. Với hai FIFO rỗng, thử độc lập `IER=0x02` rồi `IER=0x03` sau mỗi reset. Sau cạnh cập nhật IRQ, lần lượt đọc `0xC4` và `0xC8`, `event_o=1`. Ghi bit FIFO enable hoặc chỉ `IER[7:3]` không đổi nibble cao IIR. Nguồn không tới được phải truy được tới kết nối cố định của top. |
+| <a id="irq-02"></a>`IRQ-02` | Ngưỡng RX bằng đúng số phần tử | `FCR[7:6]=00/01/10/11` chọn T=1/4/8/14. Với TX FIFO còn phần tử, RX ổn định ở T−1, T hoặc T+1 rồi mới bật `IER[0]`. Bắt đầu từng ca ở trạng thái chưa ngắt. Chỉ đúng T tạo `0xC8`. Nếu đi xuyên T với IER đã bật, mã đã chốt sẽ che mất khác biệt. |
+| <a id="irq-03"></a>`IRQ-03` | Lỗi ngắt RX giả | `RDA_i` lấy `regs_n[LSR][5]` (TX FIFO rỗng), trong khi DR thật là `LSR[0]`. Với RX rỗng, TX FIFO rỗng, bật riêng `IER[0]`. Chờ cạnh cập nhật rồi kiểm `LSR[0]=0` đồng thời `IIR=0xC8, event_o=1`. Chỉ nhìn TX đang phát chưa đủ để loại ảnh hưởng của RDA vì TX FIFO có thể đã rỗng. |
+| <a id="irq-04"></a>`IRQ-04` | Lỗi ngắt không hạ sau mask/clear | Giữ nguồn đang bật qua lần acknowledge để thấy mã được ưu tiên ghi lại. Sau ngắt TX `0xC4`, ghi `IER=0`, đọc IIR hai lần. Lần đầu còn thấy `0xC4`, lần kế thấy `0xC0` nhưng `event_o=1`. Xóa bit trong mã không đặt lại bit 0 về 1. Sau ngắt đầu tiên, chỉ reset khôi phục `0xC1` và hạ `event_o`. |
+
+Nguồn xác định mã, ưu tiên và thao tác clear nằm trong [uart_interrupt.sv](../rtl/vendor/pulp_apb_uart_sv/uart_interrupt.sv). Nguồn RDA, PE và CTI do [top APB UART](../rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv) kết nối.
+
+## 7. Hợp đồng hệ thống DE2-115
+
+Top `de2_115_pulp_uart` nối `de2_pulp_uart_master` với đúng IP ở mục 1. `KEY[0]` nhấn thấp để reset, nhả reset qua hai FF. Wrapper đồng bộ `GPIO_UART_RX` qua hai FF trước ba FF trong máy thu. `KEY[1]` và các bit SW dùng cho điều khiển cũng được đồng bộ vào `CLOCK_50`.
+
+| Thứ tự | Ghi APB trong lúc khởi tạo |
+|---|---|
+| 1–3 | `0x3 ← 0x83` mở DLAB, `0x0 ← 0xB1` ghi DLL, `0x1 ← 0x01` ghi DLM. |
+| 4–6 | `0x3 ← 0x03` (8N1) hoặc `0x0B` (8E1), `0x2 ← 0x07` clear hai FIFO và chọn ngưỡng 1, `0x1 ← 0x05` ghi IER khi DLAB đã đóng. |
+
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="sys-01"></a>`SYS-01` | Reset, cấu hình, polling | Đặt `SW[14]` trước khi nhả reset, 0 chọn N, 1 chọn E. Master chốt một lần lúc khởi động. `SW[15]` dự phòng, `SW[13:8]` cũng không điều khiển UART. Kiểm sáu giao dịch trên, `init_done` sau giao dịch thứ sáu và LSR tại `0x5`. Khi idle, bộ đếm thăm dò có ngưỡng 5000 clock (100 µs), có yêu cầu gửi thì thăm dò sớm, sau RBR/THR thì đọc lại LSR ngay. `event_o` không điều khiển master. |
+| <a id="sys-02"></a>`SYS-02` | Gửi tay, nhận và hiển thị | Sau init, `KEY[1]` nhấn và nhả ổn định 500000 clock mỗi chiều (10 ms ở 50 MHz). Một lần nhấn hợp lệ chốt `SW[7:0]` vào ô chờ, giữ phím không lặp. Khi `LSR[5]=1`, ghi THR và kiểm đúng một byte trên TX. Khi `LSR[0]=1` và cho phép đọc, RBR cập nhật byte nhận cuối. HEX1/0 hiển thị byte SW hiện tại, HEX5/4 hiển thị byte RX cuối, nibble cao/thấp tương ứng, đoạn tích cực thấp. |
+| <a id="sys-03"></a>`SYS-03` | Hold, echo và trạng thái | `SW[16]=1` ngăn chọn lần đọc RBR mới. Hạ xuống để rút dữ liệu còn lại. `SW[17]=1` tại lúc quyết định đọc dành một ô echo cho byte đọc được. Với `SW[16]=0`, echo bật và không có yêu cầu phím, gửi burst 4 rồi 16 byte liền nhau, đối chiếu mỗi byte trở về đúng một lần và đúng thứ tự ở cả 8N1/8E1. Khi tắt echo, vẫn cập nhật HEX RX. Quan sát được hiện tượng đầy RX theo `FIFO-04` khi giữ đọc đủ lâu. |
+
+Master giữ một yêu cầu phím và một yêu cầu echo. Khi cả hai cùng chờ, lượt gửi ưu tiên nguồn khác với lần ghi trước. Một lần nhấn trong khi ô phím còn bận sẽ giữ byte cũ và đặt `fault`, trừ cạnh đang ghi xong byte phím cũ. Lỗi `PSLVERR` nếu được chèn trong test master sẽ đặt `fault`, hạ `init_done` và dừng master. IP nguyên bản luôn trả `PSLVERR=0`.
+
+`LEDR[4:0]` hiển thị `last_lsr[4:0]`. `LEDG[0]` báo init, `[1]` báo fault chốt đến reset, `[2]` báo mode E đã chốt, `[3]` báo giữ đọc, `[4]` báo echo, `[6:5]` hiển thị `last_lsr[6:5]`, `[7]=0`, `[8]` nối trực tiếp `event_o`. Sau khi khởi tạo với hai FIFO rỗng và `IER=0x05`, lần chốt ngắt kế tiếp tạo `0xC8`. LEDG[8] sáng dù `LSR[0]=0` và giữ sáng đến reset, theo `IRQ-03` và `IRQ-04`. [Top và hiển thị](../rtl/fpga/de2_115_pulp_uart.sv) · [Master APB](../rtl/fpga/de2_pulp_uart_master.sv)
+
+## 8. Biên vật lý, bản build và nghiệm thu
+
+| ID | Yêu cầu | Tiêu chí chấp nhận |
+|---|---|---|
+| <a id="board-01"></a>`BOARD-01` | Chân và điện áp | Đối chiếu 65 chân tín hiệu của top với bảng pin và QSF. `CLOCK_50=PIN_Y2`. `GPIO_UART_TX` ở `GPIO[0]/PIN_AB22` đi tới RXD của CP2102. TXD của CP2102 đi tới `GPIO_UART_RX` ở `GPIO[2]/PIN_AB21`. Hai đường UART dùng logic 3,3 V, GND chung. Kiểm jumper thực tế theo profile (JP6 7–8 cho 3,3 V và JP7 5–6 cho 2,5 V), để hở dây nguồn CP2102. |
+| <a id="board-02"></a>`BOARD-02` | Nhận dạng và chấp nhận bản build | Build phải chọn `EP4CE115F29C7` (Cyclone IV E), top `de2_115_pulp_uart`, đúng năm file PULP và hai file wrapper, clock constraint 20 ns. Để nghiệm thu bản nạp, fitter phải hoàn tất, chân/I/O phải khớp profile và STA phải đáp ứng 50 MHz tại các góc phân tích của project. Kiểm slack setup/hold và recovery/removal khi nhả reset, lưu revision và SHA-256 của `.sof`. Trong `always_comb`, `fifo_tx_data` chỉ được gán khi ghi THR. Truy các chẩn đoán latch/vòng tổ hợp về đúng frontend trong báo cáo tổng hợp. Nghiệm thu Quartus cần log Quartus của chính revision này. |
+| <a id="board-03"></a>`BOARD-03` | Đường truyền trên bo thật | Với đúng `.sof`, ghi nhận board, thiết lập jumper, CP2102/COM, 115200, flow control tắt và mode terminal khớp SW14 sau reset. Dùng các byte biết trước như `0x01` và `0x55` để đối chiếu PC→HEX và KEY→PC. Bật echo, tắt local echo của terminal, so từng byte hai chiều ở 8N1 và 8E1. Bằng chứng vật lý cần nhận dạng thiết bị, cấu hình và dữ liệu thực nhận cho từng hướng. |
+
+Nguồn gán chân, nguồn project, báo cáo công cụ và quy trình thao tác được quản lý tại [bảng pin](spec/pins.json) · [CSV DE2-115](../reference/DE2_115_pin_assignments.csv) · [project Quartus](../fpga/de2_115/de2_115_pulp_uart.qsf) · [đánh giá tổng hợp](02_Synthesis_Review.md) · [hướng dẫn Windows/FPGA](05_FPGA_Windows.md).
+
+## 9. Bằng chứng lịch sử dùng để đối chiếu
+
+Audit ngày 12/11/2026 dùng `audit_tb.sv` trên năm RTL cùng revision PULP. Gói `APB_UART_review_evidence.zip` có SHA-256 `4752c70578ae7e1c904584b09292ce25f5acf9c1121856fce5ef7f7f8865f301`. Các quan sát sau là số liệu mô phỏng đã lưu của lần audit ấy.
+
+| Hồ sơ trong thư mục `evidence/` của gói | Phạm vi quan sát |
+|---|---|
+| `baud_sweep.vcd`, `baud_sweep.log` | TX `0x55`, 50 MHz, D=433. Khoảng cạnh start là 8700 ns, tám khoảng data kế tiếp đều 8680 ns. |
+| `rx_overflow.log` | Gửi 18 byte `0x40…0x51` trước khi đọc, rút được 17 byte `0x40…0x50`, OE=0. |
+| `parity_gap.log`, `framing_gap.log`, `irq_empty_gap.log`, `irq_clear_gap.log` | Sai parity vẫn đọc `0x41` với PE=0, stop thấp vẫn đọc `0xA6` với FE=0. Hai ca IRQ riêng ghi nhận `IIR=0xC8` khi RX rỗng và `IIR=0xC0` với ngắt còn ở mức 1 sau mask/clear. |
+
+Bộ test UVM lịch sử cung cấp stimulus và checker để tham khảo. Ví dụ, lấy mẫu mức cao ở stop thứ hai trên một khung đơn cũng có thể lấy trúng mức idle. `TX-03` vì vậy yêu cầu hai khung đã xếp hàng. Sổ kết quả `main2` là nơi xác định ID nào đã có bằng chứng mới, kể cả phần còn thiếu. [Audit PULP lưu trong lịch sử](https://github.com/hoafff/APB_UART_2026.1/blob/7173ec73cf7a0ecb90808515168ca69780a4e318/docs/history/APB_UART_2026.1_REVIEW.md) · [Test UVM baseline đã lưu](https://github.com/hoafff/APB_UART_2026.1/blob/7173ec73cf7a0ecb90808515168ca69780a4e318/dv/baseline/uvm/apb_uart_uvm_pkg.sv) · [Kết quả của main2](DV_RESULTS.md)

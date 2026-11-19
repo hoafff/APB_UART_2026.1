@@ -1,0 +1,250 @@
+[
+  {
+    "id": "APB-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Pha và cạnh hoàn tất",
+    "expected": "Master phát SETUP (PSEL=1, PENABLE=0), kế tiếp ACCESS (PSEL=1, PENABLE=1), giữ địa chỉ, chiều và dữ liệu ghi. Khi RSTN=1, chỉ cạnh lên ở ACCESS mới tạo tác dụng giao dịch. Hai lệnh liên tiếp vẫn có SETUP riêng. Giữ ACCESS trái giao thức qua hai cạnh có thể ghi/pop hai lần.",
+    "spec": "docs/01_System_Specification.md#apb-01"
+  },
+  {
+    "id": "APB-02",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Phản hồi và độ rộng dữ liệu",
+    "expected": "Quan sát PREADY=1, PSLVERR=0 cả khi truy cập ô bỏ trống hoặc THR đầy. PRDATA=0 ngoài READ ACCESS. Khi đọc, PRDATA[31:8]=0. Đổi PWDATA[31:8] và giữ byte thấp phải cho cùng hiệu ứng ghi.",
+    "spec": "docs/01_System_Specification.md#apb-02"
+  },
+  {
+    "id": "APB-03",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Địa chỉ byte và alias",
+    "expected": "Trong mọi giao dịch có PSEL, chỉ PADDR[2:0] chọn ô. Cứ 8 byte lặp lại toàn bộ bản đồ. Ghi 0x00B rồi đọc 0x003 phải thấy cùng LCR. 0x00C và 0x014 cùng chọn ô 4 bỏ trống. 0x008 chọn ô 0 và có đầy đủ tác dụng theo chiều và DLAB.",
+    "spec": "docs/01_System_Specification.md#apb-03"
+  },
+  {
+    "id": "REG-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Bản đồ và hai bank DLAB",
+    "expected": "Ghi IER, mở DLAB và ghi/đọc hai byte khác nhau tại 0/1, đóng DLAB và đọc lại IER ban đầu. Một byte RX đang chờ phải còn nguyên qua lần đọc DLL. Ghi DLL không tạo khung TX. Kiểm tra cả hai chiều của các ô 2–7 theo bảng.",
+    "spec": "docs/01_System_Specification.md#reg-01"
+  },
+  {
+    "id": "REG-02",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Reset và hủy công việc đang dở",
+    "expected": "Hạ RSTN giữa khung và khi còn dữ liệu chờ. TX trở về 1, hai FIFO rỗng, TX/RX về IDLE, đường đồng bộ RX về 111, event_o=0. Sau nhả reset với bus nghỉ và rx_i=1, đọc các bank tương ứng để kiểm LCR=IER=DLL=DLM=0, LSR=0x60 và IIR=0xC1. Ngưỡng về 1, hai lệnh clear về 0. Master hủy SETUP/ACCESS cũ, cấu hình lại rồi gửi/nhận byte mới, không phát lại dữ liệu trước reset.",
+    "spec": "docs/01_System_Specification.md#reg-02"
+  },
+  {
+    "id": "REG-03",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Bit cấu hình và phạm vi readback",
+    "expected": "LCR[1:0]=00/01/10/11 chọn 5/6/7/8 bit, [2] chọn stop TX, [3] bật parity chẵn, [7] chọn bank. [4] không chọn odd/even, [5] không tạo stick parity, [6] không ép TX xuống thấp để phát break. Ghi rồi đọc lại các bit này, so khung thực với cùng dữ liệu. IER lưu cả byte, chỉ [2:0] đi tới bộ ngắt.",
+    "spec": "docs/01_System_Specification.md#reg-03"
+  },
+  {
+    "id": "REG-04",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "DR, THRE và TEMT",
+    "expected": "Tại mỗi cạnh lên, LSR[0] lấy RX_count≠0, [5] lấy TX_count=0, [6] lấy TX_count=0 và TX đang IDLE, đều từ trạng thái trước cạnh. So DR quanh cạnh push/pop cuối. Sau khi TX lấy byte cuối, phải thấy LSR[6:5]=01 (THRE=1, TEMT=0), rồi 11 sau khi phát xong.",
+    "spec": "docs/01_System_Specification.md#reg-04"
+  },
+  {
+    "id": "REG-05",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Dữ liệu đọc và acknowledge",
+    "expected": "Lấy PRDATA tại cạnh hoàn tất trước cập nhật FIFO/IIR. Đọc RBR với DLAB=0 lấy đầu cũ, chỉ pop khi FIFO có dữ liệu và luôn phát mask 1000 kể cả khi rỗng. Đọc LSR giữ FIFO, phát 1100. Đọc IIR phát 0100 với mọi mã trả về. Đọc DLL/DLM/LCR/IER không phát các mask này. Thử hai byte khác nhau và các lần đọc xen kẽ để phân biệt.",
+    "spec": "docs/01_System_Specification.md#reg-05"
+  },
+  {
+    "id": "BAUD-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Chu kỳ bit TX",
+    "expected": "Với D cố định, bộ đếm chạy từ 0 đến D kể cả hai đầu. bit_done qua một thanh ghi. Từ IDLE, start TX dài P+1 clock, mỗi bit data, parity và mỗi stop dài P clock. Đo trên tx_o với mẫu đổi mức. D=0 vẫn cho TX tiến (start 2 clock, data 1 clock), D=65535 cho data 65536 clock. Không có hệ số chia 16.",
+    "spec": "docs/01_System_Specification.md#baud-01"
+  },
+  {
+    "id": "BAUD-02",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Điểm làm việc 50 MHz / 115200",
+    "expected": "Ghi DLL=0xB1, DLM=0x01, gửi 0x55 ở 8N1. Từ cạnh xuống start đến cạnh lên bit 0 là 435 clock (8,700 µs). Các cạnh data cách nhau 434 clock (8,680 µs), tương ứng 50 000 000 / 434 ≈ 115 207,37 baud (+0,0064%). Với D=27, data chỉ dài 28 clock (0,560 µs).",
+    "spec": "docs/01_System_Specification.md#baud-02"
+  },
+  {
+    "id": "BAUD-03",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Pha lấy mẫu RX",
+    "expected": "RX dịch rx_i qua ba FF, nhận cạnh xuống khi reg_rx_sync[2]=1, reg_rx_sync[1]=0. Trong cửa sổ start, so bộ đếm với D >> 1, tương ứng floor(D/2)+1 clock đếm từ 0. Các nhịp data so với D, mẫu lấy từ reg_rx_sync[2] bằng bit_done đã chốt. Đối chiếu ở D chẵn và lẻ, chẳng hạn 432/433, với khung từ nguồn nối tiếp độc lập. Độ trễ đồng bộ và nhịp FSM phải được tính riêng khi quy về chân rx_i. Giá trị đếm ở D rất nhỏ không bảo đảm RX bắt được mọi khung ở tốc độ đó.",
+    "spec": "docs/01_System_Specification.md#baud-03"
+  },
+  {
+    "id": "TX-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Đường THR → FIFO → TX",
+    "expected": "Với DLAB=0 và FIFO còn chỗ, mỗi lần ghi THR tạo một byte chờ. Từ IDLE, TX lấy đầu FIFO vào thanh ghi dịch. Ghi liên tiếp 0x41, 0xA6 ở 8N1, đối chiếu đúng hai khung theo thứ tự trên tx_o, kể cả khi RX đang nhận.",
+    "spec": "docs/01_System_Specification.md#tx-01"
+  },
+  {
+    "id": "TX-02",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Bit dữ liệu và parity",
+    "expected": "Dây nghỉ 1, một start=0, tiếp theo n bit thấp của byte theo thứ tự bit 0 trước, thêm một bit parity nếu bật, cuối cùng là stop=1. Ở chế độ E, parity là XOR của đúng n bit đã phát. So đủ 16 tổ hợp của n=5/6/7/8, parity N (tắt) hoặc E (chẵn), và một/hai stop. Ví dụ LCR=0x0B và 0x1B đều cho 8E1.",
+    "spec": "docs/01_System_Specification.md#tx-02"
+  },
+  {
+    "id": "TX-03",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Số stop trên hai khung kề nhau",
+    "expected": "LCR[2]=0/1 cho 1/2 stop nguyên bit, cả khi dữ liệu dài 5 bit. Xếp sẵn byte kế, giữ cấu hình và đo khoảng cách giữa hai cạnh xuống start. Với n bit data, p=0/1 parity và s=1/2 stop, khoảng cách bằng (1+n+p+s)×P+2 clock (thêm 1 ở start và 1 ở IDLE giữa hai khung). Tại D=433, 8N1 cho 4342 clock, 8N2 cho 4776.",
+    "spec": "docs/01_System_Specification.md#tx-03"
+  },
+  {
+    "id": "RX-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Khung sạch tới RBR",
+    "expected": "Lái rx_i từ một bộ phát độc lập với clock bit phù hợp, ở 5–8 bit, N/E. Khi còn chỗ, RX đưa dữ liệu vào FIFO tại SAVE_DATA ngay sau data cuối, trước xử lý parity/stop. Truyền bit 0 trước. RBR trả đúng giá trị phần dữ liệu, các bit cao ngoài độ dài bằng 0. Dùng mẫu bất đối xứng, burst và TX/RX đồng thời để so số byte lẫn thứ tự.",
+    "spec": "docs/01_System_Specification.md#rx-01"
+  },
+  {
+    "id": "RX-02",
+    "scope": "IP",
+    "kind": "limitation",
+    "requirement": "Giới hạn xác nhận start, stop và break",
+    "expected": "Cạnh xuống ở IDLE đủ để RX bắt đầu. FSM không kiểm lại mức thấp ở giữa start, chỉ đợi một nhịp stop và không lấy mẫu để kiểm mức stop. LCR[2] không nối tới RX. Ở 8N1, D=433, RX đang rảnh và FIFO còn chỗ, kéo thấp 4 clock rồi giữ mức 1 quá một khung. RBR nhận 0xFF. Ở ca riêng, kéo thấp từ idle quá một khung tạo byte 0x00, BI vẫn bằng 0. Không có chức năng phát hiện break hay kiểm stop thứ hai.",
+    "spec": "docs/01_System_Specification.md#rx-02"
+  },
+  {
+    "id": "RX-03",
+    "scope": "IP",
+    "kind": "known_defect",
+    "requirement": "Lỗi PE và các cờ thiếu",
+    "expected": "RX có so parity chẵn nhưng err_clr_i=1 cố định và ưu tiên clear, nên sau reset err_o=0. FIFO đã nhận {err_o,data} trước phép so parity. LSR[2] lấy bit 8 của ô đầu FIFO và không báo PE. LSR[1]/[3]/[4]/[7] lần lượt không báo overrun, framing error, break hay tổng lỗi FIFO. Chèn parity sai, stop thấp, đường thấp kéo dài và burst khi đầy. Quan sát RBR cùng LSR trên từng ca, kể cả dữ liệu đã nhận sai chuẩn mà không có cờ.",
+    "spec": "docs/01_System_Specification.md#rx-03"
+  },
+  {
+    "id": "FIFO-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Dung lượng và thứ tự",
+    "expected": "Lấp đầy, rút bớt, nạp lại qua một vòng con trỏ rồi rút hết. So từng byte với hàng đợi độc lập, đủ 16 vị trí ở mỗi FIFO. Tách byte đang ở thanh ghi dịch TX hoặc đang chờ trong máy thu khỏi số phần tử FIFO.",
+    "spec": "docs/01_System_Specification.md#fifo-01"
+  },
+  {
+    "id": "FIFO-02",
+    "scope": "IP",
+    "kind": "limitation",
+    "requirement": "Push/pop ở biên",
+    "expected": "Thử ba hàng của bảng trên. Tại RX rỗng, RBR đọc đồng thời với byte đến không tiêu thụ byte mới. Tại TX đầy, ghi THR bị mất dù TX lấy đầu FIFO cùng cạnh. APB vẫn hoàn tất, không báo lỗi và không tự ghi lại. So chuỗi đầu ra để phát hiện mất byte cũ, nhân đôi hoặc nhận nhầm byte mới.",
+    "spec": "docs/01_System_Specification.md#fifo-02"
+  },
+  {
+    "id": "FIFO-03",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Clear và các bit FCR",
+    "expected": "Mọi lần ghi FCR cập nhật ngưỡng [7:6]. [1] yêu cầu clear RX, [2] clear TX. [0] và [5:3] bị bỏ qua. Một lần WRITE ACCESS ở cạnh k chốt xung clear tự hạ. FIFO đặt count và hai con trỏ về 0 tại cạnh k+1, ưu tiên trước cập nhật count do push/pop. Bộ nhớ không được xóa bởi FCR. Kiểm hai FIFO độc lập và 0x06/0x07 tương đương. Khung TX đã nạp vẫn phát tiếp, RX đang nhận vẫn có thể đưa byte vào sau clear.",
+    "spec": "docs/01_System_Specification.md#fifo-03"
+  },
+  {
+    "id": "FIFO-04",
+    "scope": "IP",
+    "kind": "limitation",
+    "requirement": "RX đầy và byte đang chờ",
+    "expected": "Khi FIFO chứa 16 mục, RX giữ byte kế ở SAVE_DATA với valid=1. Một lần đọc RBR ở trạng thái đầy chỉ mở chỗ cho cạnh sau. Trong khi chờ, máy thu bỏ lỡ các start tiếp theo. Phát 0x40…0x51 ở 8N1 với chu kỳ bit khớp divisor, thêm một bit nghỉ sau mỗi khung, không đọc đến hết burst. Khi rút phải thấy 0x40…0x50 theo thứ tự, OE=0. Đây là một tình huống định thời cụ thể, dung lượng FIFO vẫn là 16.",
+    "spec": "docs/01_System_Specification.md#fifo-04"
+  },
+  {
+    "id": "IRQ-01",
+    "scope": "IP",
+    "kind": "contract",
+    "requirement": "Mã IIR và ưu tiên",
+    "expected": "Sau reset đọc 0xC1, event_o=0. Với hai FIFO rỗng, thử độc lập IER=0x02 rồi IER=0x03 sau mỗi reset. Sau cạnh cập nhật IRQ, lần lượt đọc 0xC4 và 0xC8, event_o=1. Ghi bit FIFO enable hoặc chỉ IER[7:3] không đổi nibble cao IIR. Nguồn không tới được phải truy được tới kết nối cố định của top.",
+    "spec": "docs/01_System_Specification.md#irq-01"
+  },
+  {
+    "id": "IRQ-02",
+    "scope": "IP",
+    "kind": "limitation",
+    "requirement": "Ngưỡng RX bằng đúng số phần tử",
+    "expected": "FCR[7:6]=00/01/10/11 chọn T=1/4/8/14. Với TX FIFO còn phần tử, RX ổn định ở T−1, T hoặc T+1 rồi mới bật IER[0]. Bắt đầu từng ca ở trạng thái chưa ngắt. Chỉ đúng T tạo 0xC8. Nếu đi xuyên T với IER đã bật, mã đã chốt sẽ che mất khác biệt.",
+    "spec": "docs/01_System_Specification.md#irq-02"
+  },
+  {
+    "id": "IRQ-03",
+    "scope": "IP",
+    "kind": "known_defect",
+    "requirement": "Lỗi ngắt RX giả",
+    "expected": "RDA_i lấy regs_n[LSR][5] (TX FIFO rỗng), trong khi DR thật là LSR[0]. Với RX rỗng, TX FIFO rỗng, bật riêng IER[0]. Chờ cạnh cập nhật rồi kiểm LSR[0]=0 đồng thời IIR=0xC8, event_o=1. Chỉ nhìn TX đang phát chưa đủ để loại ảnh hưởng của RDA vì TX FIFO có thể đã rỗng.",
+    "spec": "docs/01_System_Specification.md#irq-03"
+  },
+  {
+    "id": "IRQ-04",
+    "scope": "IP",
+    "kind": "known_defect",
+    "requirement": "Lỗi ngắt không hạ sau mask/clear",
+    "expected": "Giữ nguồn đang bật qua lần acknowledge để thấy mã được ưu tiên ghi lại. Sau ngắt TX 0xC4, ghi IER=0, đọc IIR hai lần. Lần đầu còn thấy 0xC4, lần kế thấy 0xC0 nhưng event_o=1. Xóa bit trong mã không đặt lại bit 0 về 1. Sau ngắt đầu tiên, chỉ reset khôi phục 0xC1 và hạ event_o.",
+    "spec": "docs/01_System_Specification.md#irq-04"
+  },
+  {
+    "id": "SYS-01",
+    "scope": "WRAPPER",
+    "kind": "contract",
+    "requirement": "Reset, cấu hình, polling",
+    "expected": "Đặt SW[14] trước khi nhả reset, 0 chọn N, 1 chọn E. Master chốt một lần lúc khởi động. SW[15] dự phòng, SW[13:8] cũng không điều khiển UART. Kiểm sáu giao dịch trên, init_done sau giao dịch thứ sáu và LSR tại 0x5. Khi idle, bộ đếm thăm dò có ngưỡng 5000 clock (100 µs), có yêu cầu gửi thì thăm dò sớm, sau RBR/THR thì đọc lại LSR ngay. event_o không điều khiển master.",
+    "spec": "docs/01_System_Specification.md#sys-01"
+  },
+  {
+    "id": "SYS-02",
+    "scope": "WRAPPER",
+    "kind": "contract",
+    "requirement": "Gửi tay, nhận và hiển thị",
+    "expected": "Sau init, KEY[1] nhấn và nhả ổn định 500000 clock mỗi chiều (10 ms ở 50 MHz). Một lần nhấn hợp lệ chốt SW[7:0] vào ô chờ, giữ phím không lặp. Khi LSR[5]=1, ghi THR và kiểm đúng một byte trên TX. Khi LSR[0]=1 và cho phép đọc, RBR cập nhật byte nhận cuối. HEX1/0 hiển thị byte SW hiện tại, HEX5/4 hiển thị byte RX cuối, nibble cao/thấp tương ứng, đoạn tích cực thấp.",
+    "spec": "docs/01_System_Specification.md#sys-02"
+  },
+  {
+    "id": "SYS-03",
+    "scope": "WRAPPER",
+    "kind": "contract",
+    "requirement": "Hold, echo và trạng thái",
+    "expected": "SW[16]=1 ngăn chọn lần đọc RBR mới. Hạ xuống để rút dữ liệu còn lại. SW[17]=1 tại lúc quyết định đọc dành một ô echo cho byte đọc được. Với SW[16]=0, echo bật và không có yêu cầu phím, gửi burst 4 rồi 16 byte liền nhau, đối chiếu mỗi byte trở về đúng một lần và đúng thứ tự ở cả 8N1/8E1. Khi tắt echo, vẫn cập nhật HEX RX. Quan sát được hiện tượng đầy RX theo FIFO-04 khi giữ đọc đủ lâu.",
+    "spec": "docs/01_System_Specification.md#sys-03"
+  },
+  {
+    "id": "BOARD-01",
+    "scope": "BOARD_INTERFACE",
+    "kind": "contract",
+    "requirement": "Chân và điện áp",
+    "expected": "Đối chiếu 65 chân tín hiệu của top với bảng pin và QSF. CLOCK_50=PIN_Y2. GPIO_UART_TX ở GPIO[0]/PIN_AB22 đi tới RXD của CP2102. TXD của CP2102 đi tới GPIO_UART_RX ở GPIO[2]/PIN_AB21. Hai đường UART dùng logic 3,3 V, GND chung. Kiểm jumper thực tế theo profile (JP6 7–8 cho 3,3 V và JP7 5–6 cho 2,5 V), để hở dây nguồn CP2102.",
+    "spec": "docs/01_System_Specification.md#board-01"
+  },
+  {
+    "id": "BOARD-02",
+    "scope": "FPGA_BUILD",
+    "kind": "contract",
+    "requirement": "Nhận dạng và chấp nhận bản build",
+    "expected": "Build phải chọn EP4CE115F29C7 (Cyclone IV E), top de2_115_pulp_uart, đúng năm file PULP và hai file wrapper, clock constraint 20 ns. Để nghiệm thu bản nạp, fitter phải hoàn tất, chân/I/O phải khớp profile và STA phải đáp ứng 50 MHz tại các góc phân tích của project. Kiểm slack setup/hold và recovery/removal khi nhả reset, lưu revision và SHA-256 của .sof. Trong always_comb, fifo_tx_data chỉ được gán khi ghi THR. Truy các chẩn đoán latch/vòng tổ hợp về đúng frontend trong báo cáo tổng hợp. Nghiệm thu Quartus cần log Quartus của chính revision này.",
+    "spec": "docs/01_System_Specification.md#board-02"
+  },
+  {
+    "id": "BOARD-03",
+    "scope": "PHYSICAL_BOARD",
+    "kind": "contract",
+    "requirement": "Đường truyền trên bo thật",
+    "expected": "Với đúng .sof, ghi nhận board, thiết lập jumper, CP2102/COM, 115200, flow control tắt và mode terminal khớp SW14 sau reset. Dùng các byte biết trước như 0x01 và 0x55 để đối chiếu PC→HEX và KEY→PC. Bật echo, tắt local echo của terminal, so từng byte hai chiều ở 8N1 và 8E1. Bằng chứng vật lý cần nhận dạng thiết bị, cấu hình và dữ liệu thực nhận cho từng hướng.",
+    "spec": "docs/01_System_Specification.md#board-03"
+  }
+]
