@@ -15,4 +15,4 @@ Controller có các trạng thái chức năng trong guide, thêm pha quyết đ
 
 Thay đổi compatibility có chủ đích: địa chỉ 0/4/8/C/14; divisor 27 cho board thay direct divisor433; FIFO off reset IIR=01; FCR enable thật; LCR EPS thật; PSLVERR cho access sai/full/D0; clear/error semantics theo SPEC. Test baseline phải migrate trước khi chạy target.
 
-Xem [RESULTS.md](dv/RESULTS.md) để biết revision/run thực sự đã kiểm. Chưa có Quartus/resource/STA hoặc hardware sign-off.
+Kết quả mô phỏng gắn với hash của từng file RTL. RC1 đã có báo cáo tài nguyên, timing và SOF. Bước nạp và thử UART trên bo đang chờ thực hiện. [Kết quả DV](dv/RESULTS.md) · [Số liệu FPGA](08_FPGA_Release_Review.md)

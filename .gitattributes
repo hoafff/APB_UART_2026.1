@@ -9,3 +9,9 @@ dv/results/target_v1/logs/*.log -text -whitespace
 dv/results/review_20261112/logs/*.log -text -whitespace
 dv/results/target_v2/logs/*.log -text -whitespace
 dv/results/audit_closure_20261112/*.log -text -whitespace
+
+# Captured Quartus/Questa fixtures are raw evidence, including vendor whitespace.
+tools/tests/fixtures/fpga_* -text -whitespace
+
+# Preserve the exact Quartus-written assignment bytes for release hashes.
+fpga/de2_115/*.qsf -text whitespace=cr-at-eol

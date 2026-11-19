@@ -1,42 +1,44 @@
-# APB_UART_2026.1 — APB UART trên DE2-115
+# APB UART trên DE2-115
 
-Dự án kiểm thử UART qua APB, hướng đến FPGA Terasic DE2-115 và CP2102.
+Đồ án tích hợp một UART trên bus APB với kit DE2-115. Sau khi nạp FPGA, máy tính gửi và nhận từng byte qua CP2102. Nhánh `main` dùng thiết kế TARGET-v1.0. Nhánh `main2` dùng thanh ghi và bộ chia baud của lõi PULP gốc.
 
-- **Yêu cầu 1:** [SPEC TARGET-v1.0](docs/01_System_Specification.md), 80 yêu cầu và 65 chân đối chiếu CSV.
-- **Yêu cầu 2:** [DV Plan — audit closure v2](docs/03_DV_Plan.md), RTL mục tiêu, UVM, directed/automatic/constrained-random, SVA và coverage đã có. [Kết quả và giới hạn](docs/dv/RESULTS.md) là nguồn verdict thực thi.
-- **Yêu cầu 3:** Bản [FPGA RC1](https://github.com/hoafff/APB_UART_2026.1/releases/tag/v1.0.0-fpga-rc1) đã qua Quartus, fitter và STA trên Windows. Release chứa file nạp SRAM `de2_115_apb_uart.sof`. Phiếu thử DE2-115 + CP2102 vẫn chờ kết quả trên bo thật.
+**Báo cáo** trình bày sơ đồ luồng dữ liệu, ba yêu cầu của đề và kết quả đo. [Đọc báo cáo](docs/BAO_CAO.md)
 
-## Giao tiếp UART từ Windows sau khi nạp RC1
+| Yêu cầu | Kết quả trên `main` | Tài liệu |
+|---|---|---|
+| 1. Đặc tả hệ thống | 80 yêu cầu, bản đồ thanh ghi, giao thức APB, FIFO, ngắt và 65 chân FPGA | [Đặc tả TARGET-v1.0](docs/01_System_Specification.md) · [Thay đổi so với PULP](docs/04_RTL_Changes.md) |
+| 2. Kiểm chứng | 15/15 lượt UVM, 3/3 mô phỏng bổ sung, phát hiện cả hai lỗi cố ý. Đã kích hoạt 833/833 bin chức năng trong mô hình | [Kế hoạch DV](docs/03_DV_Plan.md) · [Kết quả và độ phủ](docs/dv/RESULTS.md) |
+| 3. Triển khai FPGA | RC1 đã qua Quartus Lite 25.1 trên Windows, fitter và STA ở ba góc. Có file nạp SRAM. 14 mục thử trên bo đang chờ thực hiện | [Project Quartus](fpga/de2_115/de2_115_apb_uart.qpf) · [Nạp và thử bo](docs/06_FPGA_Implementation.md) · [Phiếu thử](docs/07_FPGA_Board_Acceptance.csv) |
 
-Nạp `.sof` RC1 qua USB-Blaster, sau đó mở cổng COM của CP2102 bằng [menu UART Python](host/uart_menu.py). Chạy từ thư mục gốc của repo trong PowerShell:
+## Chạy thử với CP2102
+
+Dùng USB-Blaster nạp `de2_115_apb_uart.sof` trong Release RC1. Kiểm tra jumper, mức logic và dây TX/RX/GND theo hướng dẫn nạp trước khi cấp nguồn. Để SW14=0, SW16=0, bật SW17 rồi nhấn và nhả KEY0. Khi LEDG0 sáng, mở menu ở 115200 baud, 8N1. [Tải SOF và báo cáo Quartus](https://github.com/hoafff/APB_UART_2026.1/releases/tag/v1.0.0-fpga-rc1)
+
+**Windows** · Mở PowerShell tại thư mục gốc của nhánh.
 
 ```powershell
 py -3 -m pip install pyserial==3.5
 py -3 host/uart_menu.py --profile target
 ```
 
-Chọn cổng COM của CP2102. Cấu hình mặc định là 115200, 8N1. Xem [hướng dẫn menu](host/README.md) và [hướng dẫn đấu dây, nạp và thử của RC1](https://github.com/hoafff/APB_UART_2026.1/blob/v1.0.0-fpga-rc1/docs/06_FPGA_Implementation.md) trước khi thử truyền nhận.
+**Linux** · Cài pySerial cho Python của dự án một lần rồi chạy menu.
 
-## Bắt đầu
-
-1. [SPEC](docs/01_System_Specification.md), [thay đổi RTL](docs/04_RTL_Changes.md).
-2. [DV Plan](docs/03_DV_Plan.md), [80 requirement mappings](docs/dv/REQUIREMENT_MATRIX.md), [testcase definitions](docs/dv/testcases.json), [833 functional bins](docs/dv/coverage_model.json).
-3. [Hướng dẫn chạy UVM](dv/README.md), [regression results](docs/dv/RESULTS.md), [defect/tool-flow ledger](docs/dv/BUG_LOG.md).
-4. [Hướng dẫn giảng viên](reference/Huongdan_UART.md), [CSV DE2-115](reference/DE2_115_pin_assignments.csv).
-5. [SPEC v0.3](docs/history/01_System_Specification_v0.3.md), [baseline review](docs/history/APB_UART_2026.1_REVIEW.md) để đối chiếu lịch sử.
-
-## Kiến trúc và compatibility
-
-Giữ PULP nguyên gốc trong `rtl/vendor/pulp_apb_uart_sv/`, commit upstream `dfad6e04d19cc9481d3cd2750b45b970dc61271b`. Bản sửa ở `rtl/modified/pulp_apb_uart_sv/`: word-aligned register map, baud 16×, none/odd/even parity, FIFO, PE/FE/OE/BI và IRQ theo SPEC. Wrapper/master ở `rtl/fpga/`.
-
-Profile board: 50 MHz, DLL=27/DLM=0, terminal 115200, 8N1 mặc định; N/O/E chọn trước reset. Không compile đồng thời vendor và target vì trùng tên module. Bản sửa là subset đã định nghĩa, không tuyên bố tương thích đầy đủ 16550.
-
-## Chạy tự động
-
-```bash
-bash dv/sim/run_smoke.sh
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install pyserial==3.5
+.venv/bin/python host/uart_linux.py --profile target
 ```
 
-Cần Verilator/Z3 trong OSS CAD Suite; có thể dùng PATH, `OSS_CAD_SUITE` hoặc `~/.local/bin/ic-eda`. UVM được pin và tải tự động vào `.tools/uvm`. Flow có 15 run UVM chức năng (12 directed + random ba seed), hai negative controls, ba simulation bổ sung, document checks và exporter. Xem dv/README.md về RAM/disk/time và cách chạy từng test.
+Chọn `c` để mở cổng CP2102, chọn `e` và nhập `55 AA 00 FF`. Khi FPGA trả về đúng bốn byte, menu báo `MATCH`. Để thử chiều FPGA → PC, đặt SW[7:0] = `41`, chọn `r` rồi nhấn KEY1. [Các phím và cách lưu log](host/README.md)
 
-Kết quả baseline không đóng yêu cầu target. Chỉ xuất PASS khi nguồn đúng hash, checker/assertion hoạt động, traffic hoàn tất và không có lỗi. Code coverage, functional coverage và hardware sign-off được báo riêng; các điểm native chưa hit được giữ để review.
+## Đối chiếu kết quả
+
+Từ checkout trên Linux, chạy ba lệnh sau để kiểm đặc tả, kế hoạch DV và dữ liệu mô phỏng đã lưu.
+
+```sh
+python3 tools/check_spec.py
+python3 tools/check_dv.py
+python3 tools/check_published_evidence.py
+```
+
+Lệnh cuối đối chiếu các log, dữ liệu coverage và mã nguồn đi kèm. Để mô phỏng lại, dùng Verilator theo hướng dẫn DV. Bài kiểm tra menu trên Linux nối một cổng serial ảo với hai chân UART của top FPGA. [Chạy UVM](dv/README.md) · [Thử menu với RTL](integration/README.md)

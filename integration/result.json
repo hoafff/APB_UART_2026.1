@@ -1,0 +1,34 @@
+{
+  "profile": "target",
+  "date": "2026-11-19",
+  "environment": "Arch Linux, POSIX PTY and Verilated board top",
+  "python": "3.14.9",
+  "pyserial": "3.5",
+  "verilator": "Verilator 5.055 devel rev v5.054-129-g14bd81f66 (mod)",
+  "inputs": {
+    "host/uart_linux.py": "550c45da9284f2df310ad372e2d83bf908291dc45039a197fb773a969739e72b",
+    "host/uart_menu.py": "abfebf6b301424cf9fa196afb769d7764981f01b013e9a00ef641ae7b73dc78e",
+    "integration/serial_peer.cpp": "f4d598d70ef24f824c433cea1312bae718f00250715fb2dd87ad051297692e79",
+    "integration/test_host_rtl.py": "27da2a68c230623e87b5e7f758701068f9147567f3799ab5775d2c96ffaef0cb",
+    "rtl/fpga/de2_115_apb_uart_bringup.sv": "33fc97dd380123e94ba8b6d2ceea3957095c8d3a35e26d3520a856863892aaca",
+    "rtl/fpga/de2_uart_controller.sv": "0ded4cdbaa6f03628649d2e801adc224849b2e51406b6fc24d55ee9d977c42c3",
+    "rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv": "cf8ff2174371a5fcff8ff53853637d778e8808b00f397490a780cba1368021ca",
+    "rtl/modified/pulp_apb_uart_sv/uart_fifo.sv": "656306fee6149626e6893720f0b1dd5d9c1b2bb5442b6bf6e9c5f371eb0531cd",
+    "rtl/modified/pulp_apb_uart_sv/uart_rx.sv": "f77a8264707676dafb1e1bd9989da621b61209dda047fd23e9a7de1668f518b5",
+    "rtl/modified/pulp_apb_uart_sv/uart_tx.sv": "0ea484a713f0075dd9d7be39b51bcc6cb9aa62ae637664eb7355f4b683b39b12"
+  },
+  "runs": {
+    "uart_menu.py": [
+      "GPIO_PASS 8N1: three binary bursts (24 bytes), KEY1 41, checked framing",
+      "GPIO_PASS 8E1: three binary bursts (24 bytes), KEY1 41, checked framing",
+      "GPIO_PASS 8O1: three binary bursts (24 bytes), KEY1 41, checked framing",
+      "MENU_GPIO_PASS target 8N1: SW17 off NO_RX, on MATCH 55 AA 00 FF, manual RX 41"
+    ],
+    "uart_linux.py": [
+      "GPIO_PASS 8N1: three binary bursts (24 bytes), KEY1 41, checked framing",
+      "GPIO_PASS 8E1: three binary bursts (24 bytes), KEY1 41, checked framing",
+      "GPIO_PASS 8O1: three binary bursts (24 bytes), KEY1 41, checked framing",
+      "MENU_GPIO_PASS target 8N1: SW17 off NO_RX, on MATCH 55 AA 00 FF, manual RX 41"
+    ]
+  }
+}

@@ -10,6 +10,6 @@
 | Coverage | 833 mandatory bins; native riêng và review unhit | exporter từ chối bin thiếu hoặc evidence sai | 833/833; native 1097 unhit còn mở |
 | Package | source/run/artifact hashes,archived replay | check_published_evidence | PASS_EVIDENCE_CHECK |
 | Git | commit nguồn/evidence và remote HEAD khớp | git status + ls-remote | Kết quả transport ghi trong báo cáo bàn giao sau push; không phải simulation gate |
-| Windows/Quartus/board | QPF/QSF/SDC,compile/fitter/STA,CP2102/bo thật | thực thi trên Windows/FPGA | NOT_RUN / yêu cầu3 |
+| Windows/Quartus/board | QPF/QSF/SDC, fitter/STA, CP2102 | RC1 đã tạo SOF trên Windows. 14 phép thử bo đang chờ | [Kết quả Yêu cầu 3](../08_FPGA_Release_Review.md) |
 
 Evidence v1 và review cũ được giữ nguyên làm lịch sử. Verdict source mới chỉ nằm trong target_v2; không dùng PASS cũ để đóng bản sửa.

@@ -8,9 +8,11 @@ Máy thực hiện có OSS CAD Suite 2026-11-08, Verilator 5.055 devel và Z3 4.
 
 Z3 phải có trong môi trường **chạy executable**, không chỉ lúc build. Runner sử dụng wrapper suite hoặc thêm suite/bin vào PATH và ghi version solver. Lỗi randomization/solver là FAIL, không chuyển sang random khác hoặc bỏ constrained-random.
 
-Cần khoảng 2 GB dung lượng build và đủ RAM; mặc định `-j1`, C++ output split/group và `-O0` phù hợp máy 8 GB. Qua lần kiểm tra đã giải phóng generated object/PCH của audit cũ khi /home đầy. Không xóa source/log để làm regression xanh.
+Cần khoảng 2 GB dung lượng build và đủ RAM; mặc định `-j1`, C++ output split/group và `-O0` phù hợp máy 8 GB.
 
 ## Chạy
+
+Chạy hồi quy TARGET từ một bản **Git clone** trên Linux. Runner ghi lại revision của checkout cùng hash nguồn vào hồ sơ mỗi lần chạy. Có thể kiểm các log đã phát hành từ bản ZIP bằng `python3 tools/check_published_evidence.py`.
 
 ```bash
 python tools/check_spec.py

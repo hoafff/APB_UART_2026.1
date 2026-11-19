@@ -73,7 +73,7 @@ Còn **1097 điểm instrument chưa hit**; danh sách lưu trong native_unhit_p
 
 - [Evidence index](../../dv/results/target_v2/summary.json), [logs](../../dv/results/target_v2/logs), [functional ledger](../../dv/results/target_v2/functional_coverage.json), [native merge](../../dv/results/target_v2/coverage_merged.dat.gz), [waveforms](../../dv/results/target_v2/waveforms.zip).
 - 80 requirement có testcase/observer mapping; các row MAPPED_SIM_TESTS_PASS xác nhận ca liên kết đã chạy đạt, không thay một review sign-off toàn bộ không gian trạng thái. 5 requirement FPGA vẫn HW_PENDING.
-- Chưa chạy Quartus/fitter/STA, chưa có bitstream hay thử DE2-115 + CP2102 thật. Chưa chạy Questa, formal hoặc X-propagation/analog metastability.
+- RC1 đã có SOF, fitter, STA và ba mô phỏng Questa. UVM trong bảng trên chạy bằng Verilator. Các phép đo trên DE2-115 + CP2102 đang chờ thực hiện. [Kết quả triển khai FPGA](../08_FPGA_Release_Review.md)
 - Thư viện/công cụ có sẵn được tái sử dụng; đã tải UVM pin vào .tools/uvm. Các failure ban đầu (syntax/task direction, hết disk, runtime thiếu PATH Z3) được giữ trong build history và issue ledger.
 - Exporter đối chiếu trực tiếp 20 raw logs với JSON: đủ đúng test/seed, completion, scoreboard, assertion activity, diagnostic của negative controls và functional counts. Xem [evidence validation](../../dv/results/target_v2/evidence_validation.json).
 

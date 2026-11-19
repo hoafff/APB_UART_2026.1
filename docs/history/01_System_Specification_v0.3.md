@@ -16,7 +16,7 @@
 2. [PULP APB UART SV](https://github.com/pulp-platform/apb_uart_sv), nhánh `pulpinov1`, **commit cố định** [`dfad6e04d19cc9481d3cd2750b45b970dc61271b`](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b) — nguồn chuẩn về hành vi RTL của DUT.
 3. Đề bài cuối kỳ do giảng viên công bố — nguồn chuẩn về **phạm vi nộp bài**.
 
-**Quy tắc:** Khi `Huongdan_UART.md` và RTL mâu thuẫn về hoạt động của DUT, **lấy RTL ở commit cố định** để mô tả và làm oracle kiểm thử. Khi RTL chưa thực hiện chức năng mà hướng dẫn yêu cầu, giữ yêu cầu ở phần *mong muốn/đề xuất* và ghi *giới hạn hoặc nghi vấn*; **không tự nhận là DUT đã hỗ trợ**. Các khác biệt được lưu tại [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md). Kế hoạch chuẩn bị cho Yêu cầu 2 và truy vết REQ→TC xem tại [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md).
+**Quy tắc:** Khi `Huongdan_UART.md` và RTL mâu thuẫn về hoạt động của DUT, **lấy RTL ở commit cố định** để mô tả và làm oracle kiểm thử. Khi RTL chưa thực hiện chức năng mà hướng dẫn yêu cầu, giữ yêu cầu ở phần *mong muốn/đề xuất* và ghi *giới hạn hoặc nghi vấn*; **không tự nhận là DUT đã hỗ trợ**. Các khác biệt được lưu tại [`00_RTL_Guide_Discrepancies.md`](../00_RTL_Guide_Discrepancies.md). Kế hoạch chuẩn bị cho Yêu cầu 2 và truy vết REQ→TC xem tại [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md).
 
 | Ký hiệu | Ý nghĩa |
 |---|---|
@@ -72,7 +72,7 @@ Danh sách đúng theo [`src_files.yml`](https://github.com/pulp-platform/apb_ua
 | `io_generic_fifo.sv` | FIFO generic được instantiate **hai lần**: TX và RX |
 | `uart_interrupt.sv` | Tạo `event_o`, mã IIR |
 
-Bộ 5 file RTL đã được lưu **nguyên bản**, cùng `src_files.yml` và giấy phép, tại [`rtl/vendor/pulp_apb_uart_sv/`](../rtl/vendor/pulp_apb_uart_sv/). Ngoài 5 file trên, cần source `de2_115_apb_uart_bringup.sv` do người thực hiện cung cấp. Repo còn chứa `apb_uart.sv` cùng định nghĩa module `apb_uart_sv`: **không đưa đồng thời** `apb_uart.sv` và `apb_uart_sv.sv` vào danh sách biên dịch để tránh trùng module.
+Bộ 5 file RTL đã được lưu **nguyên bản**, cùng `src_files.yml` và giấy phép, tại [`rtl/vendor/pulp_apb_uart_sv/`](../../rtl/vendor/pulp_apb_uart_sv/). Ngoài 5 file trên, cần source `de2_115_apb_uart_bringup.sv` do người thực hiện cung cấp. Repo còn chứa `apb_uart.sv` cùng định nghĩa module `apb_uart_sv`: **không đưa đồng thời** `apb_uart.sv` và `apb_uart_sv.sv` vào danh sách biên dịch để tránh trùng module.
 
 ### 2.2. Tham số [RTL]
 
@@ -368,6 +368,6 @@ Phân nhóm cần bao phủ: APB handshake; reset; register DLAB; truyền TX 5�
 - [RTL: Interrupt](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/uart_interrupt.sv)
 - [RTL: FIFO](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/io_generic_fifo.sv)
 - [RTL file list](https://github.com/pulp-platform/apb_uart_sv/blob/dfad6e04d19cc9481d3cd2750b45b970dc61271b/src_files.yml)
-- **Bảng sai khác chi tiết:** [`00_RTL_Guide_Discrepancies.md`](00_RTL_Guide_Discrepancies.md).
+- **Bảng sai khác chi tiết:** [`00_RTL_Guide_Discrepancies.md`](../00_RTL_Guide_Discrepancies.md).
 - **Handoff sang Yêu cầu 2:** [`02_DV_Readiness_Review.md`](02_DV_Readiness_Review.md) — bảng REQ→TC, phân loại pass/gap/investigation, thứ tự P0, coverage và kiến trúc UVM dự kiến.
-- **RTL baseline trong repo:** [`rtl/vendor/pulp_apb_uart_sv/`](../rtl/vendor/pulp_apb_uart_sv/) — 5 RTL files + license + nguồn file list.
+- **RTL baseline trong repo:** [`rtl/vendor/pulp_apb_uart_sv/`](../../rtl/vendor/pulp_apb_uart_sv/) — 5 RTL files + license + nguồn file list.

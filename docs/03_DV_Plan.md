@@ -102,7 +102,7 @@ Danh mục máy đọc được nằm trong [testcases.json](dv/testcases.json);
 | TC16 `tb_tx_onehot` | AT02 | 192 N×parity×stop×one-hot cases including bits above WLS | Known single-bit expected wire/parity, no DUT parity algorithm in oracle |
 | TC17 `check_spec` | DOC | 80 IDs/36 legacy mappings/65 CSV pins/timing/contract arithmetic/vendor hashes | Python document checker, not simulation |
 | TC18 `check_dv` | DOC | Traceability/classes/artifacts/native coverage/requirement and source references | Python static/evidence checker, not hardware |
-| TC19 `board_acceptance` | AT08 | Quartus/fitter/STA, bank/JP6/JP7/CP2102, board TX/RX/echo/parity/error capture | Manual physical evidence; NOT_RUN under Requirement 3 |
+| TC19 `board_acceptance` | AT08 | Quartus/fitter/STA, bank/JP6/JP7/CP2102, board TX/RX/echo/parity/error capture | RC1 có fitter/STA. Phiếu thử bo còn 14 mục NOT_RUN |
 
 ## 6. Coverage model và tiêu chí closure
 

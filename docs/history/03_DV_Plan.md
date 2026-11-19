@@ -1,8 +1,8 @@
 # 03 — DESIGN VERIFICATION PLAN (DV PLAN) — APB UART SV
 
 > **DV Plan v0.1 · 29/10/2026 · Yêu cầu 2**
-> **Source of truth:** [System Specification v0.3](01_System_Specification.md), [RTL/Guide differences](00_RTL_Guide_Discrepancies.md), [DV readiness review](02_DV_Readiness_Review.md).
-> **DUT baseline:** [PULP @ dfad6e04d19cc9481d3cd2750b45b970dc61271b](../rtl/vendor/pulp_apb_uart_sv/).
+> **Source of truth:** [System Specification v0.3](01_System_Specification_v0.3.md), [RTL/Guide differences](../00_RTL_Guide_Discrepancies.md), [DV readiness review](02_DV_Readiness_Review.md).
+> **DUT baseline:** [PULP @ dfad6e04d19cc9481d3cd2750b45b970dc61271b](../../rtl/vendor/pulp_apb_uart_sv/).
 > **Status:** PLAN APPROVED FOR IMPLEMENTATION / NOT VERIFIED. No simulations have yet passed.
 
 ## 1. Mục tiêu và giới hạn
@@ -13,7 +13,7 @@ Nguồn dẫn: hướng dẫn thầy định nghĩa mục tiêu hệ thống; h�
 
 ## 2. Baseline và nguyên tắc kiểm thử
 
-- DUT ở [rtl/vendor/pulp_apb_uart_sv](../rtl/vendor/pulp_apb_uart_sv/) gồm năm file trong src_files.yml. **Không chỉnh RTL** để ép testcase pass.
+- DUT ở [rtl/vendor/pulp_apb_uart_sv](../../rtl/vendor/pulp_apb_uart_sv/) gồm năm file trong src_files.yml. **Không chỉnh RTL** để ép testcase pass.
 - Mặc định: CLK 50 MHz (20 ns period), RSTN active-low async. APB 12-bit address, 32-bit data.
 - Valid APB: SETUP (PSEL=1,PENABLE=0) trước ACCESS (PSEL=1,PENABLE=1). Completion khi PREADY=1. RTL luôn PREADY=1, PSLVERR=0.
 - Offsets thật do PADDR[2:0]: 0=RBR/THR/DLL; 1=IER/DLM; 2=IIR/FCR; 3=LCR; 5=LSR. DLAB=LCR[7]. Các alias high bits cùng dữ liệu giải mã; read 4/6/7=0.

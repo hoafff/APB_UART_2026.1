@@ -96,12 +96,15 @@ class Link:
         self.reader.start()
 
     def close(self, drain=True):
-        self.stopping.set()
-        self.reader.join()
         try:
+            self.stopping.set()
+            self.reader.join()
+            if not drain:
+                return
+            self.check()
             # Capture bytes already queued when the operator disconnects, even if
             # the menu reader has not polled yet. New arrivals cannot prolong close.
-            remaining = self.port.in_waiting if drain and self.failure is None else 0
+            remaining = self.port.in_waiting
             while remaining > 0:
                 packet = self._read("close", remaining)
                 if not packet:
@@ -247,18 +250,18 @@ def devices():
     return [port.device for port in ports]
 
 
-def choose_port():
-    ports = devices()
+def choose_port(list_devices=devices, example="COM10"):
+    ports = list_devices()
     by_number = {str(i): device for i, device in enumerate(ports, 1)}
     while True:
-        choice = input("Số thứ tự hoặc tên cổng (vd. COM10), Enter hủy > ").strip()
+        choice = input(f"Số thứ tự hoặc tên cổng (vd. {example}), Enter hủy > ").strip()
         if not choice:
             return None
         if not choice.isdecimal():
             return choice
         if choice in by_number:
             return by_number[choice]
-        print("Số thứ tự ngoài danh sách. Nếu là cổng Windows, nhập cả chữ COM.")
+        print("Số thứ tự ngoài danh sách.")
 
 
 def choose_profile():
@@ -330,6 +333,10 @@ def board_help(profile):
 
 
 class Menu:
+    list_devices = staticmethod(devices)
+    port_example = "COM10"
+    exclusive = None
+
     def __init__(self, profile, journal):
         self.profile = profile
         self.parity = "N"
@@ -342,8 +349,7 @@ class Menu:
             try:
                 link.close(drain=drain)
             except PORT_ERRORS as exc:
-                self.log.record("IO_ERROR", port=link.port.port, detail=str(exc))
-                print(f"Lỗi cổng khi đóng {link.port.port}: {exc}")
+                self.report_port_error(exc, link.port.port)
             finally:
                 self.log.record("CLOSE", port=link.port.port)
             print(f"Đã đóng {link.port.port}.")
@@ -355,7 +361,7 @@ class Menu:
         port = serial.Serial(device, baudrate=BAUD, bytesize=serial.EIGHTBITS,
                              parity=self.parity, stopbits=serial.STOPBITS_ONE,
                              timeout=0, write_timeout=0.5,
-                             xonxoff=False, rtscts=False, dsrdtr=False)
+                             xonxoff=False, rtscts=False, dsrdtr=False, exclusive=self.exclusive)
         try:
             self.log.record("OPEN", port=device, profile=self.profile, baud=BAUD,
                             frame=f"8{self.parity}1")
@@ -365,16 +371,33 @@ class Menu:
             raise
         print(f"Đã mở {device}. RX được ghi cả khi đang ở menu.")
 
-    def io_error(self, exc):
-        self.log.record("IO_ERROR", detail=str(exc))
-        print(f"Lỗi cổng: {exc}\nKiểm tra cáp, đóng terminal khác, chọn c để mở lại.")
+    def try_connect(self, device):
+        try:
+            self.connect(device)
+        except PORT_ERRORS as exc:
+            self.io_error(exc, device)
+
+    @staticmethod
+    def port_hint(exc):
+        return "Kiểm tra cáp, đóng terminal khác, chọn c để mở lại."
+
+    def report_port_error(self, exc, device):
+        self.log.record("IO_ERROR", port=device, detail=str(exc))
+        name = f" {device}" if device else ""
+        print(f"Lỗi cổng{name}: {exc}\n{self.port_hint(exc)}")
+
+    def io_error(self, exc, device=None):
+        self.report_port_error(exc, self.link.port.port if self.link else device)
         self.disconnect(drain=False)
+
+    def choose_port(self):
+        return choose_port(self.list_devices, self.port_example)
 
     def action(self, cmd):
         if cmd == "c":
-            device = choose_port()
+            device = self.choose_port()
             if device:
-                self.connect(device)
+                self.try_connect(device)
         elif cmd == "d":
             self.disconnect()
         elif cmd == "f":
@@ -383,7 +406,7 @@ class Menu:
                 self.parity = parity
                 print("Đã chọn khung PC. Đặt switch và reset bo theo profile (h để xem).")
                 if self.link:
-                    self.connect(self.link.port.port)
+                    self.try_connect(self.link.port.port)
         elif cmd == "h":
             board_help(self.profile)
         elif cmd not in ("t", "x", "r", "e"):
@@ -408,10 +431,7 @@ class Menu:
     def run(self, device):
         try:
             if device:
-                try:
-                    self.connect(device)
-                except PORT_ERRORS as exc:
-                    self.io_error(exc)
+                self.try_connect(device)
             while True:
                 if self.link and self.link.failure is not None:
                     if isinstance(self.link.failure, LogError):
@@ -420,7 +440,7 @@ class Menu:
                 name = self.link.port.port if self.link else "chưa mở cổng"
                 print(f"\n{self.profile} | {name} | {BAUD} 8{self.parity}1")
                 print("[c] Cổng  [f] Khung  [t] Gửi chữ  [x] Gửi HEX  [r] Nhận/KEY")
-                print("[e] So echo raw  [d] Ngắt  [h] Hướng dẫn bo  [q] Thoát")
+                print("[e] Thử echo  [d] Ngắt  [h] Hướng dẫn bo  [q] Thoát")
                 cmd = input("Chọn > ").strip().lower()
                 if cmd == "q":
                     break
@@ -435,15 +455,15 @@ class Menu:
             self.disconnect()
 
 
-def main():
+def main(menu_class=Menu):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--profile", choices=PARITIES, help="profile của bitstream đang nạp")
-    parser.add_argument("--port", help="mở cổng khi khởi động, ví dụ COM10")
+    parser.add_argument("--port", help=f"mở cổng khi khởi động, ví dụ {menu_class.port_example}")
     parser.add_argument("--list", action="store_true", help="liệt kê cổng rồi thoát")
     parser.add_argument("--log", type=Path, help="ghi nối tiếp vào file JSON Lines UTF-8")
     args = parser.parse_args()
     if args.list:
-        devices()
+        menu_class.list_devices()
         return 0
     try:
         profile = args.profile or choose_profile()
@@ -454,7 +474,7 @@ def main():
             print(f"Ghi log tại {path.resolve()}")
             log = Journal(stream)
             log.record("SESSION", profile=profile)
-            Menu(profile, log).run(args.port)
+            menu_class(profile, log).run(args.port)
     except (EOFError, KeyboardInterrupt):
         print("\nKết thúc phiên UART.")
     except (LogError, OSError) as exc:

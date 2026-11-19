@@ -1,0 +1,290 @@
+COMMAND: E:\Apps\QuestaSim-10.7c\win64\vsim.exe -c -do "do {D:/uart/APB_UART_2026.1/fpga/scripts/simulate.do}"
+Reading E:/Apps/QuestaSim-10.7c/tcl/vsim/pref.tcl
+
+# 10.7c
+
+# do {D:/uart/APB_UART_2026.1/fpga/scripts/simulate.do}
+# QuestaSim-64 vmap 10.7c Lib Mapping Utility 2018.08 Aug 18 2018
+# vmap work work 
+# Modifying modelsim.ini
+# QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 18 2018
+# Start time: 17:23:47 on Nov 12,2026
+# vlog -sv -work work ../../../rtl/modified/pulp_apb_uart_sv/uart_fifo.sv ../../../rtl/modified/pulp_apb_uart_sv/uart_tx.sv ../../../rtl/modified/pulp_apb_uart_sv/uart_rx.sv ../../../rtl/modified/pulp_apb_uart_sv/apb_uart_sv.sv ../../../rtl/fpga/de2_uart_controller.sv ../../../rtl/fpga/de2_115_apb_uart_bringup.sv ../../../dv/system/tb_system.sv ../../../dv/system/tb_controller.sv ../../../dv/system/tb_tx_onehot.sv 
+# -- Compiling module uart_fifo
+# -- Compiling module uart_tx
+# -- Compiling module uart_rx
+# -- Compiling module apb_uart_sv
+# -- Compiling module de2_uart_controller
+# -- Compiling module de2_115_apb_uart_bringup
+# -- Compiling module tb_system
+# -- Compiling module tb_controller
+# -- Compiling module tb_tx_onehot
+# 
+# Top level modules:
+# 	tb_system
+# 	tb_controller
+# 	tb_tx_onehot
+# End time: 17:23:47 on Nov 12,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -onfinish stop work.tb_system 
+# Start time: 17:23:48 on Nov 12,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 10.7c win64 Aug 18 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_system(fast)
+# SYS_COV|debounce_exact_bounce_hold_release|1
+# SYS_COV|debounce_release_n_minus_1_n|1
+# SYS_COV|debounce_release_bounce|1
+# SYS_COV|manual_capture_hex|1
+# SYS_COV|reset_sync_and_reserved_switches|1
+# SYS_COV|mode_0_rx_echo_hold_errors|1
+# SYS_COV|mode_1_rx_echo_hold_errors|1
+# SYS_COV|mode_2_rx_echo_hold_errors|1
+# SYS_COV|echo_burst32|1
+# SYS_COV|default_poll_5000_cycles|1
+# SYS_COV|hex_all_16_patterns|1
+# SYS_TEST_COMPLETED|checks=4027274|tx=43|press=2
+# ** Note: $finish    : ../../../dv/system/tb_system.sv(175)
+#    Time: 80525520 ns  Iteration: 1  Instance: /tb_system
+# Break at ../../../dv/system/tb_system.sv line 175
+# Stopped at ../../../dv/system/tb_system.sv line 175
+# End time: 17:23:56 on Nov 12,2026, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 0
+# vsim -onfinish stop work.tb_controller 
+# Start time: 17:23:57 on Nov 12,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading sv_std.std
+# Loading work.tb_controller(fast)
+# SYS_COV|fault_init_stub|1
+# SYS_COV|hold_irq_poll_spacing|1
+# SYS_COV|manual_overflow_preserves_byte|1
+# SYS_COV|manual_consume_and_new|1
+# SYS_COV|echo_backpressure_fairness|1
+# SYS_COV|fault_runtime_preserves_pending|1
+# SYS_COV|live_hold_echo_setup_boundary|1
+# SYS_COV|reset_pending_slots|1
+# SYS_COV|irq_manual_wake_bound|1
+# SYS_TEST_COMPLETED|checks=46
+# ** Note: $finish    : ../../../dv/system/tb_controller.sv(110)
+#    Time: 23960 ns  Iteration: 1  Instance: /tb_controller
+# Break at ../../../dv/system/tb_controller.sv line 110
+# Stopped at ../../../dv/system/tb_controller.sv line 110
+# End time: 17:24:02 on Nov 12,2026, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 0
+# vsim -onfinish stop work.tb_tx_onehot 
+# Start time: 17:24:03 on Nov 12,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt2
+# Loading sv_std.std
+# Loading work.tb_tx_onehot(fast)
+# COV|tx.onehot.5.0.1.0|1
+# COV|tx.onehot.5.0.1.1|1
+# COV|tx.onehot.5.0.1.2|1
+# COV|tx.onehot.5.0.1.3|1
+# COV|tx.onehot.5.0.1.4|1
+# COV|tx.onehot.5.0.1.5|1
+# COV|tx.onehot.5.0.1.6|1
+# COV|tx.onehot.5.0.1.7|1
+# COV|tx.onehot.5.0.2.0|1
+# COV|tx.onehot.5.0.2.1|1
+# COV|tx.onehot.5.0.2.2|1
+# COV|tx.onehot.5.0.2.3|1
+# COV|tx.onehot.5.0.2.4|1
+# COV|tx.onehot.5.0.2.5|1
+# COV|tx.onehot.5.0.2.6|1
+# COV|tx.onehot.5.0.2.7|1
+# COV|tx.onehot.5.1.1.0|1
+# COV|tx.onehot.5.1.1.1|1
+# COV|tx.onehot.5.1.1.2|1
+# COV|tx.onehot.5.1.1.3|1
+# COV|tx.onehot.5.1.1.4|1
+# COV|tx.onehot.5.1.1.5|1
+# COV|tx.onehot.5.1.1.6|1
+# COV|tx.onehot.5.1.1.7|1
+# COV|tx.onehot.5.1.2.0|1
+# COV|tx.onehot.5.1.2.1|1
+# COV|tx.onehot.5.1.2.2|1
+# COV|tx.onehot.5.1.2.3|1
+# COV|tx.onehot.5.1.2.4|1
+# COV|tx.onehot.5.1.2.5|1
+# COV|tx.onehot.5.1.2.6|1
+# COV|tx.onehot.5.1.2.7|1
+# COV|tx.onehot.5.2.1.0|1
+# COV|tx.onehot.5.2.1.1|1
+# COV|tx.onehot.5.2.1.2|1
+# COV|tx.onehot.5.2.1.3|1
+# COV|tx.onehot.5.2.1.4|1
+# COV|tx.onehot.5.2.1.5|1
+# COV|tx.onehot.5.2.1.6|1
+# COV|tx.onehot.5.2.1.7|1
+# COV|tx.onehot.5.2.2.0|1
+# COV|tx.onehot.5.2.2.1|1
+# COV|tx.onehot.5.2.2.2|1
+# COV|tx.onehot.5.2.2.3|1
+# COV|tx.onehot.5.2.2.4|1
+# COV|tx.onehot.5.2.2.5|1
+# COV|tx.onehot.5.2.2.6|1
+# COV|tx.onehot.5.2.2.7|1
+# COV|tx.onehot.6.0.1.0|1
+# COV|tx.onehot.6.0.1.1|1
+# COV|tx.onehot.6.0.1.2|1
+# COV|tx.onehot.6.0.1.3|1
+# COV|tx.onehot.6.0.1.4|1
+# COV|tx.onehot.6.0.1.5|1
+# COV|tx.onehot.6.0.1.6|1
+# COV|tx.onehot.6.0.1.7|1
+# COV|tx.onehot.6.0.2.0|1
+# COV|tx.onehot.6.0.2.1|1
+# COV|tx.onehot.6.0.2.2|1
+# COV|tx.onehot.6.0.2.3|1
+# COV|tx.onehot.6.0.2.4|1
+# COV|tx.onehot.6.0.2.5|1
+# COV|tx.onehot.6.0.2.6|1
+# COV|tx.onehot.6.0.2.7|1
+# COV|tx.onehot.6.1.1.0|1
+# COV|tx.onehot.6.1.1.1|1
+# COV|tx.onehot.6.1.1.2|1
+# COV|tx.onehot.6.1.1.3|1
+# COV|tx.onehot.6.1.1.4|1
+# COV|tx.onehot.6.1.1.5|1
+# COV|tx.onehot.6.1.1.6|1
+# COV|tx.onehot.6.1.1.7|1
+# COV|tx.onehot.6.1.2.0|1
+# COV|tx.onehot.6.1.2.1|1
+# COV|tx.onehot.6.1.2.2|1
+# COV|tx.onehot.6.1.2.3|1
+# COV|tx.onehot.6.1.2.4|1
+# COV|tx.onehot.6.1.2.5|1
+# COV|tx.onehot.6.1.2.6|1
+# COV|tx.onehot.6.1.2.7|1
+# COV|tx.onehot.6.2.1.0|1
+# COV|tx.onehot.6.2.1.1|1
+# COV|tx.onehot.6.2.1.2|1
+# COV|tx.onehot.6.2.1.3|1
+# COV|tx.onehot.6.2.1.4|1
+# COV|tx.onehot.6.2.1.5|1
+# COV|tx.onehot.6.2.1.6|1
+# COV|tx.onehot.6.2.1.7|1
+# COV|tx.onehot.6.2.2.0|1
+# COV|tx.onehot.6.2.2.1|1
+# COV|tx.onehot.6.2.2.2|1
+# COV|tx.onehot.6.2.2.3|1
+# COV|tx.onehot.6.2.2.4|1
+# COV|tx.onehot.6.2.2.5|1
+# COV|tx.onehot.6.2.2.6|1
+# COV|tx.onehot.6.2.2.7|1
+# COV|tx.onehot.7.0.1.0|1
+# COV|tx.onehot.7.0.1.1|1
+# COV|tx.onehot.7.0.1.2|1
+# COV|tx.onehot.7.0.1.3|1
+# COV|tx.onehot.7.0.1.4|1
+# COV|tx.onehot.7.0.1.5|1
+# COV|tx.onehot.7.0.1.6|1
+# COV|tx.onehot.7.0.1.7|1
+# COV|tx.onehot.7.0.2.0|1
+# COV|tx.onehot.7.0.2.1|1
+# COV|tx.onehot.7.0.2.2|1
+# COV|tx.onehot.7.0.2.3|1
+# COV|tx.onehot.7.0.2.4|1
+# COV|tx.onehot.7.0.2.5|1
+# COV|tx.onehot.7.0.2.6|1
+# COV|tx.onehot.7.0.2.7|1
+# COV|tx.onehot.7.1.1.0|1
+# COV|tx.onehot.7.1.1.1|1
+# COV|tx.onehot.7.1.1.2|1
+# COV|tx.onehot.7.1.1.3|1
+# COV|tx.onehot.7.1.1.4|1
+# COV|tx.onehot.7.1.1.5|1
+# COV|tx.onehot.7.1.1.6|1
+# COV|tx.onehot.7.1.1.7|1
+# COV|tx.onehot.7.1.2.0|1
+# COV|tx.onehot.7.1.2.1|1
+# COV|tx.onehot.7.1.2.2|1
+# COV|tx.onehot.7.1.2.3|1
+# COV|tx.onehot.7.1.2.4|1
+# COV|tx.onehot.7.1.2.5|1
+# COV|tx.onehot.7.1.2.6|1
+# COV|tx.onehot.7.1.2.7|1
+# COV|tx.onehot.7.2.1.0|1
+# COV|tx.onehot.7.2.1.1|1
+# COV|tx.onehot.7.2.1.2|1
+# COV|tx.onehot.7.2.1.3|1
+# COV|tx.onehot.7.2.1.4|1
+# COV|tx.onehot.7.2.1.5|1
+# COV|tx.onehot.7.2.1.6|1
+# COV|tx.onehot.7.2.1.7|1
+# COV|tx.onehot.7.2.2.0|1
+# COV|tx.onehot.7.2.2.1|1
+# COV|tx.onehot.7.2.2.2|1
+# COV|tx.onehot.7.2.2.3|1
+# COV|tx.onehot.7.2.2.4|1
+# COV|tx.onehot.7.2.2.5|1
+# COV|tx.onehot.7.2.2.6|1
+# COV|tx.onehot.7.2.2.7|1
+# COV|tx.onehot.8.0.1.0|1
+# COV|tx.onehot.8.0.1.1|1
+# COV|tx.onehot.8.0.1.2|1
+# COV|tx.onehot.8.0.1.3|1
+# COV|tx.onehot.8.0.1.4|1
+# COV|tx.onehot.8.0.1.5|1
+# COV|tx.onehot.8.0.1.6|1
+# COV|tx.onehot.8.0.1.7|1
+# COV|tx.onehot.8.0.2.0|1
+# COV|tx.onehot.8.0.2.1|1
+# COV|tx.onehot.8.0.2.2|1
+# COV|tx.onehot.8.0.2.3|1
+# COV|tx.onehot.8.0.2.4|1
+# COV|tx.onehot.8.0.2.5|1
+# COV|tx.onehot.8.0.2.6|1
+# COV|tx.onehot.8.0.2.7|1
+# COV|tx.onehot.8.1.1.0|1
+# COV|tx.onehot.8.1.1.1|1
+# COV|tx.onehot.8.1.1.2|1
+# COV|tx.onehot.8.1.1.3|1
+# COV|tx.onehot.8.1.1.4|1
+# COV|tx.onehot.8.1.1.5|1
+# COV|tx.onehot.8.1.1.6|1
+# COV|tx.onehot.8.1.1.7|1
+# COV|tx.onehot.8.1.2.0|1
+# COV|tx.onehot.8.1.2.1|1
+# COV|tx.onehot.8.1.2.2|1
+# COV|tx.onehot.8.1.2.3|1
+# COV|tx.onehot.8.1.2.4|1
+# COV|tx.onehot.8.1.2.5|1
+# COV|tx.onehot.8.1.2.6|1
+# COV|tx.onehot.8.1.2.7|1
+# COV|tx.onehot.8.2.1.0|1
+# COV|tx.onehot.8.2.1.1|1
+# COV|tx.onehot.8.2.1.2|1
+# COV|tx.onehot.8.2.1.3|1
+# COV|tx.onehot.8.2.1.4|1
+# COV|tx.onehot.8.2.1.5|1
+# COV|tx.onehot.8.2.1.6|1
+# COV|tx.onehot.8.2.1.7|1
+# COV|tx.onehot.8.2.2.0|1
+# COV|tx.onehot.8.2.2.1|1
+# COV|tx.onehot.8.2.2.2|1
+# COV|tx.onehot.8.2.2.3|1
+# COV|tx.onehot.8.2.2.4|1
+# COV|tx.onehot.8.2.2.5|1
+# COV|tx.onehot.8.2.2.6|1
+# COV|tx.onehot.8.2.2.7|1
+# SYS_TEST_COMPLETED|checks=2361|frames=192
+# ** Note: $finish    : ../../../dv/system/tb_tx_onehot.sv(38)
+#    Time: 1214410 ns  Iteration: 0  Instance: /tb_tx_onehot
+# Break at ../../../dv/system/tb_tx_onehot.sv line 38
+# Stopped at ../../../dv/system/tb_tx_onehot.sv line 38
+# End time: 17:24:09 on Nov 12,2026, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0

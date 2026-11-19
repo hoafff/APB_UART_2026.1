@@ -2,8 +2,8 @@
 
 > Phiên bản: 0.3 (second audit phục vụ Yêu cầu 2), 29/10/2026.
 > Trạng thái: **READY TO START DV PLAN/UVM**, **NOT SIGNED OFF**; chưa có simulation pass.
-> Nguồn: [Huongdan_UART.md](../reference/Huongdan_UART.md), [SPEC](01_System_Specification.md), [Discrepancies](00_RTL_Guide_Discrepancies.md).
-> DUT baseline: [PULP @ dfad6e04d19cc9481d3cd2750b45b970dc61271b](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b), lưu nguyên trong [rtl/vendor/pulp_apb_uart_sv](../rtl/vendor/pulp_apb_uart_sv/).
+> Nguồn: [Huongdan_UART.md](../../reference/Huongdan_UART.md), [SPEC](01_System_Specification_v0.3.md), [Discrepancies](../00_RTL_Guide_Discrepancies.md).
+> DUT baseline: [PULP @ dfad6e04d19cc9481d3cd2750b45b970dc61271b](https://github.com/pulp-platform/apb_uart_sv/tree/dfad6e04d19cc9481d3cd2750b45b970dc61271b), lưu nguyên trong [rtl/vendor/pulp_apb_uart_sv](../../rtl/vendor/pulp_apb_uart_sv/).
 
 ## A. Kết quả rà soát
 
