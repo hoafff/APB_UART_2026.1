@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 from results import DIRECTED, NEGATIVE, inspect_run
-from run import ROOT, DV, dependency, require
+from run import ROOT, DV, dependency, require, sources
 
 
 def main():
@@ -20,6 +20,7 @@ def main():
     args = p.parse_args()
     require(not args.inject or args.case == "baud", "The paired controls use --case baud")
     require(0 < args.seed < 2**31, "--seed must be a positive signed 32-bit integer")
+    inputs = sources()
     missing = [t for t in ("vlib", "vlog", "vsim") if not shutil.which(t)]
     require(not missing, "Place Questa commands on PATH: "+", ".join(missing))
     work = args.work.expanduser().resolve()
@@ -54,6 +55,7 @@ dv_exit
     log_path = out/"run.log"
     with log_path.open("wb") as log:
         sim = subprocess.run(cmd, cwd=out, stdout=log, stderr=subprocess.STDOUT, timeout=180)
+    require(inputs == sources(), "Simulation inputs changed during the Questa run")
     result = inspect_run(log_path.read_text(errors="replace"), args.case, args.seed, args.inject, sim.returncode)
     print(result["verdict"], result["scoreboard"], result["diagnostic"] or "", *result["problems"])
     require(result["verdict"] in {"PASS","DETECTED"}, f"Run failed; see {log_path}")

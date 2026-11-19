@@ -1,13 +1,12 @@
-# Kiểm menu Python với tín hiệu UART của mô hình RTL
+# Kiểm tra menu PC với top FPGA
 
-Trên Linux, dùng Python 3 với pySerial, Verilator và trình biên dịch C++. Từ thư mục gốc:
+Bài kiểm tra nối một cổng serial ảo của Linux với hai chân `GPIO_UART_RX` và `GPIO_UART_TX` của mô hình RTL. Cần Python 3 có pySerial, Verilator và bộ biên dịch C++. Chạy từ thư mục gốc của dự án.
 
 ```sh
-python integration/test_host_rtl.py
+.venv/bin/python integration/test_host_rtl.py
+.venv/bin/python integration/test_host_rtl.py --entry uart_linux.py
 ```
 
-Lệnh biên dịch top DE2-115 cùng năm file PULP gốc. Bộ thu bên PC lấy mẫu giữa bit theo 115200 baud, kiểm cả parity và stop. Tín hiệu `GPIO_UART_RX` nhận ba chuỗi nhị phân, trong đó có burst 16 byte liên tiếp. Test bấm/nhả KEY1 trên mô hình với thời gian debounce mặc định và giải mã byte phát qua `GPIO_UART_TX`.
+Script chọn top theo project Quartus trong checkout. Bộ phát PC dùng tốc độ 115200 baud. Bộ thu độc lập lấy mẫu giữa bit, kiểm parity và stop, rồi giải mã ba gói nhị phân gồm cả một burst 16 byte. KEY1 được giữ đủ thời gian debounce để truyền giá trị trên SW[7:0].
 
-Sau đó script chạy chương trình `host/uart_menu.py` qua cổng PTY. Các byte PC gửi qua pySerial được phát thành bit ở chân RX của top. Chỉ các byte giải mã lại ở chân TX mới quay về host. Script tắt SW17 cho lượt đầu, bật lại rồi gửi cùng gói. Nó kiểm trong nhật ký menu hai kết quả `NO_RX` và `MATCH`, sau đó kiểm thêm byte `41` do KEY1 gửi. Phần PTY dùng 8N1. Các ca kiểm chân RTL chạy cả 8N1 và 8E1 trên PULP. Có thể dùng `--profile target --root <checkout-main>` để chạy với phiên bản RC1 và thêm ca 8O1 ở chân RTL.
-
-Lần chạy ngày 19/11/2026 cho kết quả `NO_RX → MATCH` và nhận `41` với cả hai thiết kế. Phiên bản công cụ, các hash đầu vào và stdout của mỗi profile nằm trong [hồ sơ kiểm tra](result.json). Đây là kiểm tra phần mềm PC cùng RTL trước khi nạp. Ghi kết quả nạp, đo điện áp và thử UART trên CP2102/DE2-115 thật vào phiếu của lần nghiệm thu Windows.
+Qua PTY, test gửi `55 AA 00 FF` khi SW17 tắt rồi bật lại. Nhật ký menu phải lần lượt ghi `NO_RX` và `MATCH`. Sau đó test đặt SW[7:0] = `41`, nhấn KEY1 và kiểm PC nhận đúng byte `41`. Bài PTY dùng 8N1. Phần thử trực tiếp trên chân RTL chạy thêm các chế độ parity mà từng thiết kế hỗ trợ. [Kết quả của nhánh này](result.json)

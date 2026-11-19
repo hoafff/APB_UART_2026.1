@@ -18,3 +18,14 @@ foreach {count slack expected} {
     incr cases
 }
 puts "TIMING POLICY PASS cases=$cases (Tcl fixtures for corner sets, path counts and finite slack)"
+
+pulp_require_clean_feedback {{no_input_delay 14} {loops 0} {latches 0} {no_output_delay 43}}
+set cases 1
+foreach rows {
+    {{loops 1} {latches 0}} {{loops 0} {latches 1}} {{loops 0}} {{latches 0}}
+    {{loops 0} {loops 0} {latches 0}} {{loops 0} {latches N/A}}
+} {
+    if {![catch {pulp_require_clean_feedback $rows}]} { error "Accepted feedback summary $rows" }
+    incr cases
+}
+puts "FEEDBACK GUARD PASS cases=$cases (synthetic check_timing rows)"

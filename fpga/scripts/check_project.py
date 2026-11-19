@@ -12,6 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[2]
 PROJECT = ROOT / "fpga/de2_115"
 TOP = "de2_115_pulp_uart"
+DEVICE = "EP4CE115F29C7"
 SW_BITS = (*range(8), 14, 16, 17)
 RX_REG = "apb_uart_sv:uart|uart_rx:uart_rx_i|reg_rx_sync"
 GPIO = {"GPIO_UART_RX": "GPIO[2]", "GPIO_UART_TX": "GPIO[0]"}
@@ -31,23 +32,43 @@ def terasic_pins(path=ROOT / "reference/DE2_115_pin_assignments.csv"):
         return {row[0]: row for row in csv.reader(stream) if len(row) >= 6 and row[2].startswith("PIN_")}
 
 
+def qsf_lines(path):
+    for raw in path.read_text().splitlines():
+        line = raw.strip()
+        if line and not line.startswith("#"):
+            yield line
+
+
 def check_files():
     # Resolves tools/ and docs/spec/ relative to this checkout (also in a staged build).
     upstream = subprocess.run([sys.executable, str(ROOT / "tools/check_upstream.py")], cwd=ROOT)
     if upstream.returncode:
         raise SystemExit(upstream.returncode)
-    qsf = (PROJECT / f"{TOP}.qsf").read_text()
     qpf = (PROJECT / f"{TOP}.qpf").read_text()
     require(re.findall(r'^PROJECT_REVISION = "([^"]+)"$', qpf, re.M) == [TOP], "QPF revision")
 
-    def values(key):
-        return [v.strip('"') for v in re.findall(rf"^set_global_assignment -name {key} (.+)$", qsf, re.M)]
+    # These two QSF files are declarative. Consume every command so an extra
+    # input or pin override cannot disappear between preflight and Quartus.
+    settings = defaultdict(list)
+    includes = []
+    for line in qsf_lines(PROJECT / f"{TOP}.qsf"):
+        include = re.fullmatch(r"source\s+([\w.]+)", line)
+        if include:
+            includes.append(include[1])
+            continue
+        assignment = re.fullmatch(r'set_global_assignment\s+-name\s+(\w+)\s+'
+                                  r'(?:"([^"$\[\\]+)"|\{([^{}]+)\}|([\w./-]+))', line)
+        require(assignment, f"unrecognized project QSF command: {line}")
+        key = assignment[1].upper()
+        require(not key.endswith(("_FILE", "_FILES")) or key in ("SYSTEMVERILOG_FILE", "SDC_FILE"),
+                f"unstaged QSF input {key}: {line}")
+        settings[key].append(next(value for value in assignment.groups()[1:] if value is not None))
 
-    for key, value in {"FAMILY": "Cyclone IV E", "DEVICE": "EP4CE115F29C7", "TOP_LEVEL_ENTITY": TOP,
+    for key, value in {"FAMILY": "Cyclone IV E", "DEVICE": DEVICE, "TOP_LEVEL_ENTITY": TOP,
                        "SDC_FILE": f"{TOP}.sdc", "RESERVE_ALL_UNUSED_PINS": "AS INPUT TRI-STATED",
                        "PROJECT_OUTPUT_DIRECTORY": "../build/output_files"}.items():
-        require(values(key) == [value], f"QSF {key}")
-    require(re.findall(r"^source (.+)$", qsf, re.M) == ["pins.qsf", "synchronizers.qsf"], "QSF includes")
+        require(settings[key] == [value], f"QSF {key}")
+    require(includes == ["pins.qsf", "synchronizers.qsf"], "QSF includes")
     require((PROJECT / "synchronizers.qsf").is_file(), "synchronizer assignment file")
     sdc = (PROJECT / f"{TOP}.sdc").read_text()
     require(re.findall(r"^create_(?:generated_)?clock\b.*$", sdc, re.M) ==
@@ -57,7 +78,7 @@ def check_files():
     expected = {vendor / f for f in manifest} | {ROOT / "rtl/fpga" / f for f in
                                                ("de2_pulp_uart_master.sv", f"{TOP}.sv")}
     files = (PROJECT / "rtl.f").read_text().splitlines()
-    require(files == values("SYSTEMVERILOG_FILE") and len(files) == 7 and len(manifest) == 5,
+    require(files == settings["SYSTEMVERILOG_FILE"] and len(files) == 7 and len(manifest) == 5,
             "QSF, local filelist or vendor manifest mismatch")
     require(all(not Path(f).is_absolute() for f in files) and
             {(PROJECT / f).resolve(strict=True) for f in files} == expected, "source paths")
@@ -69,9 +90,16 @@ def check_files():
         ports.update(dict.fromkeys(port_bits(bus, int(msb or 0) + 1), direction))
     require(Counter(ports.values()) == {"input": 22, "output": 43}, "top port declaration")
 
-    pins = (PROJECT / "pins.qsf").read_text()
-    locations = re.findall(r"^set_location_assignment (PIN_\w+) -to \{([^}]+)\}$", pins, re.M)
-    standards = re.findall(r'^set_instance_assignment -name IO_STANDARD "([^"]+)" -to \{([^}]+)\}$', pins, re.M)
+    locations, standards = [], []
+    port_arg = r'\s+-to\s+(?:\{([\w\[\]]+)\}|(\w+))'
+    for line in qsf_lines(PROJECT / "pins.qsf"):
+        loc = re.fullmatch(r"set_location_assignment\s+(PIN_\w+)" + port_arg, line)
+        if loc:
+            locations.append((loc[1], loc[2] or loc[3]))
+        else:
+            io = re.fullmatch(r'set_instance_assignment\s+-name\s+IO_STANDARD\s+"([\w. -]+)"' + port_arg, line)
+            require(io, f"unrecognized pin QSF command: {line}")
+            standards.append((io[1], io[2] or io[3]))
     location = {port: pin for pin, port in locations}
     standard = {port: io for io, port in standards}
     require(len(locations) == len(standards) == len(set(location.values())) == 65 and

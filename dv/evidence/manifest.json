@@ -1,29 +1,30 @@
 {
   "action": "regress",
-  "binary_sha256": "319bc395fec955b0e758b9b061de3617043b3b26d92078dc782715bb929d0d0a",
-  "build_id": "ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32",
-  "cwd": "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/main2-clean",
-  "git_branch": "main2",
-  "git_dv_status": "?? dv/",
-  "git_head": "407b29c08f1a724980ac183081eac01e45bcdd5a",
+  "binary_sha256": "a7151fa48e7926a4d1d82cd8da8bed78ed833c66c4166fd5e777770975ff7413",
+  "build_id": "faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c",
+  "cwd": "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent",
+  "git_branch": null,
+  "git_dv_status": null,
+  "git_head": null,
   "invocation": [
-    "dv/run.py",
+    "final-source/dv/run.py",
     "regress",
     "--jobs",
     "2",
     "--work",
-    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work",
+    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work",
     "--out",
-    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-evidence"
+    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/from-zip-regression"
   ],
   "pulp_commit": "dfad6e04d19cc9481d3cd2750b45b970dc61271b",
   "schema": 1,
-  "source_form": "git checkout",
-  "source_key": "da1b21f7de958606c4f0f8df03ffe223633963541a88466bc32ddeabe4fc04fb",
+  "source_form": "source tree without .git",
+  "source_key": "79f2d1acf2f6fa1c23feaf91e8008955b59df00b91d1da3bea153c48ac73579b",
   "sources": {
+    "docs/spec/baseline_hashes.json": "2de9ffc0b73deab27f94070d21d5825a2d1da276fc6b069a62f382e421a58eec",
     "dv/files.f": "d4bafbcb681fc07606cb5b8b37c17dc1e2d2e115a2d48f7df8e97e08131ae6ed",
-    "dv/results.py": "9e657d7f76dff53cfbd1d15479061d02772651ee047a0fcabc0a1d8a3dc596d2",
-    "dv/run.py": "fd9b26e59371060cdd1e656a8a112a04c440dfc69cd71d9ce10e0936e28d2f93",
+    "dv/results.py": "2becd8284ebbcaa6378af8fafde00ddf2f38ba86d1406d38f2f7bb84b0aadeb7",
+    "dv/run.py": "1414a353c0777a6f2d898ac50bb34cd2191f7fb757c73f7c71fe698a22b8923f",
     "dv/uvm/apb_agent.svh": "24ca02398fa5238e58cbb751e06073a6c260892a6ee049669d23ba12dd0f9b92",
     "dv/uvm/pulp_uart_pkg.sv": "37b0f20f4fac6b2a3585c239e25e4fdcb3f36d92db356111b92d3c2775bc83dd",
     "dv/uvm/scoreboard.svh": "5b3805bcb3ead37bb5b539dce8263398aaaf6de7d55c5c6c31343f28cfaacb7d",
@@ -31,11 +32,14 @@
     "dv/uvm/tb_top.sv": "6d232b93ee85eb2c08f38ff9dafe6f3c6175a81ad1928e72841b01b629697a77",
     "dv/uvm/tests.svh": "90e27f2a7fedec9a282fc671be235ff1e35f9ae3f18c045f73cd74fe43e54a78",
     "dv/uvm/uart_if.sv": "be8cda0d7528fc3e4ee3897530af3c40fc5c7faf2abf737c6c208db8bface507",
+    "rtl/vendor/pulp_apb_uart_sv/LICENSE": "b41106a9d0de1cf6ab4ea56bedf677503085c0570248f37fe2cdf657a5e72601",
     "rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv": "0ab01830961e5eb5c85a25fbd5e830c15e1570ac08a6d1af592e24e5fdf6c83b",
     "rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv": "9d05f38b5144cf328207c25de5e603f1a069f0a4a75779135032fb0a1625b554",
+    "rtl/vendor/pulp_apb_uart_sv/src_files.yml": "79294647da8ef4821e3f97ab65e0c289f0ee7f645f21dfe535564635d2351810",
     "rtl/vendor/pulp_apb_uart_sv/uart_interrupt.sv": "c8f29a8856fc6f777686ae7bbbbe128078068573d3e5f3a7bacba3d678739d08",
     "rtl/vendor/pulp_apb_uart_sv/uart_rx.sv": "532a18a12cf4eb8f1cad9c98ca8dc12c0c2a3e360476a134fcaca2092908f193",
-    "rtl/vendor/pulp_apb_uart_sv/uart_tx.sv": "3a41c83239ada87024d8321be1f6097caf6b1c36c4b9761a4e7c56f7a18cc306"
+    "rtl/vendor/pulp_apb_uart_sv/uart_tx.sv": "3a41c83239ada87024d8321be1f6097caf6b1c36c4b9761a4e7c56f7a18cc306",
+    "tools/check_upstream.py": "4cbbc2412c941a1694f6ffc861709d1e611d0f8a21809196d52395d39c7471f5"
   },
-  "utc": "20261119T092412.770327Z"
+  "utc": "20261119T100249.528048Z"
 }

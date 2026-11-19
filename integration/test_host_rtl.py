@@ -51,13 +51,13 @@ def check_wire(exe, parity):
     print(f"GPIO_PASS 8{parity}1: three binary bursts (24 bytes), KEY1 41, checked framing")
 
 
-def menu_check(root, profile, exe, temp):
+def menu_check(root, profile, exe, temp, entry):
     master, slave = pty.openpty()
     try:
         tty.setraw(slave)
         log = temp / "traffic.jsonl"
         tty_name = os.ttyname(slave)
-        args = [sys.executable, "-X", "utf8", str(root / "host/uart_menu.py"),
+        args = [sys.executable, "-X", "utf8", str(root / "host" / entry),
                 "--port", tty_name, "--profile", profile, "--log", str(log)]
         with subprocess.Popen([exe, "N"], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               text=True) as board, (temp / "menu.txt").open("w") as transcript:
@@ -141,7 +141,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=HERE.parent,
                         help="checkout containing both the FPGA sources and host/uart_menu.py")
-    parser.add_argument("--profile", choices=("pulp", "target"), default="pulp")
+    parser.add_argument("--profile", choices=("pulp", "target"),
+                        help="defaults to the Quartus project in --root")
+    parser.add_argument("--entry", choices=("uart_menu.py", "uart_linux.py"), default="uart_menu.py",
+                        help="serial menu to exercise through a PTY")
     parser.add_argument("--eda-wrapper", help="optional executable that runs Verilator in its environment")
     args = parser.parse_args()
     wrapper = args.eda_wrapper
@@ -150,11 +153,18 @@ def main():
         if fallback.is_file():
             wrapper = str(fallback)
     root = args.root.resolve()
-    exe = build_peer(root, args.profile, root / "build" / ("interop_" + args.profile), wrapper)
-    for mode in ("NE" if args.profile == "pulp" else "NEO"):
+    profile = args.profile
+    if profile is None:
+        profiles = {"de2_115_pulp_uart.qpf": "pulp", "de2_115_apb_uart.qpf": "target"}
+        matches = [name for project, name in profiles.items() if (root / "fpga/de2_115" / project).is_file()]
+        if len(matches) != 1:
+            parser.error("choose --profile for this checkout")
+        profile = matches[0]
+    exe = build_peer(root, profile, root / "build" / ("interop_" + profile), wrapper)
+    for mode in ("NE" if profile == "pulp" else "NEO"):
         check_wire(exe, mode)
     with tempfile.TemporaryDirectory(prefix="uart-interop-") as temp:
-        menu_check(root, args.profile, exe, Path(temp))
+        menu_check(root, profile, exe, Path(temp), args.entry)
 
 
 if __name__ == "__main__":

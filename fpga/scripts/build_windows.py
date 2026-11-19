@@ -2,12 +2,13 @@
 import argparse
 import hashlib
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
 
-from check_project import GPIO, PROJECT, ROOT, TOP, check_files, require, terasic_pins
+from check_project import DEVICE, GPIO, PROJECT, ROOT, TOP, check_files, require, terasic_pins
 
 
 def run(argv, cwd, log):
@@ -16,27 +17,36 @@ def run(argv, cwd, log):
     with log.open("wb") as output:
         result = subprocess.run(argv, cwd=cwd, stdout=output, stderr=subprocess.STDOUT)
     if result.returncode:
-        raise SystemExit(f"{Path(argv[0]).name} exit {result.returncode}. Review {log}")
+        print(f"{Path(argv[0]).name} exit {result.returncode}. Review {log}", file=sys.stderr)
+        raise SystemExit(result.returncode)
 
 
 def check_fit(output, ports, board=None):
     report = (output / f"{TOP}.fit.summary").read_text(errors="replace")
     fields = dict(line.split(" : ", 1) for line in report.splitlines() if " : " in line)
-    for key, value in {"Device": "EP4CE115F29C7", "Revision Name": TOP, "Top-level Entity Name": TOP,
-                       "Family": "Cyclone IV E"}.items():
+    for key, value in {"Device": DEVICE, "Revision Name": TOP, "Top-level Entity Name": TOP,
+                       "Family": "Cyclone IV E", "Total virtual pins": "0"}.items():
         require(fields.get(key) == value, f"fitted {key} expected {value}")
     require(fields.get("Fitter Status", "").startswith("Successful"), "Fitter status")
-    check_pad_report(output / f"{TOP}.pin", ports, board)
+    require(fields.get("Total pins", "").partition("/")[0].strip() == str(len(ports)), "fitted pin count")
+    check_pad_report(output / f"{TOP}.pin", ports, board, revision=TOP)
     print("Fitted project/device and all 65 pad locations/directions/I/O standards matched")
 
 
-def check_pad_report(path, ports, board=None):
+def check_pad_report(path, ports, board=None, *, revision=None):
+    report = path.read_text(errors="replace")
+    if revision is not None:
+        chips = re.findall(r'^CHIP\s+"([^"]+)"\s+ASSIGNED TO AN:\s*(\S+)\s*$', report, re.M)
+        require(chips == [(revision, DEVICE)], f"fitted pin report expected {revision}/{DEVICE}, got {chips}")
     rows = {}
-    for line in path.read_text(errors="replace").splitlines():
+    for line in report.splitlines():
         columns = [col.strip() for col in line.split(":")]
-        if len(columns) >= 4 and columns[0] in ports:
-            require(columns[0] not in rows, f"duplicate fitted pin {columns[0]}")
-            rows[columns[0]] = columns[1:4]
+        port = columns[0]
+        assigned = len(columns) == 7 and columns[6] == "Y"
+        if port in ports or assigned:
+            require(assigned and port in ports, f"unexpected or non-user fitted pin {port}")
+            require(port not in rows, f"duplicate fitted pin {port}")
+            rows[port] = columns[1:4]
     if board is None:
         board = terasic_pins()
     for port, direction in ports.items():

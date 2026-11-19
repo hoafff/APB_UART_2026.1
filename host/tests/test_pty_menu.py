@@ -19,6 +19,8 @@ PROBE = b"\x55\xaa\x00\xff"
 
 @unittest.skipUnless(os.name == "posix" and hasattr(os, "openpty"), "cần PTY POSIX")
 class PtyMenuTests(unittest.TestCase):
+    script = SCRIPT
+
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
@@ -41,7 +43,7 @@ class PtyMenuTests(unittest.TestCase):
         os.close(self.slave)
 
     def start(self, profile="target", device=None):
-        args = [sys.executable, "-B", "-u", "-X", "utf8", str(SCRIPT),
+        args = [sys.executable, "-B", "-u", "-X", "utf8", str(self.script),
                 "--port", device or self.device, "--log", str(self.log_path)]
         if profile:
             args.extend(["--profile", profile])
@@ -216,3 +218,51 @@ class PtyMenuTests(unittest.TestCase):
         self.finish("")  # Closing stdin exits the idle menu and releases the handle.
         self.assertEqual(self.rows()[-1]["event"], "CLOSE")
         self.assertFalse(any(r["event"] == "ECHO" for r in self.rows()))
+
+
+@unittest.skipUnless(sys.platform.startswith("linux"), "cần Linux")
+class LinuxPtyMenuTests(PtyMenuTests):
+    script = SCRIPT.with_name("uart_linux.py")
+
+    def test_start_without_flags_selects_profile_and_manual_pty(self):
+        result = subprocess.run(
+            [sys.executable, "-B", str(self.script)], input=f"2\n{self.device}\nx\n00 FF\nq\n",
+            cwd=self.directory, capture_output=True, encoding="utf-8", timeout=5,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(f"pulp | {self.device} | 115200 8N1", result.stdout)
+        self.assertEqual(self.peer_read(2), b"\x00\xff")
+
+    def test_busy_port_then_reconnect(self):
+        import serial
+
+        with serial.Serial(self.device, exclusive=True):
+            self.start(device=self.device)
+            self.wait_event("IO_ERROR", port=self.device)
+            self.assertFalse(any(row["event"] == "OPEN" for row in self.rows()))
+        self.keys(f"c\n{self.device}\nx\n00 FF\n")
+        self.assertEqual(self.peer_read(2), b"\x00\xff")
+        self.assertIn("Cổng đang bận", self.finish())
+
+    def test_missing_and_denied_path_at_menu(self):
+        if os.geteuid() == 0:
+            self.skipTest("cần tài khoản thường để thử EACCES")
+        missing = self.directory / "missing"
+        denied = self.directory / "denied"
+        denied.touch(mode=0)
+        self.start(device=str(missing))
+        self.wait_event("IO_ERROR", port=str(missing))
+        self.keys(f"c\n{denied}\n")
+        self.wait_event("IO_ERROR", port=str(denied))
+        output = self.finish()
+        self.assertIn("Không thấy đường dẫn cổng", output)
+        self.assertIn("Thiếu quyền đọc/ghi", output)
+        self.assertFalse(any(row["event"] == "OPEN" for row in self.rows()))
+
+    def test_unplug_at_menu_then_quit_records_reason_once(self):
+        self.start()
+        os.close(self.master)
+        self.master = None
+        self.assertIn("Mất kết nối", self.finish())
+        events = [row["event"] for row in self.rows()]
+        self.assertEqual(events, ["SESSION", "OPEN", "IO_ERROR", "CLOSE"])

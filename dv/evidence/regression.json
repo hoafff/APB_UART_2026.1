@@ -396,11 +396,11 @@
       "case": "registers",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=registers",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpv7vgxvi6/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmp4hhsnnvp/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -454,11 +454,11 @@
       "case": "baud",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=baud",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmp_lw5b6cc/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmppkedg1_9/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -536,11 +536,11 @@
       "case": "modes",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=modes",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpv0g1wi97/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmpkvt7ahbc/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -603,11 +603,11 @@
       "case": "fifo",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=fifo",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpuq7yhg2y/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmpp1pue0kw/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -664,11 +664,11 @@
       "case": "errors",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=errors",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpqvmouyll/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmp0dner82t/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -735,11 +735,11 @@
       "case": "irq",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=irq",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpuh4tkfmd/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmpgz0zcsmc/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -807,11 +807,11 @@
       "case": "thresholds",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=thresholds",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpv8h_h9nl/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmp7pjt9zof/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -828,7 +828,7 @@
         "tx": 24,
         "tx_drop": 0
       },
-      "seconds": 1.167,
+      "seconds": 1.066,
       "seed": 17,
       "sim_returncode": 0,
       "stimulus_sha256": null,
@@ -901,11 +901,11 @@
       "case": "random",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=random",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpn_ugtgnt/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmptwdh7qpa/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -922,7 +922,7 @@
         "tx": 12,
         "tx_drop": 0
       },
-      "seconds": 0.766,
+      "seconds": 0.666,
       "seed": 17,
       "sim_returncode": 0,
       "stimulus_sha256": "2e3a106ce7695bf82d973459e7227cadd6d884026a27ded6788dad63fc901838",
@@ -990,11 +990,11 @@
       "case": "random",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=random",
         "+SEED=29",
         "+verilator+seed+29",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpq0rfyz2u/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmplv7zexxq/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -1078,11 +1078,11 @@
       "case": "random",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=random",
         "+SEED=101",
         "+verilator+seed+101",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpoyslsal6/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmpt0kogzgj/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -1099,7 +1099,7 @@
         "tx": 10,
         "tx_drop": 0
       },
-      "seconds": 0.666,
+      "seconds": 0.716,
       "seed": 101,
       "sim_returncode": 0,
       "stimulus_sha256": "82e8201ee66caf20e57ab2dd7e2176f15d2f8411220b6f900239ef5fe07c676b",
@@ -1172,11 +1172,11 @@
       "case": "random",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=random",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpgrrtni1s/coverage.dat"
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmp9nvr3sug/coverage.dat"
       ],
       "diagnostic": null,
       "inject": null,
@@ -1230,11 +1230,11 @@
       "case": "baud",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=baud",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmplxwgjtr5/coverage.dat",
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmpmls263k3/coverage.dat",
         "+NEG_TX"
       ],
       "diagnostic": "UVM_ERROR dv/uvm/scoreboard.svh(46) @ 82970: uvm_test_top.env.sb [TX_DATA] observed=00000055 expected=00000054",
@@ -1252,7 +1252,7 @@
         "tx": 3,
         "tx_drop": 0
       },
-      "seconds": 0.315,
+      "seconds": 0.265,
       "seed": 17,
       "sim_returncode": 1,
       "stimulus_sha256": null,
@@ -1289,11 +1289,11 @@
       "case": "baud",
       "command": [
         "/home/hoaff/.local/bin/ic-eda",
-        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj/Vtb_top",
+        "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj/Vtb_top",
         "+CASE=baud",
         "+SEED=17",
         "+verilator+seed+17",
-        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/tmpy5xc5m6t/coverage.dat",
+        "+verilator+coverage+file+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/tmpkn5hn6s1/coverage.dat",
         "+NEG_RBR"
       ],
       "diagnostic": "UVM_ERROR dv/uvm/scoreboard.svh(46) @ 96050: uvm_test_top.env.sb [RBR_DATA] observed=00000096 expected=00000097",

@@ -95,8 +95,8 @@ def inspect_run(raw, case, seed, inject, rc):
         diagnostic = re.findall(rf"^UVM_ERROR [^\n]*\[{ident}\] observed=000000{wire} expected=000000{expected}$", log, re.M)
         if len(diagnostic) != 1 or severities != {"ERROR": 1, "FATAL": 0}:
             problems.append("wrong UVM diagnostic or severity counts")
-        if rc == 0 or "DV_CHECKS_FAILED" not in log or "DV_EXIT|PASS" in log:
-            problems.append("process did not reject checker failure")
+        if rc != 1 or "DV_CHECKS_FAILED" not in log or "DV_EXIT|PASS" in log:
+            problems.append("missing checker failure with simulator exit 1")
         verdict = "DETECTED" if not problems else "FAIL"
     else:
         if rc != 0 or severities != {"ERROR": 0, "FATAL": 0} or "DV_EXIT|PASS" not in log:

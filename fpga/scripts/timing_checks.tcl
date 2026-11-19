@@ -15,3 +15,12 @@ proc pulp_valid_metric {count slack} {
     }
     return $valid
 }
+
+proc pulp_require_clean_feedback {summary_rows} {
+    foreach kind {loops latches} {
+        set matches [lsearch -all -inline -exact -index 0 $summary_rows $kind]
+        if {[llength $matches] != 1 || [lindex $matches 0 1] ne "0"} {
+            error "check_timing $kind expected one row with zero issues, got $matches"
+        }
+    }
+}

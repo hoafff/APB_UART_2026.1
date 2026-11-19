@@ -13,6 +13,8 @@ py -3 fpga\scripts\build_windows.py --quartus-bin "D:\uart\25.1std\quartus\bin64
 
 Lệnh `--check-only` gọi `tools/check_upstream.py` để đối chiếu SHA-256 và danh mục đủ bảy đầu vào PULP (năm RTL, `src_files.yml`, `LICENSE`) với `docs/spec/baseline_hashes.json`. Lệnh build lặp phép kiểm trên bản chụp mới, trước khi gọi Quartus. Đổi một byte sẽ dừng preflight. [Bộ kiểm nguồn](../tools/check_upstream.py) · [Manifest](spec/baseline_hashes.json)
 
+Preflight đọc từng lệnh trong QSF chính và `pins.qsf`. Thêm một `VERILOG_FILE` ngoài filelist hoặc gán GPIO_UART_RX lần hai sang AB22 sẽ bị chặn cả khi chạy từ ngoài repo. Kết quả `--check-only` chỉ xác nhận đầu vào tĩnh. Khi một tiến trình build trả lỗi, helper giữ nguyên mã thoát và stdout/stderr trong log của bước đó. [Kiểm tra preflight và báo cáo fit](../fpga/sim/test_build_contract.py)
+
 Nếu hai chương trình đã có trên `PATH`, bỏ đối số `--quartus-bin`. Mỗi lần build tạo một thư mục mới `fpga\build\q-…`, chạy `quartus_sh --flow compile de2_115_pulp_uart`, đối chiếu device/top/revision và 65 pad trong báo cáo fitter, rồi chạy `quartus_sta`. Giữ lại cả thư mục được in sau **Fresh run**, kể cả lần lỗi.
 
 | Trong thư mục của lần chạy | Dùng để đối chiếu |
@@ -27,9 +29,10 @@ Nếu hai chương trình đã có trên `PATH`, bỏ đối số `--quartus-bin
 ### Đọc kết quả trước khi nạp
 
 - Trong Analysis & Synthesis, tìm **latch**, **combinational loop** và **fifo_tx_data**. Ở `rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv:195`, khối `always_comb` chỉ gán byte khi ghi THR. Verilator báo `LATCH`. Probe Yosys `read_verilog -sv …; proc` dừng với exit 1 ở latch của `fifo_tx_data`. Probe `read_slang; synth_intel -family cycloneive` dừng với exit 1 ở vòng tổ hợp qua `fifo_tx_data[7]`. Ghi lại hành vi thực tế của Quartus, kể cả tên node và mã message. Giữ nguyên RTL, cảnh báo và constraint để truy nguyên. Nếu mapping lỗi hoặc ảnh hưởng latch/loop đến timing còn mở, ghi trạng thái cùng log và dừng trước bước nạp. [Phân tích tổng hợp của PULP](02_Synthesis_Review.md)
-- Đọc Fitter Summary và `.pin` của chính lần chạy. Kiểm 65 bit pad (22 vào, 43 ra), đúng vị trí và I/O standard. Bảng chân dùng chung với bản TARGET RC1 đã được đối chiếu theo CSV Terasic. Số logic, Fmax, slack và SOF của RC1 thuộc revision đó. [Profile chân](../fpga/de2_115/pins.qsf) · [CSV gốc](../reference/DE2_115_pin_assignments.csv)
+- Đọc Fitter Summary và `.pin` của chính lần chạy. Helper đối chiếu tên revision/device trong dòng `CHIP` của `.pin`, 65 pin vật lý và 0 virtual pin trong summary. Cả 65 pad (22 vào, 43 ra) phải có `User Assignment = Y`, đúng hướng, vị trí và I/O standard. File pin từ RC1 sẽ dừng bước kiểm fit dù hai revision dùng chung bảng chân. [Profile chân](../fpga/de2_115/pins.qsf) · [CSV gốc](../reference/DE2_115_pin_assignments.csv)
 - TimeQuest phải thấy đúng một `CLOCK_50`, chu kỳ 20 ns. Đọc setup, hold, recovery, removal, minimum pulse width tại **cả ba góc** `7_slow_1200mv_85c`, `7_slow_1200mv_0c`, `MIN_fast_1200mv_0c`. Mỗi mục cần đường đo và slack hữu hạn ≥ 0 ns. Kiểm riêng recovery/removal từ `reset_sync[1]` và setup/hold của 17 cạnh đồng bộ. Lưu các báo cáo kể cả khi script trả lỗi. [Script TimeQuest](../fpga/scripts/report_timing.tcl)
 - Đối chiếu `ignored_sdc.rpt`, `unconstrained.rpt`, `check_timing.rpt` và `exceptions.rpt`. Xác minh không có constraint bị bỏ qua, đường chưa ràng buộc, clock thiếu hoặc loop chưa giải quyết. Chỉ miễn trừ từ các pad bất đồng bộ đến tầng bắt đầu, gồm cả KEY0 đến hai FF reset. Các đường sau tầng đầu và đường nhả reset nội bộ phải được phân tích. Chân TX/LED/HEX có budget triển khai 0…20 ns. Khi rà các mục thiếu input/output delay, đối chiếu từng pad với cách lấy mẫu bất đồng bộ và budget này. [SDC](../fpga/de2_115/de2_115_pulp_uart.sdc) · [Danh sách thanh ghi CDC](../fpga/de2_115/synchronizers.qsf)
+- Helper chỉ ghi `sof.sha256` sau khi bảng `PULP Check || Summary` có đúng một dòng `loops` và một dòng `latches`, cả hai có 0 vấn đề, cùng các phép kiểm timing đã nêu. Dù TimeQuest trả hai số 0, vẫn đọc toàn bộ message Analysis & Synthesis về latch/loop. [Chính sách kiểm bảng TimeQuest](../fpga/scripts/timing_checks.tcl)
 
 ## 2. Đấu dây và nạp SRAM
 

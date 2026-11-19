@@ -1,5 +1,5 @@
 {
-  "binary_sha256": "319bc395fec955b0e758b9b061de3617043b3b26d92078dc782715bb929d0d0a",
+  "binary_sha256": "a7151fa48e7926a4d1d82cd8da8bed78ed833c66c4166fd5e777770975ff7413",
   "command": [
     "/home/hoaff/.local/bin/ic-eda",
     "verilator",
@@ -13,13 +13,13 @@
     "--top-module",
     "tb_top",
     "+define+UVM_NO_DPI",
-    "+incdir+/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src",
+    "+incdir+/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src",
     "+incdir+dv/uvm",
-    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/deps/uvm/src/uvm_pkg.sv",
+    "/home/hoaff/Documents/Codex/2026-11-12/files-pasted-by-the-user-b/work/APB_UART_2026.1/.tools/uvm/src/uvm_pkg.sv",
     "-f",
     "dv/files.f",
     "--Mdir",
-    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/fresh-work/builds/ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32/obj",
+    "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-work/builds/faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c/obj",
     "--build-jobs",
     "2",
     "--verilate-jobs",
@@ -31,11 +31,11 @@
     "-MAKEFLAGS",
     "OPT_FAST=-O0 OPT_SLOW=-O0"
   ],
-  "cwd": "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/rq2-scratch/main2-clean",
-  "id": "ec37ec05460451740ad18f09652ea3311d3ad8e0055bf55ff28b151df49c6f32",
-  "log_sha256": "3f4dd13093c0d1930239a3dc16a3769b03044cb9b8aa2d537abbedacbaf54e06",
+  "cwd": "/home/hoaff/Documents/Codex/2026-11-19/che-2/work/current-review/independent/final-source",
+  "id": "faa44bf9de2ca1058fdcc6dcdece735722853f8b199446c471fb06c5c0443f4c",
+  "log_sha256": "53a3191aa3b6f237bedff6a8300be4080f5415321d446ddd64e55b5c21762698",
   "returncode": 0,
-  "seconds": 145.612,
+  "seconds": 143.374,
   "settings": {
     "flags": [
       "--binary",
@@ -59,6 +59,7 @@
     ],
     "jobs": 2,
     "sources": {
+      "docs/spec/baseline_hashes.json": "2de9ffc0b73deab27f94070d21d5825a2d1da276fc6b069a62f382e421a58eec",
       "dv/files.f": "d4bafbcb681fc07606cb5b8b37c17dc1e2d2e115a2d48f7df8e97e08131ae6ed",
       "dv/uvm/apb_agent.svh": "24ca02398fa5238e58cbb751e06073a6c260892a6ee049669d23ba12dd0f9b92",
       "dv/uvm/pulp_uart_pkg.sv": "37b0f20f4fac6b2a3585c239e25e4fdcb3f36d92db356111b92d3c2775bc83dd",
@@ -67,8 +68,10 @@
       "dv/uvm/tb_top.sv": "6d232b93ee85eb2c08f38ff9dafe6f3c6175a81ad1928e72841b01b629697a77",
       "dv/uvm/tests.svh": "90e27f2a7fedec9a282fc671be235ff1e35f9ae3f18c045f73cd74fe43e54a78",
       "dv/uvm/uart_if.sv": "be8cda0d7528fc3e4ee3897530af3c40fc5c7faf2abf737c6c208db8bface507",
+      "rtl/vendor/pulp_apb_uart_sv/LICENSE": "b41106a9d0de1cf6ab4ea56bedf677503085c0570248f37fe2cdf657a5e72601",
       "rtl/vendor/pulp_apb_uart_sv/apb_uart_sv.sv": "0ab01830961e5eb5c85a25fbd5e830c15e1570ac08a6d1af592e24e5fdf6c83b",
       "rtl/vendor/pulp_apb_uart_sv/io_generic_fifo.sv": "9d05f38b5144cf328207c25de5e603f1a069f0a4a75779135032fb0a1625b554",
+      "rtl/vendor/pulp_apb_uart_sv/src_files.yml": "79294647da8ef4821e3f97ab65e0c289f0ee7f645f21dfe535564635d2351810",
       "rtl/vendor/pulp_apb_uart_sv/uart_interrupt.sv": "c8f29a8856fc6f777686ae7bbbbe128078068573d3e5f3a7bacba3d678739d08",
       "rtl/vendor/pulp_apb_uart_sv/uart_rx.sv": "532a18a12cf4eb8f1cad9c98ca8dc12c0c2a3e360476a134fcaca2092908f193",
       "rtl/vendor/pulp_apb_uart_sv/uart_tx.sv": "3a41c83239ada87024d8321be1f6097caf6b1c36c4b9761a4e7c56f7a18cc306"

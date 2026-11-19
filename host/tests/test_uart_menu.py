@@ -101,6 +101,36 @@ class MenuTests(unittest.TestCase):
         self.assertEqual(rows[0]["hex"], "00")
         self.assertEqual(rows[1]["requested_hex"], "00 FF")
 
+    def test_quit_surfaces_rx_log_failure_while_waiting_for_input(self):
+        menu = uart.Menu("target", self.log)
+        port = Mock(port="COM10", in_waiting=0)
+        port.read.return_value = b""
+
+        def quit_after_rx_failure(prompt):
+            port.read.return_value = b"A"
+            menu.link.reader.join(timeout=1)
+            self.assertFalse(menu.link.reader.is_alive())
+            return "q"
+
+        with patch.object(uart.serial, "Serial", return_value=port), \
+                patch.object(self.log, "packet", side_effect=uart.LogError("disk full")), \
+                patch("builtins.input", side_effect=quit_after_rx_failure):
+            with self.assertRaisesRegex(uart.LogError, "disk full"):
+                menu.run("COM10")
+        port.close.assert_called_once_with()
+
+    def test_interrupt_during_shutdown_releases_port(self):
+        port = Mock(in_waiting=0)
+        port.read.return_value = b""
+        link = uart.Link(port, self.log)
+        try:
+            with patch.object(link.reader, "join", side_effect=KeyboardInterrupt):
+                with self.assertRaises(KeyboardInterrupt):
+                    link.close()
+        finally:
+            link.reader.join(timeout=1)
+        port.close.assert_called_once_with()
+
     def test_main2_help_uses_its_wrapper_mapping(self):
         pulp = io.StringIO()
         with contextlib.redirect_stdout(pulp):

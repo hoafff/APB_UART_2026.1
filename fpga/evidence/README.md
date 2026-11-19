@@ -1,6 +1,6 @@
 # Bằng chứng FPGA main2 trên Linux
 
-**DUT** là board top `de2_115_pulp_uart` với năm RTL gốc của PULP `dfad6e04d19cc9481d3cd2750b45b970dc61271b` và hai RTL tích hợp. Repo ở nhánh `main2`, HEAD nền `407b29c08f1a724980ac183081eac01e45bcdd5a` khi kiểm. Thay đổi FPGA là nguồn trong working tree. SHA-256 từng đầu vào được lưu để nhận dạng đúng lần chạy. [Danh mục hash](inputs.sha256)
+**DUT** là board top `de2_115_pulp_uart` với năm RTL gốc của PULP `dfad6e04d19cc9481d3cd2750b45b970dc61271b` và hai RTL tích hợp. Bảng dưới đây tóm tắt lần chạy lịch sử trong `board.log` và `static.log`, với HEAD nền `407b29c08f1a724980ac183081eac01e45bcdd5a` và phần FPGA trong working tree lúc đó. Manifest của lần chạy ấy có ở `git show 5d96a7f:fpga/evidence/inputs.sha256`. Manifest trong cây hiện tại nhận dạng các script và test đã cập nhật. [Danh mục hash hiện tại](inputs.sha256)
 
 | Phép kiểm | Kết quả đã chạy |
 |---|---|
@@ -15,6 +15,12 @@
 
 Testbench có clock 20 ns và driver RX theo thời gian riêng `1 s / 115200`. Monitor TX phát hiện cạnh start rồi lấy mẫu giữa bit. Scoreboard APB độc lập quan sát bus tại cạnh lên trước khi FIFO đổi đầu đọc. Toàn bộ ca board dùng tham số sản xuất. Ca master nối responder có thể giữ PREADY hoặc phát PSLVERR. [Log Verilator nguyên lần chạy](board.log) · [Lệnh, phiên bản và kiểm tĩnh](static.log)
 
+## Rà soát tổng hợp và guard trên nền `5d96a7f`
+
+Archive chứa 21 lệnh cùng mã thoát, phiên bản tool, log gốc và SHA-256. Ba probe strict đều trả 1 ở cả lõi và board top. Luồng `sv2v` → Yosys generic giữ đủ 8 latch, so sánh được 83.968 mẫu cổng trên lõi. Backend Cyclone IV E của Yosys trả 1 khi legalize latch. [Archive bằng chứng](synthesis-review.zip) · [Kết quả, giới hạn và lệnh tái lập](../../docs/02_Synthesis_Review.md)
+
+Fixture Python chạy helper thực với `--check-only` trên cây có dấu cách, kiểm các phản ví dụ về QSF/pin, giải mã summary/`.pin` dạng CRLF và xác minh tiến trình con trả 37 thì helper giữ 37 cùng log gốc. Fixture Tcl bổ sung bảy trường hợp cho hai dòng `loops/latches` bên cạnh 20 trường hợp góc, path và slack. Đây là kiểm tra parser và điều kiện dừng trên Linux. [Fixture Python](../sim/test_build_contract.py) · [Fixture Tcl](../sim/test_timing_checks.tcl)
+
 ## Tái lập từ gốc repo
 
 ```bash
@@ -25,6 +31,7 @@ mkdir -p fpga/build
 "$EDA" yosys -m slang -Q -T -q -p 'read_slang --top de2_115_pulp_uart -F fpga/de2_115/rtl.f; memory_collect; write_json fpga/build/board.json'
 python3 fpga/scripts/check_project.py --netlist fpga/build/board.json
 python3 fpga/sim/test_upstream_guard.py
+python3 fpga/sim/test_build_contract.py
 tclsh fpga/sim/test_timing_checks.tcl
 sha256sum -c fpga/evidence/inputs.sha256
 ```

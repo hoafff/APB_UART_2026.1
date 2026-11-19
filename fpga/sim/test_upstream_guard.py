@@ -69,7 +69,7 @@ def main():
             try:
                 build_windows.main()
             except SystemExit as exc:
-                if "preflight.log" not in str(exc):
+                if exc.code != 1:
                     raise
             else:
                 raise RuntimeError("staged mutation was accepted")

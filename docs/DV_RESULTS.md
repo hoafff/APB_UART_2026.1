@@ -5,24 +5,23 @@
 ## Tái lập và nhận dạng nguồn
 
 ```sh
-python3 dv/run.py regress --jobs 2
 python3 dv/run.py verify
+python3 dv/run.py regress --jobs 2 --out dv/.work/my-regression
+python3 dv/run.py verify --out dv/.work/my-regression
 ```
 
-Hồ sơ chính lấy từ clone mới của `main2`, HEAD `407b29c08f1a724980ac183081eac01e45bcdd5a`, cây sạch trước khi chép phần DV đang bàn giao. Năm file RTL đã có sẵn trong clone và khớp SHA-256 của cây làm việc. Lần chạy đó bỏ đặt `UVM_HOME`/`IC_EDA`, tự tìm wrapper cục bộ và tự lấy UVM pin `656f20d087370a7c742e00188d20bbf30fa95339`. Compile cache ban đầu rỗng. Build bằng Verilator `5.055 devel rev v5.054-129-g14bd81f66 (mod)`, G++ 16.2.1, GNU Make 4.4.1, Z3 4.15.5, 2 build jobs. Build mất 145,6 s. 13 tiến trình mô phỏng chạy tuần tự mất tổng 6,8 s trên máy này. [Transcript checkout mới](../dv/evidence/fresh-checkout.log) · [Lệnh build và tool version](../dv/evidence/build.json)
+Bộ bằng chứng chính được chạy ngày 19/11/2026 trên Linux từ ZIP nguồn đã giải nén, với cache build rỗng và checkout UVM offline tại commit `656f20d087370a7c742e00188d20bbf30fa95339`. Verilator 5.055 devel (`v5.054-129-g14bd81f66`), G++ 16.2.1, GNU Make 4.4.1 và Z3 4.15.5 được ghi trong manifest build. Biên dịch với hai job mất 143,4 s. Tổng thời gian của 13 tiến trình mô phỏng là 6,5 s. [Lệnh và phiên bản công cụ](../dv/evidence/build.json) · [Transcript biên dịch gốc](../dv/evidence/build.log.gz)
 
 | Danh tính | Giá trị |
 |---|---|
-| Revision PULP | `dfad6e04d19cc9481d3cd2750b45b970dc61271b` |
-| SHA-256 tập nguồn RTL, TB, filelist và runner | `da1b21f7de958606c4f0f8df03ffe223633963541a88466bc32ddeabe4fc04fb` |
+| Revision PULP, bảy file đã đối chiếu | `dfad6e04d19cc9481d3cd2750b45b970dc61271b` |
+| SHA-256 tập nguồn, filelist, runner và dữ liệu kiểm nguồn | `79f2d1acf2f6fa1c23feaf91e8008955b59df00b91d1da3bea153c48ac73579b` |
 | Git tree `src` của UVM | `204b3b844d57b630364a5d9774a022bf033f232a` |
-| SHA-256 binary dùng ở clone mới | `319bc395fec955b0e758b9b061de3617043b3b26d92078dc782715bb929d0d0a` |
+| SHA-256 binary dùng cho 13 tiến trình | `a7151fa48e7926a4d1d82cd8da8bed78ed833c66c4166fd5e777770975ff7413` |
 
-Mỗi transcript có source key, build ID và run ID. `verify` kiểm lại SHA-256, đối chiếu nguồn đang có, giải mã lại transcript, kiểm số khung từng ca, đối chiếu từng bin native với counter và tái tính tổng. Bản build có cảnh báo latch `fifo_tx_data` ở `apb_uart_sv.sv` dòng 195, cùng các cảnh báo chuyển độ rộng/kiểu. Mỗi log có hai cảnh báo thư viện UVM khi dùng `UVM_NO_DPI` (`NO_DPI_USED`, `NO_VISIT_CHECK`). Ca chính và replay đều có UVM_ERROR=0 và UVM_FATAL=0. [Manifest nguồn](../dv/evidence/manifest.json) · [SHA-256 bằng chứng](../dv/evidence/SHA256SUMS) · [Log compiler gốc nén gzip](../dv/evidence/build.log.gz) · [Đánh giá tổng hợp](02_Synthesis_Review.md)
+Tại `dv/evidence/`, lệnh `verify` kiểm đủ 13 ca và danh tính riêng của từng transcript, bao gồm lần phát lại seed 17. Nó kiểm bảy file PULP với danh mục đã khóa, filelist, log biên dịch và 28 file trong SHA256SUMS. Kết quả từng ca, số đếm native và tổng các bin được tính lại từ log và coverage gốc. Verilator báo latch `fifo_tx_data` tại `apb_uart_sv.sv:195`. Mỗi transcript UVM ghi hai cảnh báo `NO_DPI_USED` và `NO_VISIT_CHECK`. [Manifest nguồn](../dv/evidence/manifest.json) · [SHA-256 bằng chứng](../dv/evidence/SHA256SUMS) · [Đánh giá tổng hợp](02_Synthesis_Review.md)
 
-Đã chạy lại đủ **13 tiến trình** từ ZIP chỉ gồm nguồn cần thiết cho DV, giải nén vào thư mục mới thiếu `.git`, dùng checkout UVM offline đã khóa và một cache build rỗng khác. Build thứ hai mất 142,3 s. Cả 13 verdict, chẩn đoán control, hash stimulus và mọi bin trùng với clone mới. Cây `main2` đang làm việc cũng chạy lại đủ 13 tiến trình với cache đã xác minh. Các lần lặp này tách khỏi số đếm chính. [Transcript ZIP không có Git](../dv/evidence/source-zip.log) · [Bằng chứng đầy đủ lần chạy ZIP](../dv/evidence/source-zip-evidence.zip) · [Bằng chứng lần chạy tại main2](../dv/evidence/active-main2-evidence.zip) · [Đối chiếu ba lần chạy](../dv/evidence/reproducibility.json)
-
-Đã thử độc lập bốn bản sao bị sửa. Runner trả **2** ở cả bốn ca với chẩn đoán tương ứng cho binary trong cache, log biên dịch trong cache, transcript UVM và nguồn TB khi kiểm bằng chứng. Bộ bàn giao chính có **35 file được niêm SHA-256**. Hai ZIP bằng chứng kèm theo có manifest riêng và đã được giải nén, chạy `verify` lại. [Log các phép thử hỏng có chủ đích](../dv/evidence/usability.log)
+Khi chạy lại cả bộ từ checkout với cùng runner, cả 13 verdict, số phép so, dòng đo cạnh/khung, stimulus random, chẩn đoán control và số đếm coverage đều khớp lần chạy từ ZIP. Bộ test của CLI kiểm việc từ chối RTL sai byte, manifest đổi theo RTL, filelist thay DUT, thiếu control, trùng bằng chứng replay, build lỗi và timeout. Một gói chỉ có một control hợp lệ được chấp nhận ở đường dẫn lần chạy riêng và bị từ chối tại thư mục bàn giao. Có thể lặp lại bằng `python3 -m unittest discover -s dv/tests -v`. [Kiểm thử công cụ đọc bằng chứng](../dv/tests/test_evidence.py)
 
 ## Sổ chạy UVM
 
@@ -50,7 +49,7 @@ Ba seed tạo ba chuỗi stimulus khác nhau. Hash SHA-256 của 80 dòng `STIM`
 | [THR → TX](../dv/evidence/baud-17-tx.log) | `55` trên `tx_o` | `54` | `TX_DATA` tại 82.970 ns | 1 UVM_ERROR, 0 UVM_FATAL, simulator exit 1 |
 | [RX → RBR](../dv/evidence/baud-17-rbr.log) | `96` ở RBR và trên `rx_i` | `97` | `RBR_DATA` tại 96.050 ns | 1 UVM_ERROR, 0 UVM_FATAL, simulator exit 1 |
 
-Ca `baud` cùng stimulus và seed trả 0 khi không đảo bit. Hai control đều hoàn tất ca và chạy 85 phép so trước khi top trả lỗi. Runner chỉ ghi `DETECTED` khi ID, byte, severity, dấu kết thúc lỗi và exit cùng khớp. Khi gọi riêng `run --inject tx` hoặc `run --inject rbr`, chính runner cũng trả 1. Hồi quy kiểm hai lần từ chối có chủ đích này và trả 0 khi cả bộ đạt tiêu chí. [Control không tiêm](../dv/evidence/baud-17.log) · [Kiểm mã thoát CLI](../dv/evidence/usability.log)
+Ca `baud` cùng stimulus và seed trả 0 khi không đảo bit. Hai control đều hoàn tất ca và chạy 85 phép so trước khi top trả lỗi. Runner chỉ ghi `DETECTED` khi ID, byte, severity, dấu kết thúc lỗi và exit cùng khớp. Khi gọi riêng `run --inject tx` hoặc `run --inject rbr`, chính runner cũng trả 1. Hồi quy kiểm hai lần từ chối có chủ đích này và trả 0 khi cả bộ đạt tiêu chí. [Log baud bình thường](../dv/evidence/baud-17.log) · [Lệnh chạy từng control](../dv/README.md)
 
 ## Coverage thực đo
 
@@ -85,7 +84,7 @@ Trong file coverage gốc, hai cross SystemVerilog đạt **32/32 + 32/32**. B�
 
 ## Kết quả directed bổ sung
 
-Worker probe chạy **10/10 tình huống** và bắt **2/2 control**. Primitive FIFO được mô phỏng bằng Icarus 14.0. Chín ca top IP dùng Verilator 5.055, một build job và một simulation thread. Đã đối chiếu 12 SHA-256 nguồn của cả hai log chính thức (wrapper và PATH) với cây bàn giao. Lần replay độc lập thiếu `.git` dùng cùng 11 đầu vào RTL/test, với phiên bản runner trước lần cập nhật cách tìm tool. Toàn bộ dòng CHECK, PASS và DETECTED của ba lần đều khớp. Các điểm này có bộ đếm riêng, tách khỏi 117 bin UVM. [Log nguồn và số đo](../dv/probes/main.log) · [Log chạy qua PATH](../dv/probes/path.log) · [Replay độc lập từ cây không có Git](../dv/evidence/supplement-archive-replay.log) · [Runner](../dv/probes/run.py)
+Bộ probe chạy **10/10 tình huống** và bắt **2/2 control**. Primitive FIFO được mô phỏng bằng Icarus 14.0. Chín ca top IP dùng Verilator 5.055, một build job và một simulation thread. Đã đối chiếu 12 SHA-256 nguồn của cả hai log chính thức (wrapper và PATH) với cây bàn giao. Lần replay độc lập thiếu `.git` dùng cùng 11 đầu vào RTL/test, với phiên bản runner trước lần cập nhật cách tìm tool. Toàn bộ dòng CHECK, PASS và DETECTED của ba lần đều khớp. Các điểm này có bộ đếm riêng, tách khỏi 117 bin UVM. [Log nguồn và số đo](../dv/probes/main.log) · [Log chạy qua PATH](../dv/probes/path.log) · [Replay độc lập từ cây không có Git](../dv/probes/archive-replay.log) · [Runner](../dv/probes/run.py)
 
 | ID | Số đo trong log probe |
 |---|---|
@@ -105,7 +104,7 @@ Worker probe chạy **10/10 tình huống** và bắt **2/2 control**. Primitive
 | ID bên ngoài IP | Nguồn kết quả và điều kiện nghiệm thu |
 |---|---|
 | SYS-01, SYS-02, SYS-03 | Hồ sơ wrapper ghi **9/9 ca mô hình board và 5/5 ca master**, gồm reset/init, polling, KEY/SW/HEX, giữ đọc, echo, wait và lỗi APB. Dùng profile `pulp` trong kết quả GPIO/PTY để đối chiếu dữ liệu từ menu đến chân mô hình và quay về. [Log mô phỏng board và master](../fpga/evidence/board.log) · [Phương pháp tích hợp](../integration/README.md) · [Số liệu tích hợp](../integration/result.json) |
-| BOARD-01, BOARD-02 | Đối chiếu pin, jumper, thiết bị, fitter, STA và hash SOF trong hồ sơ FPGA. Kết quả mô phỏng IP không xác nhận điện áp hay timing vật lý. [Kiểm tra tĩnh FPGA](../fpga/evidence/static.log) · [Đánh giá tổng hợp](02_Synthesis_Review.md) · [Hướng dẫn và phiếu nghiệm thu](05_FPGA_Windows.md) |
+| BOARD-01, BOARD-02 | Đã đối chiếu tĩnh 65 chân, I/O standard, filelist và clock constraint 20 ns. Fitter, STA, SOF và đo điện áp trên bo của revision main2 vẫn là `NOT_RUN`. [Kiểm tra tĩnh FPGA](../fpga/evidence/static.log) · [Đánh giá tổng hợp](02_Synthesis_Review.md) · [Hướng dẫn và phiếu nghiệm thu](05_FPGA_Windows.md) |
 | BOARD-03 | **Chưa thử trên DE2-115 và CP2102 vật lý của main2.** Peer GPIO mô phỏng và PTY đã có hồ sơ tích hợp riêng. [Hồ sơ tích hợp](../integration/result.json) · [Phiếu nghiệm thu bo thật](05_FPGA_Windows.md) |
 
 Questa chưa chạy vì máy thực thi thiếu `vlib`, `vlog`, `vsim`. Verilator dùng mô phỏng hai trạng thái. Sign-off X/Z bốn trạng thái, metastability, lệch baud tối đa, mọi tổ hợp thay cấu hình giữa khung và coverage cấu trúc RTL nằm ngoài kết quả này. [Driver Questa](../dv/questa.py) · [Điều kiện kiểm chứng và cách chạy](../dv/README.md)

@@ -70,18 +70,26 @@ report_exceptions -file [file join $reports exceptions.rpt]
 report_sdc -ignored -file [file join $reports ignored_sdc.rpt]
 report_ucp -file [file join $reports unconstrained.rpt] -panel_name {PULP UCP}
 check_timing -include {no_clock multiple_clock generated_clock loops latches no_input_delay no_output_delay
-    partial_input_delay partial_output_delay io_min_max_delay_consistency} -file [file join $reports check_timing.rpt]
+    partial_input_delay partial_output_delay io_min_max_delay_consistency} -file [file join $reports check_timing.rpt] \
+    -panel_name {PULP Check}
 
-set panel {}
-foreach name [get_report_panel_names] {
-    if {[string match {*||PULP UCP||Unconstrained Paths Summary} $name]} { lappend panel $name }
+proc panel_rows {suffix} {
+    set panels [lsearch -all -inline -glob [get_report_panel_names] "*||$suffix"]
+    if {[llength $panels] != 1} { error "Expected one report panel $suffix, got $panels" }
+    set name [lindex $panels 0]
+    set count [get_number_of_rows -name $name]
+    if {$count < 2} { error "Empty report panel $name" }
+    set rows {}
+    for {set i 1} {$i < $count} {incr i} {
+        lappend rows [get_report_panel_row -name $name -row $i]
+    }
+    return $rows
 }
-if {[llength $panel] != 1} { error "Missing unconstrained-path summary, inspect $reports" }
-set name [lindex $panel 0]
-set rows [get_number_of_rows -name $name]
-if {$rows < 2} { error "Empty unconstrained-path summary" }
-for {set i 1} {$i < $rows} {incr i} {
-    lassign [get_report_panel_row -name $name -row $i] category setup hold
+if {[catch {pulp_require_clean_feedback [panel_rows {PULP Check||Summary}]} message]} {
+    lappend issues $message
+}
+foreach row [panel_rows {PULP UCP||Unconstrained Paths Summary}] {
+    lassign $row category setup hold
     if {$setup ne "0" || $hold ne "0"} { lappend issues "Unconstrained $category $setup $hold" }
 }
 set f [open [file join $reports ignored_sdc.rpt] r]
