@@ -10,3 +10,7 @@ Bài kiểm tra nối một cổng serial ảo của Linux với hai chân `GPIO
 Script chọn top theo project Quartus trong checkout. Bộ phát PC dùng tốc độ 115200 baud. Bộ thu độc lập lấy mẫu giữa bit, kiểm parity và stop, rồi giải mã ba gói nhị phân gồm cả một burst 16 byte. KEY1 được giữ đủ thời gian debounce để truyền giá trị trên SW[7:0].
 
 Qua PTY, test gửi `55 AA 00 FF` khi SW17 tắt rồi bật lại. Nhật ký menu phải lần lượt ghi `NO_RX` và `MATCH`. Sau đó test đặt SW[7:0] = `41`, nhấn KEY1 và kiểm PC nhận đúng byte `41`. Bài PTY dùng 8N1. Phần thử trực tiếp trên chân RTL chạy thêm các chế độ parity mà từng thiết kế hỗ trợ. [Kết quả của nhánh này](result.json)
+
+## Kiểm tra cửa sổ Python
+
+Trên Linux có desktop (hoặc Xvfb), Tk, pySerial và Verilator, chạy `.venv/bin/python integration/test_board_gui.py`. Bài thử mở cổng PTY từ cửa sổ thật, so hai lượt echo khi SW17 tắt và bật, nhận byte KEY1, rồi kiểm tra toàn bộ phiếu bo vẫn ghi `NOT_RUN`. Bài thử cũng nhập một quan sát mẫu, ghi kết quả ở một thiết kế và đọc lại CSV để đối chiếu trạng thái, thời gian và đường dẫn minh chứng. [Bài kiểm tra GUI](test_board_gui.py)

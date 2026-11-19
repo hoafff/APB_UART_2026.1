@@ -1,0 +1,160 @@
+{
+  "target": [
+    {
+      "id": "HW01",
+      "title": "Kiểm tra chip và jumper",
+      "steps": "Tắt nguồn DE2-115. Đọc mã FPGA trên bo, xác định hướng đánh số chân và kiểm tra vị trí cầu nối JP7, JP6.",
+      "expected": "FPGA mang mã EP4CE115F29C7. JP7 nối 5–6 chọn 2,5 V cho VCCIO5/6. JP6 nối 7–8 chọn 3,3 V cho VCCIO4.",
+      "evidence": "Ảnh mã chip và hai jumper, thấy rõ số chân."
+    },
+    {
+      "id": "HW02",
+      "title": "Đấu CP2102 với JP5",
+      "steps": "Kiểm mức logic UART của CP2102 theo tài liệu module hoặc phép đo TXD. Tắt nguồn bo, xác định chân 1 của JP5 rồi đấu chéo TXD/RXD và nối GND. Để hở dây nguồn 3V3/5V của CP2102.",
+      "expected": "Hai đầu dùng logic UART 3,3 V. TXD của CP2102 → JP5 chân 3 (GPIO[2]/AB21, FPGA nhận). RXD của CP2102 ← JP5 chân 1 (GPIO[0]/AB22, FPGA phát). Hai đầu chung GND qua JP5 chân 12 hoặc 30.",
+      "evidence": "Ảnh dây tại hai đầu và căn cứ xác nhận mức logic 3,3 V."
+    },
+    {
+      "id": "HW03",
+      "title": "Nạp SOF qua USB-Blaster",
+      "steps": "Đối chiếu SHA-256 của de2_115_apb_uart.sof với manifest RC1. Trong Quartus Programmer, chọn USB-Blaster và JTAG, chạy Auto Detect rồi gán SOF vào đúng FPGA. Chọn Program/Configure và nhấn Start để nạp SRAM.",
+      "expected": "Chuỗi JTAG có EP4CE115. Programmer báo “100% Successful” cho đúng FPGA và SOF TARGET đã kiểm tra.",
+      "evidence": "Ảnh chuỗi JTAG, kết quả Programmer và SHA-256 của SOF."
+    },
+    {
+      "id": "HW04",
+      "title": "Khởi động ở chế độ 8N1",
+      "steps": "Mở cổng CP2102 ở 115200 8N1, tắt điều khiển luồng và echo cục bộ. Đặt SW14=0, SW16=0, SW17=0. Giữ công tắc ổn định ≥1 ms, nhấn KEY0 ≥1 µs rồi nhả và chờ khởi tạo.",
+      "expected": "Sau khởi tạo, LEDG0=1, LEDG1=0, LEDG[7:2]=0 và HEX5:HEX4=00. Các đèn lỗi LEDR[4:1]=0. LEDR0=0 ở lần đọc LSR khi RX rỗng.",
+      "evidence": "Ảnh công tắc, LED và HEX sau khi nhả KEY0."
+    },
+    {
+      "id": "HW05",
+      "title": "Gửi 0x41 từ PC tới bo",
+      "steps": "Đặt SW16=0, SW17=0. Qua cổng 115200 8N1, gửi từ PC đúng một byte 0x41 (chữ A).",
+      "expected": "Sau khi bo đọc byte nhận, HEX5:HEX4 hiện 41.",
+      "evidence": "Ảnh HEX5/HEX4 cùng nhật ký PC phát 41."
+    },
+    {
+      "id": "HW06",
+      "title": "Gửi 0x41 bằng KEY1",
+      "steps": "Mở thu trên PC ở 115200 8N1. Đặt SW[7:0]=0x41 ổn định ≥1 ms trước khi bấm và giữ nguyên trong lúc bấm. Nhấn giữ KEY1 ≥10 ms rồi nhả ổn định ≥10 ms.",
+      "expected": "HEX1:HEX0=41. PC nhận đúng một byte 41 (A) trong cả lần nhấn, kể cả khi giữ KEY1 lâu.",
+      "evidence": "Nhật ký RX của PC suốt lúc nhấn, giữ và nhả phím."
+    },
+    {
+      "id": "HW07",
+      "title": "Echo bốn byte nhị phân",
+      "steps": "Ở 115200 8N1, đặt SW16=0, SW17=1 và nhả KEY1. Tắt echo cục bộ trên PC. Gửi một gói nhị phân gồm bốn byte hex 55 AA 00 FF.",
+      "expected": "PC nhận lại đúng bốn byte 55 AA 00 FF theo thứ tự đã gửi. Sau byte cuối, HEX5:HEX4=FF.",
+      "evidence": "Nhật ký TX và RX dạng hex, thấy đủ cả byte 00."
+    },
+    {
+      "id": "HW08",
+      "title": "Giữ RX và thử tràn FIFO",
+      "steps": "Bắt đầu khi FIFO RX rỗng. Bật SW16=1, SW17=1 rồi gửi 17 byte hex liên tiếp từ 00 đến 10. Chờ bo đọc LSR. Trong lúc giữ RX, gửi tay 41 bằng KEY1 như HW06, ghi dữ liệu PC nhận rồi hạ SW16.",
+      "expected": "Khi giữ RX, LEDR0=1 (DR), LEDR1=1 (OE) và PC vẫn nhận 41. Khi nhả, PC nhận đúng 16 byte từ 00 đến 0F theo thứ tự. Byte 10 bị bỏ, HEX5:HEX4=0F và LEDR1 giữ sáng đến lần reset bằng KEY0.",
+      "evidence": "Ảnh LEDR1, HEX và nhật ký RX có mốc hạ SW16."
+    },
+    {
+      "id": "HW09",
+      "title": "Kiểm tra parity lẻ 8O1",
+      "steps": "Đặt SW14=1, SW15=0 ổn định ≥1 ms rồi nhấn và nhả KEY0. Chọn 115200 8O1 trên PC, đặt SW16=0, SW17=0. Gửi 41 từ PC, gửi tay 41 như HW06 ở 8O1. Bật SW17=1 rồi gửi hai byte 00 01 từ PC.",
+      "expected": "HEX5:HEX4=41 khi nhận từ PC. PC nhận một byte tay 41 rồi hai byte echo 00 01. Bit parity lẻ của 00 là 1, của 01 là 0. Với các khung hợp lệ, LEDR2=0 (PE) và LEDG2=0.",
+      "evidence": "Ảnh SW, HEX, LEDR2, LEDG2 và nhật ký TX/RX ở 8O1."
+    },
+    {
+      "id": "HW10",
+      "title": "Kiểm tra parity chẵn 8E1",
+      "steps": "Đặt SW14=1, SW15=1 ổn định ≥1 ms rồi nhấn và nhả KEY0. Chọn 115200 8E1 trên PC, đặt SW16=0, SW17=0. Gửi 41 từ PC, gửi tay 41 như HW06 ở 8E1. Bật SW17=1 rồi gửi hai byte 00 01 từ PC.",
+      "expected": "HEX5:HEX4=41 khi nhận từ PC. PC nhận một byte tay 41 rồi hai byte echo 00 01. Bit parity chẵn của 00 là 0, của 01 là 1. Với các khung hợp lệ, LEDR2=0 (PE) và LEDG2=0.",
+      "evidence": "Ảnh SW, HEX, LEDR2, LEDG2 và nhật ký TX/RX ở 8E1."
+    },
+    {
+      "id": "HW11",
+      "title": "Phát khung sai parity",
+      "steps": "Đặt SW14=1, SW15=1, SW16=0, SW17=0. Reset bằng KEY0 để chốt 8E1 trên bo và xóa cờ cũ. Đặt PC ở 115200 8O1 rồi gửi một byte 41. Xem đèn sau khi bo đọc byte, sau đó reset lại.",
+      "expected": "HEX5:HEX4=41. Sau lần đọc LSR báo lỗi parity, LEDR2=1 (PE) và giữ sáng cả khi byte đã được đọc. LEDG1=0. LEDR2 tắt sau reset bằng KEY0.",
+      "evidence": "Ảnh hai cấu hình parity, LEDR2 trước/sau reset và nhật ký phát 41."
+    },
+    {
+      "id": "HW12",
+      "title": "Lỗi bit dừng và break",
+      "steps": "Chỉ thử khi có nguồn UART 3,3 V điều khiển được bit dừng và break. Chọn 8N1 với SW14=0, SW16=0, SW17=1 rồi reset bằng KEY0. Gửi A6 với bit dừng ở 0, chụp đèn rồi reset lại. Sau khởi tạo, để RX nghỉ mức 1 ≥1 bit, giữ RX=0 suốt ít nhất một khung 8N1 rồi trả về mức 1 ≥1 bit.",
+      "expected": "Với A6 sai bit dừng, HEX5:HEX4=A6, LEDR3=1 (FE), LEDR4=0 (BI). Với break, bo nhận một byte 00 có cả FE và BI, HEX5:HEX4=00, LEDR3=1 và LEDR4=1. Đèn lỗi đã bật giữ sáng đến reset.",
+      "evidence": "Dạng sóng RX của hai lần thử, ảnh LED/HEX và nhật ký echo A6, 00."
+    },
+    {
+      "id": "HW13",
+      "title": "Reset rỗi và giữa khung",
+      "steps": "Đặt bo và PC ở 115200 8N1, SW16=0, SW17=1. Thử KEY0 khi UART rỗi, rồi lặp khi đang truyền. Trong lúc giữ KEY0, ngừng phát để RX về mức 1. Nhả KEY0, chờ LEDG0 sáng và RX rỗi thêm ít nhất một thời gian bit, mở lượt ghi mới rồi gửi 5A.",
+      "expected": "Reset xóa LEDR[4:1] và đưa HEX5:HEX4 về 00. Khung đang truyền có thể bị cắt. Sau mỗi lần khởi tạo, LEDG0=1, LEDG1=0. Lượt mới trả về đúng một byte 5A và HEX5:HEX4=5A.",
+      "evidence": "Ảnh LED/HEX và nhật ký echo 5A sau mỗi lần reset."
+    },
+    {
+      "id": "HW14",
+      "title": "Đo baud và dạng sóng",
+      "steps": "Chọn 115200 8N1, SW17=0. Gửi tay 55 bằng KEY1, đo khoảng cạnh TX tại JP5 chân 1 (GPIO[0]) so với GND. Gửi 55 từ PC để ghi mức điện áp và đỉnh quá áp đầu vào FPGA tại JP5 chân 3 (GPIO[2]). Dùng điểm đo an toàn và ghi thang đo.",
+      "expected": "Với CLOCK_50 danh định 50 MHz và D=27, bit start và mỗi bit dữ liệu đều dài 432 chu kỳ (8,640 µs), tương ứng 115740,74 baud. Đối chiếu mức và quá áp đầu vào 3,3 V với giới hạn AN447.",
+      "evidence": "Dạng sóng có vị trí đo, thang thời gian/điện áp, chu kỳ bit và đỉnh quá áp."
+    }
+  ],
+  "pulp": [
+    {
+      "id": "HW01",
+      "title": "Đấu dây và nạp SOF PULP",
+      "steps": "Tắt nguồn. Kiểm chip, JP6/JP7, chân 1 của JP5 và mức logic CP2102. Nối TXD → JP5 chân 3 (GPIO[2]/AB21), RXD ← chân 1 (GPIO[0]/AB22), GND chung ở chân 12 hoặc 30. Để hở dây nguồn 3V3/5V. Đặt SW19 ở RUN, cấp nguồn, dò USB-Blaster/JTAG rồi nạp SRAM bằng de2_115_pulp_uart.sof đã đối chiếu SHA-256.",
+      "expected": "Bo dùng EP4CE115F29C7. JP6 nối 7–8 chọn 3,3 V cho VCCIO4, JP7 nối 5–6 chọn 2,5 V cho VCCIO5/6. UART dùng logic 3,3 V. Chuỗi JTAG có EP4CE115 và Programmer báo “100% Successful” cho SOF PULP.",
+      "evidence": "Ảnh bo, jumper, dây, chuỗi JTAG và kết quả Programmer kèm SHA-256 SOF."
+    },
+    {
+      "id": "HW02",
+      "title": "Khởi động PULP ở 8N1",
+      "steps": "Mở cổng CP2102 ở 115200 8N1, tắt điều khiển luồng và echo cục bộ. Đặt SW14=0, SW16=0, SW17=0. Nhả KEY1, giữ KEY0 rồi nhả và chờ ≥1 ms.",
+      "expected": "LEDG0=1, LEDG1=0, LEDG2=0, HEX5:HEX4=00. LEDR phản ánh lần đọc LSR gần nhất. LEDR0=0 (RX rỗng), LEDR[4:1]=0 (OE, FE, BI luôn bằng 0 và PE bị xóa mỗi chu kỳ). LEDG5=1, LEDG6=1 khi TX rỗi. LEDG8 có thể sáng dù RX rỗng.",
+      "evidence": "Ảnh LED và HEX khi bo đã khởi tạo và đường truyền đang rỗi."
+    },
+    {
+      "id": "HW03",
+      "title": "Thử UART hai chiều",
+      "steps": "Ở 115200 8N1, đặt SW16=0, SW17=0. Gửi 01 từ PC, xem HEX5:HEX4 rồi gửi 55 và xem lại. Đặt SW[7:0]=0x41 ổn định ≥1 ms, nhấn giữ KEY1 ≥20 ms rồi nhả ≥20 ms. Lặp lại với 0xA6.",
+      "expected": "HEX5:HEX4 lần lượt hiện 01 rồi 55. HEX1:HEX0 theo công tắc, hiện 41 rồi A6. PC nhận đúng 41 A6, mỗi lần bấm một byte dù giữ phím lâu.",
+      "evidence": "Ảnh HEX ở từng bước và nhật ký TX/RX dạng hex."
+    },
+    {
+      "id": "HW04",
+      "title": "Echo hai gói nhị phân",
+      "steps": "Ở 115200 8N1, đặt SW17=1, SW16=0, nhả KEY1 và tắt echo cục bộ trên PC. Gửi gói nhị phân 55 AA 00 FF, sau đó gửi liền một gói 16 byte từ 00 đến 0F.",
+      "expected": "LEDG4=1 khi bật echo. PC nhận đúng 55 AA 00 FF, tiếp đến đủ 16 byte 00 01 … 0F. Mỗi byte trở về đúng một lần, đúng thứ tự trong từng gói.",
+      "evidence": "Nhật ký hex của cả hai chiều cho gói 4 byte và gói 16 byte."
+    },
+    {
+      "id": "HW05",
+      "title": "Giữ RX trong lúc gửi tay",
+      "steps": "Ghi lại số đang hiện ở HEX5:HEX4. Bật SW17=1, SW16=1 rồi gửi 10 20 30 40 từ PC. Chờ ≥1 ms, xem HEX nhận và LEDR0. Khi còn giữ RX, đặt SW[7:0]=0x5A và bấm KEY1 như HW03. Hạ SW16 sau khi PC nhận byte tay.",
+      "expected": "Khi giữ, LEDG3=1, LEDG4=1, HEX5:HEX4 giữ byte cũ, LEDR0=1 và PC nhận 5A. Khi nhả, PC nhận 10 20 30 40, HEX5:HEX4=40. Sau lần đọc LSR khi FIFO RX đã rỗng, LEDR0=0.",
+      "evidence": "Ảnh HEX và LEDR0 hai thời điểm, nhật ký RX có mốc hạ SW16."
+    },
+    {
+      "id": "HW06",
+      "title": "Parity chẵn khi gạt SW15",
+      "steps": "Đặt SW14=1, SW15=1 rồi reset bằng KEY0. Chọn 115200 8E1 trên PC. Lặp HW03 (hai chiều) và HW04 (hai gói echo) ở 8E1. Giữ SW17=1, gửi thêm 00 01. Gạt SW15 về 0, giữ SW14=1 rồi gửi lại gói 00 01.",
+      "expected": "SW15 dự phòng. LEDG2=1 ở cả hai vị trí SW15. Dữ liệu hai chiều và echo khớp như HW03 và HW04. PC thu đủ 00 01 cả trước và sau khi gạt SW15. Bit parity của 00 là 0, của 01 là 1. LEDR2=0 vì IP luôn xóa PE, kể cả khi sai parity.",
+      "evidence": "Ảnh LEDG2, nhật ký TX/RX và dạng sóng parity của 00, 01 nếu đo được."
+    },
+    {
+      "id": "HW07",
+      "title": "Reset giữa lúc truyền",
+      "steps": "Chọn 115200 8N1 trên PC, đặt SW14=0 rồi reset bo. Đặt SW16=0, SW17=1. Khi PC đang gửi chuỗi dài, giữ KEY0, ngừng phát và đợi RX nghỉ ở mức 1. Nhả KEY0, chờ LEDG0 sáng, mở nhật ký mới rồi gửi đúng một byte 5A.",
+      "expected": "Reset có thể cắt khung đang truyền. Sau khởi tạo, lượt ghi mới chỉ có một byte echo 5A, HEX5:HEX4=5A, LEDG0=1 và LEDG1=0.",
+      "evidence": "Nhật ký RX có mốc reset và ảnh HEX5/HEX4, LEDG1."
+    },
+    {
+      "id": "HW08",
+      "title": "Đo bit start và dữ liệu",
+      "steps": "Nếu có máy đo, đặt SW14=0 rồi reset để chốt 8N1. Đặt SW[7:0]=0x55, bấm KEY1. Đo GPIO[0] (TX, JP5 chân 1) so với GND. Ghi tốc độ lấy mẫu, khoảng từ cạnh xuống start đến cạnh lên đầu tiên và khoảng cách giữa các cạnh dữ liệu.",
+      "expected": "Với CLOCK_50 danh định 50 MHz và D=433, bit start dài 435 chu kỳ (8,700 µs). Mỗi bit dữ liệu dài 434 chu kỳ (8,680 µs), tương ứng 115207,37 baud. Khi so số đo, tính đến dung sai dao động và độ phân giải của máy đo.",
+      "evidence": "Dạng sóng 55 có con trỏ trên start và các cạnh dữ liệu, kèm tốc độ lấy mẫu."
+    }
+  ]
+}

@@ -149,7 +149,7 @@ nghiệm thu; các mục này hiện là NOT_RUN.
 
 ## 7. Thử chức năng và lưu kết quả
 
-Sau khi nạp, mở menu với profile `target`. Dùng phím `x` để gửi HEX, `r` để nhận từ KEY1 và `e` để so từng byte echo. [Chạy menu trên Windows và Linux](../host/README.md)
+Sau khi nạp, mở cửa sổ với profile `target`. Chọn HW01–HW14 trong **Phiếu thử bo**. Dùng **Gửi / nhận UART** để gửi HEX hoặc so echo, rồi ghi kết quả quan sát trên bo và xuất phiếu CSV. [Chạy chương trình](../host/README.md) · [Phiếu 14 ca](07_FPGA_Board_Acceptance.csv)
 
 | Thử | Thao tác | Kết quả mong đợi, chưa phải kết quả đo |
 |---|---|---|

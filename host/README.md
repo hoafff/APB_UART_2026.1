@@ -1,79 +1,46 @@
-# UART DE2-115 qua CP2102
+# Bàn thử APB UART
 
-Chọn `target` cho bitstream RC1, `pulp` cho bitstream main2. Cả hai dùng 115200 baud, mặc định 8N1, tắt điều khiển luồng XON/XOFF, RTS/CTS và DSR/DTR.
+Cửa sổ Python dùng cho cả Windows và Linux. Chọn `TARGET · main` khi đã nạp SOF RC1, hoặc `PULP · main2` cho SOF biên dịch từ lõi PULP. [Chương trình](uart_gui.py)
 
-## Arch Linux
+## Mở cửa sổ
 
-Mở menu từ thư mục gốc của dự án.
+Từ thư mục gốc của dự án, dùng Python 3.11 trở lên với Tk và pySerial 3.5.
 
-```sh
-python host/uart_linux.py
-```
-
-Chọn profile, sau đó chọn số cổng. Menu ưu tiên tên ổn định trong `/dev/serial/by-id/` và hiện thiết bị mà tên đó trỏ tới. Khi thiếu tên ổn định, dùng cổng do pySerial phát hiện hoặc `/dev/ttyUSB*`, `/dev/ttyACM*`. Có thể nhập trực tiếp đường dẫn khác, kể cả PTY như `/dev/pts/4`.
-
-```sh
-python host/uart_linux.py --list
-python host/uart_linux.py --profile target --port /dev/ttyUSB0 --log uart-target.log
-```
-
-Thay `/dev/ttyUSB0` bằng cổng đã xác định. Nếu Python đang dùng thiếu pySerial, lệnh trên tự dùng `.venv` ở gốc dự án. Tạo môi trường này một lần bằng hai lệnh sau.
-
-```sh
-python -m venv .venv
-.venv/bin/python -m pip install pyserial==3.5
-```
-
-Nếu thiếu quyền, xem `ls -lL /dev/ttyUSB0` và `id` để đối chiếu quyền đọc/ghi và nhóm của tài khoản (thường là `uucp` trên Arch). Nếu cổng bận, đóng terminal đang dùng cổng. Nếu rút cáp, cắm lại rồi dùng `c` để quét lại.
-
-## Windows 11
-
-Dùng Python 3.8 trở lên. Đối chiếu CP2102 trong **Device Manager → Ports (COM & LPT)** rồi thay `COM10` bằng cổng thực tế.
+**Windows (PowerShell)**
 
 ```powershell
 py -3 -m pip install pyserial==3.5
-py -3 -X utf8 host\uart_menu.py --list
-py -3 -X utf8 host\uart_menu.py --profile target --port COM10
+py -3 -X utf8 host/uart_gui.py
 ```
 
-Có thể tải riêng `uart_menu.py` và chạy `py -3 -X utf8 .\uart_menu.py`. Chọn profile rồi nhấn `c` để nhập tên COM hoặc chọn số thứ tự.
-
-## Phím menu
-
-| Phím | Thao tác |
-|---|---|
-| `c`, `d`, `q` | Chọn cổng, ngắt cổng, thoát. Enter tại ô chọn cổng để hủy. |
-| `t`, `x` | Gửi chữ UTF-8 hoặc byte HEX (tối đa 1024 byte). Muốn gửi cả CR/LF, nhập `0D 0A` bằng `x`. |
-| `r` | Hiện RX đã chờ và nghe thêm 3 giây, kể cả byte từ KEY1. |
-| `e` | Thử echo. Enter gửi `55 AA 00 FF`, hoặc nhập HEX khác. `:q` hủy trước khi gửi. Sau lượt chưa khớp, `r` gửi lại, Enter về menu. |
-| `f`, `h` | Đổi khung phía PC và mở lại cổng, hoặc xem hướng dẫn thử bo theo profile. |
-
-Ctrl+C trong khi nhận hoặc thử echo sẽ đưa về menu. Lệnh `--log` chọn file JSON Lines UTF-8 để ghi nối tiếp. Mặc định file `uart-*.log` nằm trong thư mục chạy. Các dòng `TX` và `RX` ghi thời điểm phía PC, số byte và toàn bộ dữ liệu HEX. RX vẫn được ghi trong khi chờ nhập lệnh.
-
-## Đấu dây và thử bo
-
-Tắt nguồn trước khi đấu. Kiểm tra JP6 nối 7–8 (3,3 V), JP7 nối 5–6 (2,5 V) và mức logic UART của CP2102 là 3,3 V. Đối chiếu vị trí chân 1 trên JP5.
-
-| CP2102 | JP5 trên DE2-115 |
-|---|---|
-| TXD → | Chân 3, GPIO[2] / AB21, FPGA RX |
-| RXD ← | Chân 1, GPIO[0] / AB22, FPGA TX |
-| GND | Chân 12 hoặc 30 |
-| 3V3, 5V | Để hở. Bo dùng nguồn riêng. |
-
-Nạp bitstream bằng USB-Blaster. Đặt SW14=SW16=SW17=0, giữ switch ổn định ít nhất 1 ms rồi nhấn/nhả KEY0. Chờ LEDG0 sáng, LEDG1 tắt rồi mở cổng ở 8N1.
-
-1. **PC → bo.** Chọn `x`, nhập `41`. Kiểm tra HEX5:HEX4 hiện `41`.
-2. **Bo → PC.** Đặt SW[7:0]=0x41 và giữ ổn định ít nhất 1 ms. Chọn `r`, nhấn KEY1 ít nhất 20 ms rồi nhả ít nhất 20 ms. PC phải nhận đúng một byte `41`.
-3. **Echo.** Giữ SW16=0, bật SW17=1, để KEY1 yên. Chọn `e` rồi Enter. Kết quả mong đợi là `MATCH` với bốn byte `55 AA 00 FF`. Hạ SW17 và lặp lại khi đường truyền yên để kiểm tra `NO_RX`.
-4. **Đổi parity.** Với RC1, SW14=1 chọn 8O1 khi SW15=0 và 8E1 khi SW15=1. Với PULP, SW14=1 chọn 8E1, SW15 dự phòng. Nhấn/nhả KEY0, chọn cùng khung bằng `f` rồi lặp lại bước 1–3. Phím `h` có thêm bài giữ RX bằng SW16.
-
-Echo đợi RX yên 120 ms trước khi gửi. Nếu sau 700 ms RX vẫn bận, kết quả là `BUSY` và gói thử chưa được gửi. Trong 1 giây sau TX, `MATCH` yêu cầu đúng dữ liệu, độ dài và thứ tự. `SHORT`, `MISMATCH`, `EXTRA` lần lượt chỉ gói thiếu, sai và thừa.
-
-## Kiểm thử host trên Linux
+**Linux**
 
 ```sh
-.venv/bin/python -B -m unittest discover -v -s host/tests
+python3 -m venv .venv
+.venv/bin/python -m pip install pyserial==3.5
+.venv/bin/python host/uart_gui.py
 ```
 
-Các ca PTY chạy chương trình thật và dùng đầu serial đối diện để phát, thu và kiểm tra byte. Đối chiếu HEX, LED và tín hiệu điện trên bo bằng quy trình ở trên.
+Nếu đã cài pySerial vào `.venv` của dự án, `python3 host/uart_gui.py` cũng mở được cửa sổ. Trên Arch, Python dùng thư viện `tk`. Có thể chọn trước thiết kế bằng `--profile target` hoặc `--profile pulp`. Chỉ định `--port COM7` hoặc `--port /dev/ttyUSB0` để mở ngay một cổng đã biết.
+
+## Phiếu thử bo
+
+Phiếu của TARGET có **14 ca** (HW01–HW14), phiếu PULP có **8 ca** (HW01–HW08). Cùng một mã HW có thể chỉ hai thao tác khác nhau ở hai thiết kế. Chọn đúng thiết kế, rồi chọn một ca để xem **thao tác**, **kết quả mong đợi** và **bằng chứng cần lưu**.
+
+Trong **Thông tin phiếu**, điền người thử, mã bo, mã CP2102/cổng và SHA-256 của SOF. Sau mỗi phép thử, nhập số đo, byte thực nhận hoặc giá trị HEX/LED vào **Ghi chú quan sát**. Chọn tệp ảnh hoặc nhật ký làm minh chứng, chọn trạng thái rồi nhấn **Ghi kết quả**. Mỗi ca bắt đầu ở `NOT_RUN`. Ghi `PASS` khi quan sát đáp ứng đầy đủ tiêu chí, hoặc `FAIL` khi có sai khác.
+
+Nhấn **Xuất phiếu CSV** để lưu kết quả của thiết kế đang chọn. Có thể mở tệp này trong Excel. Ảnh và nhật ký được tham chiếu bằng đường dẫn. Khi nộp báo cáo, gửi kèm các tệp minh chứng.
+
+![Danh sách ca và kết quả mong đợi](phieu-thu-bo.png)
+
+[Phiếu CSV của nhánh này](../docs/07_FPGA_Board_Acceptance.csv) · [Đấu dây, nạp SOF và thử bo](../docs/06_FPGA_Implementation.md)
+
+## Gửi và nhận
+
+Chọn cổng CP2102 rồi nhấn **Kết nối**. Có thể nhập tên COM hoặc đường dẫn thiết bị trực tiếp. Tab **Gửi / nhận UART** cho phép gửi HEX hoặc văn bản UTF-8 và hiển thị TX/RX khi có dữ liệu, kể cả byte do KEY1 phát. Mặc định là 115200 baud, 8N1. Sau khi ngắt cổng, bạn có thể đổi khung cho khớp với công tắc tại lúc reset bo.
+
+Để thử echo, đặt SW16=0, SW17=1 rồi chọn **Thử echo** với gói `55 AA 00 FF`. PC so từng byte và hiển thị `MATCH`, `NO_RX`, `SHORT`, `EXTRA`, `MISMATCH` hoặc `BUSY`. Trước khi gửi, chương trình chờ RX yên 120 ms. Sau khi gửi, nó so các byte nhận trong 1 giây và ghi kết quả vào nhật ký UART. Người thử ghi kết luận riêng cho cả bài trong phiếu. Dùng `--log <đường-dẫn>` để chọn nơi ghi nhật ký JSON Lines.
+
+## Menu dòng lệnh
+
+Trên Windows dùng `py -3 host/uart_menu.py`. Trên Arch dùng `python3 host/uart_linux.py`. Phím `c` chọn cổng, `x` gửi HEX, `t` gửi chữ, `r` nhận byte, `e` thử echo, `f` đổi khung, `h` xem hướng dẫn. Cả hai chương trình nhận `--list` để liệt kê cổng. Mỗi lượt gửi tối đa 1.024 byte. Để gửi CR/LF, nhập `0D 0A` ở chế độ HEX. [Menu Windows](uart_menu.py) · [Menu Arch](uart_linux.py)

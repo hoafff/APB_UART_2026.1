@@ -2,7 +2,7 @@
 
 Đồ án tích hợp một UART trên bus APB với kit DE2-115. Sau khi nạp FPGA, máy tính gửi và nhận từng byte qua CP2102. Nhánh `main` dùng thiết kế TARGET-v1.0. Nhánh `main2` dùng thanh ghi và bộ chia baud của lõi PULP gốc.
 
-**Báo cáo** trình bày sơ đồ luồng dữ liệu, ba yêu cầu của đề và kết quả đo. [Đọc báo cáo](docs/BAO_CAO.md)
+**Báo cáo** trình bày sơ đồ luồng dữ liệu, ba yêu cầu của đề, kết quả mô phỏng và báo cáo Quartus. [Đọc báo cáo](docs/BAO_CAO.md)
 
 | Yêu cầu | Kết quả trên `main` | Tài liệu |
 |---|---|---|
@@ -12,24 +12,24 @@
 
 ## Chạy thử với CP2102
 
-Dùng USB-Blaster nạp `de2_115_apb_uart.sof` trong Release RC1. Kiểm tra jumper, mức logic và dây TX/RX/GND theo hướng dẫn nạp trước khi cấp nguồn. Để SW14=0, SW16=0, bật SW17 rồi nhấn và nhả KEY0. Khi LEDG0 sáng, mở menu ở 115200 baud, 8N1. [Tải SOF và báo cáo Quartus](https://github.com/hoafff/APB_UART_2026.1/releases/tag/v1.0.0-fpga-rc1)
+Dùng USB-Blaster nạp `de2_115_apb_uart.sof` trong Release RC1. Kiểm tra jumper, mức logic và dây TX/RX/GND theo hướng dẫn nạp trước khi cấp nguồn. Để SW14=0, SW16=0, bật SW17 rồi nhấn và nhả KEY0. Khi LEDG0 sáng, mở cổng ở 115200 baud, 8N1. [Tải SOF và báo cáo Quartus](https://github.com/hoafff/APB_UART_2026.1/releases/tag/v1.0.0-fpga-rc1)
 
 **Windows** · Mở PowerShell tại thư mục gốc của nhánh.
 
 ```powershell
 py -3 -m pip install pyserial==3.5
-py -3 host/uart_menu.py --profile target
+py -3 -X utf8 host/uart_gui.py --profile target
 ```
 
-**Linux** · Cài pySerial cho Python của dự án một lần rồi chạy menu.
+**Linux** · Cài pySerial cho Python của dự án một lần rồi mở cửa sổ.
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install pyserial==3.5
-.venv/bin/python host/uart_linux.py --profile target
+.venv/bin/python host/uart_gui.py --profile target
 ```
 
-Chọn `c` để mở cổng CP2102, chọn `e` và nhập `55 AA 00 FF`. Khi FPGA trả về đúng bốn byte, menu báo `MATCH`. Để thử chiều FPGA → PC, đặt SW[7:0] = `41`, chọn `r` rồi nhấn KEY1. [Các phím và cách lưu log](host/README.md)
+Trong **Phiếu thử bo**, chọn một trong 14 ca để xem thao tác và giá trị mong đợi. Dùng **Gửi / nhận UART** để gửi byte, đọc TX/RX và thử echo. Khi đã đối chiếu với bo, ghi quan sát và xuất CSV. [Hướng dẫn giao diện](host/README.md) · [Phiếu nghiệm thu](docs/07_FPGA_Board_Acceptance.csv)
 
 ## Đối chiếu kết quả
 
