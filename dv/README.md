@@ -12,7 +12,7 @@ Cần khoảng 2 GB dung lượng build và đủ RAM; mặc định `-j1`, C++ 
 
 ## Chạy
 
-Chạy hồi quy TARGET từ một bản **Git clone** trên Linux. Runner ghi lại revision của checkout cùng hash nguồn vào hồ sơ mỗi lần chạy. Có thể kiểm các log đã phát hành từ bản ZIP bằng `python3 tools/check_published_evidence.py`.
+Chạy hồi quy TARGET từ một bản **Git clone** trên Linux. Runner ghi lại revision của checkout cùng hash nguồn vào hồ sơ mỗi lần chạy. Để kiểm lại log đã phát hành từ ZIP hoặc checkout, dùng `python3 tools/check_published_evidence.py` trên Linux hoặc `py -3 -X utf8 tools/check_published_evidence.py` trong PowerShell.
 
 ```bash
 python tools/check_spec.py

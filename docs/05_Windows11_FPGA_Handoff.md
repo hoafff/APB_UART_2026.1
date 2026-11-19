@@ -15,4 +15,10 @@ py -3 -m pip install pyserial==3.5
 py -3 host/uart_menu.py --profile target
 ```
 
+Trong checkout hiện tại, lệnh dưới đây đối chiếu log UVM, các byte coverage và bản ghi biên dịch đã lưu. Lệnh chỉ cần Python 3.11 trở lên.
+
+```powershell
+py -3 -X utf8 tools/check_published_evidence.py
+```
+
 Kết quả Windows của RC1 gồm fitter, timing ở 50 MHz, file nạp và ba mô phỏng Questa. Phiếu thử DE2-115 + CP2102 còn 14 mục chờ đo. [Hướng dẫn nạp và build lại](06_FPGA_Implementation.md) · [Hướng dẫn menu](../host/README.md) · [Phiếu thử](07_FPGA_Board_Acceptance.csv)

@@ -2,9 +2,10 @@
 """Export only reviewed, matching-source runs; keep physical sign-off separate."""
 from pathlib import Path
 from collections import Counter,defaultdict
-import gzip,hashlib,json,re,shutil,subprocess,zipfile
-from run_dv import ROOT,command,inputs,TESTS
+import gzip,hashlib,json,re,shutil,subprocess,sys,zipfile
 from evidence import validate_run
+
+ROOT = Path(__file__).resolve().parents[1]
 
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def write_json(p,d): p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
@@ -13,28 +14,30 @@ def require_evidence(condition, message):
     if not condition:
         raise ValueError('Evidence rejected: '+message)
 
-def validate_evidence(runs, supplemental, current, check_binary=True):
+def validate_evidence(runs, supplemental, current, check_binary=True, root=None):
     """Recompute verdict inputs from raw logs before publishing any PASS/coverage."""
-    expected = [(t,17,None) for t in TESTS]
+    root = ROOT if root is None else root
+    cases = json.loads((root/'docs/dv/testcases.json').read_bytes())
+    uvm = [c['name'] for c in cases if c['kind'] == 'UVM']
+    require_evidence(len(uvm) == len(set(uvm)) == 13 and 'target_random_test' in uvm,
+                     'expected twelve directed UVM tests and one random test')
+    expected = [(name,17,None) for name in uvm if name != 'target_random_test']
     expected += [('target_random_test',s,None) for s in [17,29,101]]
     expected += [('target_tx_modes_test',17,'NEGATIVE_TX_DATA'),
                  ('target_apb_test',17,'NEGATIVE_APB_PROTOCOL')]
     require_evidence(Counter((r['test'],r['seed'],r['negative_control']) for r in runs)==Counter(expected),
                      'missing, duplicate or unexpected test/seed/control')
-    cases=json.loads((ROOT/'docs/dv/testcases.json').read_text())
-    require_evidence({c['name'] for c in cases if c['kind']=='UVM'}=={t for t,s,n in expected},
-                     'UVM testcase catalogue differs from executed suite')
     seen_artifacts=set()
     build_ids=set()
     for r in runs:
-        validate_run(ROOT,r,"target",seen_artifacts,check_binary)
+        validate_run(root,r,"target",seen_artifacts,check_binary)
         build_ids.add(r["build_id"])
         label=r['test']+'/'+str(r['seed'])+'/'+str(r['negative_control'])
         require_evidence(r.get('source_stable') is True and r['source_hashes']==current,
                          label+': source mismatch or unstable source')
         require_evidence(r.get('assertions_enabled') is True and not r.get('timed_out'),
                          label+': assertions disabled or timeout')
-        path=ROOT/r['log']
+        path=root/r['log']
         require_evidence(path.is_file(),label+': missing log')
         log=path.read_text(errors='replace')
         completion=re.search(r'^TEST_COMPLETED\|'+re.escape(r['test'])+r'\|checks=(\d+)\|apb=(\d+)$',log,re.M)
@@ -73,11 +76,11 @@ def validate_evidence(runs, supplemental, current, check_binary=True):
     require_evidence(len(build_ids)==1,'mixed UVM build identities')
     require_evidence(set(supplemental)=={'system','controller','onehot'},'supplemental suite incomplete')
     for name,r in supplemental.items():
-        validate_run(ROOT,r,name,seen_artifacts,check_binary)
+        validate_run(root,r,name,seen_artifacts,check_binary)
         require_evidence(r['status']=='PASS' and r['returncode']==0 and not r.get('timed_out'),
                          name+': supplemental execution failed')
-        require_evidence(all(sha(ROOT/p)==h for p,h in r['sources'].items()),name+': source mismatch')
-        log=(ROOT/r['log']).read_text(errors='replace')
+        require_evidence(all(sha(root/p)==h for p,h in r['sources'].items()),name+': source mismatch')
+        log=(root/r['log']).read_text(errors='replace')
         require_evidence(re.search(r'^SYS_TEST_COMPLETED\|checks=[1-9]\d*(?:\||$)',log,re.M) and
                          '%Error' not in log and 'WATCHDOG' not in log,name+': missing completion or failure in log')
     return {'result':'PASS_EVIDENCE_CHECK','uvm_logs_checked':len(runs),
@@ -88,21 +91,23 @@ def validate_evidence(runs, supplemental, current, check_binary=True):
             'scope':'Evidence integrity; not a new simulation or physical sign-off'}
 
 def main():
+    from run_dv import command, inputs
+
     current=inputs()
     runs=json.loads((ROOT/'build/target/regression.json').read_text())
     normal=[r for r in runs if not r['negative_control']]
     negatives=[r for r in runs if r['negative_control']]
     supplemental={name:json.loads((ROOT/f'build/{name}/result.json').read_text()) for name in ['system','controller','onehot']}
     validation=validate_evidence(runs,supplemental,current)
-    assert len(normal)==15 and len(negatives)==2
-    assert all(r['status']=='PASS' and r.get('source_stable') and r['source_hashes']==current for r in normal)
-    assert all(r['status']=='DETECTED' and r['source_hashes']==current for r in negatives)
-    assert {r['seed'] for r in normal if r['test']=='target_random_test'}=={17,29,101}
+    require_evidence(len(normal)==15 and len(negatives)==2, "incomplete regression")
+    require_evidence(all(r['status']=='PASS' and r.get('source_stable') and r['source_hashes']==current for r in normal), 'failed or stale functional run')
+    require_evidence(all(r['status']=='DETECTED' and r['source_hashes']==current for r in negatives), 'failed or stale negative control')
+    require_evidence({r['seed'] for r in normal if r['test']=='target_random_test'}=={17,29,101}, 'random seed inventory')
     for name,r in supplemental.items():
-        assert r['status']=='PASS',name
-        assert all(sha(ROOT/p)==h for p,h in r['sources'].items()),name
-    spec_check=subprocess.check_output(['python','tools/check_spec.py'],cwd=ROOT,text=True)
-    dv_check=subprocess.check_output(['python','tools/check_dv.py'],cwd=ROOT,text=True)
+        require_evidence(r['status']=='PASS', name+' failed')
+        require_evidence(all(sha(ROOT/p)==h for p,h in r['sources'].items()), name+' source mismatch')
+    spec_check=subprocess.check_output([sys.executable,'-X','utf8','tools/check_spec.py'],cwd=ROOT,text=True)
+    dv_check=subprocess.check_output([sys.executable,'-X','utf8','tools/check_dv.py'],cwd=ROOT,text=True)
     ledger=Counter()
     for r in normal: ledger.update(r['functional_bins'])
     for name in supplemental:
@@ -123,7 +128,7 @@ def main():
         r['exported_log']=str(dest.relative_to(ROOT))
     cov_paths=[ROOT/r['coverage_file'] for r in normal if r['coverage_file']]
     cov_paths += [ROOT/r['coverage_file'] for r in supplemental.values()]
-    assert len(cov_paths)==18 and all(p.is_file() for p in cov_paths)
+    require_evidence(len(cov_paths)==18 and all(p.is_file() for p in cov_paths), 'missing coverage inputs')
     merged=ROOT/'build/target/coverage_merged.dat'
     merge_cmd=command('verilator_coverage')+['--write',str(merged)]+list(map(str,cov_paths))
     subprocess.run(merge_cmd,check=True,cwd=ROOT,stdout=subprocess.DEVNULL)
@@ -151,7 +156,7 @@ def main():
             wave=(ROOT/r['log']).parent/'wave.fst'
             if wave.exists():
                 name=r['test']+'_seed'+str(r['seed'])+'.fst'; z.write(wave,name); waves.append({'name':name,'sha256':sha(wave)})
-    assert len(waves)>=2
+    require_evidence(len(waves)>=2, 'missing required waveforms')
     # Retain every individual native artifact and its envelope for offline replay.
     with zipfile.ZipFile(out/'run_artifacts.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
         for r in runs+list(supplemental.values()):

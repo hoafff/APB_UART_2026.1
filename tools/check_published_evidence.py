@@ -5,14 +5,27 @@ Executable bytes are not distributed: this validates recorded build bindings and
 source/artifact content, not the existence/execution of a binary on this host.
 """
 import json
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import shutil
 import tempfile
 import zipfile
 from collections import Counter
 from unittest.mock import patch
 import report_dv
-from evidence import sources,source_paths,require,sha
+import evidence
+from evidence import artifact, sources, source_paths, require, sha
+
+
+# The sealed recorder used host-native spellings. Git and the published records
+# name paths with forward slashes. Keep the original hash and byte count.
+def archive_sources(root, kind):
+    return {PureWindowsPath(name).as_posix(): digest for name, digest in sources(root, kind).items()}
+
+
+def archive_artifact(root, path):
+    record = artifact(root, path)
+    record['path'] = PureWindowsPath(record['path']).as_posix()
+    return record
 
 
 def main():
@@ -26,18 +39,26 @@ def main():
         scratch=Path(temp)
         names={'docs/dv/testcases.json','docs/dv/coverage_model.json'}
         for kind in ['target','system','controller','onehot']:
-            names.update(str(p.relative_to(root)) for p in source_paths(root,kind))
+            names.update(p.relative_to(root).as_posix() for p in source_paths(root,kind))
         for name in names:
             p=scratch/name;p.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(root/name,p)
+        records = runs + list(supp.values())
+        members = {r['run_id'] + '/build.json' for r in records}
+        members.update(r[field]['path'] for r in records
+                       for field in ('log_artifact', 'coverage_artifact') if r[field])
         with zipfile.ZipFile(out/'run_artifacts.zip') as z:
             require(z.testzip() is None,'archive CRC')
             require(len(z.namelist())==len(set(z.namelist())),'duplicate archive member')
+            require(set(z.namelist()) == members, 'unexpected or missing run archive member')
+            for r in records:
+                require(json.loads(z.read(r['run_id'] + '/build.json')) == r['build'], 'per-run build record mismatch')
             for info in z.infolist():
                 p=(scratch/info.filename).resolve()
                 require(p.is_relative_to(scratch) and not info.is_dir(),'invalid archive member')
                 p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(z.read(info))
-        with patch.object(report_dv,'ROOT',scratch):
-            validation=report_dv.validate_evidence(runs,supp,sources(scratch,'target'),check_binary=False)
+        with patch.multiple(evidence, sources=archive_sources, artifact=archive_artifact):
+            validation = report_dv.validate_evidence(runs, supp, archive_sources(scratch, 'target'),
+                                                     check_binary=False, root=scratch)
         ledger=Counter()
         for r in runs:
             if not r['negative_control']:ledger.update(r['functional_bins'])
