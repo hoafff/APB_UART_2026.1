@@ -4,11 +4,18 @@ Dự án kiểm thử UART qua APB, hướng đến FPGA Terasic DE2-115 và CP2
 
 - **Yêu cầu 1:** [SPEC TARGET-v1.0](docs/01_System_Specification.md), 80 yêu cầu và 65 chân đối chiếu CSV.
 - **Yêu cầu 2:** [DV Plan — audit closure v2](docs/03_DV_Plan.md), RTL mục tiêu, UVM, directed/automatic/constrained-random, SVA và coverage đã có. [Kết quả và giới hạn](docs/dv/RESULTS.md) là nguồn verdict thực thi.
-- **Yêu cầu 3:** wrapper có source và simulation; **chưa chạy Quartus/fitter/STA hoặc thử FPGA thật**.
+- **Yêu cầu 3:** Bản [FPGA RC1](https://github.com/hoafff/APB_UART_2026.1/releases/tag/v1.0.0-fpga-rc1) đã qua Quartus, fitter và STA trên Windows. Release chứa file nạp SRAM `de2_115_apb_uart.sof`. Phiếu thử DE2-115 + CP2102 vẫn chờ kết quả trên bo thật.
 
-**Bước tiếp theo đã chọn:** thực hiện Yêu cầu 3 trên Windows 11, cùng máy dual boot với
-Arch Linux. Xem [ghi chú Windows 11](docs/05_Windows11_FPGA_Handoff.md) và
-[kết quả sửa và kiểm lại](docs/dv/AUDIT_CLOSURE_2026-11-12.md).
+## Giao tiếp UART từ Windows sau khi nạp RC1
+
+Nạp `.sof` RC1 qua USB-Blaster, sau đó mở cổng COM của CP2102 bằng [menu UART Python](host/uart_menu.py). Chạy từ thư mục gốc của repo trong PowerShell:
+
+```powershell
+py -3 -m pip install pyserial==3.5
+py -3 host/uart_menu.py --profile target
+```
+
+Chọn cổng COM của CP2102. Cấu hình mặc định là 115200, 8N1. Xem [hướng dẫn menu](host/README.md) và [hướng dẫn đấu dây, nạp và thử của RC1](https://github.com/hoafff/APB_UART_2026.1/blob/v1.0.0-fpga-rc1/docs/06_FPGA_Implementation.md) trước khi thử truyền nhận.
 
 ## Bắt đầu
 
